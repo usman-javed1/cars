@@ -32,7 +32,7 @@ const Features = () => {
     return (
         <div className='ml-[5%] mt-[10%] w-[90%]'>
             <div className="w-[1340px] max-w-full mx-auto flex justify-between items-center">
-                <div className="heading font-[700] text-[45px] w-[401px] text-black ">
+                <div className="heading font-[700] text-[45px] w-[401px] text-black " style={{letterSpacing: "-1px"}}>
                     Featured vehicles
                 </div>
                 <div className="flex gap-2">
