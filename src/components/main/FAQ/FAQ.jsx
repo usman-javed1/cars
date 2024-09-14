@@ -6,7 +6,7 @@ const FAQ = () => {
     return (
         <div className='mx-auto mt-[10%] w-[90%] flex justify-between min-h-[349px] '>
             <div className="flex flex-col justify-start items-start">
-                <div className="heading font-[700] text-[45px] w-[401px] text-black text-start font-700" style={{letterSpacing: "-1px"}}>
+                <div className="heading font-[700] text-[45px] w-[401px] text-black text-start font-700">
                     Frequently Asked Questions
                 </div>
                 <div className="w-[505px] font-[500] text-[16px] text-[#959595] flex justify-start">
