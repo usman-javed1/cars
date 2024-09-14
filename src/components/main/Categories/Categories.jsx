@@ -39,7 +39,7 @@ const Categories = () => {
     ]
     return (
         <div className='mx-auto mt-[10%] w-[90%]'>
-            <div className="w-[1340px] max-w-full mx-auto flex justify-center items-center mb-10">
+            <div className="w-[1340px] max-w-full mx-auto flex justify-center overflow-hidden items-center mb-10">
                 <div className="heading font-[700] text-[45px] w-[501px] text-black ">
                     Popular Categories
                 </div>
