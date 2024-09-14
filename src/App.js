@@ -16,7 +16,7 @@ function App() {
     <div className="App w-[100%] max-w-full mx-auto">
       <Navbar />
       <HeroSection />
-      <div className="w-[1440px] max-w-full mx-auto">
+      <div className="w-full max-w-full mx-auto">
         <Features />
         <Details />
         <Categories />
