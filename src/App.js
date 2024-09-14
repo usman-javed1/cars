@@ -1,23 +1,30 @@
 import logo from './logo.svg';
 import './App.css';
+import Navbar from './components/General/Navbar';
+import Card from './components/General/Card';
+import HeroSection from './components/main/HeroSection/HeroSection';
+import Features from './components/main/Features/Features';
+import Details from './components/main/Details/Details';
+import Categories from './components/main/Categories/Categories';
+import HowWorks from './components/main/HowWorks/HowWorks';
+import FAQ from './components/main/FAQ/FAQ';
+import Explore from './components/main/Explore/Explore';
+import Footer from './components/General/Footer';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App w-[100%] max-w-full mx-auto">
+      <Navbar />
+      <HeroSection />
+      <div className="w-[1440px] max-w-full mx-auto">
+        <Features />
+        <Details />
+        <Categories />
+        <HowWorks />
+        <FAQ />
+      </div>
+      <Explore />
+      <Footer />
     </div>
   );
 }

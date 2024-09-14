@@ -1,0 +1,64 @@
+.customSelect {
+    height: 40px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+
+
+.optionList {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 10;
+    animation: fadeIn 0.3s ease;
+}
+
+.option {
+    margin: 5px;
+    padding: 8px 20px;
+    cursor: pointer;
+    background-color: #F8F8F8;
+    transition: background-color 0.3s ease;
+}
+
+.option:hover {
+    background-color: #e5e7eb  ;
+}
+
+.selected {
+    background-color: #000;
+    color: white;
+}
+
+.selected:hover {
+    background-color: #000;
+    color: white;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+

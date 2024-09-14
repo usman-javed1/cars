@@ -1,38 +1,39 @@
-.App {
-  text-align: center;
+/* Add font imports */
+
+@font-face {
+  font-family: 'Objectivity';
+  src:
+    url('./fonts/Objectivity-Bold.woff') format('woff');
+  font-weight: 700;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+@font-face {
+  font-family: 'Objectivity';
+  src:
+    url('./fonts/Objectivity-Medium.woff') format('woff');
+  font-weight: 500;
+  /* letter-spacing: -1px !important; */
+  font-style: normal;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+
+/* Repeat @font-face for each font file */
+/* Example for another font */
+@font-face {
+  font-family: 'Objectivity';
+  /* Replace with actual font name */
+  src:
+    url('./fonts/Objectivity-Regular.woff') format('woff');
+  font-weight: normal;
+  /* Adjust as needed */
+  font-style: normal;
+  
+  /* Adjust as needed */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body {
+  font-family: 'Objectivity', sans-serif; /* Fallback to sans-serif */
+  /* letter-spacing: -1px; */
 }
