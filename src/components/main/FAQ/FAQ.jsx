@@ -25,7 +25,7 @@ const FAQ = () => {
                 <Section />
             </div>
 
-            <div className="lg:hidden md:hidden block my-5 mx-[25px] mb-[100px] mt-[25px]">
+            <div className="lg:hidden md:hidden block my-5 mx-[35px] mb-[100px] mt-[25px]">
                     <button className='min-w-[325px] min-h-[56px] bg-black flex justify-center items-center rounded-[10px] text-[16px] text-white font-[500] p-[22px, 18px, 18px, 18px] mt-10 p-5 button21'>
                         Get free consultation
                         <span className='flex  transition-all duration-300 ml-4' >

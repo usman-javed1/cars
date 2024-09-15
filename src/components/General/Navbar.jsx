@@ -33,7 +33,7 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className='w-[100%] max-w-full lg:h-[80px] h-[70px] items-center lg:justify-between justify-between flex bg-black relative lg:pr-0 pr-5 lg:px-[60px] px-[25px]'>
+            <nav className='w-[100%] max-w-full lg:h-[80px] h-[70px] items-center lg:justify-between justify-between flex bg-black relative lg:pr-0 pr-5 lg:px-[60px] px-[25px] ' style={{position: showMenu ? "fixed": "relative"}}>
                 
                 <div className="logo">
                     <img src={require("../../images/logo.png")} alt="logo" width={142} height={42} />
