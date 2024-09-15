@@ -424,8 +424,8 @@ const HeroSection = () => {
                             selectedValues={selectedValues}
                             onSelect={handleSelect}
                         />
-                        <div className="button">
-                            <button className='w-[325px] h-[56px] flex justify-center items-center font-[500] bg-black text-white rounded-[10px] mt-20'>
+                        <div className="button w-[100vw]">
+                            <button className='w-[325px] h-[56px] flex justify-center items-center font-[500] bg-black text-white rounded-[10px] mt-20 mx-auto'>
                             Show results (232)
                             </button>
                         </div>
