@@ -33,7 +33,7 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className='w-[100%] max-w-full lg:h-[80px] h-[70px] items-center lg:justify-between justify-between flex bg-black relative lg:pr-0 pr-5 lg:px-[60px] px-[25px] ' style={{position: showMenu ? "fixed": "relative"}}>
+            <nav className='w-[100%] max-w-full lg:h-[80px] h-[70px] items-center lg:justify-between justify-between flex bg-black relative lg:pr-0 pr-5 lg:px-[60px] px-[25px] ' style={{position: showMenu ? "fixed": "relative", zIndex: 99999}}>
                 
                 <div className="logo">
                     <img src={require("../../images/logo.png")} alt="logo" width={142} height={42} />
@@ -114,7 +114,7 @@ const Navbar = () => {
                 <AnimatePresence>
                     {showMenu && (
                         <motion.div
-                            className="menu top-[80px] left-0 fixed bg-black text-white font-[700] text-[16px] h-[calc(100vh-80px)] w-full flex flex-col items-start p-[25px] overflow-y-auto"
+                            className="menu top-[70px] left-0 fixed bg-black text-white font-[700] text-[16px] h-[calc(100vh-70px)] w-full flex flex-col items-start p-[25px] overflow-y-auto"
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
