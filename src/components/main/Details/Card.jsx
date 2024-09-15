@@ -2,7 +2,7 @@ import React from 'react'
 
 const Card = ({ image, heading, desc, reverse }) => {
     return (
-        <div className='flex justify-between items-center w-[1280px] max-w-full flex-wrap-reverse lg:mb-0 md:mb-0 mb-[100px]' style={{ flexDirection: reverse ? 'row-reverse' : 'row' }}>
+        <div className='flex justify-between items-center w-[1280px] max-w-full flex-wrap-reverse lg:mb-0 md:mb-0 mb-[100px]' style={{ flexDirection: reverse ? 'row-reverse' : (window.innerWidth >= 1024 ? 'row-reverse' : 'row') }}>
             <div className="imageInCard  lg:w-[609px] md:w-[609px] w-[325px] lg:h-[455px] md:h-[455px] h-[240px] flex justify-center lg:mt-0 md:mt-0 mt-5">
                 <img src={image} alt="" className='lg:w-full md:w-full w-[325px]' />
             </div>
