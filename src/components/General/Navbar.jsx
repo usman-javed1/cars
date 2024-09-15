@@ -33,11 +33,12 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className='w-[100%] max-w-full h-[80px] items-center lg:justify-start justify-between flex bg-black relative lg:pr-0 pr-5'>
-                <div className="logo ml-[25px] ">
+            <nav className='w-[100%] max-w-full lg:h-[80px] h-[70px] items-center lg:justify-between justify-between flex bg-black relative lg:pr-0 pr-5 lg:px-[60px] px-[25px]'>
+                
+                <div className="logo">
                     <img src={require("../../images/logo.png")} alt="logo" width={142} height={42} />
                 </div>
-                <div className="w-[65%] h-[56px] ml-[401px] text-white items-center absolute text-[16px] justify-between lg:flex hidden ">
+                <div className="h-[56px]  text-white items-center text-[16px] justify-between lg:flex hidden ">
                     <ul className='flex w-[600px] justify-between items-center font-[500]' >
                         {navLinks.map((link, index) => (
                             <li 
@@ -83,12 +84,15 @@ const Navbar = () => {
                             </li>
                         ))}
                     </ul>
-                    <div className="button">
+                    
+                </div>
+
+                <div className="button pr-[60px] lg:block hidden">
                         <button className='w-[151px] h-[56px] flex justify-center items-center p-[22px, 18px, 18px, 18px] rounded-[10px] bg-white text-black text-[16px] font-[500] transition-all duration-300 hover:bg-[#F6B000] hover:text-white'>
                             Request a Call
                         </button>
                     </div>
-                </div>
+                
 
                 <motion.div
                     className="hamburger lg:hidden block cursor-pointer"
@@ -114,6 +118,7 @@ const Navbar = () => {
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
+                            style={{zIndex: 99999}}
                             transition={{ duration: 0.3 }}
                         >
                             <div className='space-y-5 flex flex-col items-start w-full'>

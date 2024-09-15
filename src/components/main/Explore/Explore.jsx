@@ -9,14 +9,20 @@ const Explore = () => {
                 <img
                     src={require("../../../images/image 162.png")}
                     alt=""
-                    className='h-[600px] w-full'
-                    style={{ filter: 'brightness(0.4)' }} // Added filter to make the image dull
+                    className='h-[600px] w-full object-cover lg:block hidden'
+                    style={{ filter: 'brightness(0.4)' }} 
                 />
-                <div className="absolute left-[100px] top-[30%]">
-                    <div className="text-[45px] font-[700] text-white text-start font-700">
+                <img
+                    src={require("../../../images/responsiveImageExplore.png")}
+                    alt=""
+                    className='h-[600px] w-full object-cover lg:hidden'
+                    style={{ filter: 'brightness(0.4)' }} 
+                />
+                <div className="absolute lg:left-[100px] md:left-[100px] left-[25px] lg:top-[30%] top-[15%]">
+                    <div className="lg:text-[45px] md:text-[45px] text-[35px] font-[700] text-white text-start font-700 lg:w-auto md:w-[auto] w-[325px]">
                         Explore Our Latest News
                     </div>
-                    <div className="mt-[24px] text-white font-[500] text-[16px] text-start w-[400px]">
+                    <div className="mt-[24px] text-white font-[500] lg:text-[16px] md:text-[16px] text-[14px] text-start lg:w-[400px] md:w-[400px] w-[325px]">
                         Stay informed and up-to-date with the latest happenings in the world of auto leasing!
                     </div>
                     <div className="font-[500] text-[16px] text-white text-start mt-10">

@@ -21,8 +21,8 @@ const FAQ = () => {
     ];
 
     return (
-        <div className="-mt-10">
-            <div className="w-[600px] mx-auto">
+        <div className="lg:-mt-10 md:-mt-10 mt-[10%]">
+            <div className="lg:w-[600px] md:w-[600px] w-[325px] mx-auto">
                 {faqs.map((faq, index) => (
                     <div key={faq.id} className="w-full md:px-6">
                         <div className="w-full my-10" />
@@ -34,7 +34,7 @@ const FAQ = () => {
                             }`}
                         >
                             <div>
-                                <p className={`text-[18px] text-black font-[700] text-start`}>
+                                <p className={`lg:text-[18px] md:text-[18px] text-[16px] text-black font-[700] text-start`}>
                                     {faq.question}
                                 </p>
                             </div>
@@ -51,7 +51,7 @@ const FAQ = () => {
                             </button>
                         </div>
                         <div className={`${openQuestions.includes(index) ? 'block' : 'hidden'} mt-6 w-full`}>
-                            <p className="text-start leading-6 text-[#959595] text-[16px] font-[500]">{faq.answer}</p>
+                            <p className="text-start leading-6 text-[#959595] lg:text-[16px] md:text-[16px] text-[14px] font-[500]">{faq.answer}</p>
                         </div>
                     </div>
                 ))}

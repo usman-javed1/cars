@@ -35,5 +35,8 @@
 
 body {
   font-family: 'Objectivity', sans-serif; /* Fallback to sans-serif */
+  /* max-width: 100vw; */
+  /* overflow: hidden; */
   /* letter-spacing: -1px; */
 }
+
