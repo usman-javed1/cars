@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './HeroSection.module.css';
 import { motion, AnimatePresence } from 'framer-motion';
-
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 import './RangeSlider.css'
 import { img } from 'framer-motion/client';
@@ -28,7 +29,7 @@ import DoubleLine from './icons/DoubleLine'
 import DotTriangle from './icons/DotTriangle'
 import Hunda2 from './icons/Hunda2'
 import All from './icons/All';
-import { FiMinus, FiPlus } from 'react-icons/fi';
+import { AiOutlineArrowUp, AiOutlineArrowDown } from 'react-icons/ai'; // Import new icons
 
 
 
@@ -397,7 +398,7 @@ const HeroSection = () => {
                 </div>
                 {isOverlayVisible && (
                     <motion.div
-                        className='bg-white fixed rounded-t-[15px] top-0 w-[100vw] left-0 px-[25px]'
+                        className='bg-white fixed rounded-t-[30px] top-0 w-[100vw] left-0 px-[25px]'
                         style={{ zIndex: 9999, height: '100vh', overflowY: 'auto' }}
                         initial={{ y: '100%' }} // Start from bottom
                         animate={{ y: 0 }} // Animate to original position
@@ -408,10 +409,10 @@ const HeroSection = () => {
                             <div className="text-[30px] font-[700] text-black">
                                 Search
                             </div>
-                            <img 
-                                src={require("../../../images/crossSearch.png")} 
-                                alt="" 
-                                className='w-[32px] h-[28.84px]' 
+                            <img
+                                src={require("../../../images/crossSearch.png")}
+                                alt=""
+                                className='w-[32px] h-[28.84px]'
                                 onClick={toggleOverlay} // Close overlay on click
                             />
                         </div>
@@ -423,6 +424,11 @@ const HeroSection = () => {
                             selectedValues={selectedValues}
                             onSelect={handleSelect}
                         />
+                        <div className="button">
+                            <button className='w-[325px] h-[56px] flex justify-center items-center font-[500] bg-black text-white rounded-[10px] mt-20'>
+                            Show results (232)
+                            </button>
+                        </div>
                     </motion.div>
                 )}
             </div>
@@ -435,7 +441,18 @@ export default HeroSection
 
 
 
-const FAQ = ({ selectedValues, priceRange, handlePriceChange, selections1, onSelect }) => {
+const FAQ = ({ selectedValues, priceRange, handlePriceChange, selections, onSelect }) => {
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
+
+    const selectionsWithDate = [
+        {
+            name: "Date",
+            options: [] // Add options if needed
+        },
+        ...selections
+    ];
+
     const [openQuestions, setOpenQuestions] = useState([]);
     const [hoveredValue, setHoveredValue] = useState(null);
 
@@ -456,24 +473,13 @@ const FAQ = ({ selectedValues, priceRange, handlePriceChange, selections1, onSel
         }
     };
 
-    const selections = [
-        {
-            name: "Date",
-        },
-        ...selections1
-    ]
-    
-    
-
-
-
     return (
         <div className="lg:-mt-10 md:-mt-10 mt-[10%]">
             <div className="lg:w-[600px] md:w-[600px] w-[325px] mx-auto">
-                
-                
-                
-                {selections.map((selection, index) => (
+
+
+
+                {selectionsWithDate.map((selection, index) => (
                     <div key={selection.name} className="w-full md:px-6">
                         <div className="w-full my-5" />
                         <div
@@ -493,9 +499,9 @@ const FAQ = ({ selectedValues, priceRange, handlePriceChange, selections1, onSel
                                 onClick={() => toggleQuestion(index)}
                             >
                                 {openQuestions.includes(index) ? (
-                                    <FiMinus className="text-[32px] text-[#959595]" strokeWidth={1.5} />
+                                    <img src={require("../../../images/dateupicons.png")} className='w-[24px] h-[24px]  rotate-180'/>
                                 ) : (
-                                    <FiPlus className="text-[32px] text-[#959595]" strokeWidth={1.5} />
+                                    <img src={require("../../../images/dateupicons.png")} className='w-[24px] h-[24px]'/>
                                 )}
                             </button>
                         </div>
@@ -532,6 +538,35 @@ const FAQ = ({ selectedValues, priceRange, handlePriceChange, selections1, onSel
                                                 onChange={handlePriceChange}
                                             />
                                         </li>
+                                    ) : selection.name === "Date" ? (
+                                        <div className=" space-y-4">
+                                            <div className="text-[#767676] w-[325px]">
+                                                <div className='text-[12px] text-[#767676] font-[500] flex gap-3 space-y-2 mb-2'>
+                                                    <img src={require("../../../images/calender.png")} alt="" className='w-[16px] h-[16px]' />
+                                                    Select pick-up date:
+                                                </div>
+                                                <DatePicker
+                                                    selected={startDate}
+                                                    onChange={(date) => setStartDate(date)}
+                                                    dateFormat="yyyy/MM/dd"
+                                                    placeholderText="YYYY / MM / DD"
+                                                    className="bg-lightgray rounded-[10px] p-3 outline-none w-[325px]"
+                                                />
+                                            </div>
+                                            <div className="text-[#767676] w-[325px]">
+                                                <div className='text-[12px] text-[#767676] font-[500] flex gap-3 space-y-2 mb-2'>
+                                                    <img src={require("../../../images/calender.png")} alt="" className='w-[16px] h-[16px]' />
+                                                    Select pick-up date:
+                                                </div>
+                                                <DatePicker
+                                                    selected={endDate}
+                                                    onChange={(date) => setEndDate(date)}
+                                                    dateFormat="yyyy/MM/dd"
+                                                    placeholderText="YYYY / MM / DD"
+                                                    className="bg-lightgray rounded-[10px] p-3 outline-none w-[325px]"
+                                                />
+                                            </div>
+                                        </div>
                                     ) : (
                                         selection.options.map((option) => (
                                             <li
