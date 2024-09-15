@@ -212,6 +212,11 @@ const HeroSection = () => {
     return (
         <div className='w-full h-[720px] bg-black p-[60px] flex justify-center'>
             <div className="w-[100%] h-[632px] relative">
+                <div className="absolute left-[4%] top-[40px] space-y-5">
+                    <img src={require("../../../images/tiktok.png")} alt="" className='w-[18px] h-[18px] space-y-5 ' />
+                    <img src={require("../../../images/insta2.png")} alt="" className='w-[18px] h-[18px]  ' />
+                    <img src={require("../../../images/solidfb.png")} alt="" className='w-[18px] h-[18px]  ' />
+                </div>
                 <img src={require("../../../images/hero.png")} className='w-full h-[632px]' alt="" />
                 <div className="samllText absolute  w-[560px] right-[5%] top-[50px] text-[8.76px] text-white text-right font-[300]">
                     Explore our exclusive collection of exotic cars, each meticulously chosen to represent the epitome of automotive <br /> engineering and design. From sleek sports cars to powerful luxury SUVs, our selection caters to every discerning taste.

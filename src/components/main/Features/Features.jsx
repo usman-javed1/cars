@@ -30,12 +30,13 @@ const Features = () => {
         }
     }
     return (
-        <div className='ml-[5%] mt-[10%] w-[90%]'>
+        <div className='ml-[5%] mt-[10%] overflow-hidden'>
+            
             <div className="w-[1340px] max-w-full mx-auto flex justify-between items-center">
                 <div className="heading font-[700] text-[45px] w-[401px] text-black " style={{letterSpacing: "-1px"}}>
                     Featured vehicles
                 </div>
-                <div className="flex gap-2">
+                <div className="flex gap-2 px-7">
                     <motion.div className="bg-lightgray w-[44px] h-[44px] flex justify-center items-center rounded-full featureLeftIcon transition-all duration-300"
                         onClick={onClickLeft}
                         onHoverStart={() => {

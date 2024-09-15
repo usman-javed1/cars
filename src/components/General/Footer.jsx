@@ -1,15 +1,14 @@
 import React, { useState } from 'react'
 import GetInTouch from './GetInTouch'
-
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
     const commonArrowImage = '../../images/arrow.png';
     const [hoveredLink, setHoveredLink] = useState([]);
+    const [hoveredIcon, setHoveredIcon] = useState(null); // New state for hovered icon
 
     const arr = ['General', 'Popular Categories', 'Features vehicles']
-
 
     const navLinks = [
         { text: 'Financing', image: commonArrowImage },
@@ -39,6 +38,14 @@ const Footer = () => {
     ];
     const array = [navLinks, navLinks1, navLinks2]
 
+    // Define social icons with their hover images
+    const socialIcons = [
+        { src: require('../../images/facebook.png'), hoverSrc: require('../../images/colorfb.png') },
+        { src: require('../../images/youtube.png'), hoverSrc: require('../../images/coloryoutube.png') },
+        { src: require('../../images/twiter.png'), hoverSrc: require('../../images/colortele.png') },
+        { src: require('../../images/insta.png'), hoverSrc: require('../../images/colorinsta.png') },
+        { src: require('../../images/whatsapp.png'), hoverSrc: require('../../images/colorwhatsapp.png') },
+    ];
 
     return (
         <footer className='w-full h-[1142px] bg-black px-[100px]'>
@@ -89,7 +96,7 @@ const Footer = () => {
                                 {(
                                     <motion.img
                                         src={require("../../images/arrow.png")}
-                                        alt=""
+                                        alt="arrow"
                                         className='w-[20px] h-[20px] ml-[3px]'
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: hoveredLink[0] === index && hoveredLink[1] === indexP ? 1 : 0 }}
@@ -98,7 +105,7 @@ const Footer = () => {
                                 )}
                             </Link>
                         </li>
-                    ))}
+                    ))} 
                 </div>)}
             </div>
             <div className="mt-32 flex justify-between items-center">
@@ -106,16 +113,27 @@ const Footer = () => {
                     Copyright 2024 TheWheelDeel
                 </div>
                 <div className="socialSection w-[184px] h-[24px] flex justify-between items-center ">
-                    <img src={require("../../images/facebook.png")} alt="" className='w-[20px] h-[20px]' />
-                    <img src={require("../../images/youtube.png")} alt="" className='w-[20px] h-[20px]' />
-                    <img src={require("../../images/twiter.png")} alt="" className='w-[20px] h-[20px]' />
-                    <img src={require("../../images/insta.png")} alt="" className='w-[20px] h-[20px]' />
-                    <img src={require("../../images/whatsapp.png")} alt=" " className='w-[20px] h-[20px]' />
-
+                    {socialIcons.map((icon, index) => (
+                        <motion.div
+                            className="relative"
+                            key={index}
+                            onMouseEnter={() => setHoveredIcon(index)}
+                            onMouseLeave={() => setHoveredIcon(null)}
+                        >
+                            <motion.img
+                                src={hoveredIcon === index ? icon.hoverSrc : icon.src}
+                                alt={`icon-${index}`}
+                                className='w-[20px] h-[20px]'
+                                initial={{ opacity: 0.6 }} // Start with low opacity
+                                animate={{ opacity: hoveredIcon === index ? 1 : 0.6 }} // Full opacity on hover
+                                transition={{ duration: 0.3 }} // Smooth transition
+                            />
+                        </motion.div>
+                    ))}
                 </div>
             </div>
         </footer>
     )
 }
 
-export default Footer
+export default Footer;
