@@ -20,7 +20,7 @@
 
 .slider-range {
   position: absolute;
-  height: 1px;
+  height: 3px;
   background-color: #FFB600;
   opacity: 1;
   top: 50%;

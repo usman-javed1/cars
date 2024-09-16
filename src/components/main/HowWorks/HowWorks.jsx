@@ -46,7 +46,7 @@ const HowWorks = () => {
                         <div className="lg:block md:block hidden">
                             <button className='min-w-[162px] min-h-[56px] bg-black flex justify-center items-center rounded-[10px] text-[16px] text-white font-[500]  mt-10 p-5 button21'>
                                 Browse vehicles
-                                <span className='flex  transition-all duration-300 ml-4' >
+                                <span className='flex  transition-all duration-300 ' >
                                     <img src={require("../../../images/whitefullarrow.png")} className='w-[0px]  h-[0px]' alt="" />
                                 </span>
                             </button>

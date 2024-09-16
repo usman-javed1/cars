@@ -39,17 +39,19 @@ const Categories = () => {
     ]
     return (
         <div className="lg:w-full md:w-full w-[350px] px-[10px]">
-        <div className="container">
+            <div className="container">
                 <div className='lg:mx-auto md:mx-auto mt-[10%]'>
                     <div className="lg:w-[1340px] flex-wrap md:w-[1340px]  w-[325px] max-w-full  flex lg:justify-center justify-start overflow-hidden items-center mb-10">
                         <div className="heading font-[700] lg:text-[45px] md:text-[45px] text-[35px] w-[501px] text-black ">
                             Popular Categories
                         </div>
                     </div>
-                    <div className="grid lg:grid-cols-4 md:grid-cols-4 grid-cols-2">
-                        {cat && cat.map((obj) =>
-                            <Card image={obj.image} heading={obj.heading} />)}
-
+                    <div className="grid lg:grid-cols-4 md:grid-cols-4 grid-cols-2 mx-auto justify-center items-center w-full">
+                        {cat && cat.map((obj, index) => (
+                            <div key={index} className="flex justify-center"> {/* Added flex container for centering */}
+                                <Card image={obj.image} heading={obj.heading} />
+                            </div>
+                        ))}
                     </div>
 
                     <div className="flex justify-center items-center lg:my-0 md:my-0 my-10 lg:mb-0 md:mb-0 mb-[100px] ">

@@ -3,6 +3,7 @@ import Card from '../../General/Card';
 import Icon from './icon/icon';
 import { motion } from 'framer-motion';
 
+
 const Features = () => {
     const [active, setActive] = useState({
         left: "#0E0E0E",
@@ -184,7 +185,6 @@ const Features = () => {
                                     dragElastic={0.1} // Lower elasticity for a smoother drag
                                     dragConstraints={{ left: 0, right: 0 }}
                                     onDragEnd={handleDragEnd}
-                                    onDragStart={(e) => e.preventDefault()} // Prevent default image drag behavior
                                     style={index === 0 ? { marginLeft: `${marginLeft}px` } : {}}
                                     transition={{
                                         type: "spring", // Spring effect for smooth transition

@@ -81,6 +81,8 @@ const RangeSlider = ({ min, max, value, step, onChange }) => {
                     id='maxRange'
                 />
             </div>
+            <div className="mt-[14.35px] text-[14px] font-[500] text-black">Price range</div>
+
             <div className="slider-track">
                 <label htmlFor='minRange' className="slider-thumb" style={{ left: `${minPos}%` }} />
                 <div
