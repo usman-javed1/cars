@@ -217,3 +217,18 @@ select option:hover, select option:focus {
     letter-spacing: -3%; }
  */
 
+
+
+.hoverBox:hover {
+  background-color: #F8F8F8;
+}
+
+.hoverBox:hover .text-change {
+  color: #F6B000;
+}
+.hoverBox:hover .text-img1 {
+  display: none;
+}
+.hoverBox:hover .text-img2 {
+  display: block !important;
+}

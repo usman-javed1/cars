@@ -139,16 +139,19 @@ const CustomDropdown = ({ options, defaultText, selectedValues, onSelect, width,
                 className={styles.customSelect}
                 onClick={() => setIsOpen(!isOpen)}
             >
-                {defaultText}
-                <img src={require("../../../images/heroicon.png")} className='w-[20px] h-[20px]' alt="" />
+                <span className='text-change'>
+                    {defaultText}
+                </span>
+                <img src={require("../../../images/heroicon.png")} className='w-[20px] h-[20px] text-img1' alt="" />
+                <img src={require("../../../images/coloricondown.png")} className='w-[20px] h-[20px] text-img2 hidden rotate-180' alt="" />
             </div>
 
             {/* Animate dropdown appearance */}
             <AnimatePresence>
                 {isOpen && (
                     <motion.ul
-                        initial={{ opacity: 0, y: -10, x: -10 }} // Start hidden and slightly above
-                        animate={{ opacity: 1, y: 0, x: 0 }} // Animate to visible and positioned correctly
+                        initial={{ opacity: 0, y: -10, }} // Start hidden and slightly above
+                        animate={{ opacity: 1, y: 0 }} // Animate to visible and positioned correctly
                         exit={{ opacity: 0, y: -10 }} // Animate exit
                         transition={{ duration: 0.3 }} // Control the speed of the animation
                         className={`flex absolute justify-start items-center bg-white text-black flex-wrap top-[90px] rounded-2xl p-3 font-[500] gap-[5px]`}
@@ -363,7 +366,7 @@ const HeroSection = () => {
 
                     <div className=" relative w-[1030px] h-[78px] bg-white rounded-[15px] mt-10  justify-between items-center lg:flex hidden">
                         {selections.map((sel) => (
-                            <div key={sel.name} className="w-[166px] hover:bg-lightgray transition-all duration-200 rounded">
+                            <div key={sel.name} className="hoverBox w-[166px] hover:bg-lightgray transition-all duration-200 rounded">
                                 <div className="ml-[16px] text-start font-[500] text-[12px] text-[#797979] mt-[4px] ">
                                     {sel.name}
                                 </div>
@@ -426,7 +429,7 @@ const HeroSection = () => {
                         />
                         <div className="button">
                             <button className='w-full h-[56px] flex justify-center items-center font-[500] bg-black text-white rounded-[10px] mt-20 mx-auto'>
-                            Show results (232)
+                                Show results (232)
                             </button>
                         </div>
                     </motion.div>
@@ -499,9 +502,9 @@ const FAQ = ({ selectedValues, priceRange, handlePriceChange, selections, onSele
                                 onClick={() => toggleQuestion(index)}
                             >
                                 {openQuestions.includes(index) ? (
-                                    <img src={require("../../../images/dateupicons.png")} className='w-[24px] h-[24px]  rotate-180'/>
+                                    <img src={require("../../../images/dateupicons.png")} className='w-[24px] h-[24px]  rotate-180' />
                                 ) : (
-                                    <img src={require("../../../images/dateupicons.png")} className='w-[24px] h-[24px]'/>
+                                    <img src={require("../../../images/dateupicons.png")} className='w-[24px] h-[24px]' />
                                 )}
                             </button>
                         </div>

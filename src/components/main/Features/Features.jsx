@@ -11,7 +11,7 @@ const Features = () => {
 
     const cards = [{
         name: "2024 Kia Forte LXS 4dr Sedan",
-        heading: "Sport cars", 
+        heading: "Sport cars",
         image: require("../../../images/blackcar.png"),
         price: "839",
         lease: "39 months",
@@ -20,25 +20,25 @@ const Features = () => {
         discount: "-40%"
     }, {
         name: "Mercedes-AMG GT Coupé",
-        heading: "Sport cars", 
+        heading: "Sport cars",
         image: require("../../../images/cardwhite.png"),
         price: "1239",
         lease: "39 months",
         mile: "8000",
         seat: "4",
         discount: "-40%"
-        }, {
+    }, {
         name: "BMW M8 Competition",
-        heading: "Sport cars", 
+        heading: "Sport cars",
         image: require("../../../images/card3.png"),
         price: "1239",
         lease: "39 months",
         mile: "8000",
         seat: "4",
         discount: "-40%"
-        }, {
+    }, {
         name: "2024 Kia Forte LXS 4dr Sedan",
-        heading: "Sport cars", 
+        heading: "Sport cars",
         image: require("../../../images/blackcar.png"),
         price: "839",
         lease: "39 months",
@@ -76,7 +76,7 @@ const Features = () => {
 
     return (
         <div className="lg:w-full md:w-full w-[350px] px-[10px]">
-        <div className=" container">
+            <div className=" container">
                 <div className='mt-[10%] overflow-hidden'>
                     {/* Header Section */}
                     <div className="lg:w-full md:w-[95%] w-[350px] max-w-full mx-auto flex justify-between items-center">
@@ -128,23 +128,30 @@ const Features = () => {
                             </div>
                         </div>
                     </div>
-
                     {/* Cards Section */}
                     <div className="flex lg:gap-5 gap-[6px] lg:w-full md:w-full w-[350px] max-w-full overflow-hidden mx-auto   px-[1px]">
                         {/* Apply drag to all cards */}
-                        {cards.map((card, index) => (
-                            <motion.div
-                                key={index}
-                                className="transition-all duration-300"
-                                drag="x"
-                                dragElastic={false}
-                                dragConstraints={{ left: 0, right: 0 }} // Disable dragging beyond current card position
-                                onDragEnd={handleDragEnd} // Handle drag end for every card
-                                style={index === 0 ? { marginLeft: `${marginLeft}px` } : {}} // Only move the first card by changing its margin-left
-                            >
-                                <Card obj={card} />
-                            </motion.div>
-                        ))}
+                        
+                            {
+                                cards.map((card, index) => (
+                                    <motion.div
+                                        key={index}
+                                        className="transition-all duration-300"
+                                        drag="x"
+                                        dragElastic={0.1} // Lower elasticity for a smoother drag
+                                        dragConstraints={{ left: 0, right: 0 }}
+                                        onDragEnd={handleDragEnd}
+                                        style={index === 0 ? { marginLeft: `${marginLeft}px` } : {}}
+                                        transition={{
+                                            type: "spring", // Spring effect for smooth transition
+                                            stiffness: 100, // Control stiffness of spring
+                                            damping: 15, // Control damping for a smoother effect
+                                        }}
+                                    >
+                                        <Card obj={card} />
+                                    </motion.div>
+                                ))
+                            }
                     </div>
 
                     {/* View All Button */}
