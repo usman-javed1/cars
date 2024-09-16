@@ -4,8 +4,8 @@ import Section from './Section1'
 
 const FAQ = () => {
     return (
-        <div className="lg:w-full md:w-full w-[375px]">
-            <div className='lg:mx-auto md:mx-auto mt-[10%] lg:w-[90%] md:w-[90%] w-[100%] flex justify-between min-h-[349px] flex-wrap mx-[25px]'>
+        <div className=" container">
+            <div className='lg:mx-auto md:mx-auto mt-[10%]  w-[100%] flex justify-between min-h-[349px] flex-wrap mx-[25px]'>
                 <div className="flex flex-col justify-start items-start lg:ml-0 md:ml-0 ml-[25px]">
                     <div className="heading font-[700] lg:text-[45px] md:text-[45px] text-[35px] lg:w-[401px] md:w-[401px]  text-black text-start font-700">
                         Frequently Asked Questions

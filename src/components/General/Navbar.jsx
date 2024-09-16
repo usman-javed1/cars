@@ -38,8 +38,8 @@ const Navbar = () => {
                 <div className="logo">
                     <img src={require("../../images/logo.png")} alt="logo" width={142} height={42} />
                 </div>
-                <div className="h-[56px]  text-white items-center text-[16px] justify-between lg:flex hidden ">
-                    <ul className='flex w-[700px] justify-between items-center font-[500]' >
+                <div className="h-[56px]  text-white items-center text-[16px] justify-between lg:flex hidden w-[47%]">
+                    <ul className='flex w-full justify-between items-center font-[500]' >
                         {navLinks.map((link, index) => (
                             <li 
                                 key={index}
