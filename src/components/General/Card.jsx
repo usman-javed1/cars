@@ -25,8 +25,9 @@ const Card = ({ obj }) => {
                 </div>
             </div>
 
-            <div className="imageSection cursor-default">
-                <img src={image} alt="" className='lg:w-[361px] lg:h-[256px] h-[194px] w-[273px]' />
+            <div className="imageSection  relative">
+                <div className="lg:w-[361px] lg:h-[256px] h-[194px] w-[273px] absolute top-0 left-0" style={{zIndex: 100}}></div>
+                <img src={image} alt="" className='lg:w-[361px] lg:h-[256px] h-[194px] w-[273px]' style={{zIndex: -1}} />
             </div>
 
             <div className="details">

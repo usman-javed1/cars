@@ -45,32 +45,75 @@ const Features = () => {
         mile: "8000",
         seat: "4",
         discount: "-40%"
-    }]; // Placeholder for card data
-    const [marginLeft, setMarginLeft] = useState(0); // State for tracking margin-left of the first card
+    },
+    {
+        name: "2024 Kia Forte LXS 4dr Sedan",
+        heading: "Sport cars",
+        image: require("../../../images/blackcar.png"),
+        price: "839",
+        lease: "39 months",
+        mile: "8000",
+        seat: "4",
+        discount: "-40%"
+    },
+    {
+        name: "2024 Kia Forte LXS 4dr Sedan",
+        heading: "Sport cars",
+        image: require("../../../images/blackcar.png"),
+        price: "839",
+        lease: "39 months",
+        mile: "8000",
+        seat: "4",
+        discount: "-40%"
+    },
+    {
+        name: "2024 Kia Forte LXS 4dr Sedan",
+        heading: "Sport cars",
+        image: require("../../../images/blackcar.png"),
+        price: "839",
+        lease: "39 months",
+        mile: "8000",
+        seat: "4",
+        discount: "-40%"
+    },
+    {
+        name: "2024 Kia Forte LXS 4dr Sedan",
+        heading: "Sport cars",
+        image: require("../../../images/blackcar.png"),
+        price: "839",
+        lease: "39 months",
+        mile: "8000",
+        seat: "4",
+        discount: "-40%"
+    }
+    ]; // Placeholder for card data
 
-    // Handle the end of drag event for all cards
+    const [marginLeft, setMarginLeft] = useState(0); // Set initial margin to 0
+
+    // Update margin values based on screen size
     const handleDragEnd = (event, info) => {
         const dragOffset = info.offset.x; // Get the total distance dragged (in pixels)
+        const cardWidth = window.innerWidth < 768 ? 325 : 420; // Set card width based on screen size
 
-        if (dragOffset < -100 && marginLeft > -(cards.length - 1) * 325) {
-            // Dragging left (negative offset) and within bounds
-            setMarginLeft(marginLeft - 325); // Move left by 420px
+        if (dragOffset < -100 && marginLeft > -(cards.length - 1) * cardWidth) {
+            setMarginLeft(marginLeft - cardWidth); // Move left by cardWidth
         } else if (dragOffset > 100 && marginLeft < 0) {
-            // Dragging right (positive offset) and within bounds
-            setMarginLeft(marginLeft + 325); // Move right by 420px
+            setMarginLeft(marginLeft + cardWidth); // Move right by cardWidth
         }
     };
 
     const onClickRight = () => {
-        if (marginLeft > -(cards.length - 1) * 420) {
-            setMarginLeft(marginLeft - 420);
+        const cardWidth = window.innerWidth < 768 ? 325 : 420; // Set card width based on screen size
+        if (marginLeft > -(cards.length - 1) * cardWidth) {
+            setMarginLeft(marginLeft - cardWidth);
         }
     };
 
     // On click for left arrow
     const onClickLeft = () => {
+        const cardWidth = window.innerWidth < 768 ? 325 : 420; // Set card width based on screen size
         if (marginLeft < 0) {
-            setMarginLeft(marginLeft + 420);
+            setMarginLeft(marginLeft + cardWidth);
         }
     };
 
@@ -131,27 +174,28 @@ const Features = () => {
                     {/* Cards Section */}
                     <div className="flex lg:gap-5 gap-[6px] lg:w-full md:w-full w-[350px] max-w-full overflow-hidden mx-auto   px-[1px]">
                         {/* Apply drag to all cards */}
-                        
-                            {
-                                cards.map((card, index) => (
-                                    <motion.div
-                                        key={index}
-                                        className="transition-all duration-300"
-                                        drag="x"
-                                        dragElastic={0.1} // Lower elasticity for a smoother drag
-                                        dragConstraints={{ left: 0, right: 0 }}
-                                        onDragEnd={handleDragEnd}
-                                        style={index === 0 ? { marginLeft: `${marginLeft}px` } : {}}
-                                        transition={{
-                                            type: "spring", // Spring effect for smooth transition
-                                            stiffness: 100, // Control stiffness of spring
-                                            damping: 15, // Control damping for a smoother effect
-                                        }}
-                                    >
-                                        <Card obj={card} />
-                                    </motion.div>
-                                ))
-                            }
+
+                        {
+                            cards.map((card, index) => (
+                                <motion.div
+                                    key={index}
+                                    className="transition-all duration-300"
+                                    drag="x"
+                                    dragElastic={0.1} // Lower elasticity for a smoother drag
+                                    dragConstraints={{ left: 0, right: 0 }}
+                                    onDragEnd={handleDragEnd}
+                                    onDragStart={(e) => e.preventDefault()} // Prevent default image drag behavior
+                                    style={index === 0 ? { marginLeft: `${marginLeft}px` } : {}}
+                                    transition={{
+                                        type: "spring", // Spring effect for smooth transition
+                                        stiffness: 100, // Control stiffness of spring
+                                        damping: 15, // Control damping for a smoother effect
+                                    }}
+                                >
+                                    <Card obj={card} />
+                                </motion.div>
+                            ))
+                        }
                     </div>
 
                     {/* View All Button */}
