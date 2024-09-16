@@ -5,10 +5,10 @@ const Form = () => {
         <div className='w-[505px] h-[232px] lg:mt-0 md:mt-0 mt-10'>
             <div className="row1 flex gap-[20px]">
                 <div className="">
-                    <input type="text" className='lg:w-[244.94px] md:w-[244.94px] w-[157.63px] h-[54px] border-[0px, 0px, 1px, 0px] border-[#B9B9B9] placeholder:text-[#B9B9B9] p-[16px, 10px, 14px, 0px] bg-transparent border-b outline-none text-[16px] font-[500] text-white' placeholder='Name' />
+                    <input type="text" className='lg:w-[244.94px] md:w-[244.94px] w-[157.63px] h-[54px] border-[0px, 0px, 1px, 0px] border-[#B9B9B9] placeholder:text-[#B9B9B9] p-[16px, 10px, 14px, 0px] bg-transparent border-b outline-none text-[16px] font-[500] text-white' placeholder='First name' />
                 </div>
                 <div className="">
-                    <input type="text" className='lg:w-[244.94px] md:w-[244.94px] w-[157.63px] h-[54px] border-[0px, 0px, 1px, 0px] border-[#B9B9B9] placeholder:text-[#B9B9B9] p-[16px, 10px, 14px, 0px] bg-transparent border-b outline-none text-[16px] font-[500] text-white' placeholder='Email' />
+                    <input type="text" className='lg:w-[244.94px] md:w-[244.94px] w-[157.63px] h-[54px] border-[0px, 0px, 1px, 0px] border-[#B9B9B9] placeholder:text-[#B9B9B9] p-[16px, 10px, 14px, 0px] bg-transparent border-b outline-none text-[16px] font-[500] text-white' placeholder='Last name' />
                 </div>
             </div>
             <div className="mt-8">

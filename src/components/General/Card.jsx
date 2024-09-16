@@ -2,12 +2,12 @@ import React from 'react'
 
 const Card = () => {
     return (
-        <div className='mainCard lg:w-[400px] md:w-[400px] w-[320px] lg:h-[580px] md:h-[580px] h-[490px] p-[18px] rounded-[15px] border border-[#E9E9E9] my-10 ' >
+        <div className='mainCard lg:w-[400px] md:w-[400px] w-[320px] lg:h-[580px] md:h-[580px] h-[490px] p-[18px] rounded-[15px] border border-[#E9E9E9] my-10 bg-white' >
             <div className="cardNav text-[#959595] font-[500] text-[12px] flex justify-between items-center">
                 <div className=" w-[70px] h-[35px] p-[8px, 10px, 6px, 10px] bg-[#FFE39E] text-[17px] font-[700] text-black rounded-[8px] flex justify-center items-center">
                     -40%
                 </div>
-                <div className="flex lg:gap-10 md:gap-10 gap-2">
+                <div className="flex lg:gap-3 md:gap-4 gap-2">
                     <div className=" flex gap-[5px] ">
                         <img src={require('../../images/chair.png')} className='w-[19px] h-[19px]' alt="" />
                         <div className="lg:text-base md:text-base text-[12px]">

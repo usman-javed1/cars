@@ -39,7 +39,7 @@ const Navbar = () => {
                     <img src={require("../../images/logo.png")} alt="logo" width={142} height={42} />
                 </div>
                 <div className="h-[56px]  text-white items-center text-[16px] justify-between lg:flex hidden ">
-                    <ul className='flex w-[600px] justify-between items-center font-[500]' >
+                    <ul className='flex w-[700px] justify-between items-center font-[500]' >
                         {navLinks.map((link, index) => (
                             <li 
                                 key={index}
@@ -137,7 +137,7 @@ const Navbar = () => {
                                         className='flex justify-start items-center cursor-pointer'
                                         onClick={() => setShowDropdown(!showDropdown)}
                                     >
-                                        About us <span className='ml-[3px]'><img src={require("../../images/navicon.png")} alt="" className='w-[8.49px] h-[5.19px] ml-[3.76px] mt-[5.48px]' /></span>
+                                        About us <span className='ml-[3px]'><img src={require("../../images/navicon.png")} alt="" className='w-[25px] h-[20px] ml-[1.76px] ' /></span>
                                     </div>
                                     <AnimatePresence>
                                         {showDropdown && (

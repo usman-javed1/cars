@@ -24,10 +24,12 @@ const Details = () => {
     },
     ]
     return (
-        <div className='lg:mx-auto md:mx-auto mt-[10%] md:w-[90%] lg:w-[90%] mx-[25px]'>
-            {cards && cards.map((obj) => 
-            <div key={obj.heading} className='mt-28'><Card heading={obj.heading} reverse={obj.reverse} desc={obj.desc} image={obj.image} /></div> 
-            )}
+        <div className="lg:w-full md:w-full w-[375px]">
+            <div className='lg:mx-auto md:mx-auto mt-[10%] md:w-[90%] lg:w-[90%] mx-[25px]'>
+                {cards && cards.map((obj) =>
+                    <div key={obj.heading} className='mt-28'><Card heading={obj.heading} reverse={obj.reverse} desc={obj.desc} image={obj.image} /></div>
+                )}
+            </div>
         </div>
     )
 }
