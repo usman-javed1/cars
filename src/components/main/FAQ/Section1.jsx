@@ -22,7 +22,7 @@ const FAQ = () => {
 
     return (
         <div className="lg:-mt-10 md:-mt-10 mt-[10%]">
-            <div className="lg:w-[600px] md:w-[600px] w-[325px] mx-auto">
+            <div className="lg:w-[600px] md:w-[600px] w-[325px]">
                 {faqs.map((faq, index) => (
                     <div key={faq.id} className="w-full md:px-6">
                         <div className="w-full my-10" />

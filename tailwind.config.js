@@ -21,6 +21,13 @@ module.exports = {
           add2: "#E3A200"
         },
         lightgray: "#F8F8F8",
+      },
+      maxWidth: {
+        'mobile': '375px', // Define the max width for mobile
+      },
+      container: {
+        center: true, // Center the container
+        // padding: '1rem', // Add padding for better layout
         
       },
     },

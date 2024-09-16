@@ -21,10 +21,10 @@ const Form = () => {
 
             <div className="">
                 <button
-                    className='lg:w-[510px] md:w-[510px] w-[325px] h-[56px] flex justify-center items-center text-[16px] font-[500] mt-[30.4px] text-black bg-white rounded-[10px] hover:bg-brand-main transition-all duration-300 hover:text-white gap-3'
+                    className='submitButton lg:w-[510px] md:w-[510px] w-[325px] h-[56px] flex justify-center items-center text-[16px] font-[500] mt-[30.4px] text-black bg-white rounded-[10px] hover:bg-brand-main transition-all duration-300 hover:text-white gap-3'
                 >
                     Submit
-                    <img src={require("../../images/fullwhitearrow.png")} className='w-[35px] h-[24px]' alt="" />
+                    <img src={require("../../images/fullwhitearrow.png")} className='w-[35px] h-[24px] hidden' alt="" />
                 </button>
             </div>
         </div>
