@@ -404,7 +404,7 @@ const HeroSection = () => {
                 {isOverlayVisible && (
                     <motion.div
                         className='bg-white fixed rounded-t-[30px] top-0 w-[100vw] left-0 px-[25px]'
-                        style={{ zIndex: 9999, height: '100vh', overflowY: 'auto' }}
+                        style={{ zIndex: 9999, height: '100vh',width: "100vw", overflowX: "hidden", overflowY: 'auto' }}
                         initial={{ y: '100%' }} // Start from bottom
                         animate={{ y: 0 }} // Animate to original position
                         exit={{ y: '100%' }} // Exit to bottom
