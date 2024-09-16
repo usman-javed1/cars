@@ -3,7 +3,7 @@ import React from 'react'
 const Card = ({ obj }) => {
     const { image, discount, seats, heading, name, lease, mile, price } = obj;
     return (
-        <div className='mainCard lg:w-[400px] md:w-[400px] w-[320px] lg:h-[580px] md:h-[580px] h-[490px] p-[18px] rounded-[15px] border border-[#E9E9E9] my-10 bg-white cursor-pointer' >
+        <div className='mainCard lg:w-[400px] md:w-[400px] w-[320px] lg:h-[580px] md:h-[580px] h-[490px] p-[18px] rounded-[15px] border border-[#E9E9E9] my-10 bg-white cursor-pointer md:mr-[20px] mr-[0px]' >
             <div className="cardNav text-[#959595] font-[500] text-[12px] flex justify-between items-center">
                 <div className=" w-[70px] h-[35px] p-[8px, 10px, 6px, 10px] bg-[#FFE39E] text-[17px] font-[700] text-black rounded-[8px] flex justify-center items-center">
                     {discount}
