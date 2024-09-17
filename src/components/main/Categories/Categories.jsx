@@ -38,7 +38,7 @@ const Categories = () => {
     },
     ]
     return (
-        <div className="lg:w-full md:w-full w-[350px] px-[10px]">
+        <div className="lg:w-full md:w-full w-[350px]">
             <div className="container">
                 <div className='lg:mx-auto md:mx-auto mt-[10%]'>
                     <div className="lg:w-[1340px] flex-wrap md:w-[1340px]  w-[325px] max-w-full  flex lg:justify-center justify-start overflow-hidden items-center mb-10 mx-auto">

@@ -24,7 +24,7 @@ const Details = () => {
     },
     ]
     return (
-        <div className="lg:w-full md:w-full w-[350px] px-[10px]">
+        <div className="lg:w-full md:w-full w-[350px]">
             <div className="container ">
                 <div className=' mt-[10%] md:w-full lg:w-full '>
                     {cards && cards.map((obj) =>

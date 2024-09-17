@@ -18,14 +18,12 @@ const Blog = () => {
           <BlogHeader></BlogHeader>
           <BlogsTab></BlogsTab>
           {/* <Pagination/> */}
-          <div className="lg:ml-0 -ml-3">
             <Features heading="Explore our special deals"></Features>
             {/* <FAQ */}
             <HowWorks />
             <div className="my-[10%]">
               <FAQ />
             </div>
-          </div>
         </ContainerWraper>
       </div>
     </>

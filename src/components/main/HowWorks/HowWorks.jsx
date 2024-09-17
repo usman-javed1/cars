@@ -32,7 +32,7 @@ const HowWorks = () => {
 
     ]
     return (
-        <div className="lg:w-full md:w-full w-[350px] px-[10px]">
+        <div className="lg:w-full md:w-full w-[350px]">
             <div className="container ">
 
                 <div className=' mt-[10%] flex justify-between min-h-[349px] flex-wrap  '>

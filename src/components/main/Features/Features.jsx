@@ -92,7 +92,7 @@ const Features = ({heading ="Featured vehicles"}) => {
   };
 
   return (
-    <div className="lg:w-full md:w-full w-[350px] px-[10px]">
+    <div className="lg:w-full md:w-full w-[350px]">
       <div className=" container">
         <div className="mt-[10%] overflow-hidden">
           {/* Header Section */}
