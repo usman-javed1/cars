@@ -18,29 +18,22 @@ const Pagination = ({ totalPages = 10, currentPage = 1, setPage }) => {
     const visiblePages = [];
 
     if (totalPages <= 4) {
-      // Case for total pages <= 4: show all pages
       for (let i = 1; i <= totalPages; i++) {
         visiblePages.push(i);
       }
     } else {
-      // Always show the first page
       visiblePages.push(1);
 
-      // Display pages close to the beginning
       if (currentPage <= 2) {
         visiblePages.push(2, 3);
         if (currentPage < totalPages - 1) {
           visiblePages.push('...');
         }
         visiblePages.push(totalPages);
-      } 
-      // Display pages close to the end
-      else if (currentPage >= totalPages - 1) {
+      } else if (currentPage >= totalPages - 1) {
         visiblePages.push('...');
         visiblePages.push(totalPages - 2, totalPages - 1, totalPages);
-      } 
-      // Display pages in the middle
-      else {
+      } else {
         if (currentPage > 3) {
           visiblePages.push('...');
         }
@@ -71,44 +64,46 @@ const Pagination = ({ totalPages = 10, currentPage = 1, setPage }) => {
       );
     });
   };
- 
+
   return (
-    <div className="mt-[5%] w-[370px]  overflow-hidden gap-3 flex items-center justify-center">
-      {/* Left Icon (Previous Page) */}
-      <motion.div
-        className={`bg-lightgray w-[32px] h-[32px] flex justify-center items-center rounded-full featureLeftIcon transition-all duration-300 ${currentPage === 1 ? 'cursor-not-allowed' : 'cursor-pointer'}`}
-        onClick={() => handlePageChange(currentPage - 1)}
-        onHoverStart={() => {
-          setActive({ left: currentPage === 1 ? "#959595" : "#fff", right: active.right });
-        }}
-        onHoverEnd={() => {
-          setActive({ left: currentPage === 1 ? "#959595" : "#0E0E0E", right: active.right });
-        }}
-      >
-        <div className="featureLeftIconInner transition-all duration-200">
-          <Icon color={active.left} />
-        </div>
-        <div className="featureLeftLine transition-all duration-200 absolute"></div>
-      </motion.div>
+    <div className="mt-[5%] w-full flex justify-center">
+      <div className="w-[370px] gap-3 flex items-center justify-center">
+        {/* Left Icon (Previous Page) */}
+        <motion.div
+          className={`bg-lightgray w-[32px] h-[32px] flex justify-center items-center rounded-full featureLeftIcon transition-all duration-300 ${currentPage === 1 ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+          onClick={() => handlePageChange(currentPage - 1)}
+          onHoverStart={() => {
+            setActive({ left: currentPage === 1 ? "#959595" : "#fff", right: active.right });
+          }}
+          onHoverEnd={() => {
+            setActive({ left: currentPage === 1 ? "#959595" : "#0E0E0E", right: active.right });
+          }}
+        >
+          <div className="featureLeftIconInner transition-all duration-200">
+            <Icon color={active.left} />
+          </div>
+          <div className="featureLeftLine transition-all duration-200 absolute"></div>
+        </motion.div>
 
-      {renderButtons()}
+        {renderButtons()}
 
-      {/* Right Icon (Next Page) */}
-      <motion.div
-        className={`bg-lightgray w-[32px] h-[32px] flex justify-center items-center rounded-full featureLeftIcon transition-all duration-300 ${currentPage === totalPages ? 'cursor-not-allowed' : 'cursor-pointer'}`}
-        onClick={() => handlePageChange(currentPage + 1)}
-        onHoverStart={() => {
-          setActive({ left: active.left, right: currentPage === totalPages ? "#959595" : "#fff" });
-        }}
-        onMouseLeave={() => {
-          setActive({ left: active.left, right: currentPage === totalPages ? "#959595" : "#0E0E0E" });
-        }}
-      >
-        <div className="rotate-180 transition-all duration-200 featureRightInner">
-          <Icon color={active.right} />
-        </div>
-        <div className="featureLeftLine transition-all duration-200 absolute"></div>
-      </motion.div>
+        {/* Right Icon (Next Page) */}
+        <motion.div
+          className={`bg-lightgray w-[32px] h-[32px] flex justify-center items-center rounded-full featureLeftIcon transition-all duration-300 ${currentPage === totalPages ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+          onClick={() => handlePageChange(currentPage + 1)}
+          onHoverStart={() => {
+            setActive({ left: active.left, right: currentPage === totalPages ? "#959595" : "#fff" });
+          }}
+          onMouseLeave={() => {
+            setActive({ left: active.left, right: currentPage === totalPages ? "#959595" : "#0E0E0E" });
+          }}
+        >
+          <div className="rotate-180 transition-all duration-200 featureRightInner">
+            <Icon color={active.right} />
+          </div>
+          <div className="featureLeftLine transition-all duration-200 absolute"></div>
+        </motion.div>
+      </div>
     </div>
   );
 };

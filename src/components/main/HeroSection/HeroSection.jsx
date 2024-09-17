@@ -33,6 +33,7 @@ import { AiOutlineArrowUp, AiOutlineArrowDown } from 'react-icons/ai'; // Import
 
 
 
+
 const RangeSlider = ({ min, max, value, step, onChange }) => {
     const [minValue, setMinValue] = useState(value ? value.min : min);
     const [maxValue, setMaxValue] = useState(value ? value.max : max);
@@ -60,7 +61,7 @@ const RangeSlider = ({ min, max, value, step, onChange }) => {
     const maxPos = ((maxValue - min) / (max - min)) * 100;
 
     return (
-        <div className="slider-container">
+        <div className="slider-container h-[163px]">
             <div className="slider-inputs">
                 <input
                     type="range"
@@ -84,23 +85,27 @@ const RangeSlider = ({ min, max, value, step, onChange }) => {
             <div className="mt-[14.35px] text-[14px] font-[500] text-black">Price range</div>
 
             <div className="slider-track">
-                <label htmlFor='minRange' className="slider-thumb" style={{ left: `${minPos}%` }} />
+                {/* Full background track */}
+                <div className="slider-full-track" />
+                {/* Active range track */}
                 <div
                     className="slider-range"
                     style={{ left: `${minPos}%`, right: `${100 - maxPos}%` }}
                 />
-                <div className="slider-thumb" style={{ left: `${maxPos}%` }} />
+                {/* Slider thumbs */}
+                <label htmlFor='minRange' className="slider-thumb" style={{ left: `${minPos}%` }} />
+                <label htmlFor='maxRange' className="slider-thumb" style={{ left: `${maxPos}%` }} />
             </div>
-            <div className="ranges py-5  flex justify-between">
-                <div className=" justify-center items-center flex flex-col text-[#959595]">
+            <div className="ranges py-5 flex justify-between">
+                <div className="flex flex-col justify-center items-center text-[#959595]">
                     <span className='font-[500] text-[14px] text-center'>Min</span>
-                    <div className="min  px-3 py-3 bg-lightgray rounded-xl">
+                    <div className="min px-3 py-3 bg-lightgray rounded-xl">
                         $358
                     </div>
                 </div>
-                <div className=" justify-center items-center flex flex-col text-[#959595]">
-                    <span className='font-[500] text-[14px] text-center'>Min</span>
-                    <div className="min  px-3 py-3 bg-lightgray rounded-xl">
+                <div className="flex flex-col justify-center items-center text-[#959595]">
+                    <span className='font-[500] text-[14px] text-center'>Max</span>
+                    <div className="min px-3 py-3 bg-lightgray rounded-xl">
                         $2 586
                     </div>
                 </div>
@@ -177,8 +182,8 @@ const CustomDropdown = ({ options, defaultText, selectedValues, onSelect, width,
                             : name === "Price" ? (
                                 <li className=" w-[401px]">
                                     <RangeSlider
-                                        min={-10}
-                                        max={100}
+                                        min={-30}
+                                        max={200}
                                         value={priceRange}
                                         step={1}
                                         onChange={handlePriceChange}
@@ -404,7 +409,7 @@ const HeroSection = () => {
                 {isOverlayVisible && (
                     <motion.div
                         className='bg-white fixed rounded-t-[30px] top-0 w-[100vw] left-0 px-[25px]'
-                        style={{ zIndex: 9999, height: '100vh',width: "100vw", overflowX: "hidden", overflowY: 'auto' }}
+                        style={{ zIndex: 9999, height: '100vh', width: "100vw", overflowX: "hidden", overflowY: 'auto' }}
                         initial={{ y: '100%' }} // Start from bottom
                         animate={{ y: 0 }} // Animate to original position
                         exit={{ y: '100%' }} // Exit to bottom

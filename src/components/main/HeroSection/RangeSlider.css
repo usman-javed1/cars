@@ -1,8 +1,8 @@
 .slider-container {
   width: 100%;
-  max-width: 500px;
+  max-width: 100%;
   margin: auto;
-  padding: 20px;
+  padding: 5px 20px;
 }
 
 .slider-inputs input[type='range'] {
@@ -18,11 +18,19 @@
   margin-top: 20px;
 }
 
+.slider-full-track {
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: #F8F8F8;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 .slider-range {
   position: absolute;
   height: 3px;
   background-color: #FFB600;
-  opacity: 1;
   top: 50%;
   transform: translateY(-50%);
 }
