@@ -3,7 +3,7 @@ import React from 'react'
 const NewsContactAll = () => {
   return (
     <>
-    <div className='w-[714px] m-auto'>
+    <div className='lg:w-[714px] w-[100%] m-auto'>
         <h2 className='class-for-h3 py-[20px]'>
             Explore Our Latest Arrivals
             </h2>
@@ -31,7 +31,7 @@ const NewsContactAll = () => {
             5. 2024 Range Rover Evoque
             </h5>
             <p className='text-[14px]  font-[500] text-[#959595]  '>The new Range Rover Evoque combines luxury with off-road capability, making it ideal for both city driving and weekend getaways. With advanced all-wheel-drive technology, a refined cabin, and cutting-edge features like a digital rear-view mirror and a dual touchscreen infotainment system, the Evoque offers versatility for every lifestyle.</p>
-            <h2 className='class-for-h3 py-[20px]'>
+            <h2 className='class-for-h3 py-[20px] lg:mt-[50px mt-[10px]'>
             Why Lease with Us?
             </h2>
             <h5 className='class-for-h5 py-[20px]'>

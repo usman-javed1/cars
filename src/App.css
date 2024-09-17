@@ -62,6 +62,14 @@ line-height: 56.25px;
 letter-spacing: -0.02em;
 
 }
+.class-for-h3{
+  font-family: Objectivity;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 56.25px;
+  letter-spacing: -0.02em;
+  
+  }
 .class-for-h5{
   
 font-family: Objectivity;
@@ -126,3 +134,39 @@ color: #959595;
   height: 47px;
 }
 
+@media only screen and (max-width: 600px){
+  .class-for-h1{
+    font-family: Objectivity;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 50px;
+    letter-spacing: -0.02em;
+   
+  }
+  .class-for-h2{
+  font-family: Objectivity;
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 31.25px;
+  letter-spacing: -0.02em;
+  
+  }
+  .class-for-h3{
+    font-family: Objectivity;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 31.25px;
+    letter-spacing: -0.02em;
+    
+    }
+    .class-for-h5{
+  
+      font-family: Objectivity;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 22.5px;
+      letter-spacing: -0.02em;
+      text-align: left;
+      
+      }
+}
