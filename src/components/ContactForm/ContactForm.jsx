@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-
 const ContactForm = () => {
 
     const [step, setStep] = useState(1);

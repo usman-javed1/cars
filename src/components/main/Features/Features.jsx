@@ -150,7 +150,7 @@ const Features = ({heading ="Featured vehicles"}) => {
             </div>
           </div>
           {/* Cards Section */}
-          <div className="flex lg:gap-5 gap-[6px] lg:w-full md:w-full w-[350px] max-w-full overflow-hidden mx-auto   px-[1px]">
+          <div className="flex lg:gap-5 gap-[6px] lg:w-full md:w-full w-auto max-w-full overflow-hidden mx-auto ">
             {/* Apply drag to all cards */}
             <Swiper
               spaceBetween={20}

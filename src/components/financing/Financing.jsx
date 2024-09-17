@@ -1,12 +1,14 @@
 import React from 'react'
 import ContactForm from  '../ContactForm/ContactForm'
+import Breadcrumb from '../Blog/Breadcrumb/Breadcrumb'
 
-const Financing = () => {
+const Financing1 = () => {
     return (
-        <div>
+        <div className=''>
+            <Breadcrumb crumbs={["Home", "Financing"]} />
             <ContactForm />
         </div>
     )
 }
 
-export default Financing
+export default Financing1
