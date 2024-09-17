@@ -236,3 +236,48 @@ select option:hover, select option:focus {
 .hoverBox:hover .text-img2 {
   display: block !important;
 }
+
+.form-steps {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color:#B9B9B9;
+  font-family: Objectivity;
+font-size: 14px;
+font-weight: 500;
+line-height: 14.35px;
+letter-spacing: -0.03em;
+
+}
+
+.form-steps span {
+  padding: 10px 15px;
+  border-radius: 5px;
+  /* font-weight: bold; */
+}
+
+.form-steps .active {
+
+  color: #0E0E0E;
+  font-weight: 500;
+}
+
+.form-steps .completed {
+  color: #0E0E0E;
+  font-weight: 500;
+  
+}
+
+.form-navigation button {
+  margin: 10px;
+  width: 100%;
+  background-color: #000; /* Button color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-navigation button:hover {
+  background-color: #000; /* Darker button color on hover */
+}

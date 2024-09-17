@@ -6,6 +6,7 @@ import Explore from "../components/main/Explore/Explore";
 const Financing = () => {
   return (
     <>
+
       <div className="w-full max-w-full mx-auto flex flex-col justify-between items-center">
         <ContainerWraper>
           {/* <ContactForm></ContactForm> */}
