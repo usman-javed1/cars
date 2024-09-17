@@ -3,7 +3,7 @@ import React from 'react'
 const NewsContactAll = () => {
   return (
     <>
-      <div className='lg:w-[714px] w-[100%] m-auto'>
+      <div className='lg:w-[55%] w-[100%] m-auto'>
         <h2 className='class-for-h3 py-[20px]'>
           Explore Our Latest Arrivals
         </h2>
