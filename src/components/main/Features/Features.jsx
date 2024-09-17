@@ -98,7 +98,7 @@ const Features = ({heading ="Featured vehicles"}) => {
           {/* Header Section */}
           <div className="lg:w-full md:w-[95%] w-[350px] max-w-full mx-auto flex justify-between items-center">
             <div
-              className="heading font-[700] lg:text-[45px] md:text-[45px] text-[35px] w-[401px] text-black "
+              className="heading font-[700] lg:text-[45px] md:text-[45px] text-[35px]  text-black "
               style={{ letterSpacing: "-1px" }}
             >
               {heading}

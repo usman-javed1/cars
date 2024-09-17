@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const BlogPost = ({ imageSrc, category, title, description, date }) => (
-  <div className="lg:w-[400px] w-[325px] blogContainer lg:mb-[20px] mb-[30px]">
+  <div className="lg:w-[31.5%] w-[325px] blogContainer lg:mb-[20px] mb-[30px]">
     <div className="">
       <img className="w-full lg:h-[300px] h-[243px] rounded-[15px]" src={imageSrc} alt={title} />
     </div>
@@ -103,7 +103,7 @@ const BlogMainPart = () => {
   }, [blogPosts]);
 
   return (
-    <div className="flex flex-wrap pt-[30px] justify-center w-full gap-[25px]">
+    <div className="flex flex-wrap pt-[30px] justify-between w-full gap-[25px]">
       {visiblePosts.map((post, index) => (
         <BlogPost
           key={index}

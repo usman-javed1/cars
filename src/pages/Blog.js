@@ -17,7 +17,7 @@ const Blog = () => {
           <Breadcrumb></Breadcrumb>
           <BlogHeader></BlogHeader>
           <BlogsTab></BlogsTab>
-          <Pagination/>
+          {/* <Pagination/> */}
           <Features heading="Explore our special deals"></Features>
           {/* <FAQ */}
           <HowWorks />

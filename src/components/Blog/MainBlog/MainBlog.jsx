@@ -3,11 +3,11 @@ import React from 'react'
 const MainBlog = () => {
   return (
     <>
-      <div className="flex flex-wrap blogContainer lg:mb-0  mb-[20px]">
+      <div className="flex flex-wrap  blogContainer lg:mb-0  mb-[20px]">
         <div className="lg:w-[715px] w-[325px] md:w-[500px] ">
           <img className="lg:w-[715px] w-[325] lg:h-[522px] h-[243.75px] rounded-[15px]" src={require('../../../images/image 168.png')} alt="" />
         </div>
-        <div className="w-[443px]  m-auto lg:mt-0 md:mt-0 mt-10">
+        <div className="w-[443px] lg:h-[522px] m-auto lg:mt-0 md:mt-0 mt-10 flex flex-col justify-center">
           <p className='text-[14px]  font-[500] text-[#959595]'>New Models and Offers</p>
           <h2 className='lg:text-[36px] text-[18px] font-[700] py-[20px]'>
             New Models Available for Leasing!
