@@ -2,7 +2,7 @@ import React from 'react';
 
 
 const BlogPost = ({ imageSrc, category, title, description, date }) => (
-  <div className="w-[32.3%] blogContainer mb-[20px]">
+  <div className="w-[400px] blogContainer mb-[20px]">
     <div className="">
       <img className="w-full h-[300px] rounded-[15px]" src={imageSrc} alt={title} />
     </div>
@@ -87,7 +87,7 @@ const BlogMainPart = () => {
   ];
 
   return (
-    <div className="flex flex-wrap pt-[30px] gap-[20px]">
+    <div className="flex flex-wrap pt-[30px] gap-[25px]">
       {blogPosts.map((post, index) => (
         <BlogPost
           key={index}

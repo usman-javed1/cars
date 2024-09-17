@@ -52,7 +52,7 @@ const HowWorks = () => {
                             </button>
                         </div>
                     </div>
-                    <div className="w-[600px] grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1">
+                    <div className="w-[610px] lg:pl-9 grid justify-end lg:grid-cols-2 md:grid-cols-2 grid-cols-1">
                         {
                             cards && cards.map((obj) =>
                                 <Card heading={obj.heading} desc={obj.desc} number={obj.number} />

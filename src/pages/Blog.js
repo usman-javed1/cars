@@ -6,19 +6,24 @@ import BlogsTab from "../components/Blog/BlogsTab/blogstab";
 import HowWorks from "../components/main/HowWorks/HowWorks";
 import Features from "../components/main/Features/Features";
 import FAQ from "../components/main/FAQ/FAQ";
+import ContainerWraper from "../components/General/ContainerWraper";
 
 const Blog = () => {
-  return(
+  return (
     <>
-    <Breadcrumb></Breadcrumb>
-    <BlogHeader></BlogHeader>
-    <BlogsTab></BlogsTab>
-    <Features></Features>
-    {/* <FAQ */}
-    <FAQ />
-    <div className="my-[10%]">
-    <HowWorks></HowWorks>
-    </div>
+      <div className="w-full max-w-full mx-auto flex flex-col justify-between items-center">
+        <ContainerWraper>
+          <Breadcrumb></Breadcrumb>
+          <BlogHeader></BlogHeader>
+          <BlogsTab></BlogsTab>
+          <Features></Features>
+          {/* <FAQ */}
+          <HowWorks />
+          <div className="my-[10%]">
+          <FAQ />
+          </div>
+        </ContainerWraper>
+      </div>
     </>
   );
 };

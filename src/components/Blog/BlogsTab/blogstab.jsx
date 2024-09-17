@@ -8,12 +8,12 @@ const Blogstab = () => {
 
   return (
     <>
-      <div className="px-[5%]">
+      <div className="">
         <div className="mb-4">
-          <ul className="flex flex-wrap -mb-px text-sm font-medium text-center" role="tablist">
+          <ul className="flex overflow-auto -mb-px text-sm font-medium text-center" role="tablist">
             <li className="me-2" role="presentation">
               <button
-                className={`inline-block p-4 border-b-2 rounded-t-lg ${activeTab === 'profile' ? 'bg-black text-white border-black rounded-[8px]' : 'bg-[#F8F8F8] text-black border-transparent rounded-[8px]'}`}
+                className={`inline-block p-4 border-b-2 w-[49px] h-[48px] ${activeTab === 'profile' ? 'bg-black text-white rounded-[43px]  border-black ' : 'bg-[#F8F8F8] text-black border-transparent rounded-[43px]'}`}
                 onClick={() => setActiveTab('profile')}
                 role="tab"
                 aria-controls="profile"
@@ -24,51 +24,51 @@ const Blogstab = () => {
             </li>
             <li className="me-2" role="presentation">
               <button
-                className={`inline-block p-4 border-b-2 rounded-t-lg ${activeTab === 'dashboard' ? 'bg-black text-white border-black rounded-[8px]' : 'bg-[#F8F8F8] text-black border-transparent rounded-[8px]'}`}
+                className={`text-[14px] h-[48px]  flex justify-center items-center px-4 rounded-[43px]  ${activeTab === 'dashboard' ? 'bg-black text-white border-black  ' : 'bg-[#F8F8F8] text-black border-transparent'}`}
                 onClick={() => setActiveTab('dashboard')}
                 role="tab"
                 aria-controls="dashboard"
                 aria-selected={activeTab === 'dashboard'}
               >
-                Company Updates
+                Company&nbsp;Updates
               </button>
             </li>
             <li className="me-2" role="presentation">
               <button
-                className={`inline-block p-4 border-b-2 rounded-t-lg ${activeTab === 'settings' ? 'bg-black text-white border-black rounded-[8px]' : 'bg-[#F8F8F8] text-black border-transparent rounded-[8px]'}`}
+                className={` text-[14px] h-[48px]  flex justify-center items-center px-4 rounded-[43px] ${activeTab === 'settings' ? 'bg-black text-white border-black rounded-[8px]' : 'bg-[#F8F8F8] text-black border-transparent rounded-[8px]'}`}
                 onClick={() => setActiveTab('settings')}
                 role="tab"
                 aria-controls="settings"
                 aria-selected={activeTab === 'settings'}
               >
-                New Models and Offers
+                  New&nbsp;Models&nbsp;and&nbsp;Offers
               </button>
             </li>
             <li className="me-2" role="presentation">
               <button
-                className={`inline-block p-4 border-b-2 rounded-t-lg ${activeTab === 'contacts' ? 'bg-black text-white border-black rounded-[8px]' : 'bg-[#F8F8F8] text-black border-transparent rounded-[8px]'}`}
+                className={`text-[14px] h-[48px]  flex justify-center items-center px-4 rounded-[43px] ${activeTab === 'contacts' ? 'bg-black text-white border-black rounded-[8px]' : 'bg-[#F8F8F8] text-black border-transparent '}`}
                 onClick={() => setActiveTab('contacts')}
                 role="tab"
                 aria-controls="contacts"
                 aria-selected={activeTab === 'contacts'}
               >
-                Customer Stories
+                Customer&nbsp;Stories
               </button>
             </li>
             <li className="me-2" role="presentation">
               <button
-                className={`inline-block p-4 border-b-2 rounded-t-lg ${activeTab === 'tips' ? 'bg-black text-white border-black rounded-[8px]' : 'bg-[#F8F8F8] text-black border-transparent rounded-[8px]'}`}
+                className={`text-[14px] h-[48px]  flex justify-center items-center px-4 rounded-[43px] ${activeTab === 'tips' ? 'bg-black text-white border-black rounded-[8px]' : 'bg-[#F8F8F8] text-black border-transparent rounded-[8px]'}`}
                 onClick={() => setActiveTab('tips')}
                 role="tab"
                 aria-controls="tips"
                 aria-selected={activeTab === 'tips'}
               >
-                Tips and Advice
+                Tips&nbsp;and&nbsp;Advice
               </button>
             </li>
             <li className="me-2" role="presentation">
               <button
-                className={`inline-block p-4 border-b-2 rounded-t-lg ${activeTab === 'insights' ? 'bg-black text-white border-black rounded-[8px]' : 'bg-[#F8F8F8] text-black border-transparent rounded-[8px]'}`}
+                className={`text-[14px] h-[48px]  flex justify-center items-center px-4 rounded-[43px] ${activeTab === 'insights' ? 'bg-black text-white border-black rounded-[8px]' : 'bg-[#F8F8F8] text-black border-transparent rounded-[8px]'}`}
                 onClick={() => setActiveTab('insights')}
                 role="tab"
                 aria-controls="insights"
@@ -79,13 +79,13 @@ const Blogstab = () => {
             </li>
             <li className="me-2" role="presentation">
               <button
-                className={`inline-block p-4 border-b-2 rounded-t-lg ${activeTab === 'financialTips' ? 'bg-black text-white border-black rounded-[8px]' : 'bg-[#F8F8F8] text-black border-transparent rounded-[8px]'}`}
+                className={`text-[14px] h-[48px]  flex justify-center items-center px-4 rounded-[43px] ${activeTab === 'financialTips' ? 'bg-black text-white border-black rounded-[8px]' : 'bg-[#F8F8F8] text-black border-transparent rounded-[8px]'}`}
                 onClick={() => setActiveTab('financialTips')}
                 role="tab"
                 aria-controls="financialTips"
                 aria-selected={activeTab === 'financialTips'}
               >
-                Financial Tips
+                Financial&nbsp;Tips
               </button>
             </li>
           </ul>
