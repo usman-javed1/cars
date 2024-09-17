@@ -18,72 +18,8 @@ const BlogPost = ({ imageSrc, category, title, description, date }) => (
   </div>
 );
 
-const BlogMainPart = () => {
-  const blogPosts = [
-    {
-      imageSrc: require('../../../images/image.png'),
-      category: 'New Models and Offers',
-      title: 'Special Lease Offers for Fall 2024!',
-      description: 'We are excited to announce the addition of the latest models from top brands to our leasing options! Discover the new Mercedes-Benz, BMW, Audi, and Tesla models now available for lease.',
-      date: 'September 5, 2024',
-    },
-    {
-      imageSrc: require('../../../images/Mask group.png'),
-      category: 'Lease Now, Pay Later',
-      title: 'New Models Available for Leasing!',
-      description: 'We are excited to announce the addition of the latest models from top brands to our leasing options! Discover the new Mercedes-Benz, BMW, Audi, and Tesla models now available for lease.',
-      date: 'September 5, 2024',
-    },
-    {
-      imageSrc: require('../../../images/Mask group (1).png'),
-      category: 'New Models and Offers',
-      title: 'Sustainable Driving: New Electric and Hybrid Models',
-      description: 'We are excited to announce the addition of the latest models from top brands to our leasing options! Discover the new Mercedes-Benz, BMW, Audi, and Tesla models now available for lease.',
-      date: 'September 5, 2024',
-    },
-    {
-      imageSrc: require('../../../images/Mask group (1).png'),
-      category: 'New Models and Offers',
-      title: 'New Models Available for Leasing!',
-      description: 'We are excited to announce the addition of the latest models from top brands to our leasing options! Discover the new Mercedes-Benz, BMW, Audi, and Tesla models now available for lease.',
-      date: 'September 5, 2024',
-    },
-    {
-      imageSrc: require('../../../images/Mask group (1).png'),
-      category: 'New Models and Offers',
-      title: 'New Models Available for Leasing!',
-      description: 'We are excited to announce the addition of the latest models from top brands to our leasing options! Discover the new Mercedes-Benz, BMW, Audi, and Tesla models now available for lease.',
-      date: 'September 5, 2024',
-    },
-    {
-      imageSrc: require('../../../images/image.png'),
-      category: 'New Models and Offers',
-      title: 'New Models Available for Leasing!',
-      description: 'We are excited to announce the addition of the latest models from top brands to our leasing options! Discover the new Mercedes-Benz, BMW, Audi, and Tesla models now available for lease.',
-      date: 'September 5, 2024',
-    },
-    {
-      imageSrc: require('../../../images/image.png'),
-      category: 'New Models and Offers',
-      title: 'New Models Available for Leasing!',
-      description: 'We are excited to announce the addition of the latest models from top brands to our leasing options! Discover the new Mercedes-Benz, BMW, Audi, and Tesla models now available for lease.',
-      date: 'September 5, 2024',
-    },
-    {
-      imageSrc: require('../../../images/Mask group.png'),
-      category: 'New Models and Offers',
-      title: 'New Models Available for Leasing!',
-      description: 'We are excited to announce the addition of the latest models from top brands to our leasing options! Discover the new Mercedes-Benz, BMW, Audi, and Tesla models now available for lease.',
-      date: 'September 5, 2024',
-    },
-    {
-      imageSrc: require('../../../images/Mask group (1).png'),
-      category: 'New Models and Offers',
-      title: 'New Models Available for Leasing!',
-      description: 'We are excited to announce the addition of the latest models from top brands to our leasing options! Discover the new Mercedes-Benz, BMW, Audi, and Tesla models now available for lease.',
-      date: 'September 5, 2024',
-    },
-  ];
+const BlogMainPart = ({blogPosts}) => {
+  
 
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [visiblePosts, setVisiblePosts] = useState(isMobile ? blogPosts.slice(0, 2) : blogPosts.slice(0, 6));

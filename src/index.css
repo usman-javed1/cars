@@ -151,6 +151,10 @@ body {
 .submitButton img {
   display: block;
 }
+.submitButton:hover img {
+  height: 24px;
+  width: 35px ; 
+}
 
 input, svg, rect, path {
   transition: all 0.3s ease;
