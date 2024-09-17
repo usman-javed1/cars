@@ -7,6 +7,7 @@ import HowWorks from "../components/main/HowWorks/HowWorks";
 import Features from "../components/main/Features/Features";
 import FAQ from "../components/main/FAQ/FAQ";
 import ContainerWraper from "../components/General/ContainerWraper";
+import Pagination from "../components/Blog/Pagination/Pagination";
 
 const Blog = () => {
   return (
@@ -16,7 +17,8 @@ const Blog = () => {
           <Breadcrumb></Breadcrumb>
           <BlogHeader></BlogHeader>
           <BlogsTab></BlogsTab>
-          <Features></Features>
+          <Pagination/>
+          <Features heading="Explore our special deals"></Features>
           {/* <FAQ */}
           <HowWorks />
           <div className="my-[10%]">

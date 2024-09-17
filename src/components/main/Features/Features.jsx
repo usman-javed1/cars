@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
-const Features = () => {
+const Features = ({heading ="Featured vehicles"}) => {
   const [active, setActive] = useState({
     left: "#0E0E0E",
     right: "#0E0E0E",
@@ -101,7 +101,7 @@ const Features = () => {
               className="heading font-[700] lg:text-[45px] md:text-[45px] text-[35px] w-[401px] text-black "
               style={{ letterSpacing: "-1px" }}
             >
-              Featured vehicles
+              {heading}
             </div>
             <div className=" gap-2 px-7 lg:flex md:flex hidden">
               <motion.div
