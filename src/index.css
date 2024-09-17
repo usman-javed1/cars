@@ -296,7 +296,11 @@ letter-spacing: -0.03em;
 .form-navigation button:hover {
   background-color: #000; /* Darker button color on hover */
 }
-.mainimagehero {
+.about .mainimagehero {
   background-image: url("../src/images/image about us.png"); 
+  background-size: cover;
+}
+.ourteam .mainimagehero {
+  background-image: url("../src/images/Mask group (3).png"); 
   background-size: cover;
 }
