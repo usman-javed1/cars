@@ -44,3 +44,85 @@ body {
   transition-timing-function: linear !important;
 }
 
+
+
+.class-for-h1{
+  font-family: Objectivity;
+  font-size: 60px;
+  font-weight: 700;
+  line-height: 75px;
+  letter-spacing: -0.02em;
+ 
+}
+.class-for-h2{
+font-family: Objectivity;
+font-size: 45px;
+font-weight: 700;
+line-height: 56.25px;
+letter-spacing: -0.02em;
+
+}
+.class-for-h5{
+  
+font-family: Objectivity;
+font-size: 18px;
+font-weight: 700;
+line-height: 22.5px;
+letter-spacing: -0.02em;
+text-align: left;
+
+}
+.class-for-p{
+font-family: Objectivity;
+font-size: 16px;
+font-weight: 500;
+line-height: 24.8px;
+letter-spacing: -0.03em;
+color: #959595;
+
+}
+
+
+.blogContainer h2 {
+  transition: text-decoration 0.3s;
+}
+
+.blogContainer:hover h2 {
+  text-decoration: underline;
+}
+
+.buttonblog{
+  background-color: #F8F8F8;
+  padding: 10px;
+  color: black;
+  width: 47px;
+  height: 47px;
+  transition: 0.5s;
+  border-radius: 50%;
+}
+.buttonblog:hover{
+  background-color: #000;
+  padding: 10px;
+  color: #ffffff;
+  width: 47px;
+  height: 47px;
+}
+.buttonblog1{
+  background-color: #F8F8F8;
+  padding: 10px;
+  color: black;
+  width: 47px;
+  height: 47px;
+  color: #959595;
+  transition: 0.5s;
+  border-radius: 50%;
+  margin: 0 10px;
+}
+.buttonblog1:hover{
+  background-color: #000;
+  padding: 10px;
+  color: #ffffff;
+  width: 47px;
+  height: 47px;
+}
+
