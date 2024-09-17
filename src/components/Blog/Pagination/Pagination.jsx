@@ -71,9 +71,9 @@ const Pagination = ({ totalPages = 10, currentPage = 1, setPage }) => {
       );
     });
   };
-
+ 
   return (
-    <div className="mt-[5%] w-[350px]  overflow-hidden gap-3 flex items-center justify-center">
+    <div className="mt-[5%] w-[370px]  overflow-hidden gap-3 flex items-center justify-center">
       {/* Left Icon (Previous Page) */}
       <motion.div
         className={`bg-lightgray w-[32px] h-[32px] flex justify-center items-center rounded-full featureLeftIcon transition-all duration-300 ${currentPage === 1 ? 'cursor-not-allowed' : 'cursor-pointer'}`}
