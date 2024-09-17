@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-const BlogPost = ({ imageSrc, category, title, description, date }) => (
-  <div className="lg:w-[31.5%] w-[325px] blogContainer lg:mb-[20px] mb-[30px]">
+export const BlogPost = ({ imageSrc, category, title, description, date, isHund = false }) => (
+  <div className={`lg:w-[${isHund ? 100 : 31.5}%] w-[325px] blogContainer lg:mb-[20px] mb-[30px]`}>
     <div className="">
       <img className="w-full lg:h-[300px] h-[243px] rounded-[15px]" src={imageSrc} alt={title} />
     </div>
@@ -96,7 +96,7 @@ const BlogMainPart = () => {
     };
 
     window.addEventListener('resize', handleResize);
-    
+
     return () => {
       window.removeEventListener('resize', handleResize);
     };
