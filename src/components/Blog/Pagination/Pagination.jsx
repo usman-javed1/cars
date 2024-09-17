@@ -39,7 +39,7 @@ const Pagination = ({ totalPages = 10, currentPage = 1, setPage }) => {
         }
       } else {
         visiblePages.push(1);
-        if (currentPage > 3) {
+        if (currentPage > 2) {
           visiblePages.push('...');
         }
         if (currentPage > 1 && currentPage < totalPages) {
