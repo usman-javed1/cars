@@ -48,7 +48,6 @@
 }
 .button21:hover span {
   margin-left: 1rem;
-  height: 24px;
 }
 
 .button21 {
@@ -77,6 +76,11 @@
 .detail div {
   transition: 0.3s all ;
   cursor: pointer;
+}
+
+body {
+  /* max-width: !important 100vw; */
+  /* overflow: !important hidden; */
 }
 
 

@@ -1,16 +1,18 @@
 import React from "react";
 import ContactForm from "../components/ContactForm/ContactForm";
 import ContainerWraper from "../components/General/ContainerWraper";
-
+import Explore from "../components/main/Explore/Explore";
+import Financing1 from '../components/financing/Financing'
 
 const Financing = () => {
-  return(
+  return (
     <>
-     <div className="w-full max-w-full mx-auto flex flex-col justify-between items-center">
-     <ContainerWraper>
-      <ContactForm></ContactForm>
-      </ContainerWraper>
-      
+
+      <div className="w-full max-w-full mx-auto flex flex-col justify-between items-center">
+        <ContainerWraper>
+          <Financing1 />
+        </ContainerWraper>
+        <Explore />
       </div>
     </>
   );
