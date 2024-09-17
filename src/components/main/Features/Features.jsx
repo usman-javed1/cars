@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
-const Features = ({heading ="Featured vehicles"}) => {
+const Features = ({ heading = "Featured vehicles" }) => {
   const [active, setActive] = useState({
     left: "#0E0E0E",
     right: "#0E0E0E",

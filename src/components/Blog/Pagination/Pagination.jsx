@@ -30,45 +30,61 @@ const Pagination = ({ totalPages = 10, currentPage = 1, setPage }) => {
 
   const renderButtons = () => {
     const visiblePages = [];
-  
-    // Always push the first page
-    visiblePages.push(1);
-  
-    // Check if we should add the ellipsis and the middle pages
-    if (currentPage > 4) {
-      visiblePages.push('...');
-    }
-  
-    // Add the current page and its neighbors (if applicable)
-    if (currentPage > 1 && currentPage < totalPages) {
-      visiblePages.push(currentPage);
-    }
-  
-    if (currentPage < totalPages - 1 && currentPage > 1) {
-      visiblePages.push(currentPage + 1);
-    } else if (currentPage === 1 && totalPages > 3) {
-      visiblePages.push(2);
-      visiblePages.push(3);
-    }
-  
-    // Add the ellipsis before the last page if needed
-    if (currentPage < totalPages - 3) {
-      // visiblePages.push('...');
-    }
-  
-    // Always push the last page
-    if (totalPages > 1) {
+
+    if (isMobile) {
+      // For mobile
+      if (totalPages <= 4) {
+        for (let i = 1; i <= totalPages; i++) {
+          visiblePages.push(i);
+        }
+      } else {
+        visiblePages.push(1);
+        if (currentPage > 2) {
+          visiblePages.push('...');
+        }
+        if (currentPage > 1 && currentPage < totalPages) {
+          visiblePages.push(currentPage);
+        }
+        if (currentPage < totalPages - 1 && currentPage > 1) {
+          visiblePages.push(currentPage + 1);
+        }
+        if (currentPage === 1) {
+          visiblePages.push(2, 3);
+        }
+        if (currentPage < totalPages - 3) {
+          visiblePages.push('...');
+        }
+        visiblePages.push(totalPages);
+      }
+    } else {
+      // For desktop
+      visiblePages.push(1);
+      if (currentPage > 3) {
+        visiblePages.push('...');
+      }
+      if (currentPage > 1 && currentPage < totalPages) {
+        if (currentPage > 2) {
+          visiblePages.push( currentPage-1, currentPage, currentPage + 1);
+        } else {
+          visiblePages.push( currentPage, currentPage + 1);
+        }
+      }
+      if (currentPage === 1) {
+        visiblePages.push(2, 3);
+      }
+      if (currentPage < totalPages - 3) {
+        visiblePages.push('...');
+      }
       visiblePages.push(totalPages);
     }
-  
-    // Render the visible pages
+
     return visiblePages.map((page, index) => {
       if (page === '...') {
         return (
           <span key={`ellipsis-${index}`} className="mx-2">...</span>
         );
       }
-  
+
       return (
         <button
           key={page}
@@ -81,10 +97,10 @@ const Pagination = ({ totalPages = 10, currentPage = 1, setPage }) => {
       );
     });
   };
-  
+
   return (
     <div className="mt-[5%] w-full flex justify-center">
-      <div className=" gap-3 flex items-center justify-start lg:ml-0 -ml-5">
+      <div className="gap-3 flex items-center justify-start lg:ml-0 -ml-5">
         {/* Left Icon (Previous Page) */}
         <motion.div
           className={`bg-lightgray w-[32px] h-[32px] flex justify-center items-center rounded-full featureLeftIcon transition-all duration-300 ${currentPage === 1 ? 'cursor-not-allowed' : 'cursor-pointer'}`}

@@ -3,7 +3,7 @@ import React from 'react'
 const Newscontact = () => {
   return (
     <>
-    <div className="textfirst lg:w-[714px] w-[100%] m-auto">
+    <div className="textfirst lg:w-[55%] w-[100%] m-auto">
          <p className='text-[14px]  font-[500] text-[#959595]'>New Models and Offers</p>
             <h2 className='class-for-h1 py-[20px]'>
             New Models Available for Leasing!
