@@ -79,6 +79,11 @@
   cursor: pointer;
 }
 
+body {
+  /* max-width: !important 100vw; */
+  /* overflow: !important hidden; */
+}
+
 
 
 

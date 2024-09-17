@@ -14,7 +14,7 @@ const FAQ = () => {
                         <div className="lg:w-[505px] md:w-[505px] w-[325px] font-[500] lg:text-[16px] md:text-[16px] text-[13px] text-[#959595] flex justify-start mt-[21px]">
                             If you have more questions, please contact us
                         </div>
-                        <div className="lg:block md:block hidden mx-auto">
+                        <div className="lg:block md:block hidden">
                             <button className='min-w-[162px]  bg-black flex justify-center items-center rounded-[10px] text-[16px] text-white font-[500] p-[22px, 18px, 18px, 18px] mt-10 p-5 button21'>
                                 Get free consultation
                                 <span className='flex  transition-all duration-300 ' >
@@ -27,7 +27,7 @@ const FAQ = () => {
                         <Section />
                     </div>
 
-                    <div className="lg:hidden md:hidden block my-5  mb-[100px] mt-[25px]">
+                    <div className="lg:hidden md:hidden block my-5 mx-auto  mb-[100px] mt-[25px]">
                         <button className='min-w-[325px]  bg-black flex justify-center items-center rounded-[10px] text-[16px] text-white font-[500] mt-10 p-5 button21'>
                             <div className="">
                                 Get free consultation
