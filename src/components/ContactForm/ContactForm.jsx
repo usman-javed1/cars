@@ -41,30 +41,46 @@ const ContactForm = () => {
     };
 
     return (
-        <div className="flex  ">
-            <div className="form-container w-[50%]">
+        <div className="flex lg:flex-nowrap flex-wrap justify-between items-center">
+            {/* Form container */}
+            <div className="form-container flex justify-center items-start flex-col lg:w-[40%] w-full">
+                <div className="text-[45px] font-[700] mb-5">
+                    Explore Your Financing Options
+                </div>
                 <form onSubmit={handleSubmit}>
-
-                    <div className="form-steps">
-                        <span className={step >= 1 ? (step === 1 ? 'active' : 'completed') : ''}>Info</span> &gt;
+                    <div className="form-steps mb-10">
+                        <span className={step >= 1 ? (step === 1 ? 'active' : 'completed') : ''} style={{ padding: 0 }}>Info</span> &gt;
                         <span className={step >= 2 ? (step === 2 ? 'active' : 'completed') : ''}>Address</span> &gt;
                         <span className={step >= 3 ? (step === 3 ? 'active' : 'completed') : ''}>Employment</span> &gt;
                         <span className={step >= 4 ? (step === 4 ? 'active' : 'completed') : ''}>Identity</span>
                     </div>
                     <div className="form-content">{renderStep()}</div>
-                    <div className="form-navigation">
-                        {step > 1 && <button type="button" onClick={prevStep}>Previous</button>}
-                        {step < 4 && <button type="button" onClick={nextStep}>Next</button>}
-                        {step === 4 && <button type="submit">Submit</button>}
+                    <div>
+                        {step < 4 && <button
+                            className='submitButton lg:w-[510px] md:w-[510px] w-[325px] h-[56px] flex justify-center items-center text-[16px] font-[500] mt-[30.4px] bg-black text-white rounded-[10px] hover:bg-brand-main transition-all duration-300 hover:text-white gap-3 relative'
+                            type='button'
+                            onClick={nextStep}
+                        >
+                            Next
+                            <img src={require("../../images/fullwhitearrow.png")} className=' w-[0] h-[0] hidden absolute lg:right-[35%] right-[28%]' alt="" />
+                        </button>}
+                        {step === 4 && <button
+                            className='submitButton lg:w-[510px] md:w-[510px] w-[325px] h-[56px] flex justify-center items-center text-[16px] font-[500] mt-[30.4px] bg-black text-white rounded-[10px] hover:bg-brand-main transition-all duration-300 hover:text-white gap-3 relative'
+                            type='submit'
+                        >
+                            Submit
+                            <img src={require("../../images/fullwhitearrow.png")} className=' w-[0] h-[0] hidden absolute lg:right-[35%] right-[28%]' alt="" />
+                        </button>}
                     </div>
                 </form>
             </div>
 
             {/* Image container */}
-            <div className="image-container w-[50%]">
-                <img className="lg:w-[610px] w-[581] lg:h-[522px] h-[243.75px] rounded-[15px]" src={require('../../../src/images/car contact us.png')} alt="" />
+            <div className="lg:w-[55%] w-full flex justify-center lg:justify-end mt-6 lg:mt-0">
+                <img className="lg:w-[610px] w-[100%] lg:h-[522px] h-[243.75px] rounded-[15px]" src={require('../../../src/images/car contact us.png')} alt="" />
             </div>
         </div>
+
     );
 };
 

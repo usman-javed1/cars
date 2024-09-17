@@ -1,12 +1,14 @@
 import React from 'react'
-import ContactForm from  '../ContactForm/ContactForm'
+import ContactForm from '../ContactForm/ContactForm'
 import Breadcrumb from '../Blog/Breadcrumb/Breadcrumb'
 
 const Financing1 = () => {
     return (
-        <div className=''>
-            <Breadcrumb crumbs={["Home", "Financing"]} />
-            <ContactForm />
+        <div className='flex'>
+            <div className="">
+                
+                <ContactForm />
+            </div>
         </div>
     )
 }

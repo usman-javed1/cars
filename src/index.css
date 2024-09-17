@@ -149,11 +149,18 @@ body {
 }
 
 .submitButton img {
+  transition: 0.3 all;
   display: block;
 }
 .submitButton:hover img {
   height: 24px;
   width: 35px ; 
+}
+
+
+
+.submitButton:hover {
+  background-color: #F6B000 !important;
 }
 
 input, svg, rect, path {
