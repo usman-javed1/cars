@@ -27,8 +27,8 @@ const WhyChooseUs = () => {
   return (
     <>
             {/* Heading */}
-            <div className="heading font-[700] lg:text-[45px] md:text-[45px] text-[35px] lg:w-[401px] md:w-[401px] w-[100%] text-black text-start lg:pt-[180px] pt-[0px]">
-              How it Works?
+            <div className="heading font-[700] lg:text-[45px] md:text-[45px] text-[35px] ss text-black text-start lg:pt-[180px] pt-[0px]">
+            Why Choose Us?
             </div>
 
             {/* Combined Card */}

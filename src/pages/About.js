@@ -11,7 +11,9 @@ import Features from "../components/main/Features/Features";
 const About = () => {
   return(
     <>
+    <div className="about">
     <AboutUsHero></AboutUsHero>
+    </div>
     <div className="w-full max-w-full mx-auto flex flex-col justify-between items-center"> 
       <ContainerWraper>
         <Details></Details>
