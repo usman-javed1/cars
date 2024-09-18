@@ -13,11 +13,11 @@ const Navbar = () => {
     const commonArrowImage = '../../images/arrow.png';
 
     const navLinks = [
-        { text: 'Financing', image: commonArrowImage },
-        { text: 'Special Deals', image: commonArrowImage },
+        { text: 'Financing', image: commonArrowImage, link: '/financing' },
+        { text: 'Special Deals', image: commonArrowImage, link: '/special-deals' },
         { text: 'About us', image: '../../images/navicon.png', hasDropdown: true },
-        { text: 'Blog', image: commonArrowImage },
-        { text: 'FAQ', image: commonArrowImage },
+        { text: 'Blog', image: commonArrowImage, link: '/blog' },
+        { text: 'FAQ', image: commonArrowImage, link: '/faq' },
         { text: 'Contact', image: commonArrowImage },
     ];
 
@@ -36,7 +36,9 @@ const Navbar = () => {
             <nav className='w-[100%] max-w-full lg:h-[80px] h-[70px] items-center lg:justify-between justify-between flex bg-black relative lg:pr-0 pr-5 lg:px-[60px] px-[25px] ' style={{position: showMenu ? "fixed": "relative", zIndex: 99999}}>
                 
                 <div className="logo">
-                    <img src={require("../../images/logo.png")} alt="logo" width={142} height={42} />
+                    <a href='/'>
+                        <img src={require("../../images/logo.png")} alt="logo" width={142} height={42} />
+                    </a>
                 </div>
                 <div className="h-[56px]  text-white items-center text-[16px] justify-between lg:flex hidden w-[47%]">
                     <ul className='flex w-full justify-between items-center font-[500]' >
@@ -52,7 +54,7 @@ const Navbar = () => {
                                     if (link.hasDropdown) setShowLgDropdown(false);
                                 }}
                             >
-                                <Link to={'/'} className='flex justify-center items-center'>
+                                <Link to={link.link} className='flex justify-center items-center'>
                                     <motion.span
                                         animate={{ color: hoveredLink === index ? '#E3A200' : 'white' }}
                                         transition={{ duration: 0.3 }}
