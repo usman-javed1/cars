@@ -9,10 +9,10 @@ const AboutUsHero = ({ heading = "About Us: The Wheel Deal", desc = "Welcome to 
 
       <div className="mainimagehero h-[700px] ">
         <ContainerWraper>
-          <div className='aboutuscontact' style={{ zIndex: 999 }}>
+          <div className='aboutuscontact px-[5%]' style={{ zIndex: 999 }}>
             <Breadcrumb ></Breadcrumb>
             <div >
-              <h2 className='class-for-h1 py-[20px] lg:w-[540px] w-[100%] text-[#FFFFFF] '>
+              <h2 className='class-for-h1 py-[20px] lg:w-[540px] lg:mt-0 mt-32 lg:px-0  w-[100%] text-[#FFFFFF] '>
                 {heading}
               </h2>
               <p className='text-[14px]  font-[500] text-[#B9B9B9] lg:w-[400px] w-[100%] '>{desc} </p>

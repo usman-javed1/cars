@@ -11,10 +11,15 @@ const Financing = () => {
 
       <div className="w-full max-w-full flex-col justify-between items-center">
         <ContainerWraper>
-        <Breadcrumb crumbs={["Home", "Financing"]} activeCrumb="Financing" />
+          <div className="lg:pl-0 pl-[10px]">
+            <Breadcrumb crumbs={["Home", "Financing"]} activeCrumb="Financing" />
+            </div>
           <Financing1 />
         </ContainerWraper>
-        <Explore />
+        <img className="lg:hidden block mt-20" src={require("../images/image 172.png")} alt="" />
+        <div className="lg:mt-0  -mt-10">
+          <Explore />
+          </div>
       </div>
     </>
   );

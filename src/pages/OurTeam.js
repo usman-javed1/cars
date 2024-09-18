@@ -20,7 +20,7 @@ const OurTeam = () => {
         <ContainerWraper>
         <OurTeamCard></OurTeamCard>
           <WhyChooseUs></WhyChooseUs>
-          <Features heading="Explore our special deals"></Features>
+          <Features heading="Explore our special deals" ></Features>
           <HowWorks></HowWorks>
           <FAQ></FAQ>
         </ContainerWraper>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Objectivity:wght@400;500;600;700&display=swap'); 
+@import url('https://fonts.googleapis.com/css2?family=Objectivity:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -13,6 +13,7 @@
   position: absolute;
   left: 58%;
 }
+
 .hoverAni3:hover div {
   height: 2px;
   width: 20px;
@@ -20,6 +21,7 @@
   position: absolute;
   left: 53%;
 }
+
 .hoverAni5:hover div {
   height: 2px;
   width: 20px;
@@ -27,6 +29,7 @@
   position: absolute;
   left: 67.5%;
 }
+
 .hoverAni2:hover div {
   height: 2px;
   width: 20px;
@@ -34,6 +37,7 @@
   position: absolute;
   left: 79%;
 }
+
 .hoverAni6:hover div {
   height: 2px;
   width: 20px;
@@ -46,6 +50,7 @@
   width: 35px;
   height: 24px;
 }
+
 .button21:hover span {
   margin-left: 1rem;
 }
@@ -53,6 +58,7 @@
 .button21 {
   transition: 0.5s all;
 }
+
 .button21 img {
   transition: 0.5s all;
 }
@@ -74,7 +80,7 @@
 }
 
 .detail div {
-  transition: 0.3s all ;
+  transition: 0.3s all;
   cursor: pointer;
 }
 
@@ -91,18 +97,22 @@ body {
   margin-left: 23px;
 
 }
+
 .hoverAni5:hover img {
   margin-left: 35px;
 
 }
+
 .hoverAni6:hover img {
   margin-left: 35px;
 
 }
+
 .hoverAni3:hover img {
   margin-left: 23px;
 
 }
+
 .hoverAni2:hover img {
   margin-left: 32px;
 
@@ -110,10 +120,11 @@ body {
 
 
 
-.catCard:hover .imageInCatCard  {
+.catCard:hover .imageInCatCard {
   opacity: 1;
 }
-.catCard:hover .textSection  {
+
+.catCard:hover .textSection {
   margin-left: -40px;
 }
 
@@ -130,15 +141,19 @@ body {
 .hoverAni img {
   transition: 0.5s all;
 }
+
 .hoverAni6 img {
   transition: 0.5s all;
 }
+
 .hoverAni5 img {
   transition: margin-left 0.5s;
 }
+
 .hoverAni2 img {
   transition: 0.5s all;
 }
+
 .hoverAni3 img {
   transition: 0.5s all;
 }
@@ -152,9 +167,10 @@ body {
   transition: 0.3 all;
   display: block;
 }
+
 .submitButton:hover img {
   height: 24px;
-  width: 35px ; 
+  width: 35px;
 }
 
 
@@ -163,26 +179,29 @@ body {
   background-color: #F6B000 !important;
 }
 
-input, svg, rect, path {
+input,
+svg,
+rect,
+path {
   transition: all 0.3s ease;
 }
 
 
 select {
   border-radius: 10px !important;
-  
+
 }
 
 select option:hover,
 select option:focus,
 select option:active {
-    background-color: #F6B000 !important;
-    color: white !important;
+  background-color: #F6B000 !important;
+  color: white !important;
 }
 
 select option:checked {
-    background-color: #F6B000 !important;
-    color: white !important;
+  background-color: #F6B000 !important;
+  color: white !important;
 }
 
 select {
@@ -195,7 +214,8 @@ select {
   cursor: pointer;
 }
 
-select option:hover, select option:focus {
+select option:hover,
+select option:focus {
   background-color: #F6B000 !important;
   outline: none;
 }
@@ -206,11 +226,13 @@ select option:hover, select option:focus {
 
 .featureLeftIcon:hover .featureLeftIconInner {
   margin-left: -40px;
-  
+
 }
+
 .featureLeftIcon:hover .featureRightInner {
   margin-left: 40px;
 }
+
 .featureLeftIcon:hover .featureLeftLine {
   height: 2px;
   background-color: white;
@@ -220,12 +242,12 @@ select option:hover, select option:focus {
 
 
 .featureLeftIcon .featureLeftLine {
-  transition: width 200ms ease, background-color 300ms ease; 
+  transition: width 200ms ease, background-color 300ms ease;
   height: 2px;
   width: 0px;
 }
 
-.featureLeftIcon:hover { 
+.featureLeftIcon:hover {
   width: 70px;
   background-color: #000;
   transition: 0.3ms all;
@@ -245,9 +267,11 @@ select option:hover, select option:focus {
 .hoverBox:hover .text-change {
   color: #F6B000;
 }
+
 .hoverBox:hover .text-img1 {
   display: none;
 }
+
 .hoverBox:hover .text-img2 {
   display: block !important;
 }
@@ -256,12 +280,12 @@ select option:hover, select option:focus {
   display: flex;
   align-items: center;
   gap: 10px;
-  color:#B9B9B9;
+  color: #B9B9B9;
   font-family: Objectivity;
-font-size: 14px;
-font-weight: 500;
-line-height: 14.35px;
-letter-spacing: -0.03em;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 14.35px;
+  letter-spacing: -0.03em;
 
 }
 
@@ -280,13 +304,14 @@ letter-spacing: -0.03em;
 .form-steps .completed {
   color: #0E0E0E;
   font-weight: 500;
-  
+
 }
 
 .form-navigation button {
   margin: 10px;
   width: 100%;
-  background-color: #000; /* Button color */
+  background-color: #000;
+  /* Button color */
   color: white;
   border: none;
   border-radius: 5px;
@@ -294,13 +319,28 @@ letter-spacing: -0.03em;
 }
 
 .form-navigation button:hover {
-  background-color: #000; /* Darker button color on hover */
+  background-color: #000;
+  /* Darker button color on hover */
 }
+
 .about .mainimagehero {
-  background-image: url("../src/images/image about us.png"); 
+  background-image: url("../src/images/image about us.png");
   background-size: cover;
 }
+
 .ourteam .mainimagehero {
-  background-image: url("../src/images/Mask group (3).png"); 
+  background-image: url("../src/images/Mask group (3).png");
   background-size: cover;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+  .ourteam .mainimagehero {
+    background-image: url("../src/images/bg-ourteam.png");
+    background-size: cover;
+  }
+  .form-steps span{
+    padding: 10px 5px;
+  }
 }

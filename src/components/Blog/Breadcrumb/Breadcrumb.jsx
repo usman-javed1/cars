@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Breadcrumb = ({ crumbs=["Home", "Blog"], activeCrumb="Blog" }) => {
+const Breadcrumb = ({ crumbs=["Home", "Blog"], activeCrumb="Blog", isOnImage=false }) => {
   return (
     <nav className="flex" aria-label="Breadcrumb">
       <ol className="py-[60px] inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
@@ -24,7 +24,7 @@ const Breadcrumb = ({ crumbs=["Home", "Blog"], activeCrumb="Blog" }) => {
             )}
 
             {crumb === activeCrumb ? (
-              <span className="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">
+              <span className={`ms-1 text-sm font-medium ${"text-gray-500"} md:ms-2`}>
                 {crumb}
               </span>
             ) : (
