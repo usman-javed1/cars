@@ -22,13 +22,13 @@ const Navbar = () => {
     ];
 
     const dropdownLinks = [
-        { text: 'About us', image: require('../../images/arrow.png') },
-        { text: 'Our Team', image: require('../../images/arrow.png') },
-        { text: 'Facebook', image: require('../../images/darkfb.png') },
-        { text: 'Youtube', image: require('../../images/darkyoutube.png') },
-        { text: 'Telegram', image: require('../../images/darktele.png') },
-        { text: 'Instagram', image: require('../../images/darkinsta.png') },
-        { text: 'Whatsapp', image: require('../../images/darkwhatsapp.png') },
+        { text: 'About us', image: require('../../images/arrow.png'), link: '/about' },
+        { text: 'Our Team', image: require('../../images/arrow.png'), link: '/our-team' },
+        { text: 'Facebook', image: require('../../images/darkfb.png'), link: '/' },
+        { text: 'Youtube', image: require('../../images/darkyoutube.png'), link: '/' },
+        { text: 'Telegram', image: require('../../images/darktele.png'), link: '/' },
+        { text: 'Instagram', image: require('../../images/darkinsta.png'),link: '/' },
+        { text: 'Whatsapp', image: require('../../images/darkwhatsapp.png'),link: '/' },
     ];
 
     return (
@@ -36,9 +36,9 @@ const Navbar = () => {
             <nav className='w-[100%] max-w-full lg:h-[80px] h-[70px] items-center lg:justify-between justify-between flex bg-black relative lg:pr-0 pr-5 lg:px-[60px] px-[25px] ' style={{position: showMenu ? "fixed": "relative", zIndex: 99999}}>
                 
                 <div className="logo">
-                    <a href='/'>
+                    <Link to='/'>
                         <img src={require("../../images/logo.png")} alt="logo" width={142} height={42} />
-                    </a>
+                    </Link>
                 </div>
                 <div className="h-[56px]  text-white items-center text-[16px] justify-between lg:flex hidden w-[47%]">
                     <ul className='flex w-full justify-between items-center font-[500]' >
@@ -243,7 +243,7 @@ const Navbar = () => {
                                         onMouseEnter={() => setHoveredDropdownLink(index + 2)}
                                         onMouseLeave={() => setHoveredDropdownLink(null)}
                                     >
-                                        <Link to={'/'} className='flex gap-[5px] items-center'>
+                                        <Link to={link.link} className='flex gap-[5px] items-center'>
                                             <div className='flex gap-[5px] items-center'>
                                                 <img src={link.image} alt="" className='w-[16px] h-[16px]' />
                                                 <motion.span
@@ -277,7 +277,7 @@ const Navbar = () => {
                                         onMouseEnter={() => setHoveredDropdownLink(index)}
                                         onMouseLeave={() => setHoveredDropdownLink(null)}
                                     >
-                                        <Link to={'/'} className='flex gap-[5px] items-center '>
+                                        <Link to={link.link} className='flex gap-[5px] items-center '>
                                             <motion.span
                                                 animate={{ color: hoveredDropdownLink === index ? '#E3A200' : 'black' }}
                                                 transition={{ duration: 0.3 }}
