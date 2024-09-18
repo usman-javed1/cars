@@ -44,7 +44,7 @@ const ContactForm = () => {
         <div className="flex lg:flex-nowrap flex-wrap justify-between items-center">
             {/* Form container */}
             <div className=" flex justify-center items-start flex-col lg:w-[40%] w-full">
-                <div className="g:ltext-[45px] text-[32px] font-[700] mb-5">
+                <div className="lg:text-[45px] text-[32px] font-[700] mb-5">
                     Explore Your Financing Options
                 </div>
                 <form onSubmit={handleSubmit}>
@@ -76,7 +76,7 @@ const ContactForm = () => {
             </div>
 
             {/* Image container */}
-            <div className="lg:w-[55%] lg:flex hidden w-full justify-center lg:justify-end mt-6 lg:mt-0 mx-auto">
+            <div className="lg:w-[610px] lg:block hidden w-full  mt-6 lg:mt-0">
                 <img className="lg:w-[610px]  w-[375px] lg:h-[552px] h-[243.75px] rounded-[15px] mx-auto" src={require('../../../src/images/car contact us.png')} alt="" />
             </div>
         </div>
