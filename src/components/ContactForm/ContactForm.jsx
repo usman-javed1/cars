@@ -43,12 +43,12 @@ const ContactForm = () => {
     return (
         <div className="flex lg:flex-nowrap flex-wrap justify-between items-center">
             {/* Form container */}
-            <div className="form-container flex justify-center items-start flex-col lg:w-[40%] w-full">
+            <div className=" flex justify-center items-start flex-col lg:w-[40%] w-full">
                 <div className="text-[45px] font-[700] mb-5">
                     Explore Your Financing Options
                 </div>
                 <form onSubmit={handleSubmit}>
-                    <div className="form-steps mb-10">
+                    <div className="form-steps flex-wrap mb-10">
                         <span className={step >= 1 ? (step === 1 ? 'active' : 'completed') : ''} style={{ padding: 0 }}>Info</span> &gt;
                         <span className={step >= 2 ? (step === 2 ? 'active' : 'completed') : ''}>Address</span> &gt;
                         <span className={step >= 3 ? (step === 3 ? 'active' : 'completed') : ''}>Employment</span> &gt;
@@ -76,8 +76,8 @@ const ContactForm = () => {
             </div>
 
             {/* Image container */}
-            <div className="lg:w-[55%] w-full flex justify-center lg:justify-end mt-6 lg:mt-0">
-                <img className="lg:w-[610px] w-[100%] lg:h-[522px] h-[243.75px] rounded-[15px]" src={require('../../../src/images/car contact us.png')} alt="" />
+            <div className="lg:w-[55%] w-full flex justify-center lg:justify-end mt-6 lg:mt-0 mx-auto">
+                <img className="lg:w-[610px] w-[375px] lg:h-[552px] h-[243.75px] rounded-[15px] mx-auto" src={require('../../../src/images/car contact us.png')} alt="" />
             </div>
         </div>
 
@@ -85,7 +85,7 @@ const ContactForm = () => {
 };
 
 const Info = () => (
-    <div className='w-[505px] h-[232px] lg:mt-0 md:mt-0 mt-10'>
+    <div className='lg:w-[505px] h-[232px] lg:mt-0 md:mt-0 mt-10'>
         <div className="row1 flex gap-[20px]">
             <div className="">
                 <input type="text" className='lg:w-[244.94px] md:w-[244.94px] w-[157.63px] h-[54px] border-[0px, 0px, 1px, 0px] border-[#B9B9B9] placeholder:text-[#B9B9B9] p-[16px, 10px, 14px, 0px] bg-transparent border-b outline-none text-[16px] font-[500] text-white' placeholder='First name' />
