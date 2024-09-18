@@ -27,7 +27,7 @@ const WhyChooseUs = () => {
   return (
     <>
             {/* Heading */}
-            <div className="heading font-[700] lg:text-[45px] md:text-[45px] text-[35px] ss text-black text-start lg:pt-[180px] pt-[0px]">
+            <div className="heading font-[700] lg:text-[45px] md:text-[45px] text-[35px] ss text-black text-start lg:pt-[180px] pt-[0px] lg:mt-0 mt-20">
             Why Choose Us?
             </div>
 

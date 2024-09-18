@@ -12,13 +12,21 @@ const About = () => {
   return(
     <>
     <div className="about">
-    <AboutUsHero></AboutUsHero>
+        <AboutUsHero
+          breadCrumbs={["Home", "About us"]} activeCrumb={"About us"}
+        ></AboutUsHero>
     </div>
     <div className="w-full max-w-full mx-auto flex flex-col justify-between items-center"> 
       <ContainerWraper>
         <Details></Details>
-        <WhyChooseUs></WhyChooseUs> 
-        <Features></Features>
+          <WhyChooseUs></WhyChooseUs> 
+          <div className="lg:hidden">
+            <br /><br />
+          </div>
+          <Features></Features>
+          <div className="lg:hidden">
+            <br /><br />
+          </div>
         <HowWorks />
           <FAQ />
       </ContainerWraper>

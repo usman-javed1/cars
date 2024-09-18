@@ -187,10 +187,10 @@ const Card = ({name="David Carter", position ="CEO & Founder" }) => {
     return (
         <>
 
-            <div className="imagecardourteam lg:w-[400px] w-[300px]">
-                <div className="imageourteam "><img className="w-[400px] h-[460px]" src={require('../../images/ourteamimage.png')} alt="" /></div>
-                <h5 className="headingourteam  class-for-h4 pt-[20px] pb-[10px]">{name}</h5>
-                <p className="postourteam">{position}</p>
+            <div className="imagecardourteam lg:w-[400px] w-[300px] ">
+                <div className="imageourteam "><img className="w-[400px] h-[321.7px]" src={require('../../images/ourteamimage.png')} alt="" /></div>
+                <h5 className="headingourteam  lg:class-for-h4 text-[18px] font-[700] pt-[20px] pb-[10px]">{name}</h5>
+                <p className="font-[500] text-[14px] text-[#959595] lg:text-[16px]">{position}</p>
             </div>
 
         </>

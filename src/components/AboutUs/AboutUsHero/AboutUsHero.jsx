@@ -1,20 +1,23 @@
 import React from 'react'
 import Breadcrumb from '../../Blog/Breadcrumb/Breadcrumb';
 import ContainerWraper from '../../General/ContainerWraper';
-const AboutUsHero = ({ heading = "About Us: The Wheel Deal", desc = "Welcome to The Wheel Deal, your trusted partner in car leasing. We are dedicated to offering you the best deals, the newest models, and a seamless leasing experience tailored to your needs.", btnContent = "Contact us", imageUrl }) => {
+const AboutUsHero = ({ heading = "About Us: The Wheel Deal", desc = "Welcome to The Wheel Deal, your trusted partner in car leasing. We are dedicated to offering you the best deals, the newest models, and a seamless leasing experience tailored to your needs.", btnContent = "Contact us", imageUrl, breadCrumbs, activeCrumb, isSpecial=false }) => {
   return (
     <>
 
-
-
       <div className="mainimagehero h-[700px] ">
         <ContainerWraper>
-          <div className='aboutuscontact px-[5%]' style={{ zIndex: 999 }}>
-            <Breadcrumb ></Breadcrumb>
+          <div className='aboutuscontact lg:pl-0 pl-[5%] lg:mt-0 -mt-6' style={{ zIndex: 999 }}>
+            <Breadcrumb crumbs={breadCrumbs} activeCrumb={activeCrumb} isOnImage={true} ></Breadcrumb>
             <div >
-              <h2 className='class-for-h1 py-[20px] lg:w-[540px] lg:mt-0 mt-32 lg:px-0  w-[100%] text-[#FFFFFF] '>
-                {heading}
-              </h2>
+              <div className="py-[20px] lg:w-[540px] lg:mt-14 mt-[90px] lg:px-0">
+                {isSpecial && <p className='text-[14px] text-[#FFB600] font-[500] mb-3'>
+                  Special Lease Offers:
+                </p>}
+                <h2 className='class-for-h1   w-[100%] text-[#FFFFFF] '>
+                  {heading}
+                </h2>
+              </div>
               <p className='text-[14px]  font-[500] text-[#B9B9B9] lg:w-[400px] w-[100%] '>{desc} </p>
             </div>
             <div className="button pt-[45px]">

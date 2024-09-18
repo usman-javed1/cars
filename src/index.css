@@ -332,15 +332,32 @@ select option:focus {
   background-image: url("../src/images/Mask group (3).png");
   background-size: cover;
 }
+.special .mainimagehero {
+  background-image: url("../src/images/Mask group (4).png");
+  background-size: cover;
+}
 
 
 
 @media only screen and (max-width: 600px) {
   .ourteam .mainimagehero {
+    height: 640px !important;
     background-image: url("../src/images/bg-ourteam.png");
+    background-size: cover;
+  }
+
+  .about .mainimagehero {
+    height: 640px !important;
+    background-image: url("../src/images/image\ 170.png");
+    background-size: cover;
+  }
+  .special .mainimagehero {
+    height: 690px !important;
+    background-image: url("../src/images/photo.png");
     background-size: cover;
   }
   .form-steps span{
     padding: 10px 5px;
   }
 }
+

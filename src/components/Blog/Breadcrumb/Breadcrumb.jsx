@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Breadcrumb = ({ crumbs=["Home", "Blog"], activeCrumb="Blog", isOnImage=false }) => {
+const Breadcrumb = ({ crumbs = ["Home", "Blog"], activeCrumb = "Blog", isOnImage = false }) => {
   return (
     <nav className="flex" aria-label="Breadcrumb">
       <ol className="py-[60px] inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
@@ -17,7 +17,7 @@ const Breadcrumb = ({ crumbs=["Home", "Blog"], activeCrumb="Blog", isOnImage=fal
                 >
                   <path
                     d="M3.78112 5.00047L0.481262 1.70062L1.42408 0.757812L5.66672 5.00047L1.42408 9.24306L0.481262 8.30027L3.78112 5.00047Z"
-                    fill="#0E0E0E"
+                    fill={isOnImage ? "#A0A0A0" : "#0E0E0E"} // Use actual color codes
                   />
                 </svg>
               </div>
@@ -30,7 +30,7 @@ const Breadcrumb = ({ crumbs=["Home", "Blog"], activeCrumb="Blog", isOnImage=fal
             ) : (
               <a
                 href="#"
-                className="inline-flex items-center text-sm font-medium text-black"
+                className={`inline-flex items-center text-sm font-medium ${isOnImage ? "text-white" : "text-black"}`}
               >
                 {crumb}
               </a>

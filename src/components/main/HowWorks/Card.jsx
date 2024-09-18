@@ -11,7 +11,7 @@ const Card = ({heading, desc, number}) => {
                 {heading}
             </div>
 
-            <div className="w-[180px] h-[66px] font-[500] text-[14px] text-[#959595] text-start mt-2">
+            <div className="w-[200px] h-[66px] font-[500] text-[14px] text-[#959595] text-start mt-2">
             {desc}
             </div>
         </div>

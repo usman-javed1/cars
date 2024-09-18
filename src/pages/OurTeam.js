@@ -12,15 +12,23 @@ const OurTeam = () => {
   return (
     <>
       <div className="ourteam">
-        <AboutUsHero heading="Meet our team" desc="we are a dedicated team of professionals passionate about helping you find the perfect vehicle that fits your needs and lifestyle. Our team consists of experienced experts in leasing, finance, customer service, and automotive industries." />
+        <AboutUsHero heading="Meet our team" desc="we are a dedicated team of professionals passionate about helping you find the perfect vehicle that fits your needs and lifestyle. Our team consists of experienced experts in leasing, finance, customer service, and automotive industries." breadCrumbs={["Home", "Our team"]} activeCrumb={"Our team"}/>
       </div>
 
       <div className="w-full max-w-full mx-auto flex flex-col justify-between items-center">
 
         <ContainerWraper>
-        <OurTeamCard></OurTeamCard>
+          <OurTeamCard></OurTeamCard>
+
           <WhyChooseUs></WhyChooseUs>
-          <Features heading="Explore our special deals" ></Features>
+          <div className="lg:hidden">
+            <br /><br />
+          </div>
+            <Features heading="Explore our special deals" ></Features>
+          
+          <div className="lg:hidden">
+            <br /><br />
+          </div>
           <HowWorks></HowWorks>
           <FAQ></FAQ>
         </ContainerWraper>
