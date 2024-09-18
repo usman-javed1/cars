@@ -243,7 +243,7 @@ const Navbar = () => {
                                         onMouseEnter={() => setHoveredDropdownLink(index + 2)}
                                         onMouseLeave={() => setHoveredDropdownLink(null)}
                                     >
-                                        <Link to={'/'} className='flex gap-[5px] items-center'>
+                                        <Link to={link.link} className='flex gap-[5px] items-center'>
                                             <div className='flex gap-[5px] items-center'>
                                                 <img src={link.image} alt="" className='w-[16px] h-[16px]' />
                                                 <motion.span
@@ -277,7 +277,7 @@ const Navbar = () => {
                                         onMouseEnter={() => setHoveredDropdownLink(index)}
                                         onMouseLeave={() => setHoveredDropdownLink(null)}
                                     >
-                                        <Link to={'/'} className='flex gap-[5px] items-center '>
+                                        <Link to={link.link} className='flex gap-[5px] items-center '>
                                             <motion.span
                                                 animate={{ color: hoveredDropdownLink === index ? '#E3A200' : 'black' }}
                                                 transition={{ duration: 0.3 }}
