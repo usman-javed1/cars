@@ -18,25 +18,21 @@ const Features = ({ heading = "Our team members" }) => {
         position: "CEO & Founder"
     },
     {
+        name: "Emily Johnson",
+        position: "Chief Operating Officer",
+        image: require('../../images/image (2).png')
+
+    }
+        , {
+        name: "Michael Thompson",
+        position: "Head of Sales",
+        image: require('../../images/image (3).png')
+    },
+    {
         name: "David Carter",
         position: "CEO & Founder"
-        }
-    ,{
-        name: "David Carter",
-        position: "CEO & Founder"
-        },
-        {
-            name: "David Carter",
-            position: "CEO & Founder"
-        },
-        {
-            name: "David Carter",
-            position: "CEO & Founder"
-        },
-        {
-            name: "David Carter",
-            position: "CEO & Founder"
-        }]
+    },
+    ]
 
     const [marginLeft, setMarginLeft] = useState(0); // Set initial margin to 0
 
@@ -164,13 +160,13 @@ const Features = ({ heading = "Our team members" }) => {
                         >
                             {cards.map((card, index) => (
                                 <SwiperSlide key={index}>
-                                    <Card obj={card} />
+                                    <Card name={card.name} image={card.image} position={card.position} />
                                 </SwiperSlide>
                             ))}
                         </Swiper>
                     </div>
 
-                    
+
                 </div>
             </div>
         </div>
@@ -183,12 +179,12 @@ export default Features;
 
 
 
-const Card = ({name="David Carter", position ="CEO & Founder" }) => {
+const Card = ({ name = "David Carter", position = "CEO & Founder", image = require('../../images/ourteamimage.png') }) => {
     return (
         <>
 
-            <div className="imagecardourteam lg:w-[400px] w-[300px] ">
-                <div className="imageourteam "><img className="w-[400px] lg:h-auto h-[321.7px]" src={require('../../images/ourteamimage.png')} alt="" /></div>
+            <div className="imagecardourteam lg:w-full w-[300px] ">
+                <div className="imageourteam "><img className="w-full lg:h-auto h-[321.7px]" src={image} alt="" /></div>
                 <h5 className="headingourteam  lg:text-[22px] text-[18px] font-[700] pt-[20px] pb-[10px]">{name}</h5>
                 <p className="font-[500] text-[14px] text-[#959595] lg:text-[16px]">{position}</p>
             </div>

@@ -41,7 +41,7 @@ const SpecialDeals = () => {
         <div className="lg:pl-0 pl-[5%]">
           <div className="lg:w-full w-[350px]">
             <Tabs />
-          </div>P
+          </div>
           <HowWorks heading="Why Choose a Special Lease Offer?" desc="Our special lease offers are designed to provide you with exceptional value and flexibility:" cards={cards} />
           <FAQ />
         </div>
