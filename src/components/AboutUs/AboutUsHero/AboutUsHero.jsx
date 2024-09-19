@@ -10,7 +10,8 @@ const AboutUsHero = ({ heading = "About Us: The Wheel Deal", desc = "Welcome to 
           <div className='aboutuscontact lg:pl-0 pl-[5%] lg:mt-0 -mt-6' style={{ zIndex: 999 }}>
             <Breadcrumb crumbs={breadCrumbs} activeCrumb={activeCrumb} isOnImage={true} ></Breadcrumb>
             <div >
-              <div className="py-[20px] lg:w-[540px] lg:mt-14 mt-[90px] lg:px-0">
+              <div className={`py-[20px] lg:w-[540px]  ${isSpecial ? "lg:mt-[20px]" : "lg:mt-14"}   ${isSpecial ? "mt-[50px]" : "mt-[90px]"} 
+               lg:px-0`}>
                 {isSpecial && <p className='text-[14px] text-[#FFB600] font-[500] mb-3'>
                   Special Lease Offers:
                 </p>}

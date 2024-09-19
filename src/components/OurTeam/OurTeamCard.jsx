@@ -188,8 +188,8 @@ const Card = ({name="David Carter", position ="CEO & Founder" }) => {
         <>
 
             <div className="imagecardourteam lg:w-[400px] w-[300px] ">
-                <div className="imageourteam "><img className="w-[400px] h-[321.7px]" src={require('../../images/ourteamimage.png')} alt="" /></div>
-                <h5 className="headingourteam  lg:class-for-h4 text-[18px] font-[700] pt-[20px] pb-[10px]">{name}</h5>
+                <div className="imageourteam "><img className="w-[400px] lg:h-auto h-[321.7px]" src={require('../../images/ourteamimage.png')} alt="" /></div>
+                <h5 className="headingourteam  lg:text-[22px] text-[18px] font-[700] pt-[20px] pb-[10px]">{name}</h5>
                 <p className="font-[500] text-[14px] text-[#959595] lg:text-[16px]">{position}</p>
             </div>
 
