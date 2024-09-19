@@ -18,7 +18,7 @@ const Navbar = () => {
         { text: 'About us', image: '../../images/navicon.png', hasDropdown: true },
         { text: 'Blog', image: commonArrowImage, link: '/blog' },
         { text: 'FAQ', image: commonArrowImage, link: '/faq' },
-        { text: 'Contact', image: commonArrowImage },
+        { text: 'Contact', link: '#footer', image: commonArrowImage },
     ];
 
     const dropdownLinks = [
@@ -27,14 +27,14 @@ const Navbar = () => {
         { text: 'Facebook', image: require('../../images/darkfb.png'), link: '/' },
         { text: 'Youtube', image: require('../../images/darkyoutube.png'), link: '/' },
         { text: 'Telegram', image: require('../../images/darktele.png'), link: '/' },
-        { text: 'Instagram', image: require('../../images/darkinsta.png'),link: '/' },
-        { text: 'Whatsapp', image: require('../../images/darkwhatsapp.png'),link: '/' },
+        { text: 'Instagram', image: require('../../images/darkinsta.png'), link: '/' },
+        { text: 'Whatsapp', image: require('../../images/darkwhatsapp.png'), link: '/' },
     ];
 
     return (
         <>
-            <nav className='w-[100%] max-w-full lg:h-[80px] h-[70px] items-center lg:justify-between justify-between flex bg-black relative lg:pr-0 pr-5 lg:px-[60px] px-[25px] ' style={{position: showMenu ? "fixed": "relative", zIndex: 99999}}>
-                
+            <nav className='w-[100%] max-w-full lg:h-[80px] h-[70px] items-center lg:justify-between justify-between flex bg-black relative lg:pr-0 pr-5 lg:px-[60px] px-[25px] ' style={{ position: showMenu ? "fixed" : "relative", zIndex: 99999 }}>
+
                 <div className="logo">
                     <Link to='/'>
                         <img src={require("../../images/logo.png")} alt="logo" width={142} height={42} />
@@ -43,7 +43,7 @@ const Navbar = () => {
                 <div className="h-[56px]  text-white items-center text-[16px] justify-between lg:flex hidden w-[47%]">
                     <ul className='flex w-full justify-between items-center font-[500]' >
                         {navLinks.map((link, index) => (
-                            <li 
+                            <li
                                 key={index}
                                 onMouseEnter={() => {
                                     setHoveredLink(index);
@@ -62,19 +62,19 @@ const Navbar = () => {
                                         {link.text}
                                     </motion.span>
                                     {link.hasDropdown ? (
-                                        <motion.img 
-                                            src={require("../../images/navicon.png")} 
+                                        <motion.img
+                                            src={require("../../images/navicon.png")}
                                             alt=""
                                             className='w-[16px] h-[16px] ml-[3px]'
-                                            animate={{ 
+                                            animate={{
                                                 rotate: hoveredLink === index ? 180 : 0,
                                                 opacity: 1
                                             }}
                                             transition={{ duration: 0.3 }}
                                         />
                                     ) : (
-                                        <motion.img 
-                                            src={require("../../images/arrow.png")} 
+                                        <motion.img
+                                            src={require("../../images/arrow.png")}
                                             alt=""
                                             className='w-[20px] h-[20px] ml-[3px]'
                                             initial={{ opacity: 0 }}
@@ -86,15 +86,15 @@ const Navbar = () => {
                             </li>
                         ))}
                     </ul>
-                    
+
                 </div>
 
                 <div className="button pr-[60px] lg:block hidden">
-                        <button className='w-[151px] h-[56px] flex justify-center items-center p-[22px, 18px, 18px, 18px] rounded-[10px] bg-white text-black text-[16px] font-[500] transition-all duration-300 hover:bg-[#F6B000] hover:text-white'>
-                            Request a Call
-                        </button>
-                    </div>
-                
+                    <button className='w-[151px] h-[56px] flex justify-center items-center p-[22px, 18px, 18px, 18px] rounded-[10px] bg-white text-black text-[16px] font-[500] transition-all duration-300 hover:bg-[#F6B000] hover:text-white'>
+                        Request a Call
+                    </button>
+                </div>
+
 
                 <motion.div
                     className="hamburger lg:hidden block cursor-pointer"
@@ -120,7 +120,7 @@ const Navbar = () => {
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
-                            style={{zIndex: 99999}}
+                            style={{ zIndex: 99999 }}
                             transition={{ duration: 0.3 }}
                         >
                             <div className='space-y-5 flex flex-col items-start w-full'>
@@ -222,9 +222,9 @@ const Navbar = () => {
             </nav>
             <AnimatePresence>
                 {showLgDropdown && (
-                    <motion.div 
+                    <motion.div
                         className="lg-about-dropdown w-full h-[412px] lg:flex hidden absolute p-[100px] py-[70px] bg-white justify-between"
-                        style={{zIndex: 99999}}
+                        style={{ zIndex: 99999 }}
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
@@ -238,7 +238,7 @@ const Navbar = () => {
                             </div>
                             <div className="socialLinks mt-10 space-y-5 text-black font-[500] text-[16px]">
                                 {dropdownLinks.slice(2).map((link, index) => (
-                                    <motion.div 
+                                    <motion.div
                                         key={index}
                                         onMouseEnter={() => setHoveredDropdownLink(index + 2)}
                                         onMouseLeave={() => setHoveredDropdownLink(null)}
@@ -253,8 +253,8 @@ const Navbar = () => {
                                                     {link.text}
                                                 </motion.span>
                                             </div>
-                                            <motion.img 
-                                                src={require("../../images/arrow.png")}  
+                                            <motion.img
+                                                src={require("../../images/arrow.png")}
                                                 alt=""
                                                 className='w-[20px] h-[20px] ml-[3px]'
                                                 initial={{ opacity: 0 }}
@@ -272,7 +272,7 @@ const Navbar = () => {
                             </div>
                             <div className="mt-10 space-y-5 text-black font-[500] text-[16px]">
                                 {dropdownLinks.slice(0, 2).map((link, index) => (
-                                    <motion.div 
+                                    <motion.div
                                         key={index}
                                         onMouseEnter={() => setHoveredDropdownLink(index)}
                                         onMouseLeave={() => setHoveredDropdownLink(null)}
@@ -284,8 +284,8 @@ const Navbar = () => {
                                             >
                                                 {link.text}
                                             </motion.span>
-                                            <motion.img 
-                                                src={require("../../images/arrow.png")} 
+                                            <motion.img
+                                                src={require("../../images/arrow.png")}
                                                 alt=""
                                                 className='w-[20px] h-[20px] ml-[3px]'
                                                 initial={{ opacity: 0 }}

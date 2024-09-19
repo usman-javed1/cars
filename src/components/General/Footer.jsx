@@ -48,7 +48,7 @@ const Footer = () => {
     ];
 
     return (
-        <div className="flex">
+        <section className="flex" id='footer'>
             <footer className=' w-full min-h-[1142px] bg-black justify-center overflow-hidden flex '>
                 <div className="lg:w-full md:w-full w-[350px] px-[10px]">
                     <div className=" container">
@@ -161,7 +161,7 @@ const Footer = () => {
                     </div>
                 </div>
             </footer>
-        </div>
+        </section>
     )
 }
 
