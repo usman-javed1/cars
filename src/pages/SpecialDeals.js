@@ -39,9 +39,9 @@ const SpecialDeals = () => {
       </div>
       <ContainerWraper>
         <div className="lg:pl-0 pl-[5%]">
-          <div className="w-[350px]">
+          <div className="lg:w-full w-[350px]">
             <Tabs />
-          </div>
+          </div>P
           <HowWorks heading="Why Choose a Special Lease Offer?" desc="Our special lease offers are designed to provide you with exceptional value and flexibility:" cards={cards} />
           <FAQ />
         </div>
