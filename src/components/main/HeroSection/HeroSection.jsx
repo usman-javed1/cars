@@ -30,6 +30,7 @@ import DotTriangle from './icons/DotTriangle'
 import Hunda2 from './icons/Hunda2'
 import All from './icons/All';
 import { AiOutlineArrowUp, AiOutlineArrowDown } from 'react-icons/ai'; // Import new icons
+import { Link } from 'react-router-dom';
 
 
 // import React, { useState, useEffect } from 'react';
@@ -427,10 +428,12 @@ const HeroSection = () => {
                             </div>
                         ))}
                         <div className="">
-                            <button className='w-[162px] h-[56px] flex justify-center items-center bg-[#000] text-[16px] font-[500] rounded-[10px] mx-[15px]
-                            hover:bg-[#F6B000] transition-all duration-300'>
-                                Browse vehicles
-                            </button>
+                            <Link to="/view">
+                                <button className='w-[162px] h-[56px] flex justify-center items-center bg-[#000] text-[16px] font-[500] rounded-[10px] mx-[15px]
+                                hover:bg-[#F6B000] transition-all duration-300'>
+                                    Browse vehicles
+                                </button>
+                            </Link>
                         </div>
                     </div>
                     <div className="w-[285px] mt-[60px] h-[60px] ml-[20px] bg-white px-2 flex items-center rounded-[15px] lg:hidden md:hidden" onClick={toggleOverlay}>

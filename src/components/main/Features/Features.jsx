@@ -1,9 +1,10 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Card from "../../General/Card";
 import Icon from "./icon/icon";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { Link } from "react-router-dom";
 
 const Features = ({ heading = "Featured vehicles", slides=3.5 }) => {
   const [active, setActive] = useState({
@@ -190,17 +191,19 @@ const Features = ({ heading = "Featured vehicles", slides=3.5 }) => {
 
           {/* View All Button */}
           <div className="flex justify-center items-center">
-            <button className="lg:w-[340px] md:w-[340px] w-[325px] h-[44px] rounded-[10px] flex justify-center items-center text-[14px] mt-[10px] hoverAni6 font-[500] relative">
-              View All Vehicles{" "}
-              <div className="relative">
-                <div className="hoverLine2"></div>
-              </div>
-              <img
-                src={require("../../../images/cardicon.png")}
-                className="w-[20px] h-[20px] imahe1"
-                alt=""
-              />
-            </button>
+            <Link to="/view">
+              <button className="lg:w-[340px] md:w-[340px] w-[325px] h-[44px] rounded-[10px] flex justify-center items-center text-[14px] mt-[10px] hoverAni6 font-[500] relative">
+                View All Vehicles{" "}
+                <div className="relative">
+                  <div className="hoverLine2"></div>
+                </div>
+                <img
+                  src={require("../../../images/cardicon.png")}
+                  className="w-[20px] h-[20px] imahe1"
+                  alt=""
+                />
+              </button>
+            </Link>
           </div>
         </div>
       </div>
