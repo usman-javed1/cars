@@ -78,7 +78,7 @@ const LeftSideHeader = ({ searchResults, onClear }) => {
     };
 
     return (
-        <div className='flex justify-between items-center gap-5 flex-wrap lg:pr-[2%]'>
+        <div className='flex justify-between items-center  flex-wrap lg:pr-[1.5%]'>
             {isOverlayVisible && (
                 <FiltersSection
                     selectedValues={selectedValues}
