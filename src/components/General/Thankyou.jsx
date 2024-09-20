@@ -2,7 +2,7 @@ import React from 'react';
 
 const Thankyou = ({ onClose }) => { // Accept onClose prop
     return (
-        <div className=' w-[100vw] h-screen flex justify-center items-center fixed top-0 left-0' style={{backgroundColor: "rgba(0, 0, 0,0.8)"}}>
+        <div className=' w-[100vw] h-screen flex justify-center items-center fixed top-0 left-0' style={{backgroundColor: "rgba(0, 0, 0,0.8)", zIndex: 9999}} >
             <div className="w-[400px] h-[400px] bg-white rounded-[15px] flex flex-col justify-center items-center relative">
                 <div className="crossBtn absolute right-5 top-5 cursor-pointer" onClick={onClose}> {/* Call onClose when clicked */}
                     <img src={require("../../images/Frame.png")} className='w-[24px] h-[24px]' alt="" />
