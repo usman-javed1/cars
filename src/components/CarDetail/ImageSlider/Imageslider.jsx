@@ -9,7 +9,7 @@ const ImageSlider = () => {
   
   const slides = [
     require('../../../images/car detail.png'),
-    require('../../../images/car detail.png'),
+    require('../../../images/Mask group (2).png'),
     require('../../../images/car detail.png'),
     require('../../../images/car detail.png'),
     require('../../../images/car detail.png')

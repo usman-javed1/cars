@@ -115,7 +115,7 @@ const LeftSideHeader = ({ searchResults, onClear }) => {
                 </div>
             </div>
             <div className=" gap-3 relative flex">
-                <div className=" gap-4 justify-center items-center  ">
+                <div className="flex gap-4 justify-center items-center  ">
                     <div className="text-[12px] text-[#767676] font-[500] rounded-[10px] lg:flex hidden">
                         Sort:
                     </div>
