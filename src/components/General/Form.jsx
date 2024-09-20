@@ -10,6 +10,10 @@ const Form = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setFirstName("")
+        setLastName("")
+        setEmail("")
+        setMessage("")
         // Handle form submission logic here
         setShowThankYou(true); // Show Thankyou modal on submit
     };

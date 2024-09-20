@@ -1,5 +1,6 @@
 import React from 'react'
 import Card from './Card'
+import { Link } from 'react-router-dom'
 
 const defaultCards = [
     {
@@ -27,7 +28,7 @@ const defaultCards = [
     },
 ]
 
-const HowWorks = ({heading ="How it Works?", desc = "If you have more questions, please contact us", cards = defaultCards}) => {
+const HowWorks = ({ heading = "How it Works?", desc = "If you have more questions, please contact us", cards = defaultCards }) => {
     return (
         <div className="lg:w-full md:w-full w-[350px]">
             <div className="container ">
@@ -39,28 +40,32 @@ const HowWorks = ({heading ="How it Works?", desc = "If you have more questions,
                         <div className="lg:w-[505px] md:w-[505px] w-[325px] font-[500] text-[16px] text-[#959595] flex justify-start mt-[20px]">
                             {desc}
                         </div>
-                        <div className="lg:block md:block hidden">
-                            <button className='min-w-[162px] min-h-[56px] bg-black flex justify-center items-center rounded-[10px] text-[16px] text-white font-[500]  mt-10 p-5 button21'>
-                                Browse vehicles
-                                <span className='flex  transition-all duration-300'>
-                                    <img src={require("../../../images/whitefullarrow.png")} className='w-[0px]  h-[0px]' alt="" />
-                                </span>
-                            </button>
-                        </div>
+                        <Link to={'/view'}>
+                            <div className="lg:block md:block hidden">
+                                <button className='min-w-[162px] min-h-[56px] bg-black flex justify-center items-center rounded-[10px] text-[16px] text-white font-[500]  mt-10 p-5 button21'>
+                                    Browse vehicles
+                                    <span className='flex  transition-all duration-300'>
+                                        <img src={require("../../../images/whitefullarrow.png")} className='w-[0px]  h-[0px]' alt="" />
+                                    </span>
+                                </button>
+                            </div>
+                        </Link>
                     </div>
                     <div className="w-[610px] lg:pl-[2%] grid justify-end lg:grid-cols-2 md:grid-cols-2 grid-cols-1">
                         {cards && cards.map((obj) =>
                             <Card heading={obj.heading} desc={obj.desc} number={obj.number} key={obj.number} />
                         )}
                     </div>
-                    <div className="lg:hidden md:hidden block mb-[100px]">
-                        <button className='min-w-[325px] min-h-[56px] bg-black flex justify-center items-center rounded-[10px] text-[16px] text-white font-[500] mt-10 p-5 button21'>
-                            Browse vehicles
-                            <span className='flex  transition-all duration-300'>
-                                <img src={require("../../../images/whitefullarrow.png")} className='w-[0px]  h-[0px]' alt="" />
-                            </span>
-                        </button>
-                    </div>
+                    <Link to={'/view'}>
+                        <div className="lg:hidden md:hidden block mb-[100px]">
+                            <button className='min-w-[325px] min-h-[56px] bg-black flex justify-center items-center rounded-[10px] text-[16px] text-white font-[500] mt-10 p-5 button21'>
+                                Browse vehicles
+                                <span className='flex  transition-all duration-300'>
+                                    <img src={require("../../../images/whitefullarrow.png")} className='w-[0px]  h-[0px]' alt="" />
+                                </span>
+                            </button>
+                        </div>
+                    </Link>
                 </div>
             </div>
         </div>
