@@ -173,6 +173,10 @@ const ViewCars = () => {
                     <Breadcrumb crumbs={["Home", "Cars for lease"]} activeCrumb="Cars for lease" />
                     <Header />
                     <CardContainer blogPosts={blogPosts} isSearch={true} />
+                    <div className=" text-center flex justify-center  text-black font-[500]">
+                        Show more
+                        <img src={require("../images/Frame 731.png")} alt="" />
+                    </div>
                     <Pagination setPage={setPage} totalPages={10} currentPage={page} />
                     <br /><br />
                     <HowWorks />

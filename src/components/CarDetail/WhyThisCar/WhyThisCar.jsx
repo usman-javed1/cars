@@ -16,7 +16,7 @@ const WhyThisCar = () => {
 
   return (
     <section className='pt-[150px] pb-[150px]'>
-      <h2 className='class-for-h2 text-center w-[35%] m-auto'>Why Mercedes-AMG GT Coupé?</h2>
+      <h2 className='class-for-h2 text-center lg:w-[35%]  m-auto'>Why Mercedes-AMG GT Coupé?</h2>
       <div className='flex justify-center items-center gap-[100px] mt-[70px]'>
 
         {cardData.map(card => (

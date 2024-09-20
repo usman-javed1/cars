@@ -16,7 +16,7 @@ const KeyFeature = () => {
     return (
         <div className="mainkeyfeature bg-black pt-[80px] pb-[80px]">
             <div className='container px-[25px] lg:px-[0px]'>
-                <h2 className='class-for-h2 text-[#ffffff]'>Key specifications</h2>
+                <h2 className='lg:class-for-h2 text-[35px] font-[700] text-[#ffffff]'>Key specifications</h2>
                 <div className='flex flex-wrap lg:gap-[130px] gap-8'>
                     {keyFeatures.map((feature, index) => (
                         <div key={index} className='lg:w-[190px] w-[158px] mt-[50px]'>

@@ -38,7 +38,6 @@ import { AiOutlineArrowUp, AiOutlineArrowDown } from 'react-icons/ai'; // Import
 
 // import React, { useState, useEffect, useRef } from 'react';
 // import React, { useState, useEffect, useRef } from 'react';
-
 export const RangeSlider = ({ min, max, value, step, onChange }) => {
     const [minValue, setMinValue] = useState(value ? value.min : min);
     const [maxValue, setMaxValue] = useState(value ? value.max : max);
@@ -65,14 +64,18 @@ export const RangeSlider = ({ min, max, value, step, onChange }) => {
 
     const handleThumbMove = (e, type) => {
         if (!sliderTrackRef.current) return; // Ensure the slider track is available
-        const sliderWidth = sliderTrackRef.current.offsetWidth;
-        const newValue =
-            ((e.clientX - sliderTrackRef.current.getBoundingClientRect().left) / sliderWidth) * (max - min) + min;
+        const sliderRect = sliderTrackRef.current.getBoundingClientRect();
+        const sliderWidth = sliderRect.width;
 
+        // Calculate the new position based on mouse movement
+        const relativeX = e.clientX - sliderRect.left;
+        const newValue = (relativeX / sliderWidth) * (max - min) + min;
+
+        // Clamp the new value within the slider's bounds
         if (type === 'min') {
-            handleMinChange(newValue);
+            handleMinChange(Math.max(min, Math.min(newValue, maxValue - step)));
         } else if (type === 'max') {
-            handleMaxChange(newValue);
+            handleMaxChange(Math.min(max, Math.max(newValue, minValue + step)));
         }
     };
 
@@ -94,26 +97,6 @@ export const RangeSlider = ({ min, max, value, step, onChange }) => {
 
     return (
         <div className="slider-container relative w-full h-[170px]">
-            {/* Hidden range inputs */}
-            <input
-                type="range"
-                value={minValue}
-                min={min}
-                max={max}
-                step={step}
-                onChange={() => { }}
-                style={{ display: 'none' }}
-            />
-            <input
-                type="range"
-                value={maxValue}
-                min={min}
-                max={max}
-                step={step}
-                onChange={() => { }}
-                style={{ display: 'none' }}
-            />
-
             <div className="mt-[14.35px] text-[14px] font-[500] text-black">Price range</div>
 
             {/* Slider track and thumbs */}
