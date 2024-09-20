@@ -17,7 +17,7 @@ const CarDetailsHero = () => {
                 <div className="imageSection lg:-ml-[90px] -ml-3 lg:mt-0 mt-10">
                     <img src={selectedImage} alt="Selected Car" className='lg:w-[738px] w-[370px] lg:h-[280px] h-[140px]' />
                 </div>
-                <div className="content px-[6%] lg:ml-0 ml-2 lg:mt-0 mt-14 lg:justify-start justify-center">
+                <div className="content px-[6.4%] lg:ml-0 ml-2 lg:mt-0 mt-14 lg:justify-start justify-center">
                     <div className="tag text-[#959595] text-[14px] font-[500]">
                         Sport cars
                     </div>

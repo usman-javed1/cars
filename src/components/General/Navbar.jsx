@@ -89,11 +89,14 @@ const Navbar = () => {
 
                 </div>
 
-                <div className="button pr-[60px] lg:block hidden">
-                    <button className='w-[151px] h-[56px] flex justify-center items-center p-[22px, 18px, 18px, 18px] rounded-[10px] bg-white text-black text-[16px] font-[500] transition-all duration-300 hover:bg-[#F6B000] hover:text-white'>
-                        Request a Call
-                    </button>
-                </div>
+                <Link to={'/detail/1'}>
+
+                    <div className="button pr-[60px] lg:block hidden">
+                        <button className='w-[151px] h-[56px] flex justify-center items-center p-[22px, 18px, 18px, 18px] rounded-[10px] bg-white text-black text-[16px] font-[500] transition-all duration-300 hover:bg-[#F6B000] hover:text-white'>
+                            Request a Call
+                        </button>
+                    </div>
+                </Link>
 
 
                 <motion.div
