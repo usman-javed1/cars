@@ -1,13 +1,13 @@
 import React from 'react';
 
-const Breadcrumb = ({ crumbs = ["Home", "Blog"], activeCrumb = "Blog", isOnImage = false }) => {
+const Breadcrumb = ({ crumbs = ["Home", "Blog"], activeCrumb = "Blog", isOnImage = false, isCar=false }) => {
   return (
     <nav className="flex" aria-label="Breadcrumb">
       <ol className="py-[60px] inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
         {crumbs.map((crumb, index) => (
           <li key={index} className="inline-flex items-center">
             {index !== 0 && (
-              <div className="flex items-center px-[10px]">
+              <div className={`flex items-center ${isCar?"lg:px-[10px] px-[5px]":"px-[10px]"}`}>
                 <svg
                   width="6"
                   height="10"
@@ -24,13 +24,13 @@ const Breadcrumb = ({ crumbs = ["Home", "Blog"], activeCrumb = "Blog", isOnImage
             )}
 
             {crumb === activeCrumb ? (
-              <span className={`ms-1 text-sm font-medium ${"text-gray-500"} md:ms-2`}>
+              <span className={`ms-1 ${isCar?"lg:text-sm text-[12px]":"text-sm"} font-medium ${"text-gray-500"} md:ms-2`}>
                 {crumb}
               </span>
             ) : (
               <a
                 href="#"
-                className={`inline-flex items-center text-sm font-medium ${isOnImage ? "text-white" : "text-black"}`}
+                className={`inline-flex items-center ${isCar?"lg:text-sm text-[12px]":"text-sm"} font-medium ${isOnImage ? "text-white" : "text-black"}`}
               >
                 {crumb}
               </a>

@@ -9,6 +9,7 @@ import Explore from "../components/main/Explore/Explore";
 import Imageslider from "../components/CarDetail/ImageSlider/Imageslider";
 import WhyThisCar from "../components/CarDetail/WhyThisCar/WhyThisCar";
 import KeyFeature from "../components/CarDetail/KeyFeature/KeyFeature";
+import CarDetailsHero from "../components/CarDetail/main/CarDetailsHero";
 
 
 
@@ -16,20 +17,25 @@ const CarDetails = () => {
   return (
     <>
       <ContainerWraper>
-        <Breadcrumb crumbs={["Home", "Car for lease", "Mercedes-AMG GT Coupé"]} activeCrumb="Mercedes-AMG GT Coupé" />
-        </ContainerWraper>
-        <KeyFeature></KeyFeature>
-        <ContainerWraper>
-        <WhyThisCar></WhyThisCar>
-        </ContainerWraper>
-        <Imageslider></Imageslider>
-        <ContainerWraper>
-        <CarDiscription></CarDiscription>
-        <Features></Features>
-        <HowWorks></HowWorks>
-        <FAQ></FAQ>
-        
+        <Breadcrumb crumbs={["Home", "Car for lease", "Mercedes-AMG GT Coupé"]} activeCrumb="Mercedes-AMG GT Coupé" isCar={ true} />
+        <CarDetailsHero />
       </ContainerWraper>
+      <KeyFeature></KeyFeature>
+      <div className="lg:pl-0 pl-[5%]">
+        <ContainerWraper>
+          <WhyThisCar></WhyThisCar>
+        </ContainerWraper>
+      </div>
+      <Imageslider></Imageslider>
+      <ContainerWraper>
+        <div className="lg:pl-0 pl-[5%]">
+          <CarDiscription></CarDiscription>
+          <Features></Features>
+          <HowWorks></HowWorks>
+          <FAQ></FAQ>
+        </div>
+      </ContainerWraper>
+
       <Explore></Explore>
     </>
   );

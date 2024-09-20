@@ -20,7 +20,7 @@ const WhyThisCar = () => {
       <div className='flex justify-center items-center lg:gap-[100px] flex-wrap mt-[70px]'>
 
         {cardData.map(card => (
-          <div key={card.id} className="cardwhythiscar w-[210px]">
+          <div key={card.id} className="cardwhythiscar w-[210px] lg:mt-0 mt-16">
             <img className='m-auto ' src={card.image} alt={`${card.title} icon`} />
             <h5 className='class-for-h5 pt-[34px] pb-[18px] flex justify-center '>{card.title}</h5>
             <p className='text-[14px] text-[#959595] text-center'>{card.description}</p>

@@ -46,7 +46,7 @@ const ImageSlider = () => {
           <SwiperSlide key={index}>
             <img
               src={slide}
-              className="block w-full h-[702px] object-cover rounded-lg"
+              className="block w-full h-[702px] object-cover lg:rounded-lg"
               alt={`Slide ${index + 1}`}
             />
           </SwiperSlide>
@@ -54,7 +54,7 @@ const ImageSlider = () => {
 
         {/* Custom Left button */}
         <motion.div
-          className="bg-lightgray w-[44px] h-[44px] flex justify-center items-center rounded-full featureLeftIcon transition-all duration-300 absolute top-[50%] left-[70px] z-30"
+          className="bg-lightgray w-[44px] h-[44px] flex justify-center items-center rounded-full featureLeftIcon transition-all duration-300 absolute top-[50%] lg:left-[70px] left-[25px] z-30"
           // onClick={onClickLeft}
           ref={prevRef}
           onHoverStart={() => {
@@ -77,7 +77,7 @@ const ImageSlider = () => {
         </motion.div>
         {/* Custom Right button */}
         <div
-          className="bg-lightgray w-[44px] h-[44px] flex justify-center items-center rounded-full transition-all duration-300 featureLeftIcon absolute top-[50%] right-[70px] z-30"
+          className="bg-lightgray w-[44px] h-[44px] flex justify-center items-center rounded-full transition-all duration-300 featureLeftIcon absolute top-[50%] lg:right-[70px] right-[25px] z-30"
           ref={nextRef}
           // onClick={onClickRight}
           onMouseEnter={() => {
