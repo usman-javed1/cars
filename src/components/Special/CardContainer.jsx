@@ -86,17 +86,19 @@ const Card = ({ obj }) => {
 }
 
 
-const CardContainer = ({ blogPosts }) => {
+const CardContainer = ({ blogPosts, isSearch = false }) => {
 
 
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-    const [visiblePosts, setVisiblePosts] = useState(isMobile ? blogPosts.slice(0, 4) : blogPosts.slice(0, 6));
+    const [visiblePosts, setVisiblePosts] = useState(isMobile ? blogPosts.slice(0, 4) : blogPosts);
 
     useEffect(() => {
         const handleResize = () => {
             const mobileView = window.innerWidth < 768;
             setIsMobile(mobileView);
-            setVisiblePosts(mobileView ? blogPosts.slice(0, 2) : blogPosts.slice(0, 6));
+            if (!isSearch)
+                setVisiblePosts(mobileView ? blogPosts.slice(0, 2) : blogPosts.slice(0, 6));
+            setVisiblePosts(mobileView ? blogPosts.slice(0, 4) : blogPosts);
         };
 
         window.addEventListener('resize', handleResize);

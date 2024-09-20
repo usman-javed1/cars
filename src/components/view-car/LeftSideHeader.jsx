@@ -21,7 +21,7 @@ const LeftSideHeader = ({ searchResults, onClear }) => {
         "Price: High to Low"
     ];
 
-    
+
     const [activeSort, setActiveSort] = useState("Featured");
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [selectedValues, setSelectedValues] = useState({
@@ -97,35 +97,48 @@ const LeftSideHeader = ({ searchResults, onClear }) => {
                     {searchResults || 268} vehicles matching
                 </div>
                 <div className="flex flex-wrap gap-2">
-                {activeFilters.map((name, index) => (
-                    <div key={index} className="flex flex-wrap gap-3 p-[18px] bg-[#F8F8F8] rounded-[45px] items-center">
-                        <span className='text-[14px] text-[#4E4E4E]'>{name}</span>
-                        <img
-                            src={require("../../images/Frame.png")}
-                            className='w-[14px] h-[14px] cursor-pointer'
-                            alt=""
-                            onClick={() => handleRemoveFilter(name)} // Call handleRemoveFilter on click
-                        />
-                    </div>
-                ))}
+                    {activeFilters.map((name, index) => (
+                        <div key={index} className="flex flex-wrap gap-3 p-[18px] bg-[#F8F8F8] rounded-[45px] items-center">
+                            <span className='text-[14px] text-[#4E4E4E]'>{name}</span>
+                            <img
+                                src={require("../../images/Frame.png")}
+                                className='w-[14px] h-[14px] cursor-pointer'
+                                alt=""
+                                onClick={() => handleRemoveFilter(name)} // Call handleRemoveFilter on click
+                            />
+                        </div>
+                    ))}
                 </div>
                 <div className="flex items-center justify-center gap-3 cursor-pointer" onClick={clearAllFilters}>
                     <img src={require("../../images/Frame (1).png")} alt="" />
                     <div className="text-[14px] text-black">Clear filters</div>
                 </div>
             </div>
-            <div className="flex gap-3 relative ">
-                <div className="flex gap-4 justify-center items-center">
-                    <div className="text-[12px] text-[#767676] font-[500] rounded-[10px]">
+            <div className=" gap-3 relative flex">
+                <div className=" gap-4 justify-center items-center  ">
+                    <div className="text-[12px] text-[#767676] font-[500] rounded-[10px] lg:flex hidden">
                         Sort:
                     </div>
-                    <div className="p-4 flex gap-3 text-[14px] font-[500] border border-[#E9E9E9]" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+                    <div className="p-4 gap-3 text-[14px] font-[500] border border-[#E9E9E9] lg:flex hidden" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
                         <img src={require("../../images/filter icon.png")} className='w-[20px] h-[20px]' alt="" />
                         <div className="text-[14px] font-[500]">
                             {activeSort}
                         </div>
                         <img src={require("../../images/Frame (2).png")} className='w-[20px] h-[20px]' alt="" />
                     </div>
+
+
+                    <div className="p-4 lg:px-4 px-8 flex gap-3 lg:hidden  text-[14px] font-[500] border border-[#E9E9E9] rounded-[10px]" onClick={() => setIsOverlayVisibleSort(!isOverlayVisibleSort)}>
+                        <img src={require("../../images/filter icon.png")} className='w-[20px] h-[20px]' alt="" />
+                        <div className="text-black">
+                            Sort by
+                        </div>
+
+                    </div>
+
+
+
+
 
                     <div className={`sortDropdown w-[252px] flex flex-col justify-center items-center absolute bg-white top-16 left-[45px] rounded-[20px] transition-all duration-300 ${isDropdownOpen ? 'block' : 'hidden'}`} style={{ zIndex: 9999 }}>
                         {dropdownOption.map((value, index) => (
@@ -138,14 +151,14 @@ const LeftSideHeader = ({ searchResults, onClear }) => {
                         ))}
                     </div>
                 </div>
-                <button className='bg-black text-white font-[500] text-[14px] flex gap-3 p-4 rounded-[10px]' onClick={toggleOverlay}>
+                <button className='bg-black text-white font-[500] lg:px-4 px-8 text-[14px] flex gap-3 p-4 rounded-[10px]' onClick={toggleOverlay}>
                     <img src={require("../../images/filter icon (1).png")} className='w-[20px] h-[20px]' alt="" />
                     <span>
                         Filters
                     </span>
                 </button>
             </div>
-            {isOverlayVisibleSort && <SortOverLay dropdownOption={dropdownOption} activeSort={activeSort} setActiveSort={setActiveSort} toggleOverlay={toggleOverlaySort} />}
+            {isOverlayVisibleSort && <SortOverLay dropdownOption={dropdownOption} activeSort={activeSort} setActiveSort={setActiveSort} toggleOverlay={toggleOverlaySort} clearAllFilters={clearAllFilters} />}
         </div>
     );
 }
@@ -160,13 +173,13 @@ const FilterIcon = () => {
 }
 
 
-const SortOverLay = ({dropdownOption, setActiveSort, activeSort, toggleOverlay}) => {
+const SortOverLay = ({ dropdownOption, setActiveSort, activeSort, toggleOverlay, clearAllFilters }) => {
 
     return (
         <div className="">
             <motion.div
                 className='bg-white lg:relative fixed lg:rounded-[10px] rounded-t-[30px] top-0 w-[100vw] pb-10 lg:w-[650px] lg:h-[700px] h-[100vh] left-0 px-[25px]'
-                style={{ zIndex: 999999, overflowX: "hidden", height: "100vh", width: "100vw", overflowY: 'auto', }}
+                style={{ zIndex: 999999, overflowX: "hidden", height: "100vh", width: "100vw" ,top: "10px", overflowY: 'auto', }}
                 initial={{ y: '100%' }} // Start from bottom
                 animate={{ y: 0 }} // Animate to original position
                 exit={{ y: '100%' }} // Exit to bottom
@@ -183,14 +196,14 @@ const SortOverLay = ({dropdownOption, setActiveSort, activeSort, toggleOverlay})
                         src={require("../../images/crossSearch.png")}
                         alt=""
                         className='w-[32px] h-[28.84px]'
-                    onClick={toggleOverlay} // Close overlay on click
+                        onClick={toggleOverlay} // Close overlay on click
                     />
                 </div>
                 <div className="text-[16px] font-[700] flex gap-2 items-center my-7">
                     <div className="w-[6px] h-[6px] bg-black rounded-full"></div>
                     {activeSort}
                 </div>
-                {dropdownOption.map((value) => <div className="" onClick={()=>setActiveSort(value)}>
+                {dropdownOption.map((value) => <div className="" onClick={() => setActiveSort(value)}>
                     <div className="bg-[#E9E9E9] h-[1px] w-[100%] my-5"></div>
 
                     <div className="w-[325px] h-[44px] text-[#636363] text-[16px] font-[500] py-4 px-3  items-center flex cursor-pointer ">
@@ -199,7 +212,17 @@ const SortOverLay = ({dropdownOption, setActiveSort, activeSort, toggleOverlay})
 
                 </div>)}
 
-
+                <div className="button flex lg:gap-10 gap-3">
+                    <button className='w-full h-[56px] flex justify-center items-center font-[500] bg-black text-white rounded-[10px] lg:text-base text-[14px] mt-20 mx-auto lg:w-[300px]'>
+                        Show results (232)
+                    </button>
+                    <button className='w-full h-[56px] flex  items-center font-[500]  rounded-[10px] mt-20 mx-auto'>
+                        <div className="flex items-center justify-center gap-3" onClick={clearAllFilters}>
+                            <img src={require("../../images/Frame (1).png")} alt="" />
+                            <div className="text-[14px] text-black">Clear filters</div>
+                        </div>
+                    </button>
+                </div>
             </motion.div>
         </div>
     )

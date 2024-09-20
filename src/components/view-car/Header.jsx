@@ -4,7 +4,7 @@ import FiltersSection from './FiltersSection'
 
 const Header = () => {
     return (
-        <div className='mb-20'>
+        <div className='mb-10'>
             <div className="lg:text-[56px] text-[35px] font-[700] ">
             Search results
             </div>
