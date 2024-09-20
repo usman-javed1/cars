@@ -1,62 +1,34 @@
-import React from 'react'
+import React from 'react';
 
 const KeyFeature = () => {
-  return (
-    <>
-        <div className="mainkeyfeature bg-black pt-[80px] pb-[80px]">
-        <div className='container'>
-        <h2 className='class-for-h2 text-[#ffffff]'>Key specifications</h2>
-        <div className='flex gap-[130px]'>
-        <div className=' w-[190px] mt-[50px]'>
-            <hr />
-            <p className='text-[14px] text-[#959595] pt-[25px] pb-[18px] '>Transmission</p>
-            <h5 className='class-for-h5 text-[#ffffff]'>Automatic</h5>
-        </div>
-        <div className=' w-[190px] mt-[50px]'>
-            <hr />
-            <p className='text-[14px] text-[#959595] pt-[25px] pb-[18px] '>Seats</p>
-            <h5 className='class-for-h5 text-[#ffffff]'>5 seats</h5>
-        </div>
-        <div className=' w-[190px] mt-[50px]'>
-            <hr />
-            <p className='text-[14px] text-[#959595] pt-[25px] pb-[18px] '>Exterior Color</p>
-            <h5 className='class-for-h5 text-[#ffffff]'>
-            White</h5>
-        </div>
-        <div className=' w-[190px] mt-[50px]'>
-            <hr />
-            <p className='text-[14px] text-[#959595] pt-[25px] pb-[18px] '>Odometer</p>
-            <h5 className='class-for-h5 text-[#ffffff]'>78,703 miles</h5>
-        </div>
-       
-        </div>
-        <div className='flex gap-[130px] mt-[50px]'>
-        <div className=' w-[190px] mt-[50px]'>
-            <hr />
-            <p className='text-[14px] text-[#959595] pt-[25px] pb-[18px] '>Drivetrain</p>
-            <h5 className='class-for-h5 text-[#ffffff]'>Front-wheel Drive</h5>
-        </div>
-        <div className=' w-[190px] mt-[50px]'>
-            <hr />
-            <p className='text-[14px] text-[#959595] pt-[25px] pb-[18px] '>Engine</p>
-            <h5 className='class-for-h5 text-[#ffffff]'>I-4 cyl</h5>
-        </div>
-        <div className=' w-[190px] mt-[50px]'>
-            <hr />
-            <p className='text-[14px] text-[#959595] pt-[25px] pb-[18px] '>Horsepower</p>
-            <h5 className='class-for-h5 text-[#ffffff]'>310</h5>
-        </div>
-        <div className=' w-[190px] mt-[50px]'>
-            <hr />
-            <p className='text-[14px] text-[#959595] pt-[25px] pb-[18px] '>Fuel Economy</p>
-            <h5 className='class-for-h5 text-[#ffffff]'>26/38 MPG City/Hwy</h5>
-        </div>
-       
-        </div>
-</div>
-        </div>
-    </>
-  )
-}
+    // Array of key features
+    const keyFeatures = [
+        { label: 'Transmission', value: 'Automatic' },
+        { label: 'Seats', value: '5 seats' },
+        { label: 'Exterior Color', value: 'White' },
+        { label: 'Odometer', value: '78,703 miles' },
+        { label: 'Drivetrain', value: 'Front-wheel Drive' },
+        { label: 'Engine', value: 'I-4 cyl' },
+        { label: 'Horsepower', value: '310' },
+        { label: 'Fuel Economy', value: '26/38 MPG City/Hwy' }
+    ];
 
-export default KeyFeature
+    return (
+        <div className="mainkeyfeature bg-black pt-[80px] pb-[80px]">
+            <div className='container px-[25px] lg:px-[0px]'>
+                <h2 className='class-for-h2 text-[#ffffff]'>Key specifications</h2>
+                <div className='flex flex-wrap lg:gap-[130px] gap-8'>
+                    {keyFeatures.map((feature, index) => (
+                        <div key={index} className='lg:w-[190px] w-[158px] mt-[50px]'>
+                            <hr />
+                            <p className='text-[14px] text-[#959595] pt-[25px] pb-[18px]'>{feature.label}</p>
+                            <h5 className='class-for-h5 text-[#ffffff]'>{feature.value}</h5>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default KeyFeature;

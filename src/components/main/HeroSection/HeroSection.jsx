@@ -32,11 +32,17 @@ import All from './icons/All';
 import { AiOutlineArrowUp, AiOutlineArrowDown } from 'react-icons/ai'; // Import new icons
 
 
+// import React, { useState, useEffect } from 'react';
 
+
+
+// import React, { useState, useEffect, useRef } from 'react';
+// import React, { useState, useEffect, useRef } from 'react';
 
 export const RangeSlider = ({ min, max, value, step, onChange }) => {
     const [minValue, setMinValue] = useState(value ? value.min : min);
     const [maxValue, setMaxValue] = useState(value ? value.max : max);
+    const sliderTrackRef = useRef(null); // Create a ref for the slider track
 
     useEffect(() => {
         if (value) {
@@ -45,74 +51,114 @@ export const RangeSlider = ({ min, max, value, step, onChange }) => {
         }
     }, [value]);
 
-    const handleMinChange = (e) => {
-        const newMinVal = Math.min(+e.target.value, maxValue - step);
-        setMinValue(newMinVal);
-        onChange({ min: newMinVal, max: maxValue });
+    const handleMinChange = (newMinVal) => {
+        const updatedMin = Math.min(newMinVal, maxValue - step);
+        setMinValue(updatedMin);
+        onChange({ min: updatedMin, max: maxValue });
     };
 
-    const handleMaxChange = (e) => {
-        const newMaxVal = Math.max(+e.target.value, minValue + step);
-        setMaxValue(newMaxVal);
-        onChange({ min: minValue, max: newMaxVal });
+    const handleMaxChange = (newMaxVal) => {
+        const updatedMax = Math.max(newMaxVal, minValue + step);
+        setMaxValue(updatedMax);
+        onChange({ min: minValue, max: updatedMax });
+    };
+
+    const handleThumbMove = (e, type) => {
+        if (!sliderTrackRef.current) return; // Ensure the slider track is available
+        const sliderWidth = sliderTrackRef.current.offsetWidth;
+        const newValue =
+            ((e.clientX - sliderTrackRef.current.getBoundingClientRect().left) / sliderWidth) * (max - min) + min;
+
+        if (type === 'min') {
+            handleMinChange(newValue);
+        } else if (type === 'max') {
+            handleMaxChange(newValue);
+        }
+    };
+
+    const startThumbMove = (e, type) => {
+        const onMouseMove = (event) => handleThumbMove(event, type);
+        const onMouseUp = () => {
+            document.removeEventListener('mousemove', onMouseMove);
+            document.removeEventListener('mouseup', onMouseUp);
+        };
+
+        // Add mousemove listener to track dragging
+        document.addEventListener('mousemove', onMouseMove);
+        // Remove listeners when mouse button is released
+        document.addEventListener('mouseup', onMouseUp, { once: true });
     };
 
     const minPos = ((minValue - min) / (max - min)) * 100;
     const maxPos = ((maxValue - min) / (max - min)) * 100;
 
     return (
-        <div className="slider-container h-[163px]">
-            <div className="slider-inputs">
-                <input
-                    type="range"
-                    value={minValue}
-                    min={min}
-                    max={max}
-                    step={step}
-                    onChange={handleMinChange}
-                    id='minRange'
-                />
-                <input
-                    type="range"
-                    value={maxValue}
-                    min={min}
-                    max={max}
-                    step={step}
-                    onChange={handleMaxChange}
-                    id='maxRange'
-                />
-            </div>
+        <div className="slider-container relative w-full h-[170px]">
+            {/* Hidden range inputs */}
+            <input
+                type="range"
+                value={minValue}
+                min={min}
+                max={max}
+                step={step}
+                onChange={() => { }}
+                style={{ display: 'none' }}
+            />
+            <input
+                type="range"
+                value={maxValue}
+                min={min}
+                max={max}
+                step={step}
+                onChange={() => { }}
+                style={{ display: 'none' }}
+            />
+
             <div className="mt-[14.35px] text-[14px] font-[500] text-black">Price range</div>
 
-            <div className="slider-track">
-                {/* Full background track */}
-                <div className="slider-full-track" />
-                {/* Active range track */}
+            {/* Slider track and thumbs */}
+            <div
+                className="slider-track relative w-full h-1  rounded"
+                ref={sliderTrackRef} // Attach the ref to the track
+            >
+                <div className="bg-lightgray absolute top-[6px] h-1 w-full"></div>
+                {/* Active range */}
                 <div
-                    className="slider-range"
-                    style={{ left: `${minPos}%`, right: `${100 - maxPos}%` }}
+                    className="slider-range absolute bg-blue-500 h-2"
+                    style={{
+                        left: `${minPos}%`,
+                        width: `${maxPos - minPos}%`,
+                    }}
                 />
-                {/* Slider thumbs */}
-                <label htmlFor='minRange' className="slider-thumb" style={{ left: `${minPos}%` }} />
-                <label htmlFor='maxRange' className="slider-thumb" style={{ left: `${maxPos}%` }} />
+
+                {/* Thumbs */}
+                <div
+                    className="slider-thumb absolute w-4 h-4 bg-blue-500 rounded-full cursor-pointer"
+                    style={{ left: `calc(${minPos}% - 8px)` }}
+                    onMouseDown={(e) => startThumbMove(e, 'min')}
+                />
+                <div
+                    className="slider-thumb absolute w-4 h-4 bg-blue-500 rounded-full cursor-pointer"
+                    style={{ left: `calc(${maxPos}% - 8px)` }}
+                    onMouseDown={(e) => startThumbMove(e, 'max')}
+                />
             </div>
+
+            {/* Displaying values */}
             <div className="ranges py-5 flex justify-between">
-                <div className="flex flex-col justify-center items-center text-[#959595]">
-                    <span className='font-[500] text-[14px] text-center'>Min</span>
-                    <div className="min px-3 py-3 bg-lightgray rounded-xl">
-                        $358
-                    </div>
+                <div className="flex flex-col justify-center items-center text-gray-500">
+                    <span className="font-medium text-sm">Min</span>
+                    <div className="px-3 py-3 bg-gray-100 rounded-xl">${minValue.toFixed(2)}</div>
                 </div>
-                <div className="flex flex-col justify-center items-center text-[#959595]">
-                    <span className='font-[500] text-[14px] text-center'>Max</span>
-                    <div className="min px-3 py-3 bg-lightgray rounded-xl">
-                        $2 586
-                    </div>
+                <div className="flex flex-col justify-center items-center text-gray-500">
+                    <span className="font-medium text-sm">Max</span>
+                    <div className="px-3 py-3 bg-gray-100 rounded-xl">${maxValue.toFixed(2)}</div>
                 </div>
             </div>
         </div>
     );
 };
+
 
 
 
@@ -337,7 +383,7 @@ const HeroSection = () => {
         setPriceRange(newRange);
     };
 
-    
+
 
     const handleSelect = (name, value, isSelected) => {
         setSelectedValues(prev => {
@@ -461,7 +507,7 @@ export default HeroSection
 
 
 export const FAQ = ({ selectedValues, priceRange, handlePriceChange, selections, onSelect, startDate, setStartDate, endDate, setEndDate }) => {
-    
+
 
     const selectionsWithDate = [
         {
@@ -505,9 +551,10 @@ export const FAQ = ({ selectedValues, priceRange, handlePriceChange, selections,
                                 ? 'border-none'
                                 : 'border-b border-transparent hover:border-black transition-all duration-300'
                                 }`}
+                            onClick={() => toggleQuestion(index)}
                         >
                             <div>
-                                <p className={`lg:text-[18px] md:text-[18px] text-[16px]  font-[700] text-start text-[#636363]`}>
+                                <p className={`lg:text-[18px] md:text-[18px] text-[16px]  font-[700] text-start text-[#636363]`} >
                                     {selection.name}
                                 </p>
                             </div>

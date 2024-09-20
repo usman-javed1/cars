@@ -117,9 +117,9 @@ const LeftSideHeader = ({ searchResults, onClear }) => {
             <div className=" gap-3 relative flex">
                 <div className="flex gap-4 justify-center items-center  ">
                     <div className="text-[12px] text-[#767676] font-[500] rounded-[10px] lg:flex hidden">
-                        Sort:
+                        Sort by:
                     </div>
-                    <div className="p-4 gap-3 text-[14px] font-[500] border border-[#E9E9E9] lg:flex hidden" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+                    <div className="p-4 gap-3 text-[14px] font-[500] border rounded-[10px] border-[#E9E9E9] lg:flex hidden" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
                         <img src={require("../../images/filter icon.png")} className='w-[20px] h-[20px]' alt="" />
                         <div className="text-[14px] font-[500]">
                             {activeSort}
@@ -179,7 +179,7 @@ const SortOverLay = ({ dropdownOption, setActiveSort, activeSort, toggleOverlay,
         <div className="">
             <motion.div
                 className='bg-white lg:relative fixed lg:rounded-[10px] rounded-t-[30px] top-0 w-[100vw] pb-10 lg:w-[650px] lg:h-[700px] h-[100vh] left-0 px-[25px]'
-                style={{ zIndex: 999999, overflowX: "hidden", height: "100vh", width: "100vw" ,top: "10px", overflowY: 'auto', }}
+                style={{ zIndex: 999999, overflowX: "hidden", height: "100vh", width: "100vw", top: "10px", overflowY: 'auto', }}
                 initial={{ y: '100%' }} // Start from bottom
                 animate={{ y: 0 }} // Animate to original position
                 exit={{ y: '100%' }} // Exit to bottom

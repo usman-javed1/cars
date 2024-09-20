@@ -7,7 +7,7 @@ const Thankyou = ({ onClose }) => { // Accept onClose prop
                 <div className="crossBtn absolute right-5 top-5 cursor-pointer" onClick={onClose}> {/* Call onClose when clicked */}
                     <img src={require("../../images/Frame.png")} className='w-[24px] h-[24px]' alt="" />
                 </div>
-                <div className="text-[30px] font-[700] w-[314px] ">
+                <div className="text-[30px] font-[700] w-[314px] rtext-center">
                     Thank You for Reaching Out!
                 </div>
                 <div className="text-[12px] font-[500] text-[#959595] w-[314px]">

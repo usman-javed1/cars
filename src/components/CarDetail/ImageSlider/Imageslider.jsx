@@ -1,53 +1,62 @@
-
+import React, { useState, useRef } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
+import { motion } from "framer-motion";
 import Icon from '../../../components/main/Features/icon/icon'; // Assuming you have an Icon component
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
 
 const ImageSlider = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [active, setActive] = useState({ left: "#0E0E0E", right: "#0E0E0E" });
-  
+  const [active, setActive] = useState({
+    left: "#0E0E0E",
+    right: "#0E0E0E",
+  });
   const slides = [
     require('../../../images/car detail.png'),
     require('../../../images/Mask group (2).png'),
     require('../../../images/car detail.png'),
     require('../../../images/car detail.png'),
-    require('../../../images/car detail.png')
+    require('../../../images/car detail.png'),
   ];
 
-  const nextSlide = () => {
-    setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prevSlide) => (prevSlide - 1 + slides.length) % slides.length);
-  };
+  // Refs for navigation buttons
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
 
   return (
-    <>
-      <div id="default-carousel" className="relative w-full mb-[120px]" data-carousel="slide">
-        <div className="relative h-[702px] overflow-hidden rounded-lg">
-          {slides.map((slide, index) => (
-            <div
-              key={index}
-              className={`absolute w-full h-full transition-all duration-700 ease-in-out ${
-                index === currentSlide ? 'block' : 'hidden'
-              }`}
-              data-carousel-item
-            >
-              <img
-                src={slide}
-                className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                alt={`Slide ${index + 1}`}
-              />
-            </div>
-          ))}
-        </div>
+    <div className="relative w-full mb-[120px]">
+      <Swiper
+        navigation={{
+          prevEl: prevRef.current, // Left button ref
+          nextEl: nextRef.current, // Right button ref
+        }}
+        onSwiper={(swiper) => {
+          // Make sure Swiper re-attaches the navigation after rendering custom buttons
+          swiper.params.navigation.prevEl = prevRef.current;
+          swiper.params.navigation.nextEl = nextRef.current;
+          swiper.navigation.update();
+        }}
+        modules={[Navigation]}
+        className="mySwiper"
+        loop={true}
+      >
+        {slides.map((slide, index) => (
+          <SwiperSlide key={index}>
+            <img
+              src={slide}
+              className="block w-full h-[702px] object-cover rounded-lg"
+              alt={`Slide ${index + 1}`}
+            />
+          </SwiperSlide>
+        ))}
 
-        {/* Left button */}
+        {/* Custom Left button */}
         <motion.div
           className="bg-lightgray w-[44px] h-[44px] flex justify-center items-center rounded-full featureLeftIcon transition-all duration-300 absolute top-[50%] left-[70px] z-30"
-          onClick={prevSlide}
+          // onClick={onClickLeft}
+          ref={prevRef}
           onHoverStart={() => {
             setActive({
               left: "#fff",
@@ -62,35 +71,35 @@ const ImageSlider = () => {
           }}
         >
           <div className="featureLeftIconInner transition-all duration-200">
-            <Icon direction="left" color={active.left} /> {/* Left Arrow Icon */}
+            <Icon color={active.left} />
           </div>
           <div className="featureLeftLine transition-all duration-200 absolute"></div>
         </motion.div>
-
-        {/* Right button */}
-        <motion.div
-          className="bg-lightgray w-[44px] h-[44px] flex justify-center items-center rounded-full featureRightIcon transition-all duration-300 absolute top-[50%] right-[70px] z-30"
-          onClick={nextSlide}
-          onHoverStart={() => {
+        {/* Custom Right button */}
+        <div
+          className="bg-lightgray w-[44px] h-[44px] flex justify-center items-center rounded-full transition-all duration-300 featureLeftIcon absolute top-[50%] right-[70px] z-30"
+          ref={nextRef}
+          // onClick={onClickRight}
+          onMouseEnter={() => {
             setActive({
               left: "#0E0E0E",
               right: "#fff",
             });
           }}
-          onHoverEnd={() => {
+          onMouseLeave={() => {
             setActive({
               left: "#0E0E0E",
               right: "#0E0E0E",
             });
           }}
         >
-          <div className="featureRightIconInner transition-all duration-200">
-            <Icon direction="right" color={active.right} /> {/* Right Arrow Icon */}
+          <div className="rotate-180 transition-all duration-200 featureRightInner">
+            <Icon color={active.right} />
           </div>
-          <div className="featureRightLine transition-all duration-200 absolute"></div>
-        </motion.div>
-      </div>
-    </>
+          <div className="featureLeftLine transition-all duration-200 absolute"></div>
+        </div>
+      </Swiper>
+    </div>
   );
 };
 
