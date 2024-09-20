@@ -34,7 +34,7 @@ import { AiOutlineArrowUp, AiOutlineArrowDown } from 'react-icons/ai'; // Import
 
 
 
-const RangeSlider = ({ min, max, value, step, onChange }) => {
+export const RangeSlider = ({ min, max, value, step, onChange }) => {
     const [minValue, setMinValue] = useState(value ? value.min : min);
     const [maxValue, setMaxValue] = useState(value ? value.max : max);
 
@@ -117,7 +117,7 @@ const RangeSlider = ({ min, max, value, step, onChange }) => {
 
 
 
-const CustomDropdown = ({ options, defaultText, selectedValues, onSelect, width, name, left, priceRange, handlePriceChange }) => {
+export const CustomDropdown = ({ options, defaultText, selectedValues, onSelect, width, name, left, priceRange, handlePriceChange }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [hoveredValue, setHoveredValue] = useState(null);
     const dropdownRef = useRef(null);
@@ -207,6 +207,109 @@ const CustomDropdown = ({ options, defaultText, selectedValues, onSelect, width,
     );
 };
 
+export const selections = [
+    {
+        name: "Categories",
+        options: [
+            { value: 'Sport', label: 'Sport' },
+            { value: 'Luxury', label: 'Luxury' },
+            { value: 'Electric', label: 'Electric' },
+            { value: 'hybrid', label: 'Hybrid' },
+            { value: 'Diesel', label: 'Diesel' },
+            { value: 'Vintage', label: 'Vintage' },
+            { value: 'Off-road', label: 'Off-road' },
+            { value: 'Performance', label: 'Performance' },
+        ],
+        default: "All categories",
+        width: '500px',
+        left: "0px"
+    },
+    {
+        name: "Make",
+        options: [
+            { value: 'All', label: <All /> },
+            { value: 'toyota', label: <Jeep /> },
+            { value: 'honda', label: <Merce /> },
+            { value: '1', label: <CircleIcon /> },
+            { value: '2', label: <AIcon /> },
+            { value: '3', label: <Benz /> },
+            { value: '4', label: <Tesla /> },
+            { value: '5', label: <Oval /> },
+            { value: '6', label: <OvalO /> },
+            { value: '7', label: <Hunda /> },
+            { value: '8', label: <VerticalBox /> },
+            { value: '9', label: <Animal /> },
+            { value: '10', label: <KN /> },
+            { value: '11', label: <Bugati /> },
+            { value: '12 ', label: <OvalArrow /> },
+            { value: '13', label: <OvalTriangle /> },
+            { value: '14', label: <DoubleTriangle /> },
+            { value: '15', label: <CircleImage /> },
+            { value: '16', label: <Suzuki /> },
+            { value: '17', label: <DoubleLine /> },
+            { value: '18', label: <DotTriangle /> },
+            { value: '19', label: <Hunda2 /> },
+        ],
+        default: "All makes",
+        width: '962px',
+        left: "34px"
+    },
+    {
+        name: "Model",
+        options: [
+            { value: 'All', label: 'All' },
+            { value: 'Sorento', label: 'Sorento' },
+            { value: 'Seltos', label: 'Seltos' },
+            { value: 'Telluride', label: 'Telluride' },
+            { value: 'Soul', label: 'Soul' },
+            { value: 'Niro', label: 'Niro' },
+            { value: 'EV6', label: 'EV6' },
+            { value: 'Stinger', label: 'Stinger' },
+            { value: 'Forte', label: 'Forte' },
+            { value: 'K5', label: 'K5' },
+            { value: 'Rio', label: 'Rio' },
+            { value: 'Optima', label: 'Optima' },
+            { value: 'Cadenza', label: 'Cadenza' },
+            { value: 'Picanto', label: 'Picanto' },
+            { value: 'XCeed', label: 'XCeed' },
+            { value: 'ProCeed', label: 'ProCeed' },
+        ],
+        default: "All models",
+        width: '818px',
+        left: "106px"
+    },
+    {
+        name: "Body type",
+        options: [
+            { value: 'All', label: 'All' },
+            { value: 'Sedan', label: 'Sedan' },
+
+            { value: 'Cargo Van', label: 'Cargo Van' },
+            { value: 'Convertible', label: 'Convertible' },
+            { value: 'Hatchback', label: 'Hatchback' },
+            { value: 'Mnivan', label: 'Mnivan' },
+            { value: 'Passenger Van', label: 'Passenger Van' },
+            { value: 'SUV', label: 'SUV' },
+            { value: 'Truck', label: 'Truck' },
+            { value: 'Wagon', label: 'Wagon' },
+        ],
+        default: "All types",
+        width: '980px',
+        left: "24px"
+    },
+    {
+        name: "Price",
+        options: [
+            { value: '0-20000', label: '$0 - $20,000' },
+            { value: '20000-40000', label: '$20,000 - $40,000' },
+            { value: '40000+', label: '$40,000+' },
+        ],
+        default: "Any price",
+        width: '441px',
+        left: "554px"
+    }
+];
+
 
 
 
@@ -234,108 +337,7 @@ const HeroSection = () => {
         setPriceRange(newRange);
     };
 
-    const selections = [
-        {
-            name: "Categories",
-            options: [
-                { value: 'Sport', label: 'Sport' },
-                { value: 'Luxury', label: 'Luxury' },
-                { value: 'Electric', label: 'Electric' },
-                { value: 'hybrid', label: 'Hybrid' },
-                { value: 'Diesel', label: 'Diesel' },
-                { value: 'Vintage', label: 'Vintage' },
-                { value: 'Off-road', label: 'Off-road' },
-                { value: 'Performance', label: 'Performance' },
-            ],
-            default: "All categories",
-            width: '500px',
-            left: "0px"
-        },
-        {
-            name: "Make",
-            options: [
-                { value: 'All', label: <All /> },
-                { value: 'toyota', label: <Jeep /> },
-                { value: 'honda', label: <Merce /> },
-                { value: '1', label: <CircleIcon /> },
-                { value: '2', label: <AIcon /> },
-                { value: '3', label: <Benz /> },
-                { value: '4', label: <Tesla /> },
-                { value: '5', label: <Oval /> },
-                { value: '6', label: <OvalO /> },
-                { value: '7', label: <Hunda /> },
-                { value: '8', label: <VerticalBox /> },
-                { value: '9', label: <Animal /> },
-                { value: '10', label: <KN /> },
-                { value: '11', label: <Bugati /> },
-                { value: '12 ', label: <OvalArrow /> },
-                { value: '13', label: <OvalTriangle /> },
-                { value: '14', label: <DoubleTriangle /> },
-                { value: '15', label: <CircleImage /> },
-                { value: '16', label: <Suzuki /> },
-                { value: '17', label: <DoubleLine /> },
-                { value: '18', label: <DotTriangle /> },
-                { value: '19', label: <Hunda2 /> },
-            ],
-            default: "All makes",
-            width: '962px',
-            left: "34px"
-        },
-        {
-            name: "Model",
-            options: [
-                { value: 'All', label: 'All' },
-                { value: 'Sorento', label: 'Sorento' },
-                { value: 'Seltos', label: 'Seltos' },
-                { value: 'Telluride', label: 'Telluride' },
-                { value: 'Soul', label: 'Soul' },
-                { value: 'Niro', label: 'Niro' },
-                { value: 'EV6', label: 'EV6' },
-                { value: 'Stinger', label: 'Stinger' },
-                { value: 'Forte', label: 'Forte' },
-                { value: 'K5', label: 'K5' },
-                { value: 'Rio', label: 'Rio' },
-                { value: 'Optima', label: 'Optima' },
-                { value: 'Cadenza', label: 'Cadenza' },
-                { value: 'Picanto', label: 'Picanto' },
-                { value: 'XCeed', label: 'XCeed' },
-                { value: 'ProCeed', label: 'ProCeed' },
-            ],
-            default: "All models",
-            width: '818px',
-            left: "106px"
-        },
-        {
-            name: "Body type",
-            options: [
-                { value: 'All', label: 'All' },
-                { value: 'Sedan', label: 'Sedan' },
-
-                { value: 'Cargo Van', label: 'Cargo Van' },
-                { value: 'Convertible', label: 'Convertible' },
-                { value: 'Hatchback', label: 'Hatchback' },
-                { value: 'Mnivan', label: 'Mnivan' },
-                { value: 'Passenger Van', label: 'Passenger Van' },
-                { value: 'SUV', label: 'SUV' },
-                { value: 'Truck', label: 'Truck' },
-                { value: 'Wagon', label: 'Wagon' },
-            ],
-            default: "All types",
-            width: '980px',
-            left: "24px"
-        },
-        {
-            name: "Price",
-            options: [
-                { value: '0-20000', label: '$0 - $20,000' },
-                { value: '20000-40000', label: '$20,000 - $40,000' },
-                { value: '40000+', label: '$40,000+' },
-            ],
-            default: "Any price",
-            width: '441px',
-            left: "554px"
-        }
-    ];
+    
 
     const handleSelect = (name, value, isSelected) => {
         setSelectedValues(prev => {
@@ -347,6 +349,9 @@ const HeroSection = () => {
             }
         });
     };
+
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
 
     return (
         <div className='w-full h-[720px]  bg-black lg:p-[60px] md:p-[60px] p-[25px] flex justify-center'>
@@ -433,6 +438,10 @@ const HeroSection = () => {
                             handlePriceChange={handlePriceChange}
                             selectedValues={selectedValues}
                             onSelect={handleSelect}
+                            startDate={startDate}
+                            setEndDate={setEndDate}
+                            endDate={endDate}
+                            setStartDate={setStartDate}
                         />
                         <div className="button">
                             <button className='w-full h-[56px] flex justify-center items-center font-[500] bg-black text-white rounded-[10px] mt-20 mx-auto'>
@@ -451,9 +460,8 @@ export default HeroSection
 
 
 
-const FAQ = ({ selectedValues, priceRange, handlePriceChange, selections, onSelect }) => {
-    const [startDate, setStartDate] = useState(null);
-    const [endDate, setEndDate] = useState(null);
+export const FAQ = ({ selectedValues, priceRange, handlePriceChange, selections, onSelect, startDate, setStartDate, endDate, setEndDate }) => {
+    
 
     const selectionsWithDate = [
         {
