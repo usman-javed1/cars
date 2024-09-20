@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 // import Card from '../General/Card';
 
 
@@ -69,18 +70,21 @@ const Card = ({ obj }) => {
                 </div>
                 <div className="text-[12px] font-[500]">/month</div>
             </div>
+            <Link to={'/detail/1'}>
 
-            <div className="">
-                <button className='mainButton lg:w-[100%] md:w-[340px] w-[277px] h-[44px] rounded-[10px] bg-black text-white flex justify-center items-center text-[14px] mt-[15px] font-[500]  transition-all duration-300'>
-                    Request a quote
-                </button>
-            </div>
-
-            <div className="">
-                <button className='lg:w-[100%] md:w-[340px] w-[277px] h-[44px] rounded-[10px] flex justify-center items-center text-[14px] mt-[10px] hoverAni font-[500] relative'>
-                    View Details <div className='relative'> <div className='hoverLine4'></div></div> <img src={require("../../images/cardicon.png")} className='w-[20px] h-[20px] imahe' alt="" />
-                </button>
-            </div>
+                <div className="">
+                    <button className='mainButton lg:w-[100%] md:w-[340px] w-[277px] h-[44px] rounded-[10px] bg-black text-white flex justify-center items-center text-[14px] mt-[15px] font-[500]  transition-all duration-300'>
+                        Request a quote
+                    </button>
+                </div>
+            </Link>
+            <Link to={'/detail/1'}>
+                <div className="">
+                    <button className='lg:w-[100%] md:w-[340px] w-[277px] h-[44px] rounded-[10px] flex justify-center items-center text-[14px] mt-[10px] hoverAni56 font-[500] relative'>
+                        View Details <div className='relative'> <div className='hoverLine4'></div></div> <img src={require("../../images/cardicon.png")} className='w-[20px] h-[20px] imahe32' alt="" />
+                    </button>
+                </div>
+            </Link>
         </div>
     )
 }

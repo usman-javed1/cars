@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { motion } from "framer-motion";
 import { FAQ, CustomDropdown, selections } from '../main/HeroSection/HeroSection'
 
-const FiltersSection = ({ selectedValues, setSelectedValues, Icon, startDate, endDate, setStartDate, setEndDate, toggleOverlay, clearAllFilters }) => {
+const FiltersSection = ({ selectedValues, setSelectedValues, Icon, startDate, endDate, setStartDate, setEndDate, toggleOverlay, clearAllFilters, priceRange, setPriceRange }) => {
     // const [isOverlayVisible, setIsOverlayVisible] = useState(false); // State for overlay visibility
 
     // const toggleOverlay = () => {
@@ -21,7 +21,7 @@ const FiltersSection = ({ selectedValues, setSelectedValues, Icon, startDate, en
         });
     };
 
-    const [priceRange, setPriceRange] = useState({ min: 0, max: 100 });
+    
 
     const handlePriceChange = (newRange) => {
         setPriceRange(newRange);

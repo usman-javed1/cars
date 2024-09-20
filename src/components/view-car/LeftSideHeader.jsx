@@ -6,14 +6,19 @@ import { motion } from "framer-motion"
 
 
 const LeftSideHeader = ({ searchResults, onClear }) => {
+    const max=1000;
+    const min = 0;
     const [isOverlayVisible, setIsOverlayVisible] = useState(false); // State for overlay visibility
-    const [isOverlayVisibleSort, setIsOverlayVisibleSort] = useState(false); // State for overlay visibility
+    const [isOverlayVisibleSort, setIsOverlayVisibleSort] = useState(false);
+    const [priceRange, setPriceRange] = useState({ min: 0, max: 100 });// State for overlay visibility
     const toggleOverlay = () => {
         setIsOverlayVisible(!isOverlayVisible); // Toggle overlay visibility
     };
     const toggleOverlaySort = () => {
         setIsOverlayVisibleSort(!isOverlayVisibleSort); // Toggle overlay visibility
     };
+
+
 
     const dropdownOption = [
         "Featured", "Most Popular", "Oldest to Newest", "Newest to Oldest",
@@ -60,22 +65,49 @@ const LeftSideHeader = ({ searchResults, onClear }) => {
     }, [isDropdownOpen]);
 
     useEffect(() => {
-        setActiveFilters(Object.values(selectedValues).flat());
-    }, [selectedValues]);
+        const updatedFilters = Object.values(selectedValues)
+            .flat()
+            .filter(filter => !filter.includes("$")); // Remove any existing price filters
+
+        if (priceRange.min !== 0 || priceRange.max !== 0) {
+            const priceFilter = formatPriceRange(priceRange.min, priceRange.max);
+            updatedFilters.push(priceFilter); // Add the formatted price range as a filter
+        }
+
+        setActiveFilters(updatedFilters);
+    }, [selectedValues, priceRange]);
 
     // Function to remove a filter from selectedValues and activeFilters
     const handleRemoveFilter = (filter) => {
         const updatedSelectedValues = { ...selectedValues };
 
-        // Loop through each key in selectedValues and remove the filter
-        for (const key in updatedSelectedValues) {
-            updatedSelectedValues[key] = updatedSelectedValues[key].filter(value => value !== filter);
+        // Check if the filter is a price range by matching the "$" symbol
+        if (filter.includes("$")) {
+            // Reset priceRange state to default values
+            setPriceRange({ min: min, max: max });
+        } else {
+            // Loop through each key in selectedValues and remove the filter
+            for (const key in updatedSelectedValues) {
+                updatedSelectedValues[key] = updatedSelectedValues[key].filter(value => value !== filter);
+            }
         }
 
         // Update state with new values
         setSelectedValues(updatedSelectedValues);
-        setActiveFilters(Object.values(updatedSelectedValues).flat());
     };
+
+    const formatPriceRange = (min, max) => {
+        return `$${parseFloat(min).toFixed(2)} - $${parseFloat(max).toFixed(2)}`;
+    };
+
+
+    useEffect(() => {
+        const filters = [...Object.values(selectedValues).flat()];
+        if (priceRange.min !== 0 || priceRange.max !== 100) { // Assuming default is { min: 0, max: 100 }
+            filters.push(formatPriceRange(priceRange.min, priceRange.max));
+        }
+        setActiveFilters(filters);
+    }, [priceRange, selectedValues]);
 
     return (
         <div className='flex justify-between items-center  flex-wrap lg:pr-[1.5%]'>
@@ -90,6 +122,8 @@ const LeftSideHeader = ({ searchResults, onClear }) => {
                     setEndDate={setEndDate}
                     toggleOverlay={toggleOverlay}
                     clearAllFilters={clearAllFilters}
+                    priceRange={priceRange}
+                    setPriceRange={setPriceRange}
                 />
             )}
             <div className="flex items-center gap-5 flex-wrap">
