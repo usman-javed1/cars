@@ -21,18 +21,20 @@ function App() {
     <div className="App w-[100%] max-w-full mx-auto">
       <Navbar />
       <Routes>
-        <Route path='/' element={<LandingPage/>} />
-        <Route path='/about' element={<About/>} />
-        <Route path='/blog' element={<Blog/>} />
-        <Route path='/faq' element={<FAQ/>} />
-        <Route path='/financing' element={<Financing/>} />
-        <Route path='/news' element={<News/>} />
-        <Route path='/our-team' element={<OurTeam/>} />
-        <Route path='/special-deals' element={<SpecialDeals/>} />
-        <Route path='/view' element={<ViewCars/>} />
-        <Route path='/detail/:id' element={<CarDetails/>} />
+        <Route path='/' element={<LandingPage />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/blog' element={<Blog />} />
+        <Route path='/faq' element={<FAQ />} />
+        <Route path='/financing' element={<Financing />} />
+        <Route path='/news' element={<News />} />
+        <Route path='/our-team' element={<OurTeam />} />
+        <Route path='/special-deals' element={<SpecialDeals />} />
+        <Route path='/view' element={<ViewCars />} />
+        <Route path='/detail/:id' element={<CarDetails />} />
       </Routes>
-      <Footer />
+      <section id='footer212'>
+        <Footer />
+      </section>
     </div>
   );
 }

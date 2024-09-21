@@ -18,7 +18,7 @@ const Navbar = () => {
         { text: 'About us', image: '../../images/navicon.png', hasDropdown: true },
         { text: 'Blog', image: commonArrowImage, link: '/blog' },
         { text: 'FAQ', image: commonArrowImage, link: '/faq' },
-        { text: 'Contact', link: '#footer', image: commonArrowImage },
+        { text: 'Contact', link: '#footer212', image: commonArrowImage },
     ];
 
     const dropdownLinks = [

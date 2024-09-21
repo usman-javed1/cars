@@ -5,8 +5,8 @@ import { motion } from "framer-motion"
 
 
 
-const LeftSideHeader = ({ searchResults, onClear }) => {
-    const max=1000;
+const LeftSideHeader = ({ searchResults }) => {
+    const max = 1000;
     const min = 0;
     const [isOverlayVisible, setIsOverlayVisible] = useState(false); // State for overlay visibility
     const [isOverlayVisibleSort, setIsOverlayVisibleSort] = useState(false);
@@ -30,10 +30,10 @@ const LeftSideHeader = ({ searchResults, onClear }) => {
     const [activeSort, setActiveSort] = useState("Featured");
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [selectedValues, setSelectedValues] = useState({
-        Make: [],
+        Make: ["Acura"],
         Categories: [],
         Model: [],
-        Year: [],
+        bodyType: ["Sedan"],
         Price: []
     });
     const [activeFilters, setActiveFilters] = useState([]);
@@ -102,12 +102,14 @@ const LeftSideHeader = ({ searchResults, onClear }) => {
 
 
     useEffect(() => {
-        const filters = [...Object.values(selectedValues).flat()];
-        if (priceRange.min !== 0 || priceRange.max !== 100) { // Assuming default is { min: 0, max: 100 }
-            filters.push(formatPriceRange(priceRange.min, priceRange.max));
-        }
+        // Flatten selected filters and include price filter
+        const filters = Object.values(selectedValues).flat();
+
+        // Always include price filter by default
+        filters.push(formatPriceRange(priceRange.min, priceRange.max));
+
         setActiveFilters(filters);
-    }, [priceRange, selectedValues]);
+    }, [selectedValues, priceRange]);
 
     return (
         <div className='flex justify-between items-center  flex-wrap lg:pr-[1.5%]'>
@@ -148,7 +150,7 @@ const LeftSideHeader = ({ searchResults, onClear }) => {
                     <div className="text-[14px] text-black">Clear filters</div>
                 </div>
             </div>
-            <div className=" gap-3 relative flex">
+            <div className=" gap-3 relative flex lg:mt-0 mt-2">
                 <div className="flex gap-4 justify-center items-center  ">
                     <div className="text-[12px] text-[#767676] font-[500] rounded-[10px] lg:flex hidden">
                         Sort by:
@@ -185,7 +187,7 @@ const LeftSideHeader = ({ searchResults, onClear }) => {
                         ))}
                     </div>
                 </div>
-                <button className='bg-black text-white font-[500] lg:px-4 px-8 text-[14px] flex gap-3 p-4 rounded-[10px]' onClick={toggleOverlay}>
+                <button className='bg-black text-white font-[500] lg:px-4 px-10  text-[14px] flex gap-3 p-4 rounded-[10px]' onClick={toggleOverlay}>
                     <img src={require("../../images/filter icon (1).png")} className='w-[20px] h-[20px]' alt="" />
                     <span>
                         Filters
