@@ -42,7 +42,7 @@ import { Link } from 'react-router-dom';
 export const RangeSlider = ({ min, max, value, step, onChange }) => {
     const [minValue, setMinValue] = useState(value ? value.min : min);
     const [maxValue, setMaxValue] = useState(value ? value.max : max);
-    const sliderTrackRef = useRef(null); // Create a ref for the slider track
+    const sliderTrackRef = useRef(null);
 
     useEffect(() => {
         if (value) {
@@ -68,12 +68,10 @@ export const RangeSlider = ({ min, max, value, step, onChange }) => {
         const sliderRect = sliderTrackRef.current.getBoundingClientRect();
         const sliderWidth = sliderRect.width;
 
-        // Calculate the new position based on mouse/touch movement
         const clientX = isTouch ? e.touches[0].clientX : e.clientX;
         const relativeX = clientX - sliderRect.left;
         const newValue = (relativeX / sliderWidth) * (max - min) + min;
 
-        // Clamp the new value within the slider's bounds
         if (type === 'min') {
             handleMinChange(Math.max(min, Math.min(newValue, maxValue - step)));
         } else if (type === 'max') {
@@ -91,9 +89,7 @@ export const RangeSlider = ({ min, max, value, step, onChange }) => {
             document.removeEventListener(endEvent, onEnd);
         };
 
-        // Add mousemove/touchmove listener to track dragging
         document.addEventListener(moveEvent, onMove);
-        // Remove listeners when mouse button is released
         document.addEventListener(endEvent, onEnd, { once: true });
     };
 
@@ -104,37 +100,36 @@ export const RangeSlider = ({ min, max, value, step, onChange }) => {
         <div className="slider-container relative w-full h-[170px]">
             <div className="mt-[14.35px] text-[14px] font-[500] text-black">Price range</div>
 
-            {/* Slider track and thumbs */}
-            <div
-                className="slider-track relative w-full h-1  rounded"
-                ref={sliderTrackRef} // Attach the ref to the track
-            >
-                <div className="bg-lightgray absolute top-[6px] h-1 w-full"></div>
-                {/* Active range */}
-                <div
-                    className="slider-range absolute bg-blue-500 h-2"
-                    style={{
-                        left: `${minPos}%`,
-                        width: `${maxPos - minPos}%`,
-                    }}
-                />
-
-                {/* Thumbs */}
-                <div
-                    className="slider-thumb absolute w-4 h-4 bg-blue-500 rounded-full cursor-pointer"
-                    style={{ left: `calc(${minPos}% - 8px)` }}
-                    onMouseDown={(e) => startThumbMove(e, 'min')}
-                    onTouchStart={(e) => startThumbMove(e, 'min', true)}
-                />
-                <div
-                    className="slider-thumb absolute w-4 h-4 bg-blue-500 rounded-full cursor-pointer"
-                    style={{ left: `calc(${maxPos}% - 8px)` }}
-                    onMouseDown={(e) => startThumbMove(e, 'max')}
-                    onTouchStart={(e) => startThumbMove(e, 'max', true)}
-                />
+            {/* Slider track with min/max labels */}
+            <div className="relative flex items-center">
+                {/* <span className="absolute left-0 text-sm font-medium text-gray-500">${min}</span> */}
+                <div className="slider-track relative w-full h-1 mx-4 rounded" ref={sliderTrackRef}>
+                    <div className="bg-lightgray absolute top-[6px] h-1 w-full"></div>
+                    <div
+                        className="slider-range absolute bg-blue-500 h-2"
+                        style={{
+                            left: `${minPos}%`,
+                            width: `${maxPos - minPos}%`,
+                        }}
+                    />
+                    {/* Thumbs */}
+                    <div
+                        className="slider-thumb absolute w-4 h-4 bg-blue-500 rounded-full cursor-pointer"
+                        style={{ left: `calc(${minPos}% - 8px)` }}
+                        onMouseDown={(e) => startThumbMove(e, 'min')}
+                        onTouchStart={(e) => startThumbMove(e, 'min', true)}
+                    />
+                    <div
+                        className="slider-thumb absolute w-4 h-4 bg-blue-500 rounded-full cursor-pointer"
+                        style={{ left: `calc(${maxPos}% - 8px)` }}
+                        onMouseDown={(e) => startThumbMove(e, 'max')}
+                        onTouchStart={(e) => startThumbMove(e, 'max', true)}
+                    />
+                </div>
+                {/* <span className="absolute right-0 text-sm font-medium text-gray-500">${max}</span> */}
             </div>
 
-            {/* Displaying values */}
+            {/* Displaying selected min/max values */}
             <div className="ranges py-5 flex justify-between">
                 <div className="flex flex-col justify-center items-center text-gray-500">
                     <span className="font-medium text-sm">Min</span>
@@ -148,6 +143,7 @@ export const RangeSlider = ({ min, max, value, step, onChange }) => {
         </div>
     );
 };
+
 
 
 
@@ -218,8 +214,8 @@ export const CustomDropdown = ({ options, defaultText, selectedValues, onSelect,
                             : name === "Price" ? (
                                 <li className=" w-[401px]">
                                     <RangeSlider
-                                        min={-30}
-                                        max={200}
+                                        min={10}
+                                        max={1000}
                                         value={priceRange}
                                         step={1}
                                         onChange={handlePriceChange}
