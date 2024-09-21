@@ -12,10 +12,10 @@ const CarDetailsHero = () => {
     const [selectedImage, setSelectedImage] = useState(images[0]); // Set the initial image
 
     return (
-        <div className="lg:mb-20 mb-32 lg:px-0 px-[4%]">
-            <div className='lg:h-[493px] h-[739px] bg-[#383838] lg:w-full w-[325px] lg:flex-row flex-col rounded-[38px] mb-10 flex lg:justify-between items-center relative'>
-                <div className="imageSection lg:-ml-[90px] -ml-3 lg:mt-0 lg:w-[738px] w-[370px] mt-10">
-                    <img src={selectedImage} alt="Selected Car" className='lg:w-[738px] w-[370px] lg:h-[280px] h-[140px]'  />
+        <div className="lg:mb-20 mb-32 flex flex-col items-center">
+            <div className='lg:h-[493px] h-[739px] bg-[#383838] lg:w-full w-[95%] lg:flex-row flex-col rounded-[38px] mb-10 flex lg:justify-between items-center relative'>
+                <div className="imageSection lg:-ml-[90px] -ml-[4%] lg:mt-0 lg:w-[738px] w-[119%] mt-10">
+                    <img src={selectedImage} alt="Selected Car" className='lg:w-[738px] w-[119%] lg:h-[280px] h-[140px]'  />
                 </div>
                 <div className="content px-[6.4%] lg:ml-0 ml-2 lg:mt-0 mt-14 lg:justify-start justify-center">
                     <div className="tag text-[#959595] text-[14px] font-[500]">
