@@ -16,8 +16,8 @@ const Financing = () => {
             </div>
           <Financing1 />
         </ContainerWraper>
-        <img className="lg:hidden block mt-20" src={require("../images/image 172.png")} alt="" />
-        <div className="lg:mt-0  -mt-10">
+        <img className="lg:hidden block mt-20 w-[100vw]" src={require("../images/image 172.png")} alt="" />
+        <div className="lg:mt-0  -mt-12">
           <Explore />
           </div>
       </div>
