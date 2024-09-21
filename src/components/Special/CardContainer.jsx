@@ -81,7 +81,9 @@ const Card = ({ obj }) => {
             <Link to={'/detail/1'}>
                 <div className="">
                     <button className='lg:w-[100%] md:w-[340px] w-[277px] h-[44px] rounded-[10px] flex justify-center items-center text-[14px] mt-[10px] hoverAni56 font-[500] relative'>
-                        View Details <div className='relative'> <div className='hoverLine4'></div></div> <img src={require("../../images/cardicon.png")} className='w-[20px] h-[20px] imahe32' alt="" />
+                        View Details <div className='relative'> <div className='hoverLine4'></div></div>
+                        <span className='w-[20px]'><img src={require("../../images/cardicon.png")} className='w-[20px] h-[20px] imahe32' alt="" />
+                        </span>
                     </button>
                 </div>
             </Link>

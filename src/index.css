@@ -14,6 +14,25 @@
   left: 58%;
 }
 
+.hoverAni56:hover div {
+  height: 2px;
+  width: 20px;
+  background-color: #F6B000;
+  position: absolute;
+  left: 62%;
+}
+
+.hoverAni56:hover img {
+  /* top: calc(40%-10px); */
+  top: 12px;
+  position: absolute;
+  margin-left: 8%;
+}
+
+.hoverAni56 img {
+  transition: 0.3s all;
+}
+
 .hoverAni3:hover div {
   height: 2px;
   width: 20px;

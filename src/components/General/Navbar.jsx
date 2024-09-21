@@ -18,7 +18,7 @@ const Navbar = () => {
         { text: 'About us', image: '../../images/navicon.png', hasDropdown: true },
         { text: 'Blog', image: commonArrowImage, link: '/blog' },
         { text: 'FAQ', image: commonArrowImage, link: '/faq' },
-        { text: 'Contact', link: '#footer212', image: commonArrowImage },
+        { text: 'Contact', link: '#footer', image: commonArrowImage },
     ];
 
     const dropdownLinks = [
@@ -54,65 +54,35 @@ const Navbar = () => {
                                     if (link.hasDropdown) setShowLgDropdown(false);
                                 }}
                             >
-                                {
-                                    link.text === "Contact" ?
-                                        (<a href={link.link} className='flex justify-center items-center'>
-                                            <motion.span
-                                                animate={{ color: hoveredLink === index ? '#E3A200' : 'white' }}
-                                                transition={{ duration: 0.3 }}
-                                            >
-                                                {link.text}
-                                            </motion.span>
-                                            {link.hasDropdown ? (
-                                                <motion.img
-                                                    src={require("../../images/navicon.png")}
-                                                    alt=""
-                                                    className='w-[16px] h-[16px] ml-[3px]'
-                                                    animate={{
-                                                        rotate: hoveredLink === index ? 180 : 0,
-                                                        opacity: 1
-                                                    }}
-                                                    transition={{ duration: 0.3 }}
-                                                />
-                                            ) : (
-                                                <motion.img
-                                                    src={require("../../images/arrow.png")}
-                                                    alt=""
-                                                    className='w-[20px] h-[20px] ml-[3px]'
-                                                    initial={{ opacity: 0 }}
-                                                    animate={{ opacity: hoveredLink === index ? 1 : 0 }}
-                                                    transition={{ duration: 0.3 }}
-                                                />
-                                            )}
-                                        </a>) : <Link to={link.link} className='flex justify-center items-center'>
-                                            <motion.span
-                                                animate={{ color: hoveredLink === index ? '#E3A200' : 'white' }}
-                                                transition={{ duration: 0.3 }}
-                                            >
-                                                {link.text}
-                                            </motion.span>
-                                            {link.hasDropdown ? (
-                                                <motion.img
-                                                    src={require("../../images/navicon.png")}
-                                                    alt=""
-                                                    className='w-[16px] h-[16px] ml-[3px]'
-                                                    animate={{
-                                                        rotate: hoveredLink === index ? 180 : 0,
-                                                        opacity: 1
-                                                    }}
-                                                    transition={{ duration: 0.3 }}
-                                                />
-                                            ) : (
-                                                <motion.img
-                                                    src={require("../../images/arrow.png")}
-                                                    alt=""
-                                                    className='w-[20px] h-[20px] ml-[3px]'
-                                                    initial={{ opacity: 0 }}
-                                                    animate={{ opacity: hoveredLink === index ? 1 : 0 }}
-                                                    transition={{ duration: 0.3 }}
-                                                />
-                                            )}
-                                        </Link>}
+                                <Link to={link.link} className='flex justify-center items-center'>
+                                    <motion.span
+                                        animate={{ color: hoveredLink === index ? '#E3A200' : 'white' }}
+                                        transition={{ duration: 0.3 }}
+                                    >
+                                        {link.text}
+                                    </motion.span>
+                                    {link.hasDropdown ? (
+                                        <motion.img
+                                            src={require("../../images/navicon.png")}
+                                            alt=""
+                                            className='w-[16px] h-[16px] ml-[3px]'
+                                            animate={{
+                                                rotate: hoveredLink === index ? 180 : 0,
+                                                opacity: 1
+                                            }}
+                                            transition={{ duration: 0.3 }}
+                                        />
+                                    ) : (
+                                        <motion.img
+                                            src={require("../../images/arrow.png")}
+                                            alt=""
+                                            className='w-[20px] h-[20px] ml-[3px]'
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: hoveredLink === index ? 1 : 0 }}
+                                            transition={{ duration: 0.3 }}
+                                        />
+                                    )}
+                                </Link>
                             </li>
                         ))}
                     </ul>
