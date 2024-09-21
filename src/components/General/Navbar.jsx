@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -12,7 +12,7 @@ const Navbar = () => {
     // Variable for the common arrow image
     const commonArrowImage = '../../images/arrow.png';
 
-    const scrollToBottomOffset = (offsetFromBottom=1142) => {
+    const scrollToBottomOffset = (offsetFromBottom = 1142) => {
         // const offsetFromBottom = 1142;
         // Calculate the position to scroll to
         const scrollToPosition = document.body.scrollHeight - offsetFromBottom;
@@ -43,6 +43,19 @@ const Navbar = () => {
         { text: 'Whatsapp', image: require('../../images/darkwhatsapp.png'), link: '/' },
     ];
 
+    useEffect(() => {
+        const disableScroll = () => {
+            document.body.style.overflow = 'hidden';
+        };
+        const enableScroll = () => {
+            document.body.style.overflow = '';
+        };
+        if (showMenu)
+            disableScroll()
+        else
+            enableScroll();
+    }, [showMenu])
+
     return (
         <>
             <nav className='w-[100%] max-w-full lg:h-[80px] h-[70px] items-center lg:justify-between justify-between flex bg-black absolute lg:pr-0 pr-5 lg:px-[60px] px-[25px] ' style={{ position: showMenu ? "fixed top-0" : "relative", zIndex: 99999 }}>
@@ -66,78 +79,78 @@ const Navbar = () => {
                                     if (link.hasDropdown) setShowLgDropdown(false);
                                 }}
                             >
-                                {link.text === "Contact" ? 
-                                    
-                                <Link to={link.link} onClick={scrollToBottomOffset} className='flex justify-center items-center'>
-                                    <motion.span
-                                        animate={{ color: hoveredLink === index ? '#E3A200' : 'white' }}
-                                        transition={{ duration: 0.3 }}
-                                    >
-                                        {link.text}
-                                    </motion.span>
-                                    {link.hasDropdown ? (
-                                        <motion.img
-                                            src={require("../../images/navicon.png")}
-                                            alt=""
-                                            className='w-[16px] h-[16px] ml-[3px]'
-                                            animate={{
-                                                rotate: hoveredLink === index ? 180 : 0,
-                                                opacity: 1
-                                            }}
+                                {link.text === "Contact" ?
+
+                                    <Link to={link.link} onClick={scrollToBottomOffset} className='flex justify-center items-center'>
+                                        <motion.span
+                                            animate={{ color: hoveredLink === index ? '#E3A200' : 'white' }}
                                             transition={{ duration: 0.3 }}
-                                        />
-                                    ) : (
-                                        <motion.img
-                                            src={require("../../images/arrow.png")}
-                                            alt=""
-                                            className='w-[20px] h-[20px] ml-[3px]'
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: hoveredLink === index ? 1 : 0 }}
+                                        >
+                                            {link.text}
+                                        </motion.span>
+                                        {link.hasDropdown ? (
+                                            <motion.img
+                                                src={require("../../images/navicon.png")}
+                                                alt=""
+                                                className='w-[16px] h-[16px] ml-[3px]'
+                                                animate={{
+                                                    rotate: hoveredLink === index ? 180 : 0,
+                                                    opacity: 1
+                                                }}
+                                                transition={{ duration: 0.3 }}
+                                            />
+                                        ) : (
+                                            <motion.img
+                                                src={require("../../images/arrow.png")}
+                                                alt=""
+                                                className='w-[20px] h-[20px] ml-[3px]'
+                                                initial={{ opacity: 0 }}
+                                                animate={{ opacity: hoveredLink === index ? 1 : 0 }}
+                                                transition={{ duration: 0.3 }}
+                                            />
+                                        )}
+                                    </Link> : <Link to={link.link} className='flex justify-center items-center'>
+                                        <motion.span
+                                            animate={{ color: hoveredLink === index ? '#E3A200' : 'white' }}
                                             transition={{ duration: 0.3 }}
-                                        />
-                                    )}
-                                </Link>: <Link to={link.link} className='flex justify-center items-center'>
-                                    <motion.span
-                                        animate={{ color: hoveredLink === index ? '#E3A200' : 'white' }}
-                                        transition={{ duration: 0.3 }}
-                                    >
-                                        {link.text}
-                                    </motion.span>
-                                    {link.hasDropdown ? (
-                                        <motion.img
-                                            src={require("../../images/navicon.png")}
-                                            alt=""
-                                            className='w-[16px] h-[16px] ml-[3px]'
-                                            animate={{
-                                                rotate: hoveredLink === index ? 180 : 0,
-                                                opacity: 1
-                                            }}
-                                            transition={{ duration: 0.3 }}
-                                        />
-                                    ) : (
-                                        <motion.img
-                                            src={require("../../images/arrow.png")}
-                                            alt=""
-                                            className='w-[20px] h-[20px] ml-[3px]'
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: hoveredLink === index ? 1 : 0 }}
-                                            transition={{ duration: 0.3 }}
-                                        />
-                                    )}
-                                </Link>}
+                                        >
+                                            {link.text}
+                                        </motion.span>
+                                        {link.hasDropdown ? (
+                                            <motion.img
+                                                src={require("../../images/navicon.png")}
+                                                alt=""
+                                                className='w-[16px] h-[16px] ml-[3px]'
+                                                animate={{
+                                                    rotate: hoveredLink === index ? 180 : 0,
+                                                    opacity: 1
+                                                }}
+                                                transition={{ duration: 0.3 }}
+                                            />
+                                        ) : (
+                                            <motion.img
+                                                src={require("../../images/arrow.png")}
+                                                alt=""
+                                                className='w-[20px] h-[20px] ml-[3px]'
+                                                initial={{ opacity: 0 }}
+                                                animate={{ opacity: hoveredLink === index ? 1 : 0 }}
+                                                transition={{ duration: 0.3 }}
+                                            />
+                                        )}
+                                    </Link>}
                             </li>
                         ))}
                     </ul>
 
                 </div>
 
-                
 
-                    <div className="button pr-[60px] lg:block hidden">
-                        <button className='w-[151px] h-[56px] flex justify-center items-center p-[22px, 18px, 18px, 18px] rounded-[10px] bg-white text-black text-[16px] font-[500] transition-all duration-300 hover:bg-[#F6B000] hover:text-white'>
-                            Request a Call
-                        </button>
-                    </div>
+
+                <div className="button pr-[60px] lg:block hidden">
+                    <button className='w-[151px] h-[56px] flex justify-center items-center p-[22px, 18px, 18px, 18px] rounded-[10px] bg-white text-black text-[16px] font-[500] transition-all duration-300 hover:bg-[#F6B000] hover:text-white'>
+                        Request a Call
+                    </button>
+                </div>
 
 
                 <motion.div
@@ -169,12 +182,12 @@ const Navbar = () => {
                         >
                             <div className='space-y-5 flex flex-col items-start w-full'>
                                 <div>
-                                    <Link className='list-none' to={'/financing'} onClick={()=> setShowMenu(false)}>
+                                    <Link className='list-none' to={'/financing'} onClick={() => setShowMenu(false)}>
                                         Financing
                                     </Link>
                                 </div>
                                 <div>
-                                    <Link className='list-none' to={'/special-deals'} onClick={()=> setShowMenu(false)}>
+                                    <Link className='list-none' to={'/special-deals'} onClick={() => setShowMenu(false)}>
                                         Special Deals
                                     </Link>
                                 </div>
@@ -195,10 +208,10 @@ const Navbar = () => {
                                                 transition={{ duration: 0.3 }}
                                             >
                                                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }}>
-                                                    <Link to={'/about'} onClick={()=> setShowMenu(false)}>About us</Link>
+                                                    <Link to={'/about'} onClick={() => setShowMenu(false)}>About us</Link>
                                                 </motion.div>
                                                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}>
-                                                    <Link to={'/our-team'} onClick={()=> setShowMenu(false)}>Our Team</Link>
+                                                    <Link to={'/our-team'} onClick={() => setShowMenu(false)}>Our Team</Link>
                                                 </motion.div>
                                                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
                                                     <Link to={'/'} className='flex gap-[5px] items-center'> <span><img src={require("../../images/facebook.png")} alt="" className='w-[16px] h-[16px]' /></span> Facebook</Link>
@@ -220,16 +233,16 @@ const Navbar = () => {
                                     </AnimatePresence>
                                 </div>
                                 <div>
-                                    <Link className='list-none' to={'/blog'} onClick={()=> setShowMenu(false)}>
+                                    <Link className='list-none' to={'/blog'} onClick={() => setShowMenu(false)}>
                                         Blog
                                     </Link>
                                 </div>
                                 <div>
-                                    <Link className='list-none' to={'/faq'} onClick={()=> setShowMenu(false)}>
+                                    <Link className='list-none' to={'/faq'} onClick={() => setShowMenu(false)}>
                                         FAQ
                                     </Link>
                                 </div>
-                                <div onClick={()=> {scrollToBottomOffset(2100); setShowMenu(false)}}>
+                                <div onClick={() => { scrollToBottomOffset(2100); setShowMenu(false) }}>
                                     <Link className='list-none'  >
                                         Contact
                                     </Link>
