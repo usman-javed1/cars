@@ -10,7 +10,7 @@ import Features from "../components/main/Features/Features";
 
 const About = () => {
   return(
-    <>
+    <div className="">
     <div className="about">
         <AboutUsHero
           breadCrumbs={["Home", "About us"]} activeCrumb={"About us"}
@@ -32,7 +32,7 @@ const About = () => {
       </ContainerWraper>
       </div>
       <Explore />
-    </>
+    </div>
   );
 };
 

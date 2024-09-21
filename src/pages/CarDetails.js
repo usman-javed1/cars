@@ -21,14 +21,14 @@ const CarDetails = () => {
         <CarDetailsHero />
       </ContainerWraper>
       <KeyFeature></KeyFeature>
-      <div className="lg:pl-0 pl-[5%]">
+      <div className="">
         <ContainerWraper>
           <WhyThisCar></WhyThisCar>
         </ContainerWraper>
       </div>
       <Imageslider></Imageslider>
       <ContainerWraper>
-        <div className="lg:pl-0 pl-[5%]">
+        <div className="">
           <CarDiscription></CarDiscription>
           <Features></Features>
           <HowWorks></HowWorks>

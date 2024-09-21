@@ -168,7 +168,7 @@ const ViewCars = () => {
 
     return (
         <>
-            <div className="lg:px-0 pl-[5%]">
+            <div className="lg:px-0">
                 <ContainerWraper>
                     <Breadcrumb crumbs={["Home", "Cars for lease"]} activeCrumb="Cars for lease" />
                     <Header />

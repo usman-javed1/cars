@@ -1,10 +1,12 @@
 import React from 'react'
 
-const ContainerWraper = ({children}) => {
+const ContainerWraper = ({ children }) => {
     return (
-        <div className='lg:w-full md:w-full w-[100vw] px-[5%] justify-center items-center'>
-            <div className="container mx-auto">
-                {children}
+        <div className="App w-[100%] max-w-full mx-auto pl-[5%]">
+            <div className="lg:w-full md:w-full w-[350px] mx-auto lg:pl-0">
+                <div className="container ">
+                    {children}
+                </div>
             </div>
         </div>
     )

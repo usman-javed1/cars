@@ -38,7 +38,7 @@ const SpecialDeals = () => {
         <AboutUsHero heading="Drive Your Dream Car Today!" desc="Welcome to our Special Lease page, where you can find exclusive offers tailored to suit your lifestyle and budget. At The Wheel Deal, we believe that everyone deserves to drive the car they've always dreamed of. " breadCrumbs={["Home", "Special Deals"]} activeCrumb={"Special Deals"} isSpecial={true} />
       </div>
       <ContainerWraper>
-        <div className="lg:pl-0 pl-[5%]">
+        <div className="lg:pl-0">
           <div className="lg:w-full w-[350px]">
             <Tabs />
           </div>
