@@ -14,7 +14,7 @@ const CarDetailsHero = () => {
     return (
         <div className="lg:mb-20 mb-32 flex flex-col items-center">
             <div className='lg:h-[493px] h-[739px] bg-[#383838] lg:w-full w-[95%] lg:flex-row flex-col rounded-[38px] mb-10 flex lg:justify-between items-center relative'>
-                <div className="imageSection lg:-ml-[90px] -ml-[4%] lg:mt-0 lg:w-[738px] w-[119%] mt-10">
+                <div className="imageSection lg:-ml-[90px] -ml-[10%] lg:mt-0 lg:w-[738px] w-[119%] mt-10">
                     <img src={selectedImage} alt="Selected Car" className='lg:w-[738px] w-[119%] lg:h-[280px] h-[140px]'  />
                 </div>
                 <div className="content px-[6.4%] lg:ml-0 ml-2 lg:mt-0 mt-14 lg:justify-start justify-center">
