@@ -12,6 +12,18 @@ const Navbar = () => {
     // Variable for the common arrow image
     const commonArrowImage = '../../images/arrow.png';
 
+    const scrollToBottomOffset = (offsetFromBottom=1142) => {
+        // const offsetFromBottom = 1142;
+        // Calculate the position to scroll to
+        const scrollToPosition = document.body.scrollHeight - offsetFromBottom;
+
+        // Scroll to the calculated position smoothly
+        window.scrollTo({
+            top: scrollToPosition,
+            behavior: 'smooth'
+        });
+    };
+
     const navLinks = [
         { text: 'Financing', image: commonArrowImage, link: '/financing' },
         { text: 'Special Deals', image: commonArrowImage, link: '/special-deals' },
@@ -33,7 +45,7 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className='w-[100%] max-w-full lg:h-[80px] h-[70px] items-center lg:justify-between justify-between flex bg-black relative lg:pr-0 pr-5 lg:px-[60px] px-[25px] ' style={{ position: showMenu ? "fixed" : "relative", zIndex: 99999 }}>
+            <nav className='w-[100%] max-w-full lg:h-[80px] h-[70px] items-center lg:justify-between justify-between flex bg-black absolute lg:pr-0 pr-5 lg:px-[60px] px-[25px] ' style={{ position: showMenu ? "fixed top-0" : "relative", zIndex: 99999 }}>
 
                 <div className="logo">
                     <Link to='/'>
@@ -54,7 +66,9 @@ const Navbar = () => {
                                     if (link.hasDropdown) setShowLgDropdown(false);
                                 }}
                             >
-                                <Link to={link.link} className='flex justify-center items-center'>
+                                {link.text === "Contact" ? 
+                                    
+                                <Link to={link.link} onClick={scrollToBottomOffset} className='flex justify-center items-center'>
                                     <motion.span
                                         animate={{ color: hoveredLink === index ? '#E3A200' : 'white' }}
                                         transition={{ duration: 0.3 }}
@@ -82,21 +96,48 @@ const Navbar = () => {
                                             transition={{ duration: 0.3 }}
                                         />
                                     )}
-                                </Link>
+                                </Link>: <Link to={link.link} className='flex justify-center items-center'>
+                                    <motion.span
+                                        animate={{ color: hoveredLink === index ? '#E3A200' : 'white' }}
+                                        transition={{ duration: 0.3 }}
+                                    >
+                                        {link.text}
+                                    </motion.span>
+                                    {link.hasDropdown ? (
+                                        <motion.img
+                                            src={require("../../images/navicon.png")}
+                                            alt=""
+                                            className='w-[16px] h-[16px] ml-[3px]'
+                                            animate={{
+                                                rotate: hoveredLink === index ? 180 : 0,
+                                                opacity: 1
+                                            }}
+                                            transition={{ duration: 0.3 }}
+                                        />
+                                    ) : (
+                                        <motion.img
+                                            src={require("../../images/arrow.png")}
+                                            alt=""
+                                            className='w-[20px] h-[20px] ml-[3px]'
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: hoveredLink === index ? 1 : 0 }}
+                                            transition={{ duration: 0.3 }}
+                                        />
+                                    )}
+                                </Link>}
                             </li>
                         ))}
                     </ul>
 
                 </div>
 
-                <Link to={'/detail/1'}>
+                
 
                     <div className="button pr-[60px] lg:block hidden">
                         <button className='w-[151px] h-[56px] flex justify-center items-center p-[22px, 18px, 18px, 18px] rounded-[10px] bg-white text-black text-[16px] font-[500] transition-all duration-300 hover:bg-[#F6B000] hover:text-white'>
                             Request a Call
                         </button>
                     </div>
-                </Link>
 
 
                 <motion.div
@@ -188,8 +229,8 @@ const Navbar = () => {
                                         FAQ
                                     </Link>
                                 </div>
-                                <div>
-                                    <Link className='list-none' to={'/'}>
+                                <div onClick={()=> {scrollToBottomOffset(2100); setShowMenu(false)}}>
+                                    <Link className='list-none'  >
                                         Contact
                                     </Link>
                                 </div>
