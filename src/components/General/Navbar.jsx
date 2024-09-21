@@ -169,12 +169,12 @@ const Navbar = () => {
                         >
                             <div className='space-y-5 flex flex-col items-start w-full'>
                                 <div>
-                                    <Link className='list-none' to={'/financing'}>
+                                    <Link className='list-none' to={'/financing'} onClick={()=> setShowMenu(false)}>
                                         Financing
                                     </Link>
                                 </div>
                                 <div>
-                                    <Link className='list-none' to={'/special-deals'}>
+                                    <Link className='list-none' to={'/special-deals'} onClick={()=> setShowMenu(false)}>
                                         Special Deals
                                     </Link>
                                 </div>
@@ -195,10 +195,10 @@ const Navbar = () => {
                                                 transition={{ duration: 0.3 }}
                                             >
                                                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }}>
-                                                    <Link to={'/about'}>About us</Link>
+                                                    <Link to={'/about'} onClick={()=> setShowMenu(false)}>About us</Link>
                                                 </motion.div>
                                                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}>
-                                                    <Link to={'/our-team'}>Our Team</Link>
+                                                    <Link to={'/our-team'} onClick={()=> setShowMenu(false)}>Our Team</Link>
                                                 </motion.div>
                                                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
                                                     <Link to={'/'} className='flex gap-[5px] items-center'> <span><img src={require("../../images/facebook.png")} alt="" className='w-[16px] h-[16px]' /></span> Facebook</Link>
@@ -220,12 +220,12 @@ const Navbar = () => {
                                     </AnimatePresence>
                                 </div>
                                 <div>
-                                    <Link className='list-none' to={'/blog'}>
+                                    <Link className='list-none' to={'/blog'} onClick={()=> setShowMenu(false)}>
                                         Blog
                                     </Link>
                                 </div>
                                 <div>
-                                    <Link className='list-none' to={'/faq'}>
+                                    <Link className='list-none' to={'/faq'} onClick={()=> setShowMenu(false)}>
                                         FAQ
                                     </Link>
                                 </div>
