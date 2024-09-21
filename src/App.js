@@ -15,10 +15,12 @@ import News from './pages/News';
 import OurTeam from './pages/OurTeam';
 import SpecialDeals from './pages/SpecialDeals';
 import ViewCars from './pages/ViewCars';
+import ScrollToTop from './ScrollTop';
 
 function App() {
   return (
     <div className="App w-[100%] max-w-full mx-auto">
+      <ScrollToTop/>
       <Navbar />
       <Routes>
         <Route path='/' element={<LandingPage />} />
