@@ -63,13 +63,14 @@ export const RangeSlider = ({ min, max, value, step, onChange }) => {
         onChange({ min: minValue, max: updatedMax });
     };
 
-    const handleThumbMove = (e, type) => {
+    const handleThumbMove = (e, type, isTouch = false) => {
         if (!sliderTrackRef.current) return; // Ensure the slider track is available
         const sliderRect = sliderTrackRef.current.getBoundingClientRect();
         const sliderWidth = sliderRect.width;
 
-        // Calculate the new position based on mouse movement
-        const relativeX = e.clientX - sliderRect.left;
+        // Calculate the new position based on mouse/touch movement
+        const clientX = isTouch ? e.touches[0].clientX : e.clientX;
+        const relativeX = clientX - sliderRect.left;
         const newValue = (relativeX / sliderWidth) * (max - min) + min;
 
         // Clamp the new value within the slider's bounds
@@ -80,17 +81,20 @@ export const RangeSlider = ({ min, max, value, step, onChange }) => {
         }
     };
 
-    const startThumbMove = (e, type) => {
-        const onMouseMove = (event) => handleThumbMove(event, type);
-        const onMouseUp = () => {
-            document.removeEventListener('mousemove', onMouseMove);
-            document.removeEventListener('mouseup', onMouseUp);
+    const startThumbMove = (e, type, isTouch = false) => {
+        const moveEvent = isTouch ? 'touchmove' : 'mousemove';
+        const endEvent = isTouch ? 'touchend' : 'mouseup';
+
+        const onMove = (event) => handleThumbMove(event, type, isTouch);
+        const onEnd = () => {
+            document.removeEventListener(moveEvent, onMove);
+            document.removeEventListener(endEvent, onEnd);
         };
 
-        // Add mousemove listener to track dragging
-        document.addEventListener('mousemove', onMouseMove);
+        // Add mousemove/touchmove listener to track dragging
+        document.addEventListener(moveEvent, onMove);
         // Remove listeners when mouse button is released
-        document.addEventListener('mouseup', onMouseUp, { once: true });
+        document.addEventListener(endEvent, onEnd, { once: true });
     };
 
     const minPos = ((minValue - min) / (max - min)) * 100;
@@ -120,11 +124,13 @@ export const RangeSlider = ({ min, max, value, step, onChange }) => {
                     className="slider-thumb absolute w-4 h-4 bg-blue-500 rounded-full cursor-pointer"
                     style={{ left: `calc(${minPos}% - 8px)` }}
                     onMouseDown={(e) => startThumbMove(e, 'min')}
+                    onTouchStart={(e) => startThumbMove(e, 'min', true)}
                 />
                 <div
                     className="slider-thumb absolute w-4 h-4 bg-blue-500 rounded-full cursor-pointer"
                     style={{ left: `calc(${maxPos}% - 8px)` }}
                     onMouseDown={(e) => startThumbMove(e, 'max')}
+                    onTouchStart={(e) => startThumbMove(e, 'max', true)}
                 />
             </div>
 
