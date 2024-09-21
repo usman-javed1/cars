@@ -81,7 +81,7 @@ const Navbar = () => {
                             >
                                 {link.text === "Contact" ?
 
-                                    <Link to={link.link} onClick={scrollToBottomOffset} className='flex justify-center items-center'>
+                                    <Link to={link.link} onClick={()=>scrollToBottomOffset()} className='flex justify-center items-center'>
                                         <motion.span
                                             animate={{ color: hoveredLink === index ? '#E3A200' : 'white' }}
                                             transition={{ duration: 0.3 }}
