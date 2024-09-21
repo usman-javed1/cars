@@ -67,7 +67,9 @@ const CarDetailsHero = () => {
                 </div>
             </div>
 
-            <div className=" lg:flex justify-between hidden">
+            <div className=" lg:flex justify-between hidden container"
+                style={{justifyContent: "space-between"}}
+            >
                 {images.map((image, index) => (
                     <div
                         key={index}
