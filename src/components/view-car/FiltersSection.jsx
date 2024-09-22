@@ -75,6 +75,10 @@ const FiltersSection = ({ selectedValues, setSelectedValues, Icon, startDate, en
                             <div className="text-[14px] text-black">Clear filters</div>
                         </div>
                     </button>
+                    
+                </div>
+                <div className="h-[2px] mt-10 w-[650px] -ml-6 bg-[#E9E9E9]">
+
                 </div>
             </motion.div>
         </div>
