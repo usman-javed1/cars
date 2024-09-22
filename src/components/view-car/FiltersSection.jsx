@@ -62,11 +62,11 @@ const FiltersSection = ({ selectedValues, setSelectedValues, Icon, startDate, en
 
                     />
                 </div>
-                <div className="button flex lg:gap-10 gap-3">
-                    <button className='w-full h-[56px] flex justify-center items-center font-[500] bg-black text-white rounded-[10px] lg:text-base text-[14px] mt-20 mx-auto lg:w-[300px]'>
+                <div className="flex lg:gap-10 gap-3 mx-auto px-6">
+                    <button onClick={toggleOverlay} className='w-full h-[56px] flex justify-center items-center font-[500] bg-black text-white rounded-[10px] lg:text-base text-[14px] mt-10 mx-auto '>
                         Show results (232)
                     </button>
-                    <button className='w-full h-[56px] flex  items-center font-[500]  rounded-[10px] mt-20 mx-auto'>
+                    <button className='w-full h-[56px] flex justify-center  items-center font-[500]  rounded-[10px] mt-10 mx-auto'>
                         <div className="flex items-center justify-center gap-3" onClick={clearAllFilters}>
                             <img src={require("../../images/Frame (1).png")} alt="" />
                             <div className="text-[14px] text-black">Clear filters</div>
