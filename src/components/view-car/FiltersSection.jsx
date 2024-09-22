@@ -29,21 +29,21 @@ const FiltersSection = ({ selectedValues, setSelectedValues, Icon, startDate, en
     return (
         <div className='w-[100vw] h-[100vh] flex justify-center items-center fixed top-0 right-0 bg-black' style={{ zIndex: 9999999, backgroundColor: "rgba(0,0,0,0.7)" }}>
             <motion.div
-                className='bg-white lg:relative fixed lg:rounded-[10px] rounded-t-[30px] top-0 w-[100vw] pb-10 lg:w-[650px] lg:h-[700px] h-[100vh] left-0 px-[25px]'
+                className='bg-white lg:relative fixed lg:rounded-[10px] rounded-t-[30px] top-0 w-[100vw] pb-10 lg:w-[650px] lg:h-[800px] h-[100vh] left-0 px-[25px]'
                 style={{ zIndex: 9999, overflowX: "hidden", overflowY: 'auto', }}
                 initial={{ y: '100%' }} // Start from bottom
                 animate={{ y: 0 }} // Animate to original position
                 exit={{ y: '100%' }} // Exit to bottom
                 transition={{ duration: 0.3 }} // Animation duration
             >
-                <div className="flex justify-between mt-[37.5px] items-center lg:mb-20">
+                <div className="flex justify-between mt-[37.5px] items-center lg:mb-20 w-[600px]">
                     <div className="text-[30px] font-[700] text-black ">
                         {Icon}
                     </div>
                     <img
                         src={require("../../images/crossSearch.png")}
                         alt=""
-                        className='w-[32px] h-[28.84px]'
+                        className='w-[32px] h-[28.84px] '
                         onClick={toggleOverlay} // Close overlay on click
                     />
                 </div>

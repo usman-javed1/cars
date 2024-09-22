@@ -584,7 +584,7 @@ export const FAQ = ({ selectedValues, priceRange, handlePriceChange, selections,
                                         <li className="w-[100%] -ml-[4%]">
                                             <RangeSlider
                                                 min={-10}
-                                                max={100}
+                                                max={1000}
                                                 value={priceRange}
                                                 step={1}
                                                 onChange={handlePriceChange}
