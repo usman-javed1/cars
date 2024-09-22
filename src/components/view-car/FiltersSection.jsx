@@ -62,7 +62,10 @@ const FiltersSection = ({ selectedValues, setSelectedValues, Icon, startDate, en
 
                     />
                 </div>
-                <div className="button flex lg:gap-10 gap-3">
+                <div className="h-[2px] lg:mt-16 w-[650px] -ml-6 bg-[#E9E9E9]">
+
+                </div>
+                <div className="button flex lg:gap-10 gap-3 lg:-mt-10">
                     <button className='w-full h-[56px] flex justify-center items-center font-[500] bg-black text-white rounded-[10px] lg:text-base text-[14px] mt-20 mx-auto lg:w-[350px]'>
                         Show results (232)
                     </button>

@@ -535,14 +535,13 @@ export const FAQ = ({ selectedValues, priceRange, handlePriceChange, selections,
                     <div key={selection.name} className="w-full md:px-6">
                         <div className="w-full my-5" />
                         <div
-                            className={`flex justify-between items-center w-full pb-2 cursor-pointer ${openQuestions.includes(index)
-                                ? 'border-none'
-                                : 'border-b border-transparent hover:border-black transition-all duration-300'
-                                }`}
+                            className={`flex justify-between items-center w-full pb-2 cursor-pointer 
+                                border-b lg:border-[#E9E9E9]  transition-all duration-300
+                                `}
                             onClick={() => toggleQuestion(index)}
                         >
                             <div>
-                                <p className={`lg:text-[18px] md:text-[18px] text-[16px]  font-[700] text-start text-[#636363]`} >
+                                <p className={`lg:text-[18px] py-2 md:text-[18px] text-[16px]  font-[700] text-start text-[#636363]`} >
                                     {selection.name}
                                 </p>
                             </div>
