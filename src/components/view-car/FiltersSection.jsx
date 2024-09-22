@@ -29,7 +29,7 @@ const FiltersSection = ({ selectedValues, setSelectedValues, Icon, startDate, en
     return (
         <div className='w-[100vw] h-[100vh] flex justify-center items-center fixed top-0 right-0 bg-black' style={{ zIndex: 9999999, backgroundColor: "rgba(0,0,0,0.7)" }}>
             <motion.div
-                className='bg-white lg:relative fixed lg:rounded-[10px] rounded-t-[30px] top-0 w-[100vw] pb-10 lg:w-[650px] lg:h-[800px] h-[100vh] left-0 px-[25px]'
+                className='bg-white lg:relative fixed lg:rounded-[10px] rounded-t-[30px] top-0 w-[100vw] pb-10 lg:w-[650px] lg:h-[750px] h-[100vh] left-0 px-[25px]'
                 style={{ zIndex: 9999, overflowX: "hidden", overflowY: 'auto', }}
                 initial={{ y: '100%' }} // Start from bottom
                 animate={{ y: 0 }} // Animate to original position
@@ -65,7 +65,7 @@ const FiltersSection = ({ selectedValues, setSelectedValues, Icon, startDate, en
                 <div className="h-[2px] mt-16 w-[650px] -ml-6 bg-[#E9E9E9]">
 
                 </div>
-                <div className="button flex lg:gap-10 gap-3 -mt-10">
+                <div className="button flex h-[60px] lg:gap-10 gap-3 -mt-10">
                     <button className='w-full h-[56px] flex justify-center items-center font-[500] bg-black text-white rounded-[10px] lg:text-base text-[14px] mt-20 mx-auto lg:w-[350px]'>
                         Show results (232)
                     </button>
@@ -77,9 +77,7 @@ const FiltersSection = ({ selectedValues, setSelectedValues, Icon, startDate, en
                     </button>
                     
                 </div>
-                <div className="h-[2px] mt-10 w-[650px] -ml-6 bg-[#E9E9E9]">
-
-                </div>
+            
             </motion.div>
         </div>
     )
