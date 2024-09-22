@@ -173,7 +173,7 @@ const ViewCars = () => {
                     <Breadcrumb crumbs={["Home", "Cars for lease"]} activeCrumb="Cars for lease" />
                     <Header />
                     <CardContainer blogPosts={blogPosts} isSearch={true} />
-                    <div className=" text-center flex justify-center  text-black font-[500]">
+                    <div className=" text-center flex justify-center  text-black font-[500] cursor-pointer">
                         Show more
                         <img src={require("../images/Frame 731.png")} alt="" />
                     </div>
