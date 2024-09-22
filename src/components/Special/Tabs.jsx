@@ -104,6 +104,16 @@ const Tabs = () => {
             seat: "4",
             discount: "-40%",
         },
+        {
+            name: "2024 Kia Forte LXS 4dr Sedan",
+            heading: "Sport cars",
+            image: require("../../images/blackcar.png"),
+            price: "839",
+            lease: "39 months",
+            mile: "8000",
+            seat: "4",
+            discount: "-40%",
+        },
     ]; // Placeholder for card data
 
 

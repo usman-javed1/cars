@@ -29,7 +29,7 @@ const FAQ = () => {
                     <div className="w-[600px]">
                         <Section />
                     </div>
-                    <Link to={'/blog'}>
+                    {/* <Link to={'/blog'}>
                         <div className="lg:hidden md:hidden block my-5  mb-[100px] mt-[25px]">
                             <button className='min-w-[325px]  bg-black flex justify-center items-center rounded-[10px] text-[16px] text-white font-[500] mt-10 p-5 button21'>
                                 <div className="">
@@ -40,7 +40,7 @@ const FAQ = () => {
                                 </span>
                             </button>
                         </div>
-                    </Link>
+                    </Link> */}
                 </div>
             </div>
         </div>

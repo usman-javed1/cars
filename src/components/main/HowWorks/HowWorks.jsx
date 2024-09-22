@@ -56,7 +56,7 @@ const HowWorks = ({ heading = "How it Works?", desc = "If you have more question
                             <Card heading={obj.heading} desc={obj.desc} number={obj.number} key={obj.number} />
                         )}
                     </div>
-                    <Link to={'/view'}>
+                    {/* <Link to={'/view'}>
                         <div className="lg:hidden md:hidden block mb-[100px]">
                             <button className='min-w-[325px] min-h-[56px] bg-black flex justify-center items-center rounded-[10px] text-[16px] text-white font-[500] mt-10 p-5 button21'>
                                 Browse vehicles
@@ -65,7 +65,7 @@ const HowWorks = ({ heading = "How it Works?", desc = "If you have more question
                                 </span>
                             </button>
                         </div>
-                    </Link>
+                    </Link> */}
                 </div>
             </div>
         </div>
