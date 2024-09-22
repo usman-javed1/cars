@@ -532,7 +532,7 @@ export const FAQ = ({ selectedValues, priceRange, handlePriceChange, selections,
 
 
                 {selectionsWithDate.map((selection, index) => (
-                    <div key={selection.name} className="w-full md:px-6">
+                    <div key={selection.name} className="w-full ">
                         <div className="w-full my-5" />
                         <div
                             className={`flex justify-between items-center w-full pb-2 cursor-pointer 
@@ -569,7 +569,7 @@ export const FAQ = ({ selectedValues, priceRange, handlePriceChange, selections,
                                     ? selection.options.map((option) => (
                                         <li
                                             key={option.value}
-                                            className="rounded-full"
+                                            className="rounded-full w-[80px]"
                                             onClick={() => toggleOption(selection.name, option.value, option.label)}
                                             onMouseEnter={() => setHoveredValue(option.value)}
                                             onMouseLeave={() => setHoveredValue(null)}
@@ -581,7 +581,7 @@ export const FAQ = ({ selectedValues, priceRange, handlePriceChange, selections,
                                         </li>
                                     ))
                                     : selection.name === "Price" ? (
-                                        <li className="w-[401px]">
+                                        <li className="w-[100%] -ml-[4%]">
                                             <RangeSlider
                                                 min={-10}
                                                 max={100}
@@ -592,7 +592,7 @@ export const FAQ = ({ selectedValues, priceRange, handlePriceChange, selections,
                                         </li>
                                     ) : selection.name === "Date" ? (
                                         <div className=" space-y-4">
-                                            <div className="text-[#767676] w-[325px]">
+                                            <div className="text-[#767676] w-[100%]">
                                                 <div className='text-[12px] text-[#767676] font-[500] flex gap-3 space-y-2 mb-2'>
                                                     <img src={require("../../../images/calender.png")} alt="" className='w-[16px] h-[16px]' />
                                                     Select pick-up date:
@@ -602,10 +602,10 @@ export const FAQ = ({ selectedValues, priceRange, handlePriceChange, selections,
                                                     onChange={(date) => setStartDate(date)}
                                                     dateFormat="yyyy/MM/dd"
                                                     placeholderText="YYYY / MM / DD"
-                                                    className="bg-lightgray rounded-[10px] p-3 outline-none w-[325px]"
+                                                    className="bg-lightgray rounded-[10px] p-3 outline-none w-[100%]"
                                                 />
                                             </div>
-                                            <div className="text-[#767676] w-[325px]">
+                                            <div className="text-[#767676] w-[100%]">
                                                 <div className='text-[12px] text-[#767676] font-[500] flex gap-3 space-y-2 mb-2'>
                                                     <img src={require("../../../images/calender.png")} alt="" className='w-[16px] h-[16px]' />
                                                     Select pick-up date:
@@ -615,7 +615,7 @@ export const FAQ = ({ selectedValues, priceRange, handlePriceChange, selections,
                                                     onChange={(date) => setEndDate(date)}
                                                     dateFormat="yyyy/MM/dd"
                                                     placeholderText="YYYY / MM / DD"
-                                                    className="bg-lightgray rounded-[10px] p-3 outline-none w-[325px]"
+                                                    className="bg-lightgray rounded-[10px] p-3 outline-none w-[100%]"
                                                 />
                                             </div>
                                         </div>
