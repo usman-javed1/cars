@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Dropdown from './Dropdown'
+import { img } from 'framer-motion/client';
 
 
 const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
@@ -39,8 +40,33 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
     }, [carId]);
 
     // Handle file uploads (image files)
-    const handleFileChange = (e) => {
-        setImages([...images, ...e.target.files]);
+    const handleFileChange = async (e) => {
+        const selectedFiles = e.target.files;
+        const base64Images = [];
+
+        for (let i = 0; i < selectedFiles.length; i++) {
+            const file = selectedFiles[i];
+            const base64 = await toBase64(file); // Convert file to Base64
+
+            // Check if the base64 string already has the correct prefix, if not, add it
+            if (!base64.startsWith("data:image/")) {
+                const fileType = file.type; // get the file type (e.g., image/png)
+                base64Images.push(`data:${fileType};base64,${base64}`);
+            } else {
+                base64Images.push(base64); // Already formatted correctly
+            }
+        }
+
+        setImages([...images, ...base64Images]); // Append new images to existing ones
+    };
+
+    const toBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file); // Ensure we read as Data URL to include the MIME type
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = (error) => reject(error);
+        });
     };
 
     // Handle form submission
@@ -55,8 +81,12 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
         formData.append('monthlyPayment', monthlyPayment);
         formData.append('numSeats', numSeats);
         formData.append('transmission', transmission);
-        formData.append('numCylinders', numCylinders); // Add image files to formData
-        console.log("Form Data is :  ", formData);
+        formData.append('numCylinders', numCylinders);
+        formData.append('images', images); // Append images
+        for (let pair of formData.entries()) {
+            console.log(pair[0] + ': ' + pair[1]);
+        }
+
         const url = carId ? `/api/cars/${carId}` : '/api/cars'; // Edit or Create endpoint
         const method = carId ? 'PUT' : 'POST'; // PUT for editing, POST for creating
 
@@ -64,15 +94,19 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
             method: method,
             body: formData,
         })
-        .then(response => {
-            if (response.ok) {
-                closeModal(); // Close modal on success
-            } else {
-                console.error('Failed to save car');
-            }
-        })
-        .catch(err => console.error('Error:', err));
+            .then(response => {
+                if (response.ok) {
+                    closeModal(); // Close modal on success
+                } else {
+                    console.error('Failed to save car');
+                }
+            })
+            .catch(err => console.error('Error:', err));
     };
+
+    useEffect(() => {
+        console.log("Images are", images);
+    }, [images])
 
     return (
         <div className='w-[100vw] h-[100vh] flex fixed justify-center items-center top-0 left-0' style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
@@ -84,8 +118,8 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
                     Vehicle Details
                 </div>
                 <div className="flex flex-wrap pt-4 gap-3">
-                    
-                <div className="">
+
+                    <div className="">
                         <div className="text-[#767676] text-[12px] font-[500]">
                             Car name
                         </div>
@@ -122,7 +156,7 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
                         </div>
 
                         <div className="">
-                            <Dropdown options={['Toyota','Kia', 'Tesla ', 'Acura', 'Porshe', 'Volkswagen', 'Opel', 'Mazda', 'BMW']} label={brand || 'Toyota'} onSelect={setBrand} />
+                            <Dropdown options={['Toyota', 'Kia', 'Tesla ', 'Acura', 'Porshe', 'Volkswagen', 'Opel', 'Mazda', 'BMW']} label={brand || 'Toyota'} onSelect={setBrand} />
                         </div>
                     </div>
 
@@ -141,7 +175,7 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
                             Miles per year
                         </div>
 
-                        <input type='text' placeholder='10,000 miles/year' className="flex items-center justify-between  cursor-pointer bg-[#F8F8F8] w-[284px] h-[50px] rounded-xl px-5 text-[14px] font-[400] mt-4" value={milesPerYear} onChange={(e)=> setMilesPerYear(e.target.value)} />
+                        <input type='text' placeholder='10,000 miles/year' className="flex items-center justify-between  cursor-pointer bg-[#F8F8F8] w-[284px] h-[50px] rounded-xl px-5 text-[14px] font-[400] mt-4" value={milesPerYear} onChange={(e) => setMilesPerYear(e.target.value)} />
 
 
                     </div>
@@ -152,7 +186,7 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
                             Monthly Payment
                         </div>
 
-                        <input type='text' placeholder='1080' className="flex items-center justify-between  cursor-pointer bg-[#F8F8F8] w-[284px] h-[50px] rounded-xl px-5 text-[14px] font-[400] mt-4" value={monthlyPayment} onChange={(e)=> setMonthlyPayment(e.target.value)} />
+                        <input type='text' placeholder='1080' className="flex items-center justify-between  cursor-pointer bg-[#F8F8F8] w-[284px] h-[50px] rounded-xl px-5 text-[14px] font-[400] mt-4" value={monthlyPayment} onChange={(e) => setMonthlyPayment(e.target.value)} />
 
 
                     </div>
@@ -163,7 +197,7 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
                             Number of Seats
                         </div>
 
-                        <input type='text' placeholder='10,000 miles/year' className="flex items-center justify-between  cursor-pointer bg-[#F8F8F8] w-[284px] h-[50px] rounded-xl px-5 text-[14px] font-[400] mt-4" value={numSeats} onChange={(e)=> setNumSeats(e.target.value)} />
+                        <input type='text' placeholder='10,000 miles/year' className="flex items-center justify-between  cursor-pointer bg-[#F8F8F8] w-[284px] h-[50px] rounded-xl px-5 text-[14px] font-[400] mt-4" value={numSeats} onChange={(e) => setNumSeats(e.target.value)} />
 
 
                     </div>
@@ -174,7 +208,7 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
                         </div>
 
                         <div className="">
-                            <Dropdown options={['Automatic', 'Manual transmission']} label={transmission|| 'Select transmission type'} onSelect={setTransmission} />
+                            <Dropdown options={['Automatic', 'Manual transmission']} label={transmission || 'Select transmission type'} onSelect={setTransmission} />
                         </div>
                     </div>
 
@@ -183,7 +217,7 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
                             Number of Cylinders
                         </div>
 
-                        <input type='text' placeholder='10,000 miles/year' className="flex items-center justify-between  cursor-pointer bg-[#F8F8F8] w-[284px] h-[50px] rounded-xl px-5 text-[14px] font-[400] mt-4" value={numCylinders} onChange={(e)=> setNumCylinders(e.target.value)} />
+                        <input type='text' placeholder='10,000 miles/year' className="flex items-center justify-between  cursor-pointer bg-[#F8F8F8] w-[284px] h-[50px] rounded-xl px-5 text-[14px] font-[400] mt-4" value={numCylinders} onChange={(e) => setNumCylinders(e.target.value)} />
 
 
                     </div>
@@ -200,18 +234,59 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
                 <div className="w-[40px]"></div>
 
 
+
                 <div className="text-[12px] font-[400] flex gap-3 text-[#4E4E4E]">
                     <img src={require("../../images/info.png")} alt="" />
                     <div className="">
-                        Upload upto 10 images of any damages or the vehicle condition upon return
+                        Upload up to 10 images of any damages or the vehicle condition upon return
                     </div>
                 </div>
 
                 <div className="w-[80px]"></div>
 
-                <div className="bg-lightgray mt-3 text-[16px] font-[500] px-7 py-4 rounded-[10px]">
+                <input
+                    type="file"
+                    multiple
+                    accept="image/*"
+                    onChange={handleFileChange}
+                    className="bg-lightgray mt-3 text-[16px] font-[500] px-7 py-4 rounded-[10px] cursor-pointer hidden"
+                    id='photoSelector'
+                />
+                <div className="w-[10px]"></div>
+
+
+
+
+
+
+                <label htmlFor='photoSelector' className="bg-lightgray mt-3 text-[16px] font-[500] px-7 py-4 rounded-[10px] cursor-pointer">
                     Browse files
-                </div>
+                </label>
+
+                {images.map((image, index) => (
+                    <div key={index} className="relative w-[36px] h-[36px] mx-3 my-auto">
+                        <img
+                            src={image}
+                            alt="Uploaded Image"
+                            className="w-full h-full rounded-xl object-contain"
+                            onError={(e) => {
+                                e.target.onerror = null; // Prevents infinite loop if image keeps failing
+                                e.target.src = 'fallback-image-url'; // Set a fallback image if needed
+                                console.error('Image failed to load:', image);
+                            }}
+                        />
+                        <button
+                            onClick={() => {
+                                const updatedImages = images.filter((_, i) => i !== index); // Remove image
+                                setImages(updatedImages);
+                            }}
+                            className="absolute top-[-5px] right-[-5px] w-4 h-4 text-white bg-black rounded-full flex justify-center items-center text-[14px]"
+                        >
+                            &times; {/* HTML character for cross (×) */}
+                        </button>
+                    </div>
+                ))}
+
 
                 <div className="w-[690px] flex justify-end gap-5 font-[500] pb-[30px]">
                     <button className="" onClick={closeModal}>
