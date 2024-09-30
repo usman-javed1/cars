@@ -25,7 +25,7 @@ const Dropdown = ({ options, label, onSelect }) => {
     }, []);
 
     return (
-        <div className="relative inline-block text-left" ref={dropdownRef}>
+        <div className="relative inline-block text-left rounded-xl" ref={dropdownRef}>
             <div className="flex items-center justify-between  cursor-pointer bg-[#F8F8F8] w-[284px] h-[50px] rounded-xl px-5 text-[14px] font-[400] mt-4" onClick={toggleDropdown}>
                 <span className="text-[#767676]">{selectedOption || label}</span>
                 <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -35,11 +35,11 @@ const Dropdown = ({ options, label, onSelect }) => {
 
             {/* Dropdown Menu */}
             {isOpen && (
-                <div className="absolute z-10 mt-2 w-full bg-white border border-gray-200 rounded shadow-lg">
+                <div className="absolute z-10 mt-2 w-full bg-white border border-gray-200 rounded-[20px] shadow-lg overflow-hidden">
                     {options.map((option, index) => (
                         <div
                             key={index}
-                            className="px-4 py-2 text-gray-700 cursor-pointer hover:bg-gray-200"
+                            className="px-4 py-2 mt-3 text-gray-700 cursor-pointer  hover:bg-gray-200"
                             onClick={() => handleOptionClick(option)}
                         >
                             {option}

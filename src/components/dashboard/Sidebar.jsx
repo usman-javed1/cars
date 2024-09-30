@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const Sidebar = () => {
     return (
-        <div className='top-0 left-0 sticky w-[20%] h-[100vh] bg-black rounded-r-[20px] flex flex-col  items-center py-14'>
+        <div className='top-0 left-0 sticky w-[15%] h-[100vh] bg-black rounded-r-[20px] flex flex-col  items-center py-14'>
             <div className="logo mb-20">
                 <Link to='/'>
                     <img src={require("../../images/logo.png")} alt="logo" width={142} height={42} />
