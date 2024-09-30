@@ -23,13 +23,13 @@ const CarDetails = () => {
       <KeyFeature></KeyFeature>
       <div className="">
         <ContainerWraper>
-          <WhyThisCar></WhyThisCar>
+          {/* <WhyThisCar></WhyThisCar> */}
         </ContainerWraper>
       </div>
-      <Imageslider></Imageslider>
+      {/* <Imageslider></Imageslider> */}
       <ContainerWraper>
         <div className="">
-          <CarDiscription></CarDiscription>
+          {/* <CarDiscription></CarDiscription> */}
           <Features></Features>
           <HowWorks></HowWorks>
           <FAQ></FAQ>

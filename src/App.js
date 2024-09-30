@@ -1,5 +1,5 @@
 import './App.css';
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 
 import Navbar from './components/General/Navbar';
 import Footer from './components/General/Footer';
@@ -16,12 +16,22 @@ import OurTeam from './pages/OurTeam';
 import SpecialDeals from './pages/SpecialDeals';
 import ViewCars from './pages/ViewCars';
 import ScrollToTop from './ScrollTop';
+import Dashboard from './pages/Dashboard';
+import Login from './pages/Login';
 
 function App() {
+  const location = useLocation();
+
+  // Define the routes where you want to hide the Navbar and Footer
+  const hideNavAndFooterRoutes = ['/dashboard','/admin'];
+
   return (
     <div className="App w-[100%] max-w-full mx-auto">
-      <ScrollToTop/>
-      <Navbar />
+      <ScrollToTop />
+
+      {/* Conditionally render the Navbar */}
+      {!hideNavAndFooterRoutes.includes(location.pathname) && <Navbar />}
+
       <Routes>
         <Route path='/' element={<LandingPage />} />
         <Route path='/about' element={<About />} />
@@ -33,10 +43,16 @@ function App() {
         <Route path='/special-deals' element={<SpecialDeals />} />
         <Route path='/view' element={<ViewCars />} />
         <Route path='/detail/:id' element={<CarDetails />} />
+        <Route path='/admin' element={<><Login /></>} />
+        <Route path='/dashboard' element={<Dashboard />} />
       </Routes>
-      <section id='footer212'>
-        <Footer />
-      </section>
+
+      {/* Conditionally render the Footer */}
+      {!hideNavAndFooterRoutes.includes(location.pathname) && (
+        <section id='footer212'>
+          <Footer />
+        </section>
+      )}
     </div>
   );
 }
