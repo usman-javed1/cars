@@ -256,7 +256,7 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
                 </label>
 
                 {images.map((image, index) => (
-                    <div key={index} className="relative w-[36px] h-[36px] mx-3 my-auto">
+                    <div key={index} className="relative w-[66px] h-[66px] mx-3 my-auto">
                         <img
                             src={image}
                             alt="Uploaded Image"
