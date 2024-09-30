@@ -110,6 +110,7 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
 
     return (
         <div className='w-[100vw] h-[100vh] flex fixed justify-center items-center top-0 left-0' style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
+            {/* {model 1 here use name and description and set them} */}
             <div className="w-[690px] flex flex-wrap rounded-[15px] h-[95vh] max-h-[778px] bg-white px-10 overflow-y-auto">
                 <div className="head text-[22px] font-[700] text-black mt-[36px]">
                     {heading}
@@ -119,15 +120,6 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
                 </div>
                 <div className="flex flex-wrap pt-4 gap-3">
 
-                    <div className="">
-                        <div className="text-[#767676] text-[12px] font-[500]">
-                            Car name
-                        </div>
-
-                        <input type='text' placeholder='Enter car name' className="flex items-center justify-between  cursor-pointer bg-[#F8F8F8] w-[284px] h-[50px] rounded-xl px-5 text-[14px] font-[400] mt-4" />
-
-
-                    </div>
 
 
                     <div className="w-[284px]">
