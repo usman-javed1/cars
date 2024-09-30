@@ -1,15 +1,15 @@
 import React from 'react'
 import Dropdown from './Dropdown'
 
-const Modal = ({closeModal}) => {
+const Modal = ({ closeModal, heading = "Add new vehicle" }) => {
     return (
         <div className='w-[100vw] h-[100vh] flex fixed justify-center items-center top-0 left-0' style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
             <div className="w-[690px] flex flex-wrap rounded-[15px] h-[95vh] max-h-[778px] bg-white px-10 overflow-y-auto">
                 <div className="head text-[22px] font-[700] text-black mt-[36px]">
-                    Add new vehicle
+                    {heading}
                 </div>
                 <div className="head text-[15px] w-[650px] mt-[18.75px] font-[700] text-black">
-                Vehicle Details
+                    Vehicle Details
                 </div>
                 <div className="flex flex-wrap pt-4 gap-3">
                     <div className="w-[284px]">
@@ -24,7 +24,7 @@ const Modal = ({closeModal}) => {
 
                     <div className="w-[284px]">
                         <div className="text-[#767676] text-[12px] font-[500]">
-                            Choose Category
+                            Vehicle Model
                         </div>
 
                         <div className="">
@@ -34,7 +34,7 @@ const Modal = ({closeModal}) => {
 
                     <div className="w-[284px]">
                         <div className="text-[#767676] text-[12px] font-[500]">
-                            Choose Category
+                            Vehicle Brand
                         </div>
 
                         <div className="">
@@ -44,7 +44,7 @@ const Modal = ({closeModal}) => {
 
                     <div className="w-[284px]">
                         <div className="text-[#767676] text-[12px] font-[500]">
-                            Choose Category
+                            Lease Term
                         </div>
 
                         <div className="">
@@ -54,7 +54,7 @@ const Modal = ({closeModal}) => {
 
                     <div className="">
                         <div className="text-[#767676] text-[12px] font-[500]">
-                            Choose Category
+                            Miles per year
                         </div>
 
                         <input type='text' placeholder='10,000 miles/year' className="flex items-center justify-between  cursor-pointer bg-[#F8F8F8] w-[284px] h-[50px] rounded-xl px-5 text-[14px] font-[400] mt-4" />
@@ -65,7 +65,7 @@ const Modal = ({closeModal}) => {
 
                     <div className="">
                         <div className="text-[#767676] text-[12px] font-[500]">
-                            Choose Category
+                            Monthly Payment
                         </div>
 
                         <input type='text' placeholder='10,000 miles/year' className="flex items-center justify-between  cursor-pointer bg-[#F8F8F8] w-[284px] h-[50px] rounded-xl px-5 text-[14px] font-[400] mt-4" />
@@ -76,7 +76,7 @@ const Modal = ({closeModal}) => {
 
                     <div className="">
                         <div className="text-[#767676] text-[12px] font-[500]">
-                            Choose Category
+                            Number of Seats
                         </div>
 
                         <input type='text' placeholder='10,000 miles/year' className="flex items-center justify-between  cursor-pointer bg-[#F8F8F8] w-[284px] h-[50px] rounded-xl px-5 text-[14px] font-[400] mt-4" />
@@ -86,7 +86,7 @@ const Modal = ({closeModal}) => {
 
                     <div className="w-[284px]">
                         <div className="text-[#767676] text-[12px] font-[500]">
-                            Choose Category
+                            Transmission type
                         </div>
 
                         <div className="">
@@ -96,7 +96,7 @@ const Modal = ({closeModal}) => {
 
                     <div className="">
                         <div className="text-[#767676] text-[12px] font-[500]">
-                            Choose Category
+                            Number of Cylinders
                         </div>
 
                         <input type='text' placeholder='10,000 miles/year' className="flex items-center justify-between  cursor-pointer bg-[#F8F8F8] w-[284px] h-[50px] rounded-xl px-5 text-[14px] font-[400] mt-4" />
