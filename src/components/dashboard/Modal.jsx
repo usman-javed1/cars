@@ -16,6 +16,7 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
     const [transmission, setTransmission] = useState('');
     const [numCylinders, setNumCylinders] = useState('');
     const [images, setImages] = useState([]);
+    const [description, setDescription] = useState('');
 
     // Fetch car details if carId is present (edit mode)
     useEffect(() => {
@@ -39,6 +40,8 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
         }
     }, [carId]);
 
+    const [step, setStep] = useState(1);
+
     // Handle file uploads (image files)
     const handleFileChange = async (e) => {
         const selectedFiles = e.target.files;
@@ -57,7 +60,7 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
             }
         }
 
-        setImages([...images, ...base64Images]); // Append new images to existing ones
+        setImages([...images, ...base64Images]); 
     };
 
     const toBase64 = (file) => {
@@ -71,34 +74,41 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
 
     // Handle form submission
     const saveCar = () => {
-        const formData = new FormData();
-        formData.append('carName', carName);
-        formData.append('category', category);
-        formData.append('model', model);
-        formData.append('brand', brand);
-        formData.append('leaseTerm', leaseTerm);
-        formData.append('milesPerYear', milesPerYear);
-        formData.append('monthlyPayment', monthlyPayment);
-        formData.append('numSeats', numSeats);
-        formData.append('transmission', transmission);
-        formData.append('numCylinders', numCylinders);
-        formData.append('images', images); // Append images
-        for (let pair of formData.entries()) {
-            console.log(pair[0] + ': ' + pair[1]);
-        }
+        const carData = {
+            name: carName,
+            category: category,
+            model: model,
+            brand: brand,
+            leaseTerm: leaseTerm,
+            miles: milesPerYear,
+            monthly_payment: monthlyPayment,
+            seats: numSeats,
+            transType: transmission,
+            cylinder: numCylinders,
+            description: description,
+            photos: images, // Assuming images is an array of URLs or base64 strings
+        };
+    
+        console.log("Car Data:", carData);
+        
 
-        const url = carId ? `/api/cars/${carId}` : '/api/cars'; // Edit or Create endpoint
-        const method = carId ? 'PUT' : 'POST'; // PUT for editing, POST for creating
+        const url = carId ? `http://locahost:3333/car/private/${carId}` : 'http://localhost:3333/car/private';
+        const method = carId ? 'PUT' : 'POST';
 
         fetch(url, {
             method: method,
-            body: formData,
+            body: JSON.stringify(carData),
+            headers: {
+                "Content-Type": "application/json",
+                "authorization": `Bearer ${localStorage.getItem("token")}`
+            }
         })
             .then(response => {
                 if (response.ok) {
                     closeModal(); // Close modal on success
                 } else {
                     console.error('Failed to save car');
+                    alert("Every error is not bad but this error is bad");
                 }
             })
             .catch(err => console.error('Error:', err));
@@ -110,184 +120,207 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
 
     return (
         <div className='w-[100vw] h-[100vh] flex fixed justify-center items-center top-0 left-0' style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
-            {/* {model 1 here use name and description and set them} */}
-            <div className="w-[690px] flex flex-wrap rounded-[15px] h-[95vh] max-h-[778px] bg-white px-10 overflow-y-auto">
-                <div className="head text-[22px] font-[700] text-black mt-[36px]">
-                    {heading}
-                </div>
-                <div className="head text-[15px] w-[650px] mt-[18.75px] font-[700] text-black">
-                    Vehicle Details
-                </div>
-                <div className="flex flex-wrap pt-4 gap-3">
-
-
-
-                    <div className="w-[284px]">
-                        <div className="text-[#767676] text-[12px] font-[500]">
-                            Choose Category
+            {/* {model 1 here use name and description and set them} */}.
+            <div className="w-[690px] ">
+                {step === 1 && <div className="w-[690px] flex flex-wrap rounded-[15px] h-[95vh] max-h-[778px] bg-white px-10 overflow-y-auto overflow-x-hidden">
+                    <div className="">
+                        <div className="head text-[22px] font-[700] text-black mt-[36px]">
+                            {heading}
+                        </div>
+                        <div className="head text-[15px] w-[650px] mt-[18.75px] font-[700] text-black">
+                            Vehicle Details
+                        </div>
+                    </div>
+                    <div className="flex flex-wrap pt-4 gap-3 h-[80%]">
+                        <div className="">
+                            <div className="text-[#767676] text-[12px] font-[500]">
+                                Name
+                            </div>
+                            <input type='text' placeholder='Enter car name' className="flex items-center justify-between  cursor-pointer bg-[#F8F8F8] w-[600px] h-[50px] rounded-xl px-5 text-[14px] font-[400] mt-4" value={carName} onChange={(e) => setCarName(e.target.value)} />
                         </div>
 
                         <div className="">
-                            <Dropdown options={['Sport', 'SUVs ', 'Hatchback', 'Crossover', 'Sedan', 'Electric', 'Hybrid', 'Pickup']} label={category || 'Sport'} onSelect={setCategory} />
+                            <div className="text-[#767676] text-[12px] font-[500]">
+                                Vehicle description (META TAGS)
+                            </div>
+                            <textarea type='text' placeholder='Enter car name' className="flex items-center justify-between  cursor-pointer bg-[#F8F8F8] w-[600px] h-[350px] rounded-xl px-5 text-[14px] py-4  font-[400] mt-4" value={description} onChange={(e) => setDescription(e.target.value)} />
+                        </div>
+                        <div className="w-[600px] mt-5 flex justify-end gap-5 font-[500] pb-[30px]">
+                            <button className="" onClick={closeModal}>
+                                Cancel
+                            </button>
+                            <button className="bg-black text-white px-8 py-4 rounded-[15px]" onClick={() => setStep(2)}>
+                                Next
+                            </button>
                         </div>
                     </div>
 
-                    <div className="w-[284px]">
-                        <div className="text-[#767676] text-[12px] font-[500]">
-                            Vehicle Model
+                </div>}
+                {step === 2 && <div className="w-[690px]  flex-wrap rounded-[15px] h-[95vh] max-h-[778px] bg-white px-10 overflow-y-auto overflow-x-hidden">
+                    <div className="head text-[22px] font-[700] text-black mt-[36px]">
+                        {heading}
+                    </div>
+                    <div className="head text-[15px] w-[650px] mt-[18.75px] font-[700] text-black">
+                        Vehicle Details
+                    </div>
+                    <div className="flex flex-wrap pt-4 gap-3">
+
+                        <div className="w-[284px]">
+                            <div className="text-[#767676] text-[12px] font-[500]">
+                                Choose Category
+                            </div>
+
+                            <div className="">
+                                <Dropdown options={['Sport', 'SUVs ', 'Hatchback', 'Crossover', 'Sedan', 'Electric', 'Hybrid', 'Pickup']} label={category || 'Sport'} onSelect={setCategory} />
+                            </div>
+                        </div>
+
+                        <div className="w-[284px]">
+                            <div className="text-[#767676] text-[12px] font-[500]">
+                                Vehicle Model
+                            </div>
+
+                            <div className="">
+                                <Dropdown options={['K5', 'Optima ', 'Ceed']} label={model || 'K5'} onSelect={setModel} />
+                            </div>
+                        </div>
+
+                        <div className="w-[284px]">
+                            <div className="text-[#767676] text-[12px] font-[500]">
+                                Vehicle Brand
+                            </div>
+
+                            <div className="">
+                                <Dropdown options={['Toyota', 'Kia', 'Tesla ', 'Acura', 'Porshe', 'Volkswagen', 'Opel', 'Mazda', 'BMW']} label={brand || 'Toyota'} onSelect={setBrand} />
+                            </div>
+                        </div>
+
+                        <div className="w-[284px]">
+                            <div className="text-[#767676] text-[12px] font-[500]">
+                                Lease Term
+                            </div>
+
+                            <div className="">
+                                <Dropdown options={['12 months', '24 months ', '36 months']} label={leaseTerm || 'Choose Lease Term'} onSelect={setLeaseTerm} />
+                            </div>
                         </div>
 
                         <div className="">
-                            <Dropdown options={['K5', 'Optima ', 'Ceed']} label={model || 'K5'} onSelect={setModel} />
-                        </div>
-                    </div>
+                            <div className="text-[#767676] text-[12px] font-[500]">
+                                Miles per year
+                            </div>
 
-                    <div className="w-[284px]">
-                        <div className="text-[#767676] text-[12px] font-[500]">
-                            Vehicle Brand
+                            <input type='text' placeholder='10,000 miles/year' className="flex items-center justify-between  cursor-pointer bg-[#F8F8F8] w-[284px] h-[50px] rounded-xl px-5 text-[14px] font-[400] mt-4" value={milesPerYear} onChange={(e) => setMilesPerYear(e.target.value)} />
+
+
+                        </div>
+
+
+                        <div className="">
+                            <div className="text-[#767676] text-[12px] font-[500]">
+                                Monthly Payment
+                            </div>
+
+                            <input type='text' placeholder='1080' className="flex items-center justify-between  cursor-pointer bg-[#F8F8F8] w-[284px] h-[50px] rounded-xl px-5 text-[14px] font-[400] mt-4" value={monthlyPayment} onChange={(e) => setMonthlyPayment(e.target.value)} />
+                        </div>
+
+
+                        <div className="">
+                            <div className="text-[#767676] text-[12px] font-[500]">
+                                Number of Seats
+                            </div>
+
+                            <input type='text' placeholder='10,000 miles/year' className="flex items-center justify-between  cursor-pointer bg-[#F8F8F8] w-[284px] h-[50px] rounded-xl px-5 text-[14px] font-[400] mt-4" value={numSeats} onChange={(e) => setNumSeats(e.target.value)} />
+
+
+                        </div>
+
+                        <div className="w-[284px]">
+                            <div className="text-[#767676] text-[12px] font-[500]">
+                                Transmission type
+                            </div>
+
+                            <div className="">
+                                <Dropdown options={['Automatic', 'Manual transmission']} label={transmission || 'Select transmission type'} onSelect={setTransmission} />
+                            </div>
                         </div>
 
                         <div className="">
-                            <Dropdown options={['Toyota', 'Kia', 'Tesla ', 'Acura', 'Porshe', 'Volkswagen', 'Opel', 'Mazda', 'BMW']} label={brand || 'Toyota'} onSelect={setBrand} />
+                            <div className="text-[#767676] text-[12px] font-[500]">
+                                Number of Cylinders
+                            </div>
+
+                            <input type='text' placeholder='10,000 miles/year' className="flex items-center justify-between  cursor-pointer bg-[#F8F8F8] w-[284px] h-[50px] rounded-xl px-5 text-[14px] font-[400] mt-4" value={numCylinders} onChange={(e) => setNumCylinders(e.target.value)} />
+
                         </div>
                     </div>
 
-                    <div className="w-[284px]">
-                        <div className="text-[#767676] text-[12px] font-[500]">
-                            Lease Term
-                        </div>
 
+                    <div className="head text-[15px] mt-[18.75px] font-[700] text-black">
+                        Add photos
+                    </div>
+                    <br />
+                    <br />
+                    <div className="w-[40px] -mt-2"></div>
+
+                    <div className="text-[12px] font-[400] flex gap-3 text-[#4E4E4E]">
+                        <img src={require("../../images/info.png")} alt="" />
                         <div className="">
-                            <Dropdown options={['12 months', '24 months ', '36 months']} label={leaseTerm || 'Choose Lease Term'} onSelect={setLeaseTerm} />
+                            Upload up to 10 images of any damages or the vehicle condition upon return
                         </div>
                     </div>
 
-                    <div className="">
-                        <div className="text-[#767676] text-[12px] font-[500]">
-                            Miles per year
+                    <div className="w-[80px] mt-10"></div>
+
+                    <input
+                        type="file"
+                        multiple
+                        accept="image/*"
+                        onChange={handleFileChange}
+                        className="bg-lightgray mt-3 text-[16px] font-[500] px-7 py-4 rounded-[10px] cursor-pointer hidden"
+                        id='photoSelector'
+                    />
+                    <div className="w-[10px]"></div>
+
+
+                    <label htmlFor='photoSelector' className="bg-lightgray mt-3 text-[16px] font-[500] px-7 py-4 rounded-[10px] cursor-pointer">
+                        Browse files
+                    </label>
+
+                    {images.map((image, index) => (
+                        <div key={index} className="relative w-[66px] h-[66px] mx-3 my-auto">
+                            <img
+                                src={image}
+                                alt="Uploaded Image"
+                                className="w-full h-full rounded-xl object-contain"
+                                onError={(e) => {
+                                    e.target.onerror = null; // Prevents infinite loop if image keeps failing
+                                    e.target.src = 'fallback-image-url'; // Set a fallback image if needed
+                                    console.error('Image failed to load:', image);
+                                }}
+                            />
+                            <button
+                                onClick={() => {
+                                    const updatedImages = images.filter((_, i) => i !== index); // Remove image
+                                    setImages(updatedImages);
+                                }}
+                                className="absolute top-[-5px] right-[-5px] w-4 h-4 text-white bg-black rounded-full flex justify-center items-center text-[14px]"
+                            >
+                                &times; {/* HTML character for cross (×) */}
+                            </button>
                         </div>
-
-                        <input type='text' placeholder='10,000 miles/year' className="flex items-center justify-between  cursor-pointer bg-[#F8F8F8] w-[284px] h-[50px] rounded-xl px-5 text-[14px] font-[400] mt-4" value={milesPerYear} onChange={(e) => setMilesPerYear(e.target.value)} />
-
-
-                    </div>
+                    ))}
 
 
-                    <div className="">
-                        <div className="text-[#767676] text-[12px] font-[500]">
-                            Monthly Payment
-                        </div>
-
-                        <input type='text' placeholder='1080' className="flex items-center justify-between  cursor-pointer bg-[#F8F8F8] w-[284px] h-[50px] rounded-xl px-5 text-[14px] font-[400] mt-4" value={monthlyPayment} onChange={(e) => setMonthlyPayment(e.target.value)} />
-
-
-                    </div>
-
-
-                    <div className="">
-                        <div className="text-[#767676] text-[12px] font-[500]">
-                            Number of Seats
-                        </div>
-
-                        <input type='text' placeholder='10,000 miles/year' className="flex items-center justify-between  cursor-pointer bg-[#F8F8F8] w-[284px] h-[50px] rounded-xl px-5 text-[14px] font-[400] mt-4" value={numSeats} onChange={(e) => setNumSeats(e.target.value)} />
-
-
-                    </div>
-
-                    <div className="w-[284px]">
-                        <div className="text-[#767676] text-[12px] font-[500]">
-                            Transmission type
-                        </div>
-
-                        <div className="">
-                            <Dropdown options={['Automatic', 'Manual transmission']} label={transmission || 'Select transmission type'} onSelect={setTransmission} />
-                        </div>
-                    </div>
-
-                    <div className="">
-                        <div className="text-[#767676] text-[12px] font-[500]">
-                            Number of Cylinders
-                        </div>
-
-                        <input type='text' placeholder='10,000 miles/year' className="flex items-center justify-between  cursor-pointer bg-[#F8F8F8] w-[284px] h-[50px] rounded-xl px-5 text-[14px] font-[400] mt-4" value={numCylinders} onChange={(e) => setNumCylinders(e.target.value)} />
-
-
-                    </div>
-
-
-                </div>
-
-
-                <div className="head text-[15px] mt-[18.75px] font-[700] text-black">
-                    Add photos
-                </div>
-                <br />
-                <br />
-                <div className="w-[40px]"></div>
-
-
-
-                <div className="text-[12px] font-[400] flex gap-3 text-[#4E4E4E]">
-                    <img src={require("../../images/info.png")} alt="" />
-                    <div className="">
-                        Upload up to 10 images of any damages or the vehicle condition upon return
-                    </div>
-                </div>
-
-                <div className="w-[80px]"></div>
-
-                <input
-                    type="file"
-                    multiple
-                    accept="image/*"
-                    onChange={handleFileChange}
-                    className="bg-lightgray mt-3 text-[16px] font-[500] px-7 py-4 rounded-[10px] cursor-pointer hidden"
-                    id='photoSelector'
-                />
-                <div className="w-[10px]"></div>
-
-
-
-
-
-
-                <label htmlFor='photoSelector' className="bg-lightgray mt-3 text-[16px] font-[500] px-7 py-4 rounded-[10px] cursor-pointer">
-                    Browse files
-                </label>
-
-                {images.map((image, index) => (
-                    <div key={index} className="relative w-[66px] h-[66px] mx-3 my-auto">
-                        <img
-                            src={image}
-                            alt="Uploaded Image"
-                            className="w-full h-full rounded-xl object-contain"
-                            onError={(e) => {
-                                e.target.onerror = null; // Prevents infinite loop if image keeps failing
-                                e.target.src = 'fallback-image-url'; // Set a fallback image if needed
-                                console.error('Image failed to load:', image);
-                            }}
-                        />
-                        <button
-                            onClick={() => {
-                                const updatedImages = images.filter((_, i) => i !== index); // Remove image
-                                setImages(updatedImages);
-                            }}
-                            className="absolute top-[-5px] right-[-5px] w-4 h-4 text-white bg-black rounded-full flex justify-center items-center text-[14px]"
-                        >
-                            &times; {/* HTML character for cross (×) */}
+                    <div className="w-[600px] flex justify-end gap-5 font-[500] pb-[30px]">
+                        <button className="" onClick={closeModal}>
+                            Cancel
+                        </button>
+                        <button className="bg-black text-white px-8 py-4 rounded-[15px]" onClick={saveCar}>
+                            Save
                         </button>
                     </div>
-                ))}
-
-
-                <div className="w-[690px] flex justify-end gap-5 font-[500] pb-[30px]">
-                    <button className="" onClick={closeModal}>
-                        Cancel
-                    </button>
-                    <button className="bg-black text-white px-8 py-4 rounded-[15px]" onClick={saveCar}>
-                        Save
-                    </button>
-                </div>
+                </div>}
             </div>
         </div>
     )
