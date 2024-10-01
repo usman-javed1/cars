@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 
 const CarDetailsHero = () => {
+    const swiperRef = useRef(null);
+
     const images = [
         require("../../../images/315_isolated_realistic_metallic_white_high_performance_racing_super_car_from_left_side_view 1 (1).png"),
         require("../../../images/315_isolated_realistic_metallic_white_high_performance_racing_super_car_from_left_side_view 1 (1).png"),
@@ -13,9 +17,9 @@ const CarDetailsHero = () => {
 
     return (
         <div className="lg:mb-20 mb-32 flex flex-col items-center">
-            <div className='lg:h-[493px] h-[739px] bg-[#383838] lg:w-full w-[95%] lg:flex-row flex-col rounded-[38px] mb-10 flex lg:justify-between items-center relative'>
-                <div className="imageSection lg:-ml-[90px] -ml-[10%] lg:mt-0 lg:w-[738px] w-[119%] mt-10">
-                    <img src={selectedImage} alt="Selected Car" className='lg:w-[738px] w-[119%] lg:h-[280px] h-[140px]'  />
+            <div className='lg:h-[493px] h-[739px] bg-[#383838] lg:w-full w-[95%] lg:flex-row flex-col rounded-[38px] mb-10 flex lg:justify-between items-center relative px-10'>
+                <div className="imageSection  lg:mt-0 lg:w-[738px]  bg-white rounded-[30px] flex items-center lg:h-[370px] w-[119%] mt-10">
+                    <img src={selectedImage} alt="Selected Car" className='lg:w-[738px] w-[119%] lg:h-[280px] h-[140px]' />
                 </div>
                 <div className="content px-[6.4%] lg:ml-0 ml-2 lg:mt-0 mt-14 lg:justify-start justify-center">
                     <div className="tag text-[#959595] text-[14px] font-[500]">
@@ -68,19 +72,55 @@ const CarDetailsHero = () => {
             </div>
 
             <div className=" lg:flex justify-between hidden container"
-                style={{justifyContent: "space-between"}}
+                style={{ justifyContent: "space-between" }}
             >
-                {images.map((image, index) => (
-                    <div
-                        key={index}
-                        onClick={() => setSelectedImage(image)} // Update the selected image when clicked
-                        className="w-[24%] cursor-pointer h-[240px] bg-lightgray rounded-[30px] flex justify-center items-center"
+
+                <div className="flex lg:gap-5 gap-[6px] lg:w-full md:w-full w-auto max-w-full overflow-hidden mx-auto ">
+
+                    {/* Apply drag to all cards */}
+                    <Swiper
+                        spaceBetween={20}
+                        slidesPerView={3}
+                        speed={1000}
+                        grabCursor={true}
+                        onSwiper={(swiper) => {
+                            swiperRef.current = swiper;
+                        }}
+                        loop={true}
+                        breakpoints={{
+                            320: {
+                                slidesPerView: 1,
+                                spaceBetween: 28,
+                            },
+                            768: {
+                                slidesPerView: 2,
+                                spaceBetween: 20,
+                            },
+                            1024: {
+                                slidesPerView: 3,
+                                spaceBetween: 20,
+                            },
+                            1441: {
+                                slidesPerView: 5,
+                                spaceBetween: 20,
+                            },
+                        }}
                     >
-                        <img src={image} alt={`Car ${index + 1}`} className='w-[243px] h-[93px]' />
-                    </div>
-                ))}
+                        {images.map((image, index) => (
+                            <SwiperSlide key={index}>
+                                <div
+                                    key={index}
+                                    onClick={() => setSelectedImage(image)} // Update the selected image when clicked
+                                    className="w-[24%] cursor-pointer h-[240px] bg-lightgray rounded-[30px] flex justify-center items-center"
+                                >
+                                    <img src={image} alt={`Car ${index + 1}`} className='w-[243px] h-[93px]' />
+                                </div>
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                </div>
             </div>
-        </div>
+        </div >
     );
 }
 
