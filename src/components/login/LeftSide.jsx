@@ -102,8 +102,8 @@ const LeftSide = () => {
                         </button>
                     </div>
 
-                    <div className="text-[14px] font-[500] text-[#4C4C4C] mt-10">
-                        Forgot your password?
+                    <div className="text-[14px] font-[500] text-[#4C4C4C] mt-10 text-center">
+                        <span>Forgot your password?</span>
                         <span className="text-[#FFB600] cursor-pointer"> Reset Password</span>
                     </div>
                 </form>
