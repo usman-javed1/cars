@@ -3,11 +3,11 @@ import LeftSide from '../components/login/LeftSide'
 
 const Login = () => {
     return (
-        <div className='flex pl-20 py-20 px-4 min-h-[100vh] w-full bg-black justify-between items-center'>
-            <div className="h-[90vh] max-h-[780px]">
+        <div className='flex p-[40px] min-h-screen w-full bg-black justify-between items-center'>
+            <div className="h-[calc(100%-80px)] max-h-[780px] mt-[20px] ml-[40px]">
                 <LeftSide />
             </div>
-            <img src={require("../images/Mask group (6).png")} className='h-[90vh] w-[45%] max-h-[780px]' alt="" />
+            <img src={require("../images/Mask group (6).png")} className='h-[calc(100%-80px)] 2xl:w-[45%] lg:w-[50%]' alt="" />
         </div>
     )
 }

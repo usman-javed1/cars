@@ -147,7 +147,16 @@ color: #959595;
   padding-top: 30px;
   width: 58%;
 }
+
+.carDetailsImages .swiper {
+  display: none;
+}
+
 @media only screen and (max-width: 600px){
+  .carDetailsImages .swiper {
+    display: block;
+  }  
+
   .class-for-h1{
     font-family: Objectivity;
     font-size: 40px;
