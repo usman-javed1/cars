@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 
 const LeftSide = () => {
@@ -6,6 +7,7 @@ const LeftSide = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -14,7 +16,7 @@ const LeftSide = () => {
         setError('');
 
         try {
-            const response = await fetch('http://localhost:3333/user/login', {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -46,13 +48,13 @@ const LeftSide = () => {
     };
 
     return (
-        <div className="text-white h-[90vh]">
+        <div className="text-white h-[95vh] justify-between">
             <div className="logo ">
                 <Link to="/">
                     <img src={require("../../images/logo.png")} alt="logo" width={142} height={42} />
                 </Link>
             </div>
-            <div className="mt-[25%]">
+            <div className="mt-[20%]">
                 <div className="">
                     <div className="text-[45px] font-[700]">
                         Log in to WheelDeal
@@ -76,18 +78,31 @@ const LeftSide = () => {
                         />
                     </div>
 
-                    <div className="mt-[20px]">
+                    <div className="mt-[20px] relative w-[400px]">
                         <div className="text-[12px] font-[500]">
                             Password
                         </div>
                         <input
-                            type="password"
+                            type={isPasswordVisible ? 'text' : 'password'}
                             placeholder="Enter Password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             className="flex items-center justify-between cursor-pointer w-[400px] h-[50px] rounded-xl px-5 text-[14px] font-[400] mt-4"
                             style={{ backgroundColor: 'rgba(255,255,255,0.1)' }}
                         />
+                        <span
+                            onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+                            style={{
+                                position: 'absolute',
+                                right: '20px',
+                                top: '70%',
+                                transform: 'translateY(-50%)',
+                                cursor: 'pointer',
+                                color: "white"
+                            }}
+                        >
+                            {isPasswordVisible ? <FaEyeSlash /> : <FaEye />}
+                        </span>
                     </div>
 
                     {error && <div className="text-red-500 mt-4">{error}</div>}
@@ -102,7 +117,7 @@ const LeftSide = () => {
                         </button>
                     </div>
 
-                    <div className="text-[14px] font-[500] text-[#4C4C4C] mt-10 text-center">
+                    <div className="text-[14px] font-[500] text-[#4C4C4C] mt-10 w-[380px] text-center">
                         <span>Forgot your password?</span>
                         <span className="text-[#FFB600] cursor-pointer"> Reset Password</span>
                     </div>

@@ -76,6 +76,38 @@ const StatesStore = ({ children }) => {
             console.log('Error fetching data:', error);
         }
     };
+
+    const fetchDataAdmin = async () => {
+        try {
+            const queryParams = new URLSearchParams();
+    
+            
+            queryParams.append('page', viewPage)
+    
+            if (selectedValues.Categories.length > 0) {
+                queryParams.append('categories', selectedValues.Categories.join(','));
+            }
+
+    
+            // Fetch the data with the applied filters
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/car/public?${queryParams.toString()}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+    
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+    
+            const data = await response.json();
+            setCarData(data.data);
+            console.log(data); // Handle the filtered data as needed
+        } catch (error) {
+            console.log('Error fetching data:', error);
+        }
+    };
     
     
     return (
