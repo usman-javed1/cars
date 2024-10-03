@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import FiltersSection from './FiltersSection';
 
 import { motion } from "framer-motion"
+import { context } from '../../context/context';
 
 
 
@@ -21,24 +22,27 @@ const LeftSideHeader = ({ searchResults }) => {
 
 
     const dropdownOption = [
-        "Featured", "Most Popular", "Oldest to Newest", "Newest to Oldest",
-        "Mileage: Low to High", "Mileage: High to Low", "Price: Low to High",
-        "Price: High to Low"
+        {name:"Oldest to Newest", value: "OTN"}, {name:"Newest to Oldest", value: "NTO"},
+        {name:"Mileage: Low to High", value: "MLTH"}, {name:"Mileage: High to Low", value: "MHTL"}, {name:"Price: Low to High", value: "PLTH"},
+        {name:"Price: High to Low", value: "PHTL"}
     ];
 
 
-    const [activeSort, setActiveSort] = useState("Featured");
+
+
+    
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const [selectedValues, setSelectedValues] = useState({
-        Make: ["Acura"],
-        Categories: [],
-        Model: [],
-        bodyType: ["Sedan"],
-        Price: []
-    });
+    // const [selectedValues, setSelectedValues] = useState({
+    //     Make: ["Acura"],
+    //     Categories: [],
+    //     Model: [],
+    //     bodyType: ["Sedan"],
+    //     Price: []
+    // });
     const [activeFilters, setActiveFilters] = useState([]);
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
+    const {selectedValues, setSelectedValues, activeSort, setActiveSort} = useContext(context) 
 
     // Function to clear all filters
     const clearAllFilters = () => {
@@ -158,7 +162,7 @@ const LeftSideHeader = ({ searchResults }) => {
                     <div className="p-4 gap-3 text-[14px] font-[500] border rounded-[10px] border-[#E9E9E9] lg:flex hidden" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
                         <img src={require("../../images/filter icon.png")} className='w-[20px] h-[20px]' alt="" />
                         <div className="text-[14px] font-[500]">
-                            {activeSort}
+                            {activeSort.name}
                         </div>
                         <img src={require("../../images/Frame (2).png")} className='w-[20px] h-[20px]' alt="" />
                     </div>
@@ -182,7 +186,7 @@ const LeftSideHeader = ({ searchResults }) => {
                                 setActiveSort(value);
                                 setIsDropdownOpen(false); // Close dropdown on selection
                             }}>
-                                {value}
+                                {value.name}
                             </div>
                         ))}
                     </div>
@@ -237,20 +241,20 @@ const SortOverLay = ({ dropdownOption, setActiveSort, activeSort, toggleOverlay,
                 </div>
                 <div className="text-[16px] font-[700] flex gap-2 items-center my-7">
                     <div className="w-[6px] h-[6px] bg-black rounded-full"></div>
-                    {activeSort}
+                    {activeSort.name}
                 </div>
                 {dropdownOption.map((value) => <div className="" onClick={() => setActiveSort(value)}>
                     <div className="bg-[#E9E9E9] h-[1px] w-[100%] my-5"></div>
 
                     <div className="w-[325px] h-[44px] text-[#636363] text-[16px] font-[500] py-4 px-3  items-center flex cursor-pointer ">
-                        {value}
+                        {value.name}
                     </div>
 
                 </div>)}
 
                 <div className="button flex lg:gap-10 gap-3">
                     <button className='w-full h-[56px] flex justify-center items-center font-[500] bg-black text-white rounded-[10px] lg:text-base text-[14px] mt-20 mx-auto lg:w-[300px]'>
-                        Show results (232)
+                        Show results
                     </button>
                     <button className='w-full h-[56px] flex  items-center font-[500]  rounded-[10px] mt-20 mx-auto'>
                         <div className="flex items-center justify-center gap-3" onClick={clearAllFilters}>

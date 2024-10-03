@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import styles from './HeroSection.module.css';
 import { motion, AnimatePresence } from 'framer-motion';
 import DatePicker from 'react-datepicker';
@@ -31,6 +31,7 @@ import Hunda2 from './icons/Hunda2'
 import All from './icons/All';
 import { AiOutlineArrowUp, AiOutlineArrowDown } from 'react-icons/ai'; // Import new icons
 import { Link } from 'react-router-dom';
+import { context } from '../../../context/context';
 
 
 // import React, { useState, useEffect } from 'react';
@@ -260,27 +261,19 @@ export const selections = [
         name: "Make",
         options: [
             { value: 'All', label: <All /> },
-            { value: 'toyota', label: <Jeep /> },
-            { value: 'honda', label: <Merce /> },
-            { value: '1', label: <CircleIcon /> },
-            { value: '2', label: <AIcon /> },
-            { value: '3', label: <Benz /> },
-            { value: '4', label: <Tesla /> },
-            { value: '5', label: <Oval /> },
-            { value: '6', label: <OvalO /> },
-            { value: '7', label: <Hunda /> },
-            { value: '8', label: <VerticalBox /> },
-            { value: '9', label: <Animal /> },
-            { value: '10', label: <KN /> },
-            { value: '11', label: <Bugati /> },
-            { value: '12 ', label: <OvalArrow /> },
-            { value: '13', label: <OvalTriangle /> },
-            { value: '14', label: <DoubleTriangle /> },
-            { value: '15', label: <CircleImage /> },
-            { value: '16', label: <Suzuki /> },
-            { value: '17', label: <DoubleLine /> },
-            { value: '18', label: <DotTriangle /> },
-            { value: '19', label: <Hunda2 /> },
+            // { value: 'toyota', label: <Jeep /> },
+            // { value: 'honda', label: <Merce /> },
+            { value: 'Volkswagen', label: <CircleIcon /> },
+            { value: 'Acura', label: <AIcon /> },
+            { value: 'BMW', label: <Benz /> },
+            { value: 'Tesla', label: <Tesla /> },
+            { value: 'Mazda', label: <Oval /> },
+            { value: 'Toyota', label: <OvalO /> },
+            // { value: '7', label: <Hunda /> },
+            // { value: '8', label: <VerticalBox /> },
+            // { value: '9', label: <Animal /> },
+            { value: 'Kia', label: <KN /> },
+            { value: 'Porshe', label: <Bugati /> },
         ],
         default: "All makes",
         width: '962px',
@@ -355,19 +348,23 @@ const HeroSection = () => {
     };
 
     const [openDropdown, setOpenDropdown] = useState(null);
-    const [selectedValues, setSelectedValues] = useState({
-        Make: ['All'],  // "All" is selected by default for "Make"
-        Categories: [],
-        Model: [],
-        Year: [],
-        Price: []
-    });
+    // const [selectedValues, setSelectedValues] = useState({
+    //     Make: ['All'],  // "All" is selected by default for "Make"
+    //     Categories: [],
+    //     Model: [],
+    //     Year: [],
+    //     Price: []
+    // });
 
-    const [priceRange, setPriceRange] = useState({ min: 0, max: 100 });
+    const {selectedValues, setSelectedValues, setCarData, fetchData, priceRange, setPriceRange} = useContext(context) 
+
+    // const [priceRange, setPriceRange] = useState({ min: 0, max: 100 });
 
     const handlePriceChange = (newRange) => {
         setPriceRange(newRange);
     };
+
+    
 
 
 
@@ -430,7 +427,7 @@ const HeroSection = () => {
                             </div>
                         ))}
                         <div className="">
-                            <Link to="/view">
+                            <Link to="/view" >
                                 <button className='w-[162px] h-[56px] flex justify-center items-center bg-[#000] text-[16px] font-[500] rounded-[10px] mx-[15px]
                                 hover:bg-[#F6B000] transition-all duration-300'>
                                     Browse vehicles
@@ -479,7 +476,7 @@ const HeroSection = () => {
                         />
                         <div className="button">
                             <button className='w-full h-[56px] flex justify-center items-center font-[500] bg-black text-white rounded-[10px] mt-20 mx-auto'>
-                                Show results (232)
+                                Show results
                             </button>
                         </div>
                     </motion.div>

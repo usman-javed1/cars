@@ -16,7 +16,8 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
     const [transmission, setTransmission] = useState('');
     const [numCylinders, setNumCylinders] = useState('');
     const [images, setImages] = useState([]);
-    const [description, setDescription] = useState('');
+    const [vehicleType, setVehicleType] = useState('');
+    // const [description, setDescription] = useState('');
 
     // Fetch car details if carId is present (edit mode)
     useEffect(() => {
@@ -60,7 +61,7 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
             }
         }
 
-        setImages([...images, ...base64Images]); 
+        setImages([...images, ...base64Images]);
     };
 
     const toBase64 = (file) => {
@@ -85,12 +86,13 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
             seats: numSeats,
             transType: transmission,
             cylinder: numCylinders,
-            description: description,
-            photos: images, // Assuming images is an array of URLs or base64 strings
+            vehicleType: vehicleType,
+            // description: description,
+            photos: images,
         };
-    
+
         console.log("Car Data:", carData);
-        
+
 
         const url = carId ? `http://locahost:3333/car/private/${carId}` : 'http://localhost:3333/car/private';
         const method = carId ? 'PUT' : 'POST';
@@ -105,7 +107,7 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
         })
             .then(response => {
                 if (response.ok) {
-                    closeModal(); // Close modal on success
+                    closeModal();
                 } else {
                     console.error('Failed to save car');
                     alert("Every error is not bad but this error is bad");
@@ -124,14 +126,21 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
             <div className="w-[690px] ">
                 {step === 1 && <div className="w-[690px] flex flex-wrap rounded-[15px] h-[95vh] max-h-[778px] bg-white px-10 overflow-y-auto overflow-x-hidden">
                     <div className="">
-                        <div className="head text-[22px] font-[700] text-black mt-[36px]">
+
+                        <div className="head flex text-[16px] text-[#767676] w-[650px]  font-[500]  mt-[36px]">
+                            <div className="">
+                                Add new vehicle
+                            </div>
+                            <div className="ml-[30px] text-[500] text-[#B9B9B9]">
+                                Step 1/3
+                            </div>
+                        </div>
+
+                        <div className="head text-[30px] font-[700] text-black mt-[36px]">
                             {heading}
                         </div>
-                        <div className="head text-[15px] w-[650px] mt-[18.75px] font-[700] text-black">
-                            Vehicle Details
-                        </div>
                     </div>
-                    <div className="flex flex-wrap pt-4 gap-3 h-[80%]">
+                    <div className="flex flex-col justify-between flex-wrap pt-4 gap-3 h-[80%]">
                         <div className="">
                             <div className="text-[#767676] text-[12px] font-[500]">
                                 Name
@@ -139,12 +148,6 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
                             <input type='text' placeholder='Enter car name' className="flex items-center justify-between  cursor-pointer bg-[#F8F8F8] w-[600px] h-[50px] rounded-xl px-5 text-[14px] font-[400] mt-4" value={carName} onChange={(e) => setCarName(e.target.value)} />
                         </div>
 
-                        <div className="">
-                            <div className="text-[#767676] text-[12px] font-[500]">
-                                Vehicle description (META TAGS)
-                            </div>
-                            <textarea type='text' placeholder='Enter car name' className="flex items-center justify-between  cursor-pointer bg-[#F8F8F8] w-[600px] h-[350px] rounded-xl px-5 text-[14px] py-4  font-[400] mt-4" value={description} onChange={(e) => setDescription(e.target.value)} />
-                        </div>
                         <div className="w-[600px] mt-5 flex justify-end gap-5 font-[500] pb-[30px]">
                             <button className="" onClick={closeModal}>
                                 Cancel
@@ -157,11 +160,17 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
 
                 </div>}
                 {step === 2 && <div className="w-[690px]  flex-wrap rounded-[15px] h-[95vh] max-h-[778px] bg-white px-10 overflow-y-auto overflow-x-hidden">
-                    <div className="head text-[22px] font-[700] text-black mt-[36px]">
-                        {heading}
+                    <div className="head flex text-[16px] text-[#767676] w-[650px]  font-[500]  mt-[36px]">
+                        <div className="">
+                            Add new vehicle
+                        </div>
+                        <div className="ml-[30px] text-[500] text-[#B9B9B9]">
+                            Step 2/3
+                        </div>
                     </div>
-                    <div className="head text-[15px] w-[650px] mt-[18.75px] font-[700] text-black">
-                        Vehicle Details
+
+                    <div className="head text-[30px] font-[700] text-black mt-[36px]">
+                        Vehicle details
                     </div>
                     <div className="flex flex-wrap pt-4 gap-3">
 
@@ -182,6 +191,16 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
 
                             <div className="">
                                 <Dropdown options={['K5', 'Optima ', 'Ceed']} label={model || 'K5'} onSelect={setModel} />
+                            </div>
+                        </div>
+
+                        <div className="w-[284px]">
+                            <div className="text-[#767676] text-[12px] font-[500]">
+                                Vehicle Type
+                            </div>
+
+                            <div className="">
+                                <Dropdown options={['Sedan', 'Cargo Van', 'Convertible ', 'Hatchback', 'Mnivan', 'Passenger Van', 'SUV', 'Truck', 'Wagon']} label={vehicleType || 'Choose Vehicle Type'} onSelect={setVehicleType} />
                             </div>
                         </div>
 
@@ -230,7 +249,7 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
                                 Number of Seats
                             </div>
 
-                            <input type='text' placeholder='10,000 miles/year' className="flex items-center justify-between  cursor-pointer bg-[#F8F8F8] w-[284px] h-[50px] rounded-xl px-5 text-[14px] font-[400] mt-4" value={numSeats} onChange={(e) => setNumSeats(e.target.value)} />
+                            <input type='text' placeholder='5' className="flex items-center justify-between  cursor-pointer bg-[#F8F8F8] w-[284px] h-[50px] rounded-xl px-5 text-[14px] font-[400] mt-4" value={numSeats} onChange={(e) => setNumSeats(e.target.value)} />
 
 
                         </div>
@@ -250,78 +269,116 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
                                 Number of Cylinders
                             </div>
 
-                            <input type='text' placeholder='10,000 miles/year' className="flex items-center justify-between  cursor-pointer bg-[#F8F8F8] w-[284px] h-[50px] rounded-xl px-5 text-[14px] font-[400] mt-4" value={numCylinders} onChange={(e) => setNumCylinders(e.target.value)} />
+                            <input type='text' placeholder='3' className="flex items-center justify-between  cursor-pointer bg-[#F8F8F8] w-[284px] h-[50px] rounded-xl px-5 text-[14px] font-[400] mt-4" value={numCylinders} onChange={(e) => setNumCylinders(e.target.value)} />
 
                         </div>
                     </div>
 
 
-                    <div className="head text-[15px] mt-[18.75px] font-[700] text-black">
-                        Add photos
-                    </div>
-                    <br />
-                    <br />
-                    <div className="w-[40px] -mt-2"></div>
-
-                    <div className="text-[12px] font-[400] flex gap-3 text-[#4E4E4E]">
-                        <img src={require("../../images/info.png")} alt="" />
-                        <div className="">
-                            Upload up to 10 images of any damages or the vehicle condition upon return
-                        </div>
-                    </div>
-
-                    <div className="w-[80px] mt-10"></div>
-
-                    <input
-                        type="file"
-                        multiple
-                        accept="image/*"
-                        onChange={handleFileChange}
-                        className="bg-lightgray mt-3 text-[16px] font-[500] px-7 py-4 rounded-[10px] cursor-pointer hidden"
-                        id='photoSelector'
-                    />
-                    <div className="w-[10px]"></div>
-
-
-                    <label htmlFor='photoSelector' className="bg-lightgray mt-3 text-[16px] font-[500] px-7 py-4 rounded-[10px] cursor-pointer">
-                        Browse files
-                    </label>
-
-                    {images.map((image, index) => (
-                        <div key={index} className="relative w-[66px] h-[66px] mx-3 my-auto">
-                            <img
-                                src={image}
-                                alt="Uploaded Image"
-                                className="w-full h-full rounded-xl object-contain"
-                                onError={(e) => {
-                                    e.target.onerror = null; // Prevents infinite loop if image keeps failing
-                                    e.target.src = 'fallback-image-url'; // Set a fallback image if needed
-                                    console.error('Image failed to load:', image);
-                                }}
-                            />
-                            <button
-                                onClick={() => {
-                                    const updatedImages = images.filter((_, i) => i !== index); // Remove image
-                                    setImages(updatedImages);
-                                }}
-                                className="absolute top-[-5px] right-[-5px] w-4 h-4 text-white bg-black rounded-full flex justify-center items-center text-[14px]"
-                            >
-                                &times; {/* HTML character for cross (×) */}
+                    <div className="w-[600px] flex justify-between font-[500] pb-[30px] items-center">
+                        <button className="mt-10 flex gap-1 justify-center items-center" onClick={() => setStep(step - 1)}>
+                            <img src={require("../../images/back.png")} alt="" />
+                            Back
+                        </button>
+                        <div className=" mt-10 flex justify-end gap-5 ">
+                            <button className="" onClick={closeModal}>
+                                Cancel
+                            </button>
+                            <button className="bg-black text-white px-8 py-4 rounded-[15px]" onClick={() => setStep(3)}>
+                                Next
                             </button>
                         </div>
-                    ))}
-
-
-                    <div className="w-[600px] flex justify-end gap-5 font-[500] pb-[30px]">
-                        <button className="" onClick={closeModal}>
-                            Cancel
-                        </button>
-                        <button className="bg-black text-white px-8 py-4 rounded-[15px]" onClick={saveCar}>
-                            Save
-                        </button>
                     </div>
                 </div>}
+                {step === 3 && <div className="w-[690px] flex flex-wrap rounded-[15px] h-[95vh] max-h-[778px] bg-white px-10 overflow-y-auto overflow-x-hidden">
+                    <div className="">
+
+                        <div className="head flex text-[16px] text-[#767676] w-[650px]  font-[500]  mt-[36px]">
+                            <div className="">
+                                Add new vehicle
+                            </div>
+                            <div className="ml-[30px] text-[500] text-[#B9B9B9]">
+                                Step 3/3
+                            </div>
+                        </div>
+
+                        <div className="head text-[30px] font-[700] text-black mt-[36px]">
+                            {"Add photos"}
+                        </div>
+                    </div>
+                    <div className="flex flex-col justify-between flex-wrap pt-4 gap-3 h-[80%]">
+                        <div className="">
+
+                            <div className="text-[12px] font-[400] flex gap-3 text-[#4E4E4E]">
+                                <img src={require("../../images/info.png")} alt="" />
+                                <div className="">
+                                    Upload up to 10 images of any damages or the vehicle condition upon return
+                                </div>
+                            </div>
+
+                            <div className="w-[80px] mt-10"></div>
+
+                            <input
+                                type="file"
+                                multiple
+                                accept="image/*"
+                                onChange={handleFileChange}
+                                className="bg-lightgray mt-3 text-[16px] font-[500] px-7 py-4 rounded-[10px] cursor-pointer hidden"
+                                id='photoSelector'
+                            />
+                            <div className="w-[10px]"></div>
+
+
+                            <label htmlFor='photoSelector' className="bg-lightgray mt-3 text-[16px] font-[500] px-7 py-4 rounded-[10px] cursor-pointer">
+                                Browse files
+                            </label>
+                            <div className="flex gap-2">
+                                {images.map((image, index) => (
+                                    <div key={index} className="mt-10 relative w-[138px] h-[136px] mx-3 my-auto">
+                                        <img
+                                            src={image}
+                                            alt="Uploaded Image"
+                                            className="w-full h-full rounded-xl object-contain"
+                                            onError={(e) => {
+                                                e.target.onerror = null; // Prevents infinite loop if image keeps failing
+                                                e.target.src = 'fallback-image-url'; // Set a fallback image if needed
+                                                console.error('Image failed to load:', image);
+                                            }}
+                                        />
+                                        <button
+                                            onClick={() => {
+                                                const updatedImages = images.filter((_, i) => i !== index); // Remove image
+                                                setImages(updatedImages);
+                                            }}
+                                            className="absolute top-[-5px] right-[-5px] w-4 h-4 text-white bg-black rounded-full flex justify-center items-center text-[14px]"
+                                        >
+                                            &times; {/* HTML character for cross (×) */}
+                                        </button>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+
+                        <div className="w-[600px] flex justify-between font-[500] pb-[30px] items-center">
+                            <button className="mt-10 flex gap-1 justify-center items-center" onClick={() => setStep(step - 1)}>
+                                <img src={require("../../images/back.png")} alt="" />
+                                Back
+                            </button>
+                            <div className=" mt-10 flex justify-end gap-5 ">
+                                <button className="" onClick={closeModal}>
+                                    Cancel
+                                </button>
+                                <button className="bg-black text-white px-8 py-4 rounded-[15px]" onClick={() => saveCar()}>
+                                    Next
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>}
             </div>
+
         </div>
     )
 }
