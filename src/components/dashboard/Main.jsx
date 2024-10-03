@@ -21,7 +21,7 @@ const Main = () => {
     return (
         <div>
             {/* Search and User Info */}
-            <div className="h-[60px] flex justify-between items-center w-[83vw] px-10" style={{ borderBottom: "1px solid #E9E9E9" }}>
+            <div className="h-[60px] flex justify-between items-center w-[83vw] pl-10" style={{ borderBottom: "1px solid #E9E9E9" }}>
                 <div className="flex items-center relative">
                     <img src={require("../../images/Frame (4).png")} alt="Search icon" className='absolute top-[19%] left-[10px]' />
                     <input type="text" placeholder='Search' style={{ border: "none", outline: 'none' }} className='text-[16px] ml-10 py-2 w-[500px]' />
@@ -78,7 +78,7 @@ const Main = () => {
             </div>
 
             {/* Vehicle Table */}
-            <div className="pl-10 w-full mt-14">
+            <div className="pl-10 w-full mt-10">
                 <div className="header w-full bg-[#F8F8F8] h-[40px] px-5 flex items-center">
                     <div className="w-[22%] text-[14px] font-[500] text-[#767676] flex items-center">
                         Vehicle Name
