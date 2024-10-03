@@ -93,26 +93,35 @@ const Card = ({ obj }) => {
 
 
 const CardContainer = ({ blogPosts, isSearch = false }) => {
-
-
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-    const [visiblePosts, setVisiblePosts] = useState(isMobile ? blogPosts.slice(0, 4) : blogPosts);
+    const [visiblePosts, setVisiblePosts] = useState([]);
+
+    const updateVisiblePosts = (mobileView) => {
+        if (isSearch) {
+            // If search mode, show full data without limiting posts
+            setVisiblePosts(blogPosts);
+        } else {
+            // Otherwise, limit the visible posts
+            setVisiblePosts(mobileView ? blogPosts.slice(0, 4) : blogPosts.slice(0, 6));
+        }
+    };
 
     useEffect(() => {
         const handleResize = () => {
             const mobileView = window.innerWidth < 768;
             setIsMobile(mobileView);
-            if (!isSearch)
-                setVisiblePosts(mobileView ? blogPosts.slice(0, 2) : blogPosts.slice(0, 6));
-            setVisiblePosts(mobileView ? blogPosts.slice(0, 4) : blogPosts);
+            updateVisiblePosts(mobileView);
         };
+
+        // Update visible posts based on the current window size on mount
+        updateVisiblePosts(isMobile);
 
         window.addEventListener('resize', handleResize);
 
         return () => {
             window.removeEventListener('resize', handleResize);
         };
-    }, [blogPosts]);
+    }, [blogPosts, isSearch, isMobile]);
 
     return (
         <div className="flex flex-wrap -mt-5 justify-between w-full gap-[5px]">
