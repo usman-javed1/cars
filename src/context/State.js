@@ -17,10 +17,11 @@ const StatesStore = ({ children }) => {
 
 
     const [priceRange, setPriceRange] = useState({ min: 0, max: 100 });
+    const [viewPage, setViewPage] = useState(1);
 
     useEffect(() => {
         fetchData();
-    }, [selectedValues])
+    }, [selectedValues, viewPage, activeSort])
 
     const fetchData = async () => {
         try {
@@ -29,6 +30,7 @@ const StatesStore = ({ children }) => {
             if (!selectedValues.Make.includes('All')) {
                 queryParams.append('brand', selectedValues.Make.join(','));
             }
+            queryParams.append('page', viewPage)
     
             if (selectedValues.Categories.length > 0) {
                 queryParams.append('categories', selectedValues.Categories.join(','));
@@ -77,7 +79,7 @@ const StatesStore = ({ children }) => {
     
     
     return (
-        <Context.Provider value={{ carData, setCarData, priceRange, setPriceRange,  selectedValues, setSelectedValues, activeSort, setActiveSort, fetchData }} >
+        <Context.Provider value={{ carData, setCarData, priceRange, setPriceRange,  selectedValues, setSelectedValues, activeSort, setActiveSort, fetchData, viewPage, setViewPage }} >
             {children}
         </Context.Provider>
     )

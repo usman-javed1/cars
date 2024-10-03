@@ -15,7 +15,7 @@ const Card = ({ obj }) => {
                 </div>
                 <div className="flex lg:gap-3 md:gap-4 gap-2">
                     <div className=" flex gap-[5px] ">
-                        <img src={require('../../images/chair.png')} className='w-[19px] h-[19px]' alt="" />
+                        <img src={require('../../images/chair.png')} className='w-[19px] h-[19px] object-contain' alt="" />
                         <div className="lg:text-base md:text-base text-[12px]">
                             {seat} seats
                         </div>
@@ -30,9 +30,9 @@ const Card = ({ obj }) => {
                 </div>
             </div>
 
-            <div className="imageSection  relative">
+            <div className="imageSection  relative mt-3">
                 <div className="lg:w-[28.5%] lg:h-[256px] h-[194px] w-[273px] absolute top-0 left-0" style={{ zIndex: 100 }}></div>
-                <img src={image} alt="" className='2xl:w-[95%] 2xl:h-[285px] lg:w-[100%] lg:h-[256px] h-[194px] w-[273px] mx-auto' style={{ zIndex: -1 }} />
+                <img src={image} alt="" className='2xl:w-[95%] 2xl:h-[285px] lg:w-[100%] lg:h-[256px] h-[194px] w-[273px] mx-auto rounded-[20px] object-contain' style={{ zIndex: -1 }} />
             </div>
 
             <div className="details pl-[10px]">
@@ -44,14 +44,14 @@ const Card = ({ obj }) => {
                 }} >
                     {name}
                 </div>
-                <div className="moreDesc w-[280px] flex gap-[18px]"
+                <div className="moreDesc w-[100%] flex gap-[18px]"
                     style={{
                         letterSpacing: "-0.5px"
                     }}
                 >
                     <div className="w-[136px]">
                         <div className="head text-[#959595] font-[500] text-[12px] flex justify-start">
-                            Lease term: <span className='text-black ml-1 '>{lease}</span>
+                            Lease&nbsp;term:&nbsp;<span className='text-black ml-1 '>{lease}</span>
                         </div>
                     </div>
                     <div className="">
@@ -124,7 +124,7 @@ const CardContainer = ({ blogPosts, isSearch = false }) => {
     }, [blogPosts, isSearch, isMobile]);
 
     return (
-        <div className="flex flex-wrap -mt-5 justify-between w-full gap-[5px]">
+        <div className="flex flex-wrap -mt-5  w-full gap-[0.3%]">
             {visiblePosts.map((post, index) => (
                 <Card
                     key={index}

@@ -45,23 +45,51 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
 
     // Handle file uploads (image files)
     const handleFileChange = async (e) => {
-        const selectedFiles = e.target.files;
-        const base64Images = [];
 
-        for (let i = 0; i < selectedFiles.length; i++) {
-            const file = selectedFiles[i];
-            const base64 = await toBase64(file); // Convert file to Base64
+        const cloudinaryUploadURL = 'https://api.cloudinary.com/v1_1/dbzjzgav7/image/upload';
+        const uploadPreset = 'wheeldeals';
+        const selectedFiles = e.target.files[0];
 
-            // Check if the base64 string already has the correct prefix, if not, add it
-            if (!base64.startsWith("data:image/")) {
-                const fileType = file.type; // get the file type (e.g., image/png)
-                base64Images.push(`data:${fileType};base64,${base64}`);
+        const formData = new FormData();
+        formData.append('file', selectedFiles);
+        formData.append('upload_preset', uploadPreset);
+
+
+        try {
+            // Upload image to Cloudinary
+            const response = await fetch(cloudinaryUploadURL, {
+                method: 'POST',
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (data.secure_url) {
+                
+                setImages([...images, data.secure_url]);
             } else {
-                base64Images.push(base64); // Already formatted correctly
+                alert('Error uploading image');
             }
+        } catch (error) {
+            console.error('Error uploading image:', error);
+            alert('Error uploading image');
         }
+        // const base64Images = [];
 
-        setImages([...images, ...base64Images]);
+        // for (let i = 0; i < selectedFiles.length; i++) {
+        //     const file = selectedFiles[i];
+        //     const base64 = await toBase64(file); // Convert file to Base64
+
+        //     // Check if the base64 string already has the correct prefix, if not, add it
+        //     if (!base64.startsWith("data:image/")) {
+        //         const fileType = file.type; // get the file type (e.g., image/png)
+        //         base64Images.push(`data:${fileType};base64,${base64}`);
+        //     } else {
+        //         base64Images.push(base64); // Already formatted correctly
+        //     }
+        // }
+
+        // setImages([...images, ...base64Images]);
     };
 
     const toBase64 = (file) => {

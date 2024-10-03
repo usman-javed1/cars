@@ -10,10 +10,10 @@ import Explore from "../components/main/Explore/Explore";
 import { context } from "../context/context";
 
 const ViewCars = () => {
-    const { carData } = useContext(context);
+    const { carData, viewPage, setViewPage } = useContext(context);
     
     const [blogPosts, setBlogPosts] = useState([]);
-    const [page, setPage] = useState(1);
+    // const [page, setPage] = useState(1);
 
     useEffect(() => {
         console.log("Car data in view page is ", carData);
@@ -26,20 +26,22 @@ const ViewCars = () => {
                 heading: `${car.category}`,
                 image: Array.isArray(car.photos) ? car.photos[0] : car.photos,
                 price: car.monthly_payment.toString(),
-                lease: `${car.leaseTerm} months`,
+                lease: `${car.leaseTerm}`,
                 mile: car.miles,
                 seat: car.seats.toString(), // Convert number to string
                 discount: '-40%',  // Static discount of 40%
             }));
 
             setBlogPosts(posts);
-            setPage(carData.currentPage || 1);  // Ensure page is set correctly
+            setViewPage(carData.page || 1);  // Ensure page is set correctly
         }
-    }, [carData, page]);  // Add `page` as a dependency to watch for changes
+        console.log("Page is ", viewPage);
+    }, [carData]);  // Add `page` as a dependency to watch for changes
 
     const handlePageChange = (newPage) => {
-        setPage(newPage);
-        // You may also want to trigger data fetching based on the new page here
+        console.log("Hello", newPage);
+        setViewPage(newPage);
+        
     };
 
     return (
@@ -53,7 +55,8 @@ const ViewCars = () => {
                         Show more
                         <img src={require("../images/Frame 731.png")} alt="Show more" />
                     </div>
-                    <Pagination setPage={handlePageChange} totalPages={carData.totalPages} currentPage={page} />
+                    <Pagination setPage={handlePageChange} totalPages={carData.lastPage
+} currentPage={viewPage} />
                     <br /><br />
                     <HowWorks />
                     <FAQ />
