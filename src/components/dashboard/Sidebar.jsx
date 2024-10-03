@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link,useNavigate } from 'react-router-dom'
 
 const Sidebar = () => {
     const [selectedItem, setSelectedItem] = useState(1);
+    const navigate = useNavigate()
 
     const onChangeSidebarItem = (val) => {
         setSelectedItem(val);
@@ -30,7 +31,7 @@ const Sidebar = () => {
                     Blog
                 </div>
             </div>
-            <div className={`w-full flex items-center py-2 font-[500] text-[16px] pt-2 text-white absolute bottom-[70px]`}>
+            <div className={`w-full flex items-center py-2 font-[500] text-[16px] pt-2 text-white absolute bottom-[70px]`} onClick={()=>{ window.localStorage.removeItem('token'); navigate('/admin') }}>
                 <div className='flex items-center cursor-pointer'>
                     <img src={require(`../../images/logout.png`)} alt="" className={`pr-[7px] pl-[40px]`} />
                     Logout
