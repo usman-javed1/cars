@@ -37,7 +37,6 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null, name }) 
                     setNumCylinders(data?.data.cylinder);
                     setVehicleType(data?.data.vehicleType)
                     setImages(data?.data.photos)
-                    console.log("data is", data.data);
                     // Add logic for setting existing images if needed
                 })
                 .catch(err => console.error(err));
@@ -112,7 +111,6 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null, name }) 
     // Handle form submission
     const saveCar = () => {
         const sanitizedMonthlyPayment = String(monthlyPayment || "").trim();
-        console.log("Cars is ", carName);
         setCarName(carName + "     ");
         const carData = {
             name: String(carName || '').trim(),
@@ -129,8 +127,6 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null, name }) 
             vehicleType: String(vehicleType || '').trim(),
             photos: images,
         };
-
-        console.log("Car Data:", carData);
 
 
         const url = carId ? `${process.env.REACT_APP_BACKEND_URL}/car/private/${carId}` : `${process.env.REACT_APP_BACKEND_URL}/car/private`;
@@ -157,7 +153,7 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null, name }) 
     };
 
     useEffect(() => {
-        console.log("Images are", images);
+        // console.log("Images are", images);
     }, [images])
 
     return (
@@ -199,7 +195,7 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null, name }) 
                     </div>
 
                 </div>}
-                {step === 2 && <div className="w-[690px]  flex-wrap rounded-[15px] h-[95vh] max-h-[778px] bg-white px-10 overflow-y-auto overflow-x-hidden">
+                {step === 2 && <div className="w-[690px]  flex-wrap rounded-[15px] h-[95vh] max-h-[778px] bg-white px-10 overflow-y-auto overflow-x-hidden vehicleModal">
                     <div className="head flex text-[16px] text-[#767676] w-[650px]  font-[500]  mt-[36px]">
                         <div className="">
                             {carId ? "Edit vehicle" : "Add new vehicle"}
@@ -220,7 +216,7 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null, name }) 
                             </div>
 
                             <div className="">
-                                <Dropdown options={['Sport', 'SUVs ', 'Hatchback', 'Crossover', 'Sedan', 'Electric', 'Hybrid', 'Pickup']} label={category || 'Sport'} onSelect={setCategory} />
+                                <Dropdown options={['Sport', 'SUVs ', 'Hatchback', 'Crossover', 'Sedan', 'Electric', 'Hybrid', 'Pickup']} optionCase={carId ? "edit" : "add"} label={category || 'Sport'} onSelect={setCategory} />
                             </div>
                         </div>
 
@@ -230,7 +226,7 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null, name }) 
                             </div>
 
                             <div className="">
-                                <Dropdown options={['K5', 'Optima ', 'Ceed']} label={model || 'K5'} onSelect={setModel} />
+                                <Dropdown options={['K5', 'Optima ', 'Ceed']} label={model || 'K5'} optionCase={carId ? "edit" : "add"} onSelect={setModel} />
                             </div>
                         </div>
 
@@ -240,7 +236,7 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null, name }) 
                             </div>
 
                             <div className="">
-                                <Dropdown options={['Sedan', 'Cargo Van', 'Convertible ', 'Hatchback', 'Mnivan', 'Passenger Van', 'SUV', 'Truck', 'Wagon']} label={vehicleType || 'Choose Vehicle Type'} onSelect={setVehicleType} />
+                                <Dropdown options={['Sedan', 'Cargo Van', 'Convertible ', 'Hatchback', 'Mnivan', 'Passenger Van', 'SUV', 'Truck', 'Wagon']} optionCase={carId ? "edit" : "add"} label={vehicleType || 'Choose Vehicle Type'} onSelect={setVehicleType} />
                             </div>
                         </div>
 
@@ -250,7 +246,7 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null, name }) 
                             </div>
 
                             <div className="">
-                                <Dropdown options={['Toyota', 'Kia', 'Tesla ', 'Acura', 'Porshe', 'Volkswagen', 'Opel', 'Mazda', 'BMW']} label={brand || 'Toyota'} onSelect={setBrand} />
+                                <Dropdown options={['Toyota', 'Kia', 'Tesla ', 'Acura', 'Porshe', 'Volkswagen', 'Opel', 'Mazda', 'BMW']} optionCase={carId ? "edit" : "add"} label={brand || 'Toyota'} onSelect={setBrand} />
                             </div>
                         </div>
 
@@ -260,7 +256,7 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null, name }) 
                             </div>
 
                             <div className="">
-                                <Dropdown options={['12 months', '24 months ', '36 months']} label={leaseTerm || 'Choose Lease Term'} onSelect={setLeaseTerm} />
+                                <Dropdown options={['12 months', '24 months ', '36 months']} optionCase={carId ? "edit" : "add"} label={leaseTerm || 'Choose Lease Term'} onSelect={setLeaseTerm} />
                             </div>
                         </div>
 
@@ -300,7 +296,7 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null, name }) 
                             </div>
 
                             <div className="">
-                                <Dropdown options={['Automatic', 'Manual transmission']} label={transmission || 'Select transmission type'} onSelect={setTransmission} />
+                                <Dropdown options={['Automatic', 'Manual transmission']} optionCase={carId ? "edit" : "add"} label={transmission || 'Select transmission type'} onSelect={setTransmission} />
                             </div>
                         </div>
 

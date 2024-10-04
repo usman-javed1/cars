@@ -4,6 +4,7 @@ import Modal from './Modal';
 import { context } from '../../context/context';
 
 const Main = () => {
+    const [user, setUser] = useState(null);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [isDropdownOpen1, setIsDropdownOpen1] = useState(false);
     const [activeSort1, setActiveSort1] = useState('All Categories');
@@ -28,8 +29,11 @@ const Main = () => {
     const { fetchDataAdmin } = useContext(context);
     useEffect(() => {
         const init = async () => {
-            console.log("Hello")
             try {
+                const tempUser = JSON.parse(window.localStorage.getItem("user"));
+                if(tempUser) {
+                    setUser(tempUser);
+                }
                 const data = await fetchDataAdmin(activeSort1 === "All Categories" ? null : activeSort1, activeSort === "Body Type" || activeSort === "All Types"  ? null : activeSort)
                 console.log("Data is ", data)
                 setRows(data?.data?.cars);
@@ -70,11 +74,11 @@ const Main = () => {
                     <img src={require("../../images/Frame (4).png")} alt="Search icon" className='absolute top-[19%] left-[10px]' />
                     <input type="text" placeholder='Search' style={{ border: "none", outline: 'none' }} className='text-[16px] ml-10 py-2 w-[500px]' />
                 </div>
-                <div className="flex gap-5 font-[500] text-[14px] items-center">
+                <div className="flex gap-5 font-[500] text-[14px] items-center cursor-pointer">
                     <div className="">
                         <img src={require("../../images/Mask group (5).png")} alt="User icon" className='' />
                     </div>
-                    <div className="flex items-center">John Smith</div>
+                    <div className="flex items-center">{user && user.name}</div>
                 </div>
             </div>
 

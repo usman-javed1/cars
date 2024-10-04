@@ -67,7 +67,7 @@ const Row = ({ data, onDelete }) => {
             <div className="flex max-w-[18%] w-[5%] gap-5 items-center">
                 {/* Edit Icon */}
                 <div
-                    className="hover:text-black text-[#767676] transition duration-200 cursor-pointer"
+                    className="hover:text-[#FFB600] text-[#767676] cursor-pointer"
                     onClick={openEditModal} // Open modal on click
                 >
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -76,7 +76,7 @@ const Row = ({ data, onDelete }) => {
                 </div>
 
                 {/* Delete Icon */}
-                <div className="hover:text-red-500 transition duration-200 text-[#767676] cursor-pointer" onClick={handleDelete}>
+                <div className="hover:text-red-500 text-[#767676] cursor-pointer" onClick={handleDelete}>
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M14.167 4.99935H18.3337V6.66602H16.667V17.4993C16.667 17.9596 16.2939 18.3327 15.8337 18.3327H4.16699C3.70676 18.3327 3.33366 17.9596 3.33366 17.4993V6.66602H1.66699V4.99935H5.83366V2.49935C5.83366 2.03912 6.20676 1.66602 6.66699 1.66602H13.3337C13.7939 1.66602 14.167 2.03912 14.167 2.49935V4.99935ZM7.50033 9.16602V14.166H9.16699V9.16602H7.50033ZM10.8337 9.16602V14.166H12.5003V9.16602H10.8337ZM7.50033 3.33268V4.99935H12.5003V3.33268H7.50033Z" fill="currentColor" />
                     </svg>
