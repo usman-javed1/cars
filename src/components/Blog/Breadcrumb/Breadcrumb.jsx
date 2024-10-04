@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Breadcrumb = ({ crumbs = ["Home", "Blog"], activeCrumb = "Blog", isOnImage = false, isCar=false }) => {
+const Breadcrumb = ({ crumbs = [{label: "Home", url: "/"}, {label: "Blog", url: "/blog"}], activeCrumb = "Blog", isOnImage = false, isCar=false }) => {
   return (
     <nav className="flex" aria-label="Breadcrumb">
       <ol className="py-[60px] inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
@@ -23,17 +24,19 @@ const Breadcrumb = ({ crumbs = ["Home", "Blog"], activeCrumb = "Blog", isOnImage
               </div>
             )}
 
-            {crumb === activeCrumb ? (
-              <span className={`ms-1 ${isCar?"lg:text-sm text-[12px]":"text-sm"} font-medium ${"text-gray-500"} md:ms-2`}>
-                {crumb}
-              </span>
+            {crumb.label === activeCrumb ? (
+              <Link to={crumb.url}>
+                <span className={`ms-1 ${isCar?"lg:text-sm text-[12px]":"text-sm"} font-medium ${"text-gray-500"} md:ms-2`}>
+                  {crumb.label}
+                </span>
+              </Link>
             ) : (
-              <a
-                href="#"
+              <Link
+                to={crumb.url}
                 className={`inline-flex items-center ${isCar?"lg:text-sm text-[12px]":"text-sm"} font-medium ${isOnImage ? "text-white" : "text-black"}`}
               >
-                {crumb}
-              </a>
+                {crumb.label}
+              </Link>
             )}
           </li>
         ))}

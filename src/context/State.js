@@ -76,6 +76,7 @@ const StatesStore = ({ children }) => {
 
             const data = await response.json();
             setCarData(data.data);
+            console.log(data.data);
         } catch (error) {
             console.log('Error fetching data:', error);
         }

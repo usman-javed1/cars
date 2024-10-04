@@ -12,7 +12,7 @@ const Financing = () => {
       <div className="w-full max-w-full flex-col justify-between items-center">
         <ContainerWraper>
           <div className="lg:pl-0">
-            <Breadcrumb crumbs={["Home", "Financing"]} activeCrumb="Financing" />
+            <Breadcrumb crumbs={[{label: "Home", url: "/"}, {label: "Financing", url: "/financing"}]} activeCrumb="Financing" />
             </div>
           <Financing1 />
         </ContainerWraper>
