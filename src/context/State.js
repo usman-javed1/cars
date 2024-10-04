@@ -82,9 +82,10 @@ const StatesStore = ({ children }) => {
     };
 
     const fetchDataAdmin = async () => {
+        console.log("Heelonsjkdhask")
         try {
             const queryParams = new URLSearchParams();
-
+            console.log("Heelo djkda")
 
             queryParams.append('page', viewPage)
 
@@ -106,8 +107,9 @@ const StatesStore = ({ children }) => {
             }
 
             const data = await response.json();
+            return data;
 
-            setCarData(data.data);
+            // setCarData(data.data);
         } catch (error) {
             console.log('Error fetching data:', error);
         }

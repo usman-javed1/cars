@@ -23,12 +23,20 @@ const Main = () => {
     const { fetchDataAdmin } = useContext(context);
     useEffect(() => {
         const init = async () => {
-            const data = await fetchDataAdmin()
-            console.log("Data is in admin is ", data.data.cars);
-            setRows(data.data.cars);
+            console.log("Hello")
+            try {
+                const data = await fetchDataAdmin()
+                console.log("Data is ", data)
+                setRows(data?.data?.cars);
+            } catch (error) {
+                console.log(error)
+            }
+            
+            // console.log("Data is in admin is ", data.data.cars);
+            // 
         }
         init();
-    }, [fetchDataAdmin]);
+    }, []);
 
     const onDelete = (id) => {
         // Remove the deleted car from the state
@@ -113,7 +121,7 @@ const Main = () => {
                         Category
                     </div>
                 </div>
-                {rows.map((data, index) => (
+                {rows?.map((data, index) => (
                     <Row data={data} key={index} onDelete={onDelete} />
                 ))}
 
