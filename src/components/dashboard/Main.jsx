@@ -38,7 +38,7 @@ const Main = () => {
                 console.log("Data is ", data)
                 setRows(data?.data?.cars);
             } catch (error) {
-                console.log(error)
+                console.log("error is here",error)
             }
 
             // console.log("Data is in admin is ", data.data.cars);
