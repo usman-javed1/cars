@@ -3,9 +3,9 @@ import Dropdown from './Dropdown'
 import { img } from 'framer-motion/client';
 
 
-const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
+const Modal = ({ closeModal, heading = "Add new vehicle", carId = null, name }) => {
     // States for each field
-    const [carName, setCarName] = useState('');
+    const [carName, setCarName] = useState(carId ? name : '');
     const [category, setCategory] = useState('');
     const [model, setModel] = useState('');
     const [brand, setBrand] = useState('');
@@ -22,19 +22,22 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
     // Fetch car details if carId is present (edit mode)
     useEffect(() => {
         if (carId) {
-            fetch(`/api/cars/${carId}`)  // Replace with your actual API endpoint
+            fetch(`${process.env.REACT_APP_BACKEND_URL}/car/public/${carId}`)  // Replace with your actual API endpoint
                 .then(response => response.json())
                 .then(data => {
-                    setCarName(data.carName);
-                    setCategory(data.category);
-                    setModel(data.model);
-                    setBrand(data.brand);
-                    setLeaseTerm(data.leaseTerm);
-                    setMilesPerYear(data.milesPerYear);
-                    setMonthlyPayment(data.monthlyPayment);
-                    setNumSeats(data.numSeats);
-                    setTransmission(data.transmission);
-                    setNumCylinders(data.numCylinders);
+                    setCarName(data.data.carName);
+                    setCategory(data.data.category);
+                    setModel(data.data.model);
+                    setBrand(data.data.brand);
+                    setLeaseTerm(data.data.leaseTerm);
+                    setMilesPerYear(data.data.miles);
+                    setMonthlyPayment(data.data.monthly_payment);
+                    setNumSeats(data.data.seats);
+                    setTransmission(data.data.transType);
+                    setNumCylinders(data.data.cylinder);
+                    setVehicleType(data.data.vehicleType)
+                    setImages(data.data.photos)
+                    console.log("data is", data.data);
                     // Add logic for setting existing images if needed
                 })
                 .catch(err => console.error(err));
@@ -65,7 +68,7 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
             const data = await response.json();
 
             if (data.secure_url) {
-                
+
                 setImages([...images, data.secure_url]);
             } else {
                 alert('Error uploading image');
@@ -101,29 +104,37 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
         });
     };
 
+    useEffect(() => {
+        // setCarName(name + " ")
+        setMilesPerYear(milesPerYear + " ")
+    }, [])
+
     // Handle form submission
     const saveCar = () => {
+        const sanitizedMonthlyPayment = String(monthlyPayment || "").trim();
+        console.log("Cars is ", carName);
+        setCarName(carName + "     ");
         const carData = {
-            name: carName,
-            category: category,
-            model: model,
-            brand: brand,
-            leaseTerm: leaseTerm,
-            miles: milesPerYear,
-            monthly_payment: monthlyPayment,
-            seats: numSeats,
-            transType: transmission,
-            cylinder: numCylinders,
-            vehicleType: vehicleType,
-            // description: description,
+            name: String(carName || '').trim(),
+            category: String(category || '').trim(),
+            model: String(model || '').trim(),
+            brand: String(brand || '').trim(),
+            leaseTerm: String(leaseTerm || '').trim(),
+            miles: String(milesPerYear || '').trim(),
+            monthly_payment: sanitizedMonthlyPayment,
+
+            seats: String(numSeats || '').trim(),
+            transType: String(transmission || '').trim(),
+            cylinder: String(numCylinders || '').trim(),
+            vehicleType: String(vehicleType || '').trim(),
             photos: images,
         };
 
         console.log("Car Data:", carData);
 
 
-        const url = carId ? `http://locahost:3333/car/private/${carId}` : 'http://localhost:3333/car/private';
-        const method = carId ? 'PUT' : 'POST';
+        const url = carId ? `${process.env.REACT_APP_BACKEND_URL}/car/private/${carId}` : `${process.env.REACT_APP_BACKEND_URL}/car/private`;
+        const method = carId ? 'POST' : 'POST';
 
         fetch(url, {
             method: method,
@@ -135,7 +146,8 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
         })
             .then(response => {
                 if (response.ok) {
-                    closeModal();
+                    // closeModal();
+                    setStep(4);
                 } else {
                     console.error('Failed to save car');
                     alert("Every error is not bad but this error is bad");
@@ -151,13 +163,13 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
     return (
         <div className='w-[100vw] h-[100vh] flex fixed justify-center items-center top-0 left-0' style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
             {/* {model 1 here use name and description and set them} */}.
-            <div className="w-[690px] ">
+            <div className="w-[690px] " style={{ display: step === 4 ? "none" : "block" }}>
                 {step === 1 && <div className="w-[690px] flex flex-wrap rounded-[15px] h-[95vh] max-h-[778px] bg-white px-10 overflow-y-auto overflow-x-hidden">
                     <div className="">
 
                         <div className="head flex text-[16px] text-[#767676] w-[650px]  font-[500]  mt-[36px]">
                             <div className="">
-                                Add new vehicle
+                                {carId ? "Edit vehicle" : "Add new vehicle"}
                             </div>
                             <div className="ml-[30px] text-[500] text-[#B9B9B9]">
                                 Step 1/3
@@ -165,7 +177,7 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
                         </div>
 
                         <div className="head text-[30px] font-[700] text-black mt-[36px]">
-                            {heading}
+                            {carId ? "Car Name" : "Add car name"}
                         </div>
                     </div>
                     <div className="flex flex-col justify-between flex-wrap pt-4 gap-3 h-[80%]">
@@ -180,7 +192,7 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
                             <button className="" onClick={closeModal}>
                                 Cancel
                             </button>
-                            <button className="bg-black text-white px-8 py-4 rounded-[15px]" onClick={() => setStep(2)}>
+                            <button className="bg-black text-white px-8 py-4 rounded-[15px]" onClick={() => { setStep(2); setCarName(carName + ' ') }}>
                                 Next
                             </button>
                         </div>
@@ -190,7 +202,7 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
                 {step === 2 && <div className="w-[690px]  flex-wrap rounded-[15px] h-[95vh] max-h-[778px] bg-white px-10 overflow-y-auto overflow-x-hidden">
                     <div className="head flex text-[16px] text-[#767676] w-[650px]  font-[500]  mt-[36px]">
                         <div className="">
-                            Add new vehicle
+                            {carId ? "Edit vehicle" : "Add new vehicle"}
                         </div>
                         <div className="ml-[30px] text-[500] text-[#B9B9B9]">
                             Step 2/3
@@ -323,7 +335,7 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
 
                         <div className="head flex text-[16px] text-[#767676] w-[650px]  font-[500]  mt-[36px]">
                             <div className="">
-                                Add new vehicle
+                                {carId ? "Edit vehicle" : "Add new vehicle"}
                             </div>
                             <div className="ml-[30px] text-[500] text-[#B9B9B9]">
                                 Step 3/3
@@ -360,7 +372,7 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
                             <label htmlFor='photoSelector' className="bg-lightgray mt-3 text-[16px] font-[500] px-7 py-4 rounded-[10px] cursor-pointer">
                                 Browse files
                             </label>
-                            <div className="flex gap-2">
+                            <div className="flex gap-2 flex-wrap">
                                 {images.map((image, index) => (
                                     <div key={index} className="mt-10 relative w-[138px] h-[136px] mx-3 my-auto">
                                         <img
@@ -380,7 +392,7 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
                                             }}
                                             className="absolute top-[-5px] right-[-5px] w-4 h-4 text-white bg-black rounded-full flex justify-center items-center text-[14px]"
                                         >
-                                            &times; {/* HTML character for cross (×) */}
+                                            &times;
                                         </button>
                                     </div>
                                 ))}
@@ -405,7 +417,34 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null }) => {
                     </div>
 
                 </div>}
+
+
             </div>
+
+            {step === 4 && <div className="w-[400px] flex flex-wrap rounded-[15px] h-[400px] max-h-[400px] bg-white px-10 overflow-y-auto overflow-x-hidden justify-center items-center">
+                <div className="flex flex-col items-center justify-between h-[350px] pt-14 relative">
+                    <img src={require("../../images/Vector.png")} className='absolute top-[10px] right-[10px] cursor-pointer' onClick={()=>{closeModal(); window.location.reload()}} alt="" />
+                    <div className=" flex flex-col items-center">
+                        <div className="">
+                            <img src={require("../../images/Group 33543.png")} alt="" />
+                        </div>
+                        <div className="font-[700] text-[30px]">
+                            Success!
+                        </div>
+                        <div className="mt-[25px] text-[14px] text-[#959595] font-[500] text-center">
+                            Vehicle is successfully {carId ? "edited" : "added"}
+                        </div>
+                    </div>
+                    <div className="w-[352px] h-[50px]  bg-black text-white justify-center items-center flex rounded-[10px] cursor-pointer" onClick={()=>{closeModal(); window.location.reload()}}>
+                        <div className="text-[16px] font-[500]" >
+                            Back to Dashboard
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>}
+
 
         </div>
     )

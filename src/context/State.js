@@ -13,7 +13,7 @@ const StatesStore = ({ children }) => {
         Price: []
     });
 
-    const [activeSort, setActiveSort] = useState({name:"Oldest to Newest", value:"OTN"});
+    const [activeSort, setActiveSort] = useState({ name: "Oldest to Newest", value: "OTN" });
 
 
     const [priceRange, setPriceRange] = useState({ min: 0, max: 100 });
@@ -26,12 +26,12 @@ const StatesStore = ({ children }) => {
     const fetchData = async () => {
         try {
             const queryParams = new URLSearchParams();
-    
+
             if (!selectedValues.Make.includes('All')) {
                 queryParams.append('brand', selectedValues.Make.join(','));
             }
             queryParams.append('page', viewPage)
-    
+
             if (selectedValues.Categories.length > 0) {
                 queryParams.append('categories', selectedValues.Categories.join(','));
             }
@@ -39,7 +39,7 @@ const StatesStore = ({ children }) => {
             if (selectedValues.BodyType.length > 0) {
                 queryParams.append('BodyType', selectedValues.BodyType.join(','));
             }
-    
+
             // Add "Model" filter (if any models are selected)
             if (selectedValues.Model.length > 0) {
                 queryParams.append('model', selectedValues.Model.join(','));
@@ -47,28 +47,28 @@ const StatesStore = ({ children }) => {
             if (activeSort) {
                 queryParams.append('sort', activeSort.value);
             }
-    
+
             // Add "Year" filter (if any years are selected)
-            
-    
+
+
             // Add "Price" filter (if price range is defined)
             if (priceRange.min !== 0 || priceRange.max !== 100) {
                 queryParams.append('minPrice', priceRange.min);
                 queryParams.append('maxPrice', priceRange.max);
             }
-    
+
             // Fetch the data with the applied filters
-            const response = await fetch(`http://localhost:3333/car/public?${queryParams.toString()}`, {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/car/public?${queryParams.toString()}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                 },
             });
-    
+
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-    
+
             const data = await response.json();
             setCarData(data.data);
             console.log(data); // Handle the filtered data as needed
@@ -80,15 +80,15 @@ const StatesStore = ({ children }) => {
     const fetchDataAdmin = async () => {
         try {
             const queryParams = new URLSearchParams();
-    
-            
+
+
             queryParams.append('page', viewPage)
-    
+
             if (selectedValues.Categories.length > 0) {
                 queryParams.append('categories', selectedValues.Categories.join(','));
             }
 
-    
+
             // Fetch the data with the applied filters
             const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/car/public?${queryParams.toString()}`, {
                 method: 'GET',
@@ -96,22 +96,24 @@ const StatesStore = ({ children }) => {
                     'Content-Type': 'application/json',
                 },
             });
-    
+
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-    
+
             const data = await response.json();
-            setCarData(data.data);
-            console.log(data); // Handle the filtered data as needed
+            // setCarData(data.data);
+            console.log(data);
+            return data
+            // Handle the filtered data as needed
         } catch (error) {
             console.log('Error fetching data:', error);
         }
     };
-    
-    
+
+
     return (
-        <Context.Provider value={{ carData, setCarData, priceRange, setPriceRange,  selectedValues, setSelectedValues, activeSort, setActiveSort, fetchData, viewPage, setViewPage }} >
+        <Context.Provider value={{ carData, setCarData, priceRange, setPriceRange, selectedValues, setSelectedValues, activeSort, setActiveSort, fetchData, viewPage, setViewPage, fetchDataAdmin }} >
             {children}
         </Context.Provider>
     )

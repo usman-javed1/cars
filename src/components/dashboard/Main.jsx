@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Row from './Row';
 import Modal from './Modal';
+import { context } from '../../context/context';
 
 const Main = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [activeSort, setActiveSort] = useState('All Categories');
     const [isModalOpen, setIsModalOpen] = useState(false); // State to manage modal visibility
+    const [rows, setRows] = useState([])
 
     // Dropdown options
     const dropdownOptions = ['All Categories', 'Price', 'Model', 'Mileage'];
@@ -18,10 +20,25 @@ const Main = () => {
         setIsModalOpen(false);
     };
 
+    const { fetchDataAdmin } = useContext(context);
+    useEffect(() => {
+        const init = async () => {
+            const data = await fetchDataAdmin()
+            console.log("Data is in admin is ", data.data.cars);
+            setRows(data.data.cars);
+        }
+        init();
+    }, [fetchDataAdmin]);
+
+    const onDelete = (id) => {
+        // Remove the deleted car from the state
+        setRows((prevCars) => prevCars.filter(car => car.id !== id));
+    };
+
     return (
         <div>
             {/* Search and User Info */}
-            <div className="h-[60px] flex justify-between items-center w-[83vw] pl-10" style={{ borderBottom: "1px solid #E9E9E9" }}>
+            <div className="h-[60px] flex justify-between items-center w-[83vw] overflow-hidden pl-10" style={{ borderBottom: "1px solid #E9E9E9" }}>
                 <div className="flex items-center relative">
                     <img src={require("../../images/Frame (4).png")} alt="Search icon" className='absolute top-[19%] left-[10px]' />
                     <input type="text" placeholder='Search' style={{ border: "none", outline: 'none' }} className='text-[16px] ml-10 py-2 w-[500px]' />
@@ -53,7 +70,7 @@ const Main = () => {
                     </div>
 
                     {/* Dropdown Menu */}
-                    <div className={`sortDropdown w-[252px] flex flex-col justify-center items-center absolute bg-white top-16 rounded-[20px] transition-all duration-300 ${isDropdownOpen ? 'block' : 'hidden'}`} style={{ zIndex: 9999 }}>
+                    <div className={`sortDropdown w-[252px] flex flex-col justify-center items-center absolute bg-white top-16 bg-[#F8F8F8] rounded-[20px] transition-all duration-300 ${isDropdownOpen ? 'block' : 'hidden'}`} style={{ zIndex: 9999 }}>
                         {dropdownOptions.map((value, index) => (
                             <div key={index} className="text-[#636363] text-[14px] font-[500] py-4 px-3 w-[220px] items-center flex cursor-pointer" onClick={() => {
                                 setActiveSort(value);
@@ -84,7 +101,7 @@ const Main = () => {
                         Vehicle Name
                     </div>
                     <div className="w-[18%] text-[14px] font-[500] text-[#767676] flex items-center">
-                        Horsepower
+                        Brand
                     </div>
                     <div className="w-[18%] text-[14px] font-[500] text-[#767676] flex items-center">
                         Engine Details
@@ -96,7 +113,9 @@ const Main = () => {
                         Category
                     </div>
                 </div>
-                <Row />
+                {rows.map((data, index) => (
+                    <Row data={data} key={index} onDelete={onDelete} />
+                ))}
 
                 {/* Modal Component */}
                 {isModalOpen && <Modal closeModal={closeModal} />}
