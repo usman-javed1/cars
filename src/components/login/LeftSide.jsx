@@ -36,7 +36,7 @@ const LeftSide = () => {
             // Handle successful response (data contains the response)
 
             localStorage.setItem('token', data.token);
-            localStorage.setItem('user', data.user)
+            localStorage.setItem('user', JSON.stringify(data.user));
             navigate('/dashboard');
         } catch (error) {
             // Handle error during the API call
