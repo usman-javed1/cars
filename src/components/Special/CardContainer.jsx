@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom';
 
 
 const Card = ({ obj }) => {
-    const { image, discount, seat, heading, name, lease, mile, price } = obj;
+    const { image, discount, seat, heading, name, lease, mile, price, transType } = obj;
     return (
-        <div className='mainCard 2xl:h-[605px] lg:w-[31.5%] md:w-[400px] w-[320px] lg:h-[580px] md:h-[580px] h-[510px] p-[18px] rounded-[15px] border border-[#E9E9E9] my-10 bg-white cursor-pointer md:mr-[20px] mr-[0px]' >
+        <div className='mainCard 2xl:h-[605px] 2xl:w-[31.8%] lg:w-[31.5%] md:w-[400px] w-[320px] lg:h-[580px] md:h-[580px] h-[510px] p-[18px] rounded-[15px] border border-[#E9E9E9] my-4 bg-white cursor-pointer md:mr-[20px] mr-[0px]' >
             <div className="cardNav text-[#959595] font-[500] text-[12px] flex justify-between items-center">
                 <div className=" w-[70px] h-[35px] p-[8px, 10px, 6px, 10px] bg-[#FFE39E] text-[17px] font-[700] text-black rounded-[8px] flex justify-center items-center">
                     {discount}
@@ -24,7 +24,7 @@ const Card = ({ obj }) => {
                     <div className=" flex gap-[5px] ">
                         <img src={require('../../images/automatic.png')} className='w-[19px] h-[19px]' alt="" />
                         <div className="lg:text-base md:text-base text-[12px]">
-                            Automatic
+                            {transType}
                         </div>
                     </div>
                 </div>
