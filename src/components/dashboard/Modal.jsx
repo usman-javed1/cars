@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Dropdown from './Dropdown'
-import { img } from 'framer-motion/client';
+// import { img } from 'framer-motion/client';
 
 
 const Modal = ({ closeModal, heading = "Add new vehicle", carId = null, name }) => {
@@ -104,11 +104,6 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null, name }) 
         });
     };
 
-    useEffect(() => {
-        // setCarName(name + " ")
-        setMilesPerYear(milesPerYear + " ")
-    }, [])
-
     // Handle form submission
     const saveCar = () => {
         const sanitizedMonthlyPayment = String(monthlyPayment || "").trim();
@@ -130,11 +125,10 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null, name }) 
             photos: images,
         };
 
-        console.log("Car Data:", carData);
 
 
-        const url = carId ? `${process.env.REACT_APP_BACKEND_URL}/car/private/${carId}` : `${process.env.REACT_APP_BACKEND_URL}/car/private`;
-        const method = carId ? 'POST' : 'POST';
+        const url = carId ? `http://locahost:3333/car/private/${carId}` : 'http://localhost:3333/car/private';
+        const method = carId ? 'PUT' : 'POST';
 
         fetch(url, {
             method: method,
@@ -157,7 +151,7 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null, name }) 
     };
 
     useEffect(() => {
-        console.log("Images are", images);
+        // console.log("Images are", images);
     }, [images])
 
     return (
@@ -199,7 +193,7 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null, name }) 
                     </div>
 
                 </div>}
-                {step === 2 && <div className="w-[690px]  flex-wrap rounded-[15px] h-[95vh] max-h-[778px] bg-white px-10 overflow-y-auto overflow-x-hidden">
+                {step === 2 && <div className="w-[690px]  flex-wrap rounded-[15px] h-[95vh] max-h-[778px] bg-white px-10 overflow-y-auto overflow-x-hidden vehicleModal">
                     <div className="head flex text-[16px] text-[#767676] w-[650px]  font-[500]  mt-[36px]">
                         <div className="">
                             {carId ? "Edit vehicle" : "Add new vehicle"}
@@ -230,7 +224,7 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null, name }) 
                             </div>
 
                             <div className="">
-                                <Dropdown options={['K5', 'Optima ', 'Ceed']} label={model || 'K5'} onSelect={setModel} />
+                                <Dropdown options={['Model Y', 'Model S ', 'Cybertruck']} label={model || 'K5'} onSelect={setModel} />
                             </div>
                         </div>
 
@@ -377,7 +371,7 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null, name }) 
                                     <div key={index} className="mt-10 relative w-[138px] h-[136px] mx-3 my-auto">
                                         <img
                                             src={image}
-                                            alt="Uploaded Image"
+                                            alt="Uploaded Image1"
                                             className="w-full h-full rounded-xl object-contain"
                                             onError={(e) => {
                                                 e.target.onerror = null; // Prevents infinite loop if image keeps failing

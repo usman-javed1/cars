@@ -152,6 +152,28 @@ color: #959595;
   display: none;
 }
 
+.filter-datepickers .react-datepicker-wrapper {
+  width: 100%;
+}
+
+#filterSection::-webkit-scrollbar {
+  display: none;
+}
+
+#filterSection {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.vehicleModal::-webkit-scrollbar {
+  display: none;
+}
+
+.vehicleModal {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 @media only screen and (max-width: 600px){
   .carDetailsImages .swiper {
     display: block;
