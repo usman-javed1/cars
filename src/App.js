@@ -42,7 +42,7 @@ function App() {
         <Route path='/our-team' element={<OurTeam />} />
         <Route path='/special-deals' element={<SpecialDeals />} />
         <Route path='/view' element={<ViewCars />} />
-        <Route path='/detail/:id' element={<CarDetails />} />
+        <Route path='/view/:id' element={<CarDetails />} />
         <Route path='/admin' element={<><Login /></>} />
         <Route path='/dashboard' element={<Dashboard />} />
       </Routes>

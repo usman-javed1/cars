@@ -15,7 +15,7 @@ import { useParams } from "react-router-dom";
 
 
 const CarDetails = () => {
-  const [car, setCar] = useState({})
+  const [car, setCar] = useState(null)
 
   const { id } = useParams();
   useEffect(() => {
@@ -27,6 +27,7 @@ const CarDetails = () => {
           alert("error in fetching data");
         }
         const data = await response.json();
+        console.log(data.data);
         setCar(data.data);
       } catch (error) {
         console.log("Error is", error);
@@ -37,10 +38,10 @@ const CarDetails = () => {
   return (
     <>
       <ContainerWraper>
-        <Breadcrumb crumbs={["Home", "Car for lease", car.name]} activeCrumb={car.name} isCar={true} />
-        <CarDetailsHero car={car} />
+        <Breadcrumb crumbs={[{label: "Home", url: "/"}, {label: "Cars for lease", url: "/view"}, {label: car?.name, url: "/view/" + car?.id}]} activeCrumb={car?.name} isCar={true} />
+        <CarDetailsHero car={car && car} />
       </ContainerWraper>
-      <KeyFeature></KeyFeature>
+      <KeyFeature car={car && car}></KeyFeature>
       <div className="">
         <ContainerWraper>
           {/* <WhyThisCar></WhyThisCar> */}
@@ -50,7 +51,7 @@ const CarDetails = () => {
       <ContainerWraper>
         <div className="">
           {/* <CarDiscription></CarDiscription> */}
-          <Features></Features>
+          <Features heading="You may also like"></Features>
           <HowWorks></HowWorks>
           <FAQ></FAQ>
         </div>

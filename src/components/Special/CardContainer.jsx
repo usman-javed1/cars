@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 
 const Card = ({ obj }) => {
-    const { image, discount, seat, heading, name, lease, mile, price, transType } = obj;
+    const { id, image, discount, seat, heading, name, lease, mile, price, transType } = obj;
     return (
         <div className='mainCard 2xl:h-[605px] 2xl:w-[31.8%] lg:w-[31.5%] md:w-[400px] w-[320px] lg:h-[580px] md:h-[580px] h-[510px] p-[18px] rounded-[15px] border border-[#E9E9E9] my-4 bg-white cursor-pointer md:mr-[20px] mr-[0px]' >
             <div className="cardNav text-[#959595] font-[500] text-[12px] flex justify-between items-center">
@@ -78,7 +78,7 @@ const Card = ({ obj }) => {
                     </button>
                 </div>
             </Link>
-            <Link to={'/detail/1'}>
+            <Link to={`/view/${id}`}>
                 <div className="">
                     <button className='lg:w-[100%] md:w-[340px] w-[277px] h-[44px] rounded-[10px] flex justify-center items-center text-[14px] mt-[10px] hoverAni56 font-[500] relative'>
                         View Details <div className='relative'> <div className='hoverLine4'></div></div>

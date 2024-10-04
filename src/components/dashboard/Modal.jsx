@@ -370,10 +370,10 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null, name }) 
                             </label>
                             <div className="flex gap-2 flex-wrap">
                                 {images.map((image, index) => (
-                                    <div key={index} className="mt-10 relative w-[138px] h-[136px] mx-3 my-auto">
+                                    <div key={index} className="mt-10 relative w-[138px] h-[136px] mx-1 my-auto">
                                         <img
                                             src={image}
-                                            alt="Uploaded Image"
+                                            alt="Uploaded Image1"
                                             className="w-full h-full rounded-xl object-contain"
                                             onError={(e) => {
                                                 e.target.onerror = null; // Prevents infinite loop if image keeps failing

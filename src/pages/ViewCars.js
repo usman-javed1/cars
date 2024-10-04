@@ -22,6 +22,7 @@ const ViewCars = () => {
   useEffect(() => {
     if (carData && carData.cars) {
       const posts = carData.cars.map((car) => ({
+        id: car.id,
         name: car.name,
         heading: `${car.category}`,
         image: Array.isArray(car.photos) ? car.photos[0] : car.photos,
@@ -47,7 +48,7 @@ const ViewCars = () => {
       <div className="lg:px-0">
         <ContainerWraper>
           <Breadcrumb
-            crumbs={["Home", "Cars for lease"]}
+            crumbs={[{label: "Home", url: "/"}, {label: "Cars for lease", url: "/view"}]}
             activeCrumb="Cars for lease"
           />
           <Header carData={carData && carData.cars} total={carData && carData.total} setIsFilter={setIsFilter} isFilter={isFilter} setPriceRange={setPriceRange} priceRange={priceRange} />
