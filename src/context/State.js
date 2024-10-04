@@ -81,16 +81,20 @@ const StatesStore = ({ children }) => {
         }
     };
 
-    const fetchDataAdmin = async () => {
+    const fetchDataAdmin = async (category=null, bodyType=null ) => {
         console.log("Heelonsjkdhask")
         try {
             const queryParams = new URLSearchParams();
             console.log("Heelo djkda")
 
             queryParams.append('page', viewPage)
+            queryParams.append('limit', 9999999999989);
 
-            if (selectedValues.Categories.length > 0) {
-                queryParams.append('categories', selectedValues.Categories.join(','));
+            if (category) {
+                queryParams.append('categories', category);
+            }
+            if (bodyType) {
+                queryParams.append('vehicleType', bodyType);
             }
 
 
