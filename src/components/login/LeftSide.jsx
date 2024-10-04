@@ -34,7 +34,7 @@ const LeftSide = () => {
             }
 
             // Handle successful response (data contains the response)
-            console.log('Success:', data);
+
             localStorage.setItem('token', data.token);
             localStorage.setItem('user', data.user)
             navigate('/dashboard');
@@ -48,13 +48,13 @@ const LeftSide = () => {
     };
 
     return (
-        <div className="text-white h-[95vh] justify-between">
-            <div className="logo ">
+        <div className="text-white justify-between">
+            <div className="logo relative top-[-100px]">
                 <Link to="/">
                     <img src={require("../../images/logo.png")} alt="logo" width={142} height={42} />
                 </Link>
             </div>
-            <div className="mt-[20%]">
+            <div>
                 <div className="">
                     <div className="text-[45px] font-[700]">
                         Log in to WheelDeal

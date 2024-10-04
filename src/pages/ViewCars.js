@@ -10,61 +10,66 @@ import Explore from "../components/main/Explore/Explore";
 import { context } from "../context/context";
 
 const ViewCars = () => {
-    const { carData, viewPage, setViewPage } = useContext(context);
-    
-    const [blogPosts, setBlogPosts] = useState([]);
-    // const [page, setPage] = useState(1);
+  const { carData, viewPage, setViewPage, isFilter, setIsFilter, priceRange, setPriceRange } = useContext(context);
 
-    useEffect(() => {
-        console.log("Car data in view page is ", carData);
-    }, [carData]);
+  const [blogPosts, setBlogPosts] = useState([]);
+  // const [page, setPage] = useState(1);
 
-    useEffect(() => {
-        if (carData && carData.cars) {
-            const posts = carData.cars.map((car) => ({
-                name: car.name,
-                heading: `${car.category}`,
-                image: Array.isArray(car.photos) ? car.photos[0] : car.photos,
-                price: car.monthly_payment.toString(),
-                lease: `${car.leaseTerm}`,
-                mile: car.miles,
-                seat: car.seats.toString(), // Convert number to string
-                discount: '-40%',  // Static discount of 40%
-            }));
+//   useEffect(() => {
+//     console.log("Car data in view page is ", carData);
+//   }, [carData]);
 
-            setBlogPosts(posts);
-            setViewPage(carData.page || 1);  // Ensure page is set correctly
-        }
-        console.log("Page is ", viewPage);
-    }, [carData]);  // Add `page` as a dependency to watch for changes
+  useEffect(() => {
+    if (carData && carData.cars) {
+      const posts = carData.cars.map((car) => ({
+        name: car.name,
+        heading: `${car.category}`,
+        image: Array.isArray(car.photos) ? car.photos[0] : car.photos,
+        price: car.monthly_payment.toString(),
+        lease: `${car.leaseTerm}`,
+        mile: car.miles,
+        seat: car.seats.toString(), // Convert number to string
+        discount: "-40%", // Static discount of 40%
+        transType: car.transType
+      }));
 
-    const handlePageChange = (newPage) => {
-        console.log("Hello", newPage);
-        setViewPage(newPage);
-        
-    };
+      setBlogPosts(posts);
+      setViewPage(carData.page || 1); // Ensure page is set correctly
+    }
+  }, [carData]);
 
-    return (
-        <>
-            <div className="lg:px-0">
-                <ContainerWraper>
-                    <Breadcrumb crumbs={["Home", "Cars for lease"]} activeCrumb="Cars for lease" />
-                    <Header />
-                    <CardContainer blogPosts={blogPosts} isSearch={true} />
-                    <div className="text-center flex justify-center text-black font-[500] cursor-pointer">
-                        Show more
-                        <img src={require("../images/Frame 731.png")} alt="Show more" />
-                    </div>
-                    <Pagination setPage={handlePageChange} totalPages={carData.lastPage
-} currentPage={viewPage} />
-                    <br /><br />
-                    <HowWorks />
-                    <FAQ />
-                </ContainerWraper>
-            </div>
-            <Explore />
-        </>
-    );
+  const handlePageChange = (newPage) => {
+    setViewPage(newPage);
+  };
+
+  return (
+    <>
+      <div className="lg:px-0">
+        <ContainerWraper>
+          <Breadcrumb
+            crumbs={["Home", "Cars for lease"]}
+            activeCrumb="Cars for lease"
+          />
+          <Header carData={carData && carData.cars} total={carData && carData.total} setIsFilter={setIsFilter} isFilter={isFilter} setPriceRange={setPriceRange} priceRange={priceRange} />
+          <CardContainer blogPosts={blogPosts} isSearch={true} />
+          {/* <div className="text-center flex justify-center text-black font-[500] cursor-pointer">
+            Show more
+            <img src={require("../images/Frame 731.png")} alt="Show more" />
+          </div> */}
+          <Pagination
+            setPage={handlePageChange}
+            totalPages={carData.lastPage}
+            currentPage={viewPage}
+          />
+          <br />
+          <br />
+          <HowWorks />
+          <FAQ />
+        </ContainerWraper>
+      </div>
+      <Explore />
+    </>
+  );
 };
 
 export default ViewCars;

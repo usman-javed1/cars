@@ -4,14 +4,12 @@ import FiltersSection from './FiltersSection';
 import { motion } from "framer-motion"
 import { context } from '../../context/context';
 
-
-
-const LeftSideHeader = ({ searchResults }) => {
+const LeftSideHeader = ({ searchResults, isFilter, setIsFilter, setPriceRange, priceRange, total }) => {
     const max = 1000;
     const min = 0;
     const [isOverlayVisible, setIsOverlayVisible] = useState(false); // State for overlay visibility
     const [isOverlayVisibleSort, setIsOverlayVisibleSort] = useState(false);
-    const [priceRange, setPriceRange] = useState({ min: 0, max: 100 });// State for overlay visibility
+    // const [priceRange, setPriceRange] = useState({ min: 0, max: 5000 });
     const toggleOverlay = () => {
         setIsOverlayVisible(!isOverlayVisible); // Toggle overlay visibility
     };
@@ -19,18 +17,12 @@ const LeftSideHeader = ({ searchResults }) => {
         setIsOverlayVisibleSort(!isOverlayVisibleSort); // Toggle overlay visibility
     };
 
-
-
     const dropdownOption = [
         {name:"Oldest to Newest", value: "OTN"}, {name:"Newest to Oldest", value: "NTO"},
         {name:"Mileage: Low to High", value: "MLTH"}, {name:"Mileage: High to Low", value: "MHTL"}, {name:"Price: Low to High", value: "PLTH"},
         {name:"Price: High to Low", value: "PHTL"}
     ];
 
-
-
-
-    
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     // const [selectedValues, setSelectedValues] = useState({
     //     Make: ["Acura"],
@@ -42,7 +34,12 @@ const LeftSideHeader = ({ searchResults }) => {
     const [activeFilters, setActiveFilters] = useState([]);
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
-    const {selectedValues, setSelectedValues, activeSort, setActiveSort} = useContext(context) 
+    const {selectedValues, setSelectedValues, activeSort, setActiveSort} = useContext(context);
+
+    const handleClickFilterBtn = () => {
+        setIsFilter(!isFilter);
+        toggleOverlay();
+    }
 
     // Function to clear all filters
     const clearAllFilters = () => {
@@ -53,8 +50,24 @@ const LeftSideHeader = ({ searchResults }) => {
             Year: [],
             Price: []
         });
+        setPriceRange({ min: 0, max: 5000 });
         setActiveFilters([]);
+        toggleOverlay();
+        setIsFilter(!isFilter);
     };
+
+    const clearAllLeftFilters = () => {
+        setSelectedValues({
+            Make: [],
+            Categories: [],
+            Model: [],
+            Year: [],
+            Price: []
+        });
+        setPriceRange({ min: 0, max: 5000 });
+        setActiveFilters([]);
+        setIsFilter(!isFilter);
+    }
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -73,13 +86,13 @@ const LeftSideHeader = ({ searchResults }) => {
             .flat()
             .filter(filter => !filter.includes("$")); // Remove any existing price filters
 
-        if (priceRange.min !== 0 || priceRange.max !== 0) {
+        if ((priceRange.max !== 5000 || priceRange.min > 0) && (priceRange.min !== 0 || priceRange.max > 0)) {
             const priceFilter = formatPriceRange(priceRange.min, priceRange.max);
             updatedFilters.push(priceFilter); // Add the formatted price range as a filter
         }
 
         setActiveFilters(updatedFilters);
-    }, [selectedValues, priceRange]);
+    }, [isFilter]);
 
     // Function to remove a filter from selectedValues and activeFilters
     const handleRemoveFilter = (filter) => {
@@ -95,7 +108,7 @@ const LeftSideHeader = ({ searchResults }) => {
                 updatedSelectedValues[key] = updatedSelectedValues[key].filter(value => value !== filter);
             }
         }
-
+        setIsFilter(!isFilter);
         // Update state with new values
         setSelectedValues(updatedSelectedValues);
     };
@@ -110,13 +123,15 @@ const LeftSideHeader = ({ searchResults }) => {
         const filters = Object.values(selectedValues).flat();
 
         // Always include price filter by default
-        filters.push(formatPriceRange(priceRange.min, priceRange.max));
+        if ((priceRange.max !== 5000 || priceRange.min > 0)&& (priceRange.min !== 0 || priceRange.max > 0)) {
+            filters.push(formatPriceRange(priceRange.min, priceRange.max));
+        }
 
         setActiveFilters(filters);
-    }, [selectedValues, priceRange]);
+    }, [isFilter]);
 
     return (
-        <div className='flex justify-between items-center  flex-wrap lg:pr-[1.5%]'>
+        <div className='flex justify-between items-center flex-wrap lg:pr-[20px]'>
             {isOverlayVisible && (
                 <FiltersSection
                     selectedValues={selectedValues}
@@ -130,11 +145,13 @@ const LeftSideHeader = ({ searchResults }) => {
                     clearAllFilters={clearAllFilters}
                     priceRange={priceRange}
                     setPriceRange={setPriceRange}
+                    searchResults={searchResults}
+                    handleClickFilterBtn={handleClickFilterBtn}
                 />
             )}
             <div className="flex items-center gap-5 flex-wrap">
                 <div className="text-[12px] font-[500] text-[#767676]">
-                    {searchResults || 268} vehicles matching
+                    {total} vehicles matching
                 </div>
                 <div className="flex flex-wrap gap-2">
                     {activeFilters.map((name, index) => (
@@ -149,7 +166,7 @@ const LeftSideHeader = ({ searchResults }) => {
                         </div>
                     ))}
                 </div>
-                <div className="flex items-center justify-center gap-3 cursor-pointer" onClick={clearAllFilters}>
+                <div className="flex items-center justify-center gap-3 cursor-pointer" onClick={clearAllLeftFilters}>
                     <img src={require("../../images/Frame (1).png")} alt="" />
                     <div className="text-[14px] text-black">Clear filters</div>
                 </div>
@@ -175,10 +192,6 @@ const LeftSideHeader = ({ searchResults }) => {
                         </div>
 
                     </div>
-
-
-
-
 
                     <div className={`sortDropdown w-[252px] flex flex-col justify-center items-center absolute bg-white top-16 left-[45px] rounded-[20px] transition-all duration-300 ${isDropdownOpen ? 'block' : 'hidden'}`} style={{ zIndex: 9999 }}>
                         {dropdownOption.map((value, index) => (

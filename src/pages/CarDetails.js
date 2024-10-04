@@ -21,7 +21,7 @@ const CarDetails = () => {
   useEffect(() => {
     const init = async () => {
       try {
-        const url = `http://localhost:3333/car/public/${id}`
+        const url = `${process.env.REACT_APP_BACKEND_URL}/car/public/${id}`
         const response = await fetch(url);
         if (!response.ok) {
           alert("error in fetching data");
