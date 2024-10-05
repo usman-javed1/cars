@@ -27,7 +27,7 @@ const BlogPost = ({ imageSrc, category, title, description, date, id }) => {
         <div className="lg:w-[100%] w-[325px] lg:mb-[20px] mb-[30px] overflow-hidden flex flex-col justify-between">
             <div className="">
                 <div className="">
-                    <img className=" lg:h-[200px] h-[200px] rounded-[15px]" src={imageSrc} alt={title} />
+                    <img className=" lg:h-[200px] h-[200px] rounded-[15px] w-full" src={imageSrc} alt={title} />
                 </div>
 
                 <div className=" mt-4 pr-[10px]">
@@ -182,7 +182,7 @@ const Blog = () => {
 
                             {/* Add new article button */}
                             <div
-                                className="px-4 flex gap-3 bg-[#FFB600] rounded-[10px] text-white hover:text-black hover:bg-white transition-all duration-300 justify-center items-center cursor-pointer"
+                                className="px-4 flex gap-3 bg-[#FFB600] rounded-[10px] text-white transition-all duration-300 justify-center items-center cursor-pointer"
                                 onClick={openModal} // Open modal on click
                             >
                                 <img

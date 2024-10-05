@@ -20,7 +20,7 @@ const Dashboard = () => {
 
     return (
         <div className='flex w-[100%] overflow-hidden'>
-            <Sidebar setPage={setPage} />
+            <Sidebar  item={1} />
 
             {page === "main" && <Main />}
             

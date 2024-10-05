@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import DatePicker from 'react-datepicker';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const BlogModal = ({ blogId = null, closeModal }) => {
     const [step, setStep] = useState(1);
@@ -191,10 +191,19 @@ const BlogModal = ({ blogId = null, closeModal }) => {
                                     <label htmlFor="photoSelector" className="bg-lightgray mt-3 text-[16px] font-[500] px-7 py-4 rounded-[10px] cursor-pointer">
                                         Browse files
                                     </label>
-                                </div>
-                                <div className='mt-4 h-[175px]'>
-                                    {images && <div className="">
-                                        <img src={images} alt="" className='w-[40%] max-h-[175px] rounded-lg' />
+                                    {images && <div className="relative">
+                                        <div className="">
+                                            <img src={images} alt="" className='w-[52px] h-[52px] rounded-lg' />
+                                            <button
+                                            onClick={() => {
+                                                 // Remove image
+                                                setImages("");
+                                            }}
+                                            className="absolute top-[-5px] right-[-5px] w-4 h-4 text-white bg-black rounded-full flex justify-center items-center text-[14px]"
+                                        >
+                                            &times;
+                                        </button>
+                                        </div>
                                     </div>}
                                 </div>
                             </div>
@@ -209,12 +218,12 @@ const BlogModal = ({ blogId = null, closeModal }) => {
                         </div>
 
                         <div className="w-[600px] flex justify-between font-[500] pb-[30px] items-center">
-                            {/* <div className="text-[16px] mt-10 font-[500] flex items-center gap-2">
+                            {/* {blogId && <Link to={`/news/${blogId}`} target='_blank' className="text-[16px] mt-10 font-[500] flex items-center gap-2">
                                 <img src={require("../../images/Frame (7).png")} alt="" />
                                 <div className="">
                                     Open&nbsp;Preview
                                 </div>
-                            </div> */}
+                            </Link>} */}
 
                             <div className="w-[600px]  mt-10 flex justify-end gap-5 ">
                                 <button className="" onClick={closeModal}>
