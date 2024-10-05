@@ -218,12 +218,12 @@ const BlogModal = ({ blogId = null, closeModal }) => {
                         </div>
 
                         <div className="w-[600px] flex justify-between font-[500] pb-[30px] items-center">
-                            {blogId && <Link to={`/news/${blogId}`} target='_blank' className="text-[16px] mt-10 font-[500] flex items-center gap-2">
+                            {/* {blogId && <Link to={`/news/${blogId}`} target='_blank' className="text-[16px] mt-10 font-[500] flex items-center gap-2">
                                 <img src={require("../../images/Frame (7).png")} alt="" />
                                 <div className="">
                                     Open&nbsp;Preview
                                 </div>
-                            </Link>}
+                            </Link>} */}
 
                             <div className="w-[600px]  mt-10 flex justify-end gap-5 ">
                                 <button className="" onClick={closeModal}>
@@ -274,12 +274,12 @@ const BlogModal = ({ blogId = null, closeModal }) => {
                             />
 
                         </div>
-                        <div className="w-[600px] flex justify-between font-[500] pb-[30px] items-center">
+                        <div className="w-[600px] flex justify-between font-[500] pb-[30px] items-center pt-24">
                             <button className="mt-10 flex gap-1 justify-center items-center" onClick={() => setStep(step - 1)}>
                                 <img src={require("../../images/back.png")} alt="" />
                                 Back
                             </button>
-                            <div className=" mt-10 flex justify-end gap-5 ">
+                            <div className=" mt-10 flex justify-end gap-5">
                                 <button className="" onClick={closeModal}>
                                     Cancel
                                 </button>
