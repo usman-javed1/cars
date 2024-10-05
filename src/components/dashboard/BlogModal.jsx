@@ -166,7 +166,7 @@ const BlogModal = ({ blogId = null, closeModal }) => {
                             </div>
 
                             {/* File upload for hero photo */}
-                            <div className="mt-36">
+                            <div className="mt-10">
                                 <div className="head text-[15px] font-[700] mb-2 text-black mt-[36px]">
                                     {"Add hero photo"}
                                 </div>
@@ -186,25 +186,25 @@ const BlogModal = ({ blogId = null, closeModal }) => {
                                 />
                                 <div className="w-[10px]"></div>
 
-                                <div className="-mt-10 flex gap-5 items-center">
+                                <div className=" gap-5 items-center">
 
                                     <label htmlFor="photoSelector" className="bg-lightgray mt-3 text-[16px] font-[500] px-7 py-4 rounded-[10px] cursor-pointer">
                                         Browse files
                                     </label>
-                                    {images && <div className="relative">
-                                        <div className="">
-                                            <img src={images} alt="" className='w-[52px] h-[52px] rounded-lg' />
+                                    <div className="relative mt-10 w-[250px] h-[90px] ">
+                                        {images && <div className="">
+                                            <img src={images} alt="" className='w-[280px] h-[160px] rounded-lg' />
                                             <button
-                                            onClick={() => {
-                                                 // Remove image
-                                                setImages("");
-                                            }}
-                                            className="absolute top-[-5px] right-[-5px] w-4 h-4 text-white bg-black rounded-full flex justify-center items-center text-[14px]"
-                                        >
-                                            &times;
-                                        </button>
-                                        </div>
-                                    </div>}
+                                                onClick={() => {
+                                                    // Remove image
+                                                    setImages("");
+                                                }}
+                                                className="absolute top-[-5px] right-[-5px] w-4 h-4 text-white bg-black rounded-full flex justify-center items-center text-[14px]"
+                                            >
+                                                &times;
+                                            </button>
+                                        </div>}
+                                    </div>
                                 </div>
                             </div>
                             {/* <div className="mt-16">
@@ -217,13 +217,13 @@ const BlogModal = ({ blogId = null, closeModal }) => {
                             </div> */}
                         </div>
 
-                        <div className="w-[600px] flex mt-24 justify-between font-[500] pb-[30px] items-center">
-                            {/* {blogId && <Link to={`/news/${blogId}`} target='_blank' className="text-[16px] mt-10 font-[500] flex items-center gap-2">
+                        <div className="w-[600px] flex justify-between font-[500] pb-[30px] items-center">
+                            {blogId && <Link to={`/news/${blogId}`} target='_blank' className="text-[16px] mt-10 font-[500] flex items-center gap-2">
                                 <img src={require("../../images/Frame (7).png")} alt="" />
                                 <div className="">
                                     Open&nbsp;Preview
                                 </div>
-                            </Link>} */}
+                            </Link>}
 
                             <div className="w-[600px]  mt-10 flex justify-end gap-5 ">
                                 <button className="" onClick={closeModal}>
@@ -274,12 +274,12 @@ const BlogModal = ({ blogId = null, closeModal }) => {
                             />
 
                         </div>
-                        <div className="w-[600px] flex justify-between font-[500] pb-[30px] items-center pt-24">
-                            <button className="mt-10 flex gap-1 justify-center items-center" onClick={() => setStep(step - 1)}>
+                        <div className="w-[600px] flex justify-between font-[500] pb-[30px] items-center mt-14">
+                            <button className="mt-10 flex gap-1 justify-center items-center " onClick={() => setStep(step - 1)}>
                                 <img src={require("../../images/back.png")} alt="" />
                                 Back
                             </button>
-                            <div className=" mt-10 flex justify-end gap-5">
+                            <div className=" mt-10 flex justify-end gap-5 ">
                                 <button className="" onClick={closeModal}>
                                     Cancel
                                 </button>
