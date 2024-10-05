@@ -385,9 +385,9 @@ const HeroSection = () => {
                     <img src={require("../../../images/insta2.png")} alt="" className='w-[18px] h-[18px]  ' />
                     <img src={require("../../../images/solidfb.png")} alt="" className='w-[18px] h-[18px]  ' />
                 </div>
-                <img src={require("../../../images/hero.png")} className='w-full h-[632px] lg:block md:block hidden' alt="" />
+                <img src={require("../../../images/hero.png")} style={{borderRadius: '22px'}} className='w-full h-[632px] lg:block md:block hidden' alt="" />
 
-                <img src={require("../../../images/responsiveHeroImage.png")} className='w-full h-[652px] lg:hidden md:hidden block' alt="" style={{ filter: "brightness(0.5)" }} />
+                <img src={require("../../../images/responsiveHeroImage.png")} className='w-full h-[652px] lg:hidden md:hidden block' alt="" style={{ filter: "brightness(0.5)", borderRadius: '22px'}} />
                 <div className="samllText absolute  lg:w-[560px] md:w-[460px] w-[219px] lg:right-[5%] md:right-[5%] right-[32px] lg:top-[50px]md:top-[50px] top-[30px] text-[8.76px] text-white lg:text-right md:text-right text-center font-[300] leading-[1.5] lg:opacity-100 opacity-50">
                     Explore our exclusive collection of exotic cars, each meticulously chosen to represent the epitome of automotive <br /> engineering and design. From sleek sports cars to powerful luxury SUVs, our selection caters to every discerning taste.
                 </div>
