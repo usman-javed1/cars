@@ -166,7 +166,7 @@ const BlogModal = ({ blogId = null, closeModal }) => {
                             </div>
 
                             {/* File upload for hero photo */}
-                            <div className="mt-10">
+                            <div className="mt-36">
                                 <div className="head text-[15px] font-[700] mb-2 text-black mt-[36px]">
                                     {"Add hero photo"}
                                 </div>
@@ -217,7 +217,7 @@ const BlogModal = ({ blogId = null, closeModal }) => {
                             </div> */}
                         </div>
 
-                        <div className="w-[600px] flex justify-between font-[500] pb-[30px] items-center">
+                        <div className="w-[600px] flex mt-24 justify-between font-[500] pb-[30px] items-center">
                             {/* {blogId && <Link to={`/news/${blogId}`} target='_blank' className="text-[16px] mt-10 font-[500] flex items-center gap-2">
                                 <img src={require("../../images/Frame (7).png")} alt="" />
                                 <div className="">

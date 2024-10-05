@@ -10,7 +10,7 @@ const Card = ({ image, heading }) => {
                 <span className='w-[90px]  flex justify-center items-center'>
                     {heading}
                 </span>
-                <span className=' opacity-0 transition-all duration-300 imageInCatCard lg:flex md:flex hidden'>
+                <span className=' opacity-0 transition-all duration-300 imageInCatCard flex'>
                     <img src={require("../../../images/fullarrow.png")} className='w-[48px] h-[22px]' alt="" />
                     
                 </span>
