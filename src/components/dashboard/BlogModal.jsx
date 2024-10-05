@@ -191,8 +191,10 @@ const BlogModal = ({ blogId = null, closeModal }) => {
                                     <label htmlFor="photoSelector" className="bg-lightgray mt-3 text-[16px] font-[500] px-7 py-4 rounded-[10px] cursor-pointer">
                                         Browse files
                                     </label>
+                                </div>
+                                <div className='mt-4 h-[175px]'>
                                     {images && <div className="">
-                                        <img src={images} alt="" className='w-[52px] h-[52px] rounded-lg' />
+                                        <img src={images} alt="" className='w-[40%] max-h-[175px] rounded-lg' />
                                     </div>}
                                 </div>
                             </div>
@@ -207,12 +209,12 @@ const BlogModal = ({ blogId = null, closeModal }) => {
                         </div>
 
                         <div className="w-[600px] flex justify-between font-[500] pb-[30px] items-center">
-                            <div className="text-[16px] mt-10 font-[500] flex items-center gap-2">
+                            {/* <div className="text-[16px] mt-10 font-[500] flex items-center gap-2">
                                 <img src={require("../../images/Frame (7).png")} alt="" />
                                 <div className="">
                                     Open&nbsp;Preview
                                 </div>
-                            </div>
+                            </div> */}
 
                             <div className="w-[600px]  mt-10 flex justify-end gap-5 ">
                                 <button className="" onClick={closeModal}>
@@ -263,12 +265,12 @@ const BlogModal = ({ blogId = null, closeModal }) => {
                             />
 
                         </div>
-                        <div className="w-[600px] flex justify-between font-[500] pb-[30px] items-center">
+                        <div className="w-[600px] flex justify-between font-[500] pb-[30px] items-center pt-24">
                             <button className="mt-10 flex gap-1 justify-center items-center" onClick={() => setStep(step - 1)}>
                                 <img src={require("../../images/back.png")} alt="" />
                                 Back
                             </button>
-                            <div className=" mt-10 flex justify-end gap-5 ">
+                            <div className=" mt-10 flex justify-end gap-5">
                                 <button className="" onClick={closeModal}>
                                     Cancel
                                 </button>

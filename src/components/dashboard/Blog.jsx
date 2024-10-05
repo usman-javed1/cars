@@ -7,6 +7,22 @@ const BlogPost = ({ imageSrc, category, title, description, date, id }) => {
     const onClose = () => {
         setOpenModel(false);
     };
+
+    function formatDate(date) {
+        if (date) {
+            const dateObj = new Date(date);
+    
+            if (!isNaN(dateObj)) {
+                const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                const formattedDate = dateObj.toLocaleDateString('en-US', options);
+                return formattedDate;
+            } else {
+                return 'Invalid Date';
+            }
+        }
+        return '';
+    }
+
     return (
         <div className="lg:w-[100%] w-[325px] lg:mb-[20px] mb-[30px] overflow-hidden flex flex-col justify-between">
             <div className="">
@@ -23,16 +39,16 @@ const BlogPost = ({ imageSrc, category, title, description, date, id }) => {
                         {description}
                     </p>
                     <p className="lg:text-[14px] text-[12px] font-[500] text-[#636363] lg:pt-[10px] pt-[18.6px]">
-                        {date}
+                        {formatDate(date)}
                     </p>
                 </div>
             </div>
 
             <div
-                className="w-[100%] mb-3 mt-6 cursor-pointer bg-[#F4F4F4] p-4 rounded-[10px] flex justify-center gap-2 text-[12px] items-center"
+                className="w-[100%] mb-3 mt-6 cursor-pointer bg-[#F4F4F4] p-4 rounded-[10px] flex justify-center gap-2 text-[14px] items-center font-[500] text-[#636363]"
                 onClick={() => setOpenModel(!openModal)}
             >
-                <img src={require('../../images/FrameEdit.png')} className="w-[12px] h-[12px]" alt="" /> Edit
+                <img src={require('../../images/FrameEdit.png')} className="w-[14px] h-[13px] mt-[-2px]" alt="" /> Edit
             </div>
 
             {openModal && <BlogModal blogId={id} closeModal={onClose} />}
