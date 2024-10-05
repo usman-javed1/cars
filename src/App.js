@@ -18,12 +18,13 @@ import ViewCars from './pages/ViewCars';
 import ScrollToTop from './ScrollTop';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
+import BlogDashBoard from './pages/BlogDashboard';
 
 function App() {
   const location = useLocation();
 
   // Define the routes where you want to hide the Navbar and Footer
-  const hideNavAndFooterRoutes = ['/dashboard','/admin'];
+const hideNavAndFooterRoutes = ['/dashboard','/admin', '/blogdashboard'];
 
   return (
     <div className="App w-[100%] max-w-full mx-auto">
@@ -45,6 +46,7 @@ function App() {
         <Route path='/detail/:id' element={<CarDetails />} />
         <Route path='/admin' element={<><Login /></>} />
         <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/blogdashboard' element={<BlogDashBoard />} />
       </Routes>
 
       {/* Conditionally render the Footer */}

@@ -19,14 +19,14 @@ const Sidebar = () => {
             </div>
             <div className={`w-full flex items-center py-2 font-[500] text-[16px] ${selectedItem === 1 ? "text-[#F6B000]" : "text-[#959595]"}`}>
                 <div className={`w-[5px] h-[40px] rounded-r-[6px] bg-[#F6B000] ${selectedItem === 1 ? "opacity-100" : "opacity-0"}`}></div>
-                <div className='flex items-center cursor-pointer' onClick={() => onChangeSidebarItem(1)}>
+                <div className='flex items-center cursor-pointer' onClick={() => { onChangeSidebarItem(1);  navigate("/dashboard")}}>
                     <img src={require(`../../images/${selectedItem === 1 ? "Frame-car.png" : "Frame-car-disable.png"}`)} alt="" className={`${selectedItem === 1 ? "pl-[40px] pr-[6px]" : "pl-[40px] pr-[7px]"}`} />
                     Your vehicles
                 </div>
             </div>
             <div className={`w-full flex items-center py-2 font-[500] text-[16px] pt-2 ${selectedItem === 2 ? "text-[#F6B000]" : "text-[#959595]"}`}>
                 <div className={`w-[5px] h-[40px] rounded-r-[6px] bg-[#F6B000] ${selectedItem === 2 ? "opacity-100" : "opacity-0"}`}></div>
-                <div className='flex items-center cursor-pointer' onClick={() => onChangeSidebarItem(2)}>
+                <div className='flex items-center cursor-pointer' onClick={() => { onChangeSidebarItem(2);  navigate("/blogdashboard")}}>
                     <img src={require(`../../images/${selectedItem === 2 ? "blog-item-enable.png" : "blog-item.png"}`)} alt="" className={`pr-[7px] ${selectedItem === 2 ? "pl-[40px]" : "pl-[40px]"}`} />
                     Blog
                 </div>

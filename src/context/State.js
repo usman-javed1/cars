@@ -120,8 +120,44 @@ const StatesStore = ({ children }) => {
     };
 
 
+    const fetchBlogAdmin = async (category=null) => {
+        try {
+            const queryParams = new URLSearchParams();
+            console.log("Heelo djkda")
+
+            queryParams.append('page', viewPage)
+            queryParams.append('limit', 9999999999989);
+
+            if (category) {
+                queryParams.append('category', category);
+            }
+            
+
+
+            // Fetch the data with the applied filters
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/blog/public?${queryParams.toString()}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            return data;
+
+            // setCarData(data.data);
+        } catch (error) {
+            console.log('Error fetching data:', error);
+        }
+    }
+
+
     return (
-        <Context.Provider value={{ isFilter, setIsFilter, carData, setCarData, priceRange, setPriceRange,  selectedValues, setSelectedValues, activeSort, setActiveSort, fetchData, viewPage, setViewPage, fetchDataAdmin }} >
+        <Context.Provider value={{ isFilter, setIsFilter, carData, setCarData, priceRange, setPriceRange,  selectedValues, setSelectedValues, activeSort, setActiveSort, fetchData, viewPage, setViewPage, fetchDataAdmin,fetchBlogAdmin }} >
             {children}
         </Context.Provider>
     )

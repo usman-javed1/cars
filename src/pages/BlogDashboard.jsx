@@ -4,7 +4,7 @@ import Sidebar from '../components/dashboard/Sidebar';
 import Main from '../components/dashboard/Main';
 import Blog from '../components/dashboard/Blog';
 
-const Dashboard = () => {
+const BlogDashBoard = () => {
     const navigate = useNavigate(); // Hook to programmatically navigate
 
     const [page, setPage] = useState("main");
@@ -20,12 +20,12 @@ const Dashboard = () => {
 
     return (
         <div className='flex w-[100%] overflow-hidden'>
-            <Sidebar setPage={setPage} />
+            <Sidebar  />
 
-            {page === "main" && <Main />}
+            { <Blog />}
             
         </div>
     );
 };
 
-export default Dashboard;
+export default BlogDashBoard;
