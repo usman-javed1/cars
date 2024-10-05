@@ -20,7 +20,7 @@ const BlogDashBoard = () => {
 
     return (
         <div className='flex w-[100%] overflow-hidden'>
-            <Sidebar  />
+            <Sidebar item={2}  />
 
             { <Blog />}
             
