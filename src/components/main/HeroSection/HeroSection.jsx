@@ -468,7 +468,7 @@ const HeroSection = () => {
                             setStartDate={setStartDate}
                         />
                         <div className="button">
-                            <button className='w-full h-[56px] flex justify-center items-center font-[500] bg-black text-white rounded-[10px] mt-20 mx-auto'>
+                            <button onClick={() => handleFilterBtn()} className='w-full h-[56px] flex justify-center items-center font-[500] bg-black text-white rounded-[10px] mt-20 mx-auto'>
                                 Show results
                             </button>
                         </div>
