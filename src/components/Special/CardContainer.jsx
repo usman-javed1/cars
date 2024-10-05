@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-// import Card from '../General/Card';
-
-
-
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Card = ({ obj }) => {
     const { id, image, discount, seat, heading, name, lease, mile, price, transType } = obj;
     return (
-        <div className='mainCard 2xl:h-[605px] 2xl:w-[31.8%] lg:w-[31.5%] md:w-[400px] w-[320px] lg:h-[580px] md:h-[580px] h-[510px] p-[18px] rounded-[15px] border border-[#E9E9E9] my-4 bg-white cursor-pointer md:mr-[20px] mr-[0px]' >
+        <motion.div
+            layout
+            initial={{ opacity: 0, y: 50 }}  // Starts below the screen
+            animate={{ opacity: 1, y: 0 }}   // Animates into view from the bottom
+            exit={{ opacity: 0, y: -50 }}    // Exits by moving up and disappearing
+            transition={{ duration: 0.5, ease: "easeInOut" }}  // Animation speed and easing
+            className='mainCard 2xl:h-[605px] 2xl:w-[31.8%] lg:w-[31.5%] md:w-[400px] w-[320px] lg:h-[580px] md:h-[580px] h-[510px] p-[18px] rounded-[15px] border border-[#E9E9E9] my-4 bg-white cursor-pointer md:mr-[20px] mr-[0px]'
+        >
+            {/* Card content here */}
             <div className="cardNav text-[#959595] font-[500] text-[12px] flex justify-between items-center">
                 <div className=" w-[70px] h-[35px] p-[8px, 10px, 6px, 10px] bg-[#FFE39E] text-[17px] font-[700] text-black rounded-[8px] flex justify-center items-center">
                     {discount}
@@ -20,7 +25,6 @@ const Card = ({ obj }) => {
                             {seat} seats
                         </div>
                     </div>
-
                     <div className=" flex gap-[5px] ">
                         <img src={require('../../images/automatic.png')} className='w-[19px] h-[19px]' alt="" />
                         <div className="lg:text-base md:text-base text-[12px]">
@@ -30,9 +34,8 @@ const Card = ({ obj }) => {
                 </div>
             </div>
 
-            <div className="imageSection  relative mt-3">
-                <div className="lg:w-[28.5%] lg:h-[256px] h-[194px] w-[273px] absolute top-0 left-0" style={{ zIndex: 100 }}></div>
-                <img src={image} alt="" className='2xl:w-[95%] 2xl:h-[285px] lg:w-[100%] lg:h-[256px] h-[194px] w-[273px] mx-auto rounded-[20px] object-contain' style={{ zIndex: -1 }} />
+            <div className="imageSection relative mt-3">
+                <img src={image} alt="" className='2xl:w-[95%] 2xl:h-[285px] lg:w-[100%] lg:h-[256px] h-[194px] w-[273px] mx-auto rounded-[20px] object-contain' />
             </div>
 
             <div className="details pl-[10px]">
@@ -44,11 +47,7 @@ const Card = ({ obj }) => {
                 }} >
                     {name}
                 </div>
-                <div className="moreDesc w-[100%] flex gap-[18px]"
-                    style={{
-                        letterSpacing: "-0.5px"
-                    }}
-                >
+                <div className="moreDesc w-[100%] flex gap-[18px]" style={{ letterSpacing: "-0.5px" }}>
                     <div className="w-[136px]">
                         <div className="head text-[#959595] font-[500] text-[12px] flex justify-start">
                             Lease&nbsp;term:&nbsp;<span className='text-black ml-1 '>{lease}</span>
@@ -70,10 +69,10 @@ const Card = ({ obj }) => {
                 </div>
                 <div className="text-[12px] font-[500]">/month</div>
             </div>
-            <Link to={'/detail/1'}>
 
+            <Link to={'/detail/1'}>
                 <div className="px-[10px]">
-                    <button className='mainButton lg:w-[100%] md:w-[340px] w-[277px] h-[44px] rounded-[10px] bg-black text-white flex justify-center items-center text-[14px] mt-[15px] font-[500]  transition-all duration-300'>
+                    <button className='mainButton lg:w-[100%] md:w-[340px] w-[277px] h-[44px] rounded-[10px] bg-black text-white flex justify-center items-center text-[14px] mt-[15px] font-[500] transition-all duration-300'>
                         Request a quote
                     </button>
                 </div>
@@ -81,56 +80,44 @@ const Card = ({ obj }) => {
             <Link to={`/view/${id}`}>
                 <div className="">
                     <button className='lg:w-[100%] md:w-[340px] w-[277px] h-[44px] rounded-[10px] flex justify-center items-center text-[14px] mt-[10px] hoverAni56 font-[500] relative'>
-                        View Details <div className='relative'> <div className='hoverLine4'></div></div>
-                        <span className='w-[20px]'><img src={require("../../images/cardicon.png")} className='w-[20px] h-[20px] imahe32' alt="" />
+                        View Details
+                        <span className='w-[20px]'>
+                            <img src={require("../../images/cardicon.png")} className='w-[20px] h-[20px] imahe32' alt="" />
                         </span>
                     </button>
                 </div>
             </Link>
-        </div>
+        </motion.div>
     )
 }
-
 
 const CardContainer = ({ blogPosts, isSearch = false }) => {
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
     const [visiblePosts, setVisiblePosts] = useState([]);
 
-    const updateVisiblePosts = (mobileView) => {
-        if (isSearch) {
-            // If search mode, show full data without limiting posts
-            setVisiblePosts(blogPosts);
-        } else {
-            // Otherwise, limit the visible posts
-            setVisiblePosts(mobileView ? blogPosts.slice(0, 4) : blogPosts.slice(0, 6));
-        }
+    const filterCards = (cards) => {
+        // Apply filtering logic here, e.g.:
+        return cards.filter(card => card.price > 500); // Example filter: only show cards with price > 500
     };
 
     useEffect(() => {
         const handleResize = () => {
-            const mobileView = window.innerWidth < 768;
-            setIsMobile(mobileView);
-            updateVisiblePosts(mobileView);
+            setIsMobile(window.innerWidth < 768);
         };
 
-        // Update visible posts based on the current window size on mount
-        updateVisiblePosts(isMobile);
+        setVisiblePosts(filterCards(blogPosts));
 
         window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, [blogPosts, isSearch, isMobile]);
+        return () => window.removeEventListener('resize', handleResize);
+    }, [blogPosts, isSearch]);
 
     return (
         <div className="flex flex-wrap -mt-5  w-full gap-[0.3%]">
-            {visiblePosts.map((post, index) => (
-                <Card
-                    key={index}
-                    obj={post}
-                />
-            ))}
+            <AnimatePresence>
+                {visiblePosts.map((post) => (
+                    <Card key={post.id} obj={post} />  // Use a unique key for each post
+                ))}
+            </AnimatePresence>
         </div>
     );
 };
