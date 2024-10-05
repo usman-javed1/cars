@@ -226,7 +226,7 @@ const Modal = ({ closeModal, heading = "Add new vehicle", carId = null, name }) 
                             </div>
 
                             <div className="">
-                                <Dropdown options={['K5', 'Optima ', 'Ceed']} label={model || 'K5'} optionCase={carId ? "edit" : "add"} onSelect={setModel} />
+                                <Dropdown options={['Model Y', 'Model S ', 'Cybertruck']} label={model || 'Model Y'} optionCase={carId ? "edit" : "add"} onSelect={setModel} />
                             </div>
                         </div>
 
