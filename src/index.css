@@ -140,11 +140,12 @@ body {
 
 
 .catCard:hover .imageInCatCard {
+  width: 100%;
   opacity: 1;
 }
 
 .catCard:hover .textSection {
-  margin-left: -40px;
+  /* margin-left: -40px; */
 }
 
 .catContainer {
@@ -377,6 +378,10 @@ select option:focus {
   }
   .form-steps span{
     padding: 10px 5px;
+  }
+
+  .catCard:hover .textSection {
+    /* margin-left: -20px; */
   }
 }
 
