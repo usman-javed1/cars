@@ -29,25 +29,25 @@ const StatesStore = ({ children }) => {
         try {
             const queryParams = new URLSearchParams();
 
-            if (!selectedValues.Make.includes('All')) {
-                queryParams.append('brand', selectedValues.Make);
-            }
+            // if (!selectedValues.Make.includes('All')) {
+            //     queryParams.append('brand', selectedValues.Make);
+            // }
             queryParams.append('page', viewPage)
 
             if (selectedValues.Categories.length > 0) {
                 queryParams.append('categories', selectedValues.Categories.join(','));
             }
 
-            if (selectedValues.BodyType.length > 0) {
+            if (selectedValues.BodyType && selectedValues.BodyType.length > 0) {
                 queryParams.append('vehicleType', selectedValues.BodyType);
             }
 
             // Add "Model" filter (if any models are selected)
-            if (selectedValues.Model.length > 0) {
+            if (selectedValues.Model && selectedValues.Model.length > 0) {
                 queryParams.append('model', selectedValues.Model);
             }
 
-            if (selectedValues.Make.length > 0) {
+            if (selectedValues.Make && selectedValues.Make.length > 0) {
                 queryParams.append('brand', selectedValues.Make);
             }
 

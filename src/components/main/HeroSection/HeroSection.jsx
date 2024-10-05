@@ -209,8 +209,8 @@ export const CustomDropdown = ({ options, defaultText, selectedValues, onSelect,
                             : name === "Price" ? (
                                 <li className=" w-[401px]">
                                     <RangeSlider
-                                        min={10}
-                                        max={1000}
+                                        min={0}
+                                        max={5000}
                                         value={priceRange}
                                         step={1}
                                         onChange={handlePriceChange}

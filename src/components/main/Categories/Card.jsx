@@ -7,10 +7,10 @@ const Card = ({ image, heading }) => {
                 <img src={image} alt=""  className=''/>
                 </div>
             <div className="font-[500] text-[16px] flex justify-center items-center text-[#000] relative textSection transition-all duration-500 mt-[7px]" style={{ letterSpacing: '-3%' }}>
-                <span className='w-[90px]  flex justify-center items-center'>
+                <span className=''>
                     {heading}
                 </span>
-                <span className=' opacity-0 transition-all duration-300 imageInCatCard flex'>
+                <span className=' opacity-0 transition-all duration-500 imageInCatCard w-0'>
                     <img src={require("../../../images/fullarrow.png")} className='w-[48px] h-[22px]' alt="" />
                     
                 </span>
