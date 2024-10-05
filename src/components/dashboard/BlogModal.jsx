@@ -196,17 +196,23 @@ const BlogModal = ({ blogId = null, closeModal }) => {
                                     </div>}
                                 </div>
                             </div>
-                            <div className="mt-16">
+                            {/* <div className="mt-16">
                                 <div className="head text-[15px] font-[700] mb-2 text-black mt-[36px]">
                                     {"Main Body Text: "}
                                 </div>
                                 <div className="w-[580px]">
                                     <div className="w-[240px] border border-[#D8D8D8]"></div>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
 
                         <div className="w-[600px] flex justify-between font-[500] pb-[30px] items-center">
+                            <div className="text-[16px] mt-10 font-[500] flex items-center gap-2">
+                                <img src={require("../../images/Frame (7).png")} alt="" />
+                                <div className="">
+                                    Open&nbsp;Preview
+                                </div>
+                            </div>
 
                             <div className="w-[600px]  mt-10 flex justify-end gap-5 ">
                                 <button className="" onClick={closeModal}>

@@ -40,6 +40,7 @@ const hideNavAndFooterRoutes = ['/dashboard','/admin', '/blogdashboard'];
         <Route path='/faq' element={<FAQ />} />
         <Route path='/financing' element={<Financing />} />
         <Route path='/news' element={<News />} />
+        <Route path='/news/:id' element={<News />} />
         <Route path='/our-team' element={<OurTeam />} />
         <Route path='/special-deals' element={<SpecialDeals />} />
         <Route path='/view' element={<ViewCars />} />

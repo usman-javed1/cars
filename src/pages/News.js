@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Breadcrumb from "../components/Blog/Breadcrumb/Breadcrumb";
 import Newscontact from "../components/Newscontact/Newscontact";
 import ContainerWraper from "../components/General/ContainerWraper";
@@ -10,11 +10,19 @@ import Articles from "../components/NewsContactAll/Articles";
 import { useNavigate, useParams } from "react-router-dom";
 
 const News = () => {
-  const {id} = useParams()
+  const [blogId, setBlogId] = useState(0);
+  const { id } = useParams()
+  const [images, setImages] = useState("");
+  const [description, setDescription] = useState("");
+  const [articleHeading, setArticleHeading] = useState("");
+  const [activeOption, setActiveOption] = useState("");
+  const [publishDate, setPublishDate] = useState("");
+
 
   useEffect(() => {
-    if (blogId) {
-        fetch(`${process.env.REACT_APP_BACKEND_URL}/blog/public/${blogId}`)  // Replace with your actual API endpoint
+    setBlogId(id)
+    if (id) {
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/blog/public/${id}`)  // Replace with your actual API endpoint
             .then(response => response.json())
             .then(data => {
                 setImages(data?.data.photos)
@@ -26,15 +34,18 @@ const News = () => {
             })
             .catch(err => console.error(err));
     }
-}, [blogId]);
+}, [id]);
   return (
     <>
       <div className="w-full max-w-full mx-auto flex flex-col justify-between items-center">
+      {blogId > 0 &&<>
         <ContainerWraper>
-          <Breadcrumb crumbs={[{label: "Home", url: "/"}, {label: "News", url: "/news"}, {label: "Models Available for Leasing!", url: "/news"}]} activeCrumb="Models Available for Leasing!" ></Breadcrumb>
-          <Newscontact></Newscontact>
+          
+          <Breadcrumb crumbs={[{label: "Home", url: "/"}, {label: "News", url: "/news"}, {label: articleHeading, url: `/news/${id}`}]} activeCrumb={articleHeading} ></Breadcrumb>
+          <Newscontact description={description} category={activeOption} publishDate={publishDate} heading={articleHeading} ></Newscontact>
         </ContainerWraper>
-        <ImageFullWidth></ImageFullWidth>
+          <ImageFullWidth image={images}></ImageFullWidth>
+          </>}
         <ContainerWraper>
           <NewsContactAll></NewsContactAll>
           <Articles />
