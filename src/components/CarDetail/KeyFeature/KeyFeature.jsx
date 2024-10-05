@@ -1,24 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-const KeyFeature = () => {
+const KeyFeature = (props) => {
     // Array of key features
-    const keyFeatures = [
-        { label: 'Transmission', value: 'Automatic' },
-        { label: 'Seats', value: '5 seats' },
-        { label: 'Exterior Color', value: 'White' },
-        { label: 'Odometer', value: '78,703 miles' },
-        { label: 'Drivetrain', value: 'Front-wheel Drive' },
-        { label: 'Engine', value: 'I-4 cyl' },
-        { label: 'Horsepower', value: '310' },
-        { label: 'Fuel Economy', value: '26/38 MPG City/Hwy' }
-    ];
+    const [keyFeatures, setKeyFeatures] = useState(null);
+
+    useEffect(() => {
+        setKeyFeatures([
+            { label: 'Transmission', value: props.car?.transType },
+            { label: 'Seats', value: props.car?.seats + ' seats' },
+            { label: 'Engine', value:  'I-' + props.car?.miles + ' cyl' },
+            { label: 'Miles per year', value: props.car?.miles + ' miles' }
+        ]);
+    }, [props]);
 
     return (
         <div className="mainkeyfeature bg-black pt-[80px] pb-[80px]">
             <div className='container px-[25px] lg:px-[0px]'>
                 <h2 className='lg:class-for-h2 text-[35px] font-[700] text-[#ffffff]'>Key specifications</h2>
                 <div className='grid lg:grid-cols-4 grid-cols-2  gap-8'>
-                    {keyFeatures.map((feature, index) => (
+                    {keyFeatures && keyFeatures.map((feature, index) => (
                         <div key={index} className='lg:w-[190px] w-[150px] mt-[50px]'>
                             <hr />
                             <p className='text-[14px] text-[#959595] pt-[25px] pb-[18px]'>{feature.label}</p>

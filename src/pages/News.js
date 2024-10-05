@@ -31,7 +31,7 @@ const News = () => {
     <>
       <div className="w-full max-w-full mx-auto flex flex-col justify-between items-center">
         <ContainerWraper>
-          <Breadcrumb crumbs={["Home", "News", "Models Available for Leasing!"]} activeCrumb="Models Available for Leasing!" ></Breadcrumb>
+          <Breadcrumb crumbs={[{label: "Home", url: "/"}, {label: "News", url: "/news"}, {label: "Models Available for Leasing!", url: "/news"}]} activeCrumb="Models Available for Leasing!" ></Breadcrumb>
           <Newscontact></Newscontact>
         </ContainerWraper>
         <ImageFullWidth></ImageFullWidth>
