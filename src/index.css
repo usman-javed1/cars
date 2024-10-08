@@ -11,7 +11,7 @@
   width: 20px;
   background-color: #F6B000;
   position: absolute;
-  left: 58%;
+  left: 60%;
 }
 
 .hoverAni56:hover div {
@@ -112,19 +112,26 @@ body {
 
 
 
-.hoverAni:hover img {
-  margin-left: 23px;
+.hoverAni:hover img, .hoverAni:hover svg {
+  margin-left: 39px;
 
 }
+
+
 
 .hoverAni5:hover img {
   margin-left: 35px;
 
 }
 
-.hoverAni6:hover img {
+.hoverAni6:hover img, .hoverAni6:hover svg, .hoverAni6:hover .svgPath {
   margin-left: 35px;
+  color: #F6B000;
 
+}
+
+.hoverAni6:hover, .hoverAni:hover {
+  color: #F6B000;
 }
 
 .hoverAni3:hover img {
@@ -162,7 +169,7 @@ body {
   transition: 0.5s all;
 }
 
-.hoverAni6 img {
+.hoverAni6 img, .hoverAni6 svg {
   transition: 0.5s all;
 }
 
