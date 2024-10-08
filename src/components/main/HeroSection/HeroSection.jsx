@@ -93,7 +93,7 @@ export const RangeSlider = ({ min, max, value, step, onChange }) => {
     const maxPos = ((maxValue - min) / (max - min)) * 100;
 
     return (
-        <div className="slider-container relative  h-[170px]  text-white w-[471px] bg-[#2C2C2C]">
+        <div className="slider-container relative  h-[170px]  text-white  bg-[#2C2C2C]">
             <div className="mt-[14.35px] text-[14px] font-[500] text-white flex items-center justify-between">Price range
                 <div className="">
                     <img src={require("../../../images/Frame (8).png")} alt="" />
@@ -192,7 +192,7 @@ export const CustomDropdown = ({ options, defaultText, selectedValues, onSelect,
                         animate={{ opacity: 1, y: 0 }} // Animate to visible and positioned correctly
                         exit={{ opacity: 0, y: -10 }} // Animate exit
                         transition={{ duration: 0.3 }} // Control the speed of the animation
-                        className={`flex absolute justify-start items-center bg-white text-black flex-wrap top-[90px] rounded-2xl p-3 font-[500] gap-[5px]`}
+                        className={`flex absolute justify-start items-center bg-white text-black flex-wrap top-[90px] rounded-2xl p-3 font-[500] gap-[5px] ${name === "Price"? 'bg-[#2C2C2C]': ''}`}
                         style={{ width: width, left: left }}
                     >
                         {name === "Make"
@@ -215,7 +215,7 @@ export const CustomDropdown = ({ options, defaultText, selectedValues, onSelect,
                             ))}
                             </div>
                             : name === "Price" ? (
-                                <li className=" w-[401px]">
+                                <li className="bg-[#2C2C2C] w-[401px]">
                                     <RangeSlider
                                         min={0}
                                         max={5000}
