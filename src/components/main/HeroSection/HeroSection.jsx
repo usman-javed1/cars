@@ -193,7 +193,7 @@ export const CustomDropdown = ({ options, defaultText, selectedValues, onSelect,
                         exit={{ opacity: 0, y: -10 }} // Animate exit
                         transition={{ duration: 0.3 }} // Control the speed of the animation
                         className={`flex absolute justify-start items-center bg-white text-black flex-wrap top-[90px] rounded-2xl p-3 font-[500] gap-[5px] ${name === "Price"? 'bg-[#2C2C2C]': ''}`}
-                        style={{ width: width, left: left }}
+                        style={{ width: width, left: left, backgroundColor: name === "Price"? "#2C2C2C": "white" }}
                     >
                         {name === "Make"
 
@@ -428,7 +428,7 @@ const HeroSection = () => {
                         Discover the perfect vehicle for you with our seamless leasing experience.
                     </div>
 
-                    <div className=" relative w-[1030px] h-[78px] bg-white rounded-[15px] mt-10  justify-between items-center lg:flex hidden">
+                    <div className=" relative w-[1030px] h-[78px] bg-white rounded-[15px] mt-10  justify-between items-center lg:flex hidden pl-5">
                         {selections.map((sel) => (
                             <div key={sel.name} className="hoverBox w-[166px] hover:bg-lightgray transition-all duration-200 rounded">
                                 <div className="ml-[16px] text-start font-[500] text-[12px] text-[#797979] mt-[4px] ">
