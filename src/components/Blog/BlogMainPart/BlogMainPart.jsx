@@ -6,7 +6,7 @@ const BlogPost = ({ imageSrc, category, title, description, date, id }) => {
   return (
     <div className="lg:w-[31.5%] w-[325px] blogContainer lg:mb-[20px] mb-[30px]">
       <div className="">
-        <img className="w-full lg:h-[300px] h-[243px] rounded-[15px]" src={imageSrc} alt={title} />
+        <img className="w-full lg:h-[300px] h-[243px] rounded-[15px] object-contain" src={imageSrc} alt={title} />
       </div>
       <div className="m-auto mt-4 pr-[10px]">
         <p className="text-[14px] font-[500] text-[#959595]">{category}</p>
@@ -65,7 +65,7 @@ const BlogMainPart = ({ blogPosts }) => {
       {visiblePosts.map((post, index) => (
         <BlogPost
           key={index}
-          imageSrc={post.photos}
+          imageSrc={post.imageSrc}
           category={post.category}
           title={post.title}
           description={post.description}

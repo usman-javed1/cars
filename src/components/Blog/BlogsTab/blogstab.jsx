@@ -1,145 +1,185 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import MainBlog from '../MainBlog/MainBlog';
 import BlogMainPart from '../BlogMainPart/BlogMainPart';
 import Pagination from '../Pagination/Pagination';
 
-const RenderContent = ({ blogPosts, currentPage, lastPage, setPage  }) => {
-  // const [page, setPage] = useState(1);
-  useEffect(() => {
-    console.log("Blogs post in render component", blogPosts)
-  },[blogPosts])
-  return (
-    <>
-      {lastPage > 0 && <MainBlog post={blogPosts[0]} />}
-      {<BlogMainPart blogPosts={blogPosts} />}
-      {lastPage > 0 && <Pagination currentPage={currentPage} setPage={setPage} totalPages={lastPage} />}
-    </>
-  );
-};
-const Blogstab = () => {
-  // State to manage the active tab and active category
-  const [activeTab, setActiveTab] = useState('all'); // 'all' for the All tab by default
-  const [activeCategory, setActiveCategory] = useState('All'); // Default category is 'All'
-  const [blogPosts, setBlogsPosts] = useState([]);
-  
+
+const RenderContent = ({ blogPosts }) => {
+
   const [page, setPage] = useState(1);
-  const [lastPage, setLastPage] = useState(1);
+  return (
 
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    });
-  };
 
-  useEffect(() => {
-    const init = async () => {
-      try {
-        const queryParams = new URLSearchParams();
-        console.log("Heelo djkda");
+    <>
+      <MainBlog />
+      <BlogMainPart blogPosts={blogPosts} />
+      <Pagination currentPage={page} setPage={setPage} />
+    </>
+  )
+};
 
-        queryParams.append('page', page);
-        queryParams.append('limit', 6);
+const Blogstab = () => {
+  // State to manage the active tab
+  const [activeTab, setActiveTab] = useState('profile');
 
-        if (activeCategory !== 'All') {
-            queryParams.append('category', activeCategory);
-        }
-
-        console.log("Active Category", activeCategory);
-
-        // Fetch the data with the applied filters
-        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/blog/public?${queryParams.toString()}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        console.log(data?.data?.blogs);
-        const formattedBlogs = data?.data?.blogs.map((blog) => ({
-          ...blog,
-          publishDate: formatDate(blog.publishDate),
-        }));
-        setBlogsPosts(formattedBlogs);
-        setLastPage(data?.data?.lastPage);
-        return data;
-
-    } catch (error) {
-        console.log('Error fetching data:', error);
-    }
-    };
-    init();
-  }, [page, activeCategory]);
-
-  useEffect(() => {
-    setPage(1);
-  }, [activeCategory]);
-
-  // Function to filter blog posts based on the active category
-  const getFilteredBlogPosts = () => {
-    if (activeCategory === 'All') return blogPosts;
-    return blogPosts.filter(post => post.category === activeCategory);
-  };
-
-  // Category tabs
-  const categories = [
-    { id: 'all', label: 'All', category: 'All' }, // Default 'All' tab
-    { id: 'updates', label: 'Company Updates', category: 'Company Updates' },
-    { id: 'new-models', label: 'New Models and Offers', category: 'New Models and Offers' },
-    { id: 'customer-stories', label: 'Customer Stories', category: 'Customer Stories' },
-    { id: 'tips', label: 'Tips and Advice', category: 'Tips and Advice' },
-    { id: 'insights', label: 'Insights', category: 'Insights' },
-    { id: 'financial-tips', label: 'Financial Tips', category: 'Financial Tips' },
+  // Common content for all tabs
+  const blogPosts = [
+    {
+      imageSrc: require('../../../images/315_isolated_realistic_metallic_white_high_performance_racing_super_car_from_left_side_view 1.png'),
+      category: 'New Models and Offers',
+      title: 'Special Lease Offers for Fall 2024!',
+      description: 'We are excited to announce the addition of the latest models from top brands to our leasing options! Discover the new Mercedes-Benz, BMW, Audi, and Tesla models now available for lease.',
+      date: 'September 5, 2024',
+    },
+    {
+      imageSrc: require('../../../images/315_isolated_realistic_metallic_white_high_performance_racing_super_car_from_left_side_view 1 (1).png'),
+      category: 'Lease Now, Pay Later',
+      title: 'New Models Available for Leasing!',
+      description: 'We are excited to announce the addition of the latest models from top brands to our leasing options! Discover the new Mercedes-Benz, BMW, Audi, and Tesla models now available for lease.',
+      date: 'September 5, 2024',
+    },
+    {
+      imageSrc: require('../../../images/image 168.png'),
+      category: 'New Models and Offers',
+      title: 'Sustainable Driving: New Electric and Hybrid Models',
+      description: 'We are excited to announce the addition of the latest models from top brands to our leasing options! Discover the new Mercedes-Benz, BMW, Audi, and Tesla models now available for lease.',
+      date: 'September 5, 2024',
+    },
+    {
+      imageSrc: require('../../../images/315_isolated_realistic_metallic_white_high_performance_racing_super_car_from_left_side_view 1 (1).png'),
+      category: 'New Models and Offers',
+      title: 'New Models Available for Leasing!',
+      description: 'We are excited to announce the addition of the latest models from top brands to our leasing options! Discover the new Mercedes-Benz, BMW, Audi, and Tesla models now available for lease.',
+      date: 'September 5, 2024',
+    },
+    {
+      imageSrc: require('../../../images/315_isolated_realistic_metallic_white_high_performance_racing_super_car_from_left_side_view 1 (1).png'),
+      category: 'New Models and Offers',
+      title: 'New Models Available for Leasing!',
+      description: 'We are excited to announce the addition of the latest models from top brands to our leasing options! Discover the new Mercedes-Benz, BMW, Audi, and Tesla models now available for lease.',
+      date: 'September 5, 2024',
+    },
+    {
+      imageSrc: require('../../../images/image.png'),
+      category: 'New Models and Offers',
+      title: 'New Models Available for Leasing!',
+      description: 'We are excited to announce the addition of the latest models from top brands to our leasing options! Discover the new Mercedes-Benz, BMW, Audi, and Tesla models now available for lease.',
+      date: 'September 5, 2024',
+    },
+    
   ];
 
+
   return (
     <>
-      <div>
+      <div className="">
         <div className="mb-4">
           <ul className="flex flex-wrap -mb-px text-sm font-medium text-center" role="tablist">
-            {categories.map(({ id, label, category }) => (
-              <li className="me-2" role="presentation" key={id}>
-                <button
-                  className={`inline-block lg:mt-0 mt-2 h-[48px] flex justify-center items-center px-4 rounded-[43px] ${
-                    activeTab === id ? 'bg-black text-white border-black' : 'bg-[#F8F8F8] text-black border-transparent'
-                  }`}
-                  onClick={() => {
-                    setActiveTab(id);
-                    setActiveCategory(category); // Set category based on tab
-                  }}
-                  role="tab"
-                  aria-controls={id}
-                  aria-selected={activeTab === id}
-                >
-                  {label}
-                </button>
-              </li>
-            ))}
+            <li className="me-2" role="presentation">
+              <button
+                className={`inline-block lg:mt-0 mt-2 p-4 border-b-2 w-[49px] h-[48px] ${activeTab === 'profile' ? 'bg-black text-white rounded-[43px] border-black ' : 'bg-[#F8F8F8] text-black border-transparent rounded-[43px]'}`}
+                onClick={() => setActiveTab('profile')}
+                role="tab"
+                aria-controls="profile"
+                aria-selected={activeTab === 'profile'}
+              >
+                All
+              </button>
+            </li>
+            <li className="me-2" role="presentation">
+              <button
+                className={`text-[14px] lg:mt-0 mt-2 h-[48px] flex justify-center items-center px-4 rounded-[43px] ${activeTab === 'dashboard' ? 'bg-black text-white border-black ' : 'bg-[#F8F8F8] text-black border-transparent'}`}
+                onClick={() => setActiveTab('dashboard')}
+                role="tab"
+                aria-controls="dashboard"
+                aria-selected={activeTab === 'dashboard'}
+              >
+                Company&nbsp;Updates
+              </button>
+            </li>
+            <li className="me-2" role="presentation">
+              <button
+                className={`text-[14px] lg:mt-0 mt-2 h-[48px] flex justify-center items-center px-4 rounded-[43px] ${activeTab === 'settings' ? 'bg-black text-white border-black ' : 'bg-[#F8F8F8] text-black border-transparent'}`}
+                onClick={() => setActiveTab('settings')}
+                role="tab"
+                aria-controls="settings"
+                aria-selected={activeTab === 'settings'}
+              >
+                New&nbsp;Models&nbsp;and&nbsp;Offers
+              </button>
+            </li>
+            <li className="me-2" role="presentation">
+              <button
+                className={`text-[14px] lg:mt-0 mt-2 h-[48px] flex justify-center items-center px-4 rounded-[43px] ${activeTab === 'contacts' ? 'bg-black text-white border-black ' : 'bg-[#F8F8F8] text-black border-transparent'}`}
+                onClick={() => setActiveTab('contacts')}
+                role="tab"
+                aria-controls="contacts"
+                aria-selected={activeTab === 'contacts'}
+              >
+                Customer&nbsp;Stories
+              </button>
+            </li>
+            <li className="me-2" role="presentation">
+              <button
+                className={`text-[14px] lg:mt-0 mt-2 h-[48px] flex justify-center items-center px-4 rounded-[43px] ${activeTab === 'tips' ? 'bg-black text-white border-black ' : 'bg-[#F8F8F8] text-black border-transparent'}`}
+                onClick={() => setActiveTab('tips')}
+                role="tab"
+                aria-controls="tips"
+                aria-selected={activeTab === 'tips'}
+              >
+                Tips&nbsp;and&nbsp;Advice
+              </button>
+            </li>
+            <li className="me-2" role="presentation">
+              <button
+                className={`text-[14px] lg:mt-0 mt-2 h-[48px] flex justify-center items-center px-4 rounded-[43px] ${activeTab === 'insights' ? 'bg-black text-white border-black ' : 'bg-[#F8F8F8] text-black border-transparent'}`}
+                onClick={() => setActiveTab('insights')}
+                role="tab"
+                aria-controls="insights"
+                aria-selected={activeTab === 'insights'}
+              >
+                Insights
+              </button>
+            </li>
+            <li className="me-2" role="presentation">
+              <button
+                className={`text-[14px] lg:mt-0 mt-2 h-[48px] flex justify-center items-center px-4 rounded-[43px] ${activeTab === 'financialTips' ? 'bg-black text-white border-black ' : 'bg-[#F8F8F8] text-black border-transparent'}`}
+                onClick={() => setActiveTab('financialTips')}
+                role="tab"
+                aria-controls="financialTips"
+                aria-selected={activeTab === 'financialTips'}
+              >
+                Financial&nbsp;Tips
+              </button>
+            </li>
           </ul>
         </div>
         <div id="default-tab-content">
-          {categories.map(({ id }) => (
-            <div
-              key={id}
-              className={`pt-[20px] ${activeTab === id ? '' : 'hidden'}`}
-              id={id}
-              role="tabpanel"
-              aria-labelledby={`${id}-tab`}
-            >
-              <RenderContent blogPosts={blogPosts} currentPage={page} lastPage={lastPage} setPage={setPage} />
-            </div>
-          ))}
+          <div className={`pt-[20px] ${activeTab === 'profile' ? '' : 'hidden'}`} id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <RenderContent blogPosts={blogPosts} />
+          </div>
+          <div className={`pt-[20px] ${activeTab === 'dashboard' ? '' : 'hidden'}`} id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+            <RenderContent blogPosts={blogPosts} />
+          </div>
+          <div className={`pt-[20px] rounded-lg ${activeTab === 'settings' ? '' : 'hidden'}`} id="settings" role="tabpanel" aria-labelledby="settings-tab">
+            <RenderContent blogPosts={blogPosts} />
+          </div>
+          <div className={`pt-[20px] rounded-lg ${activeTab === 'contacts' ? '' : 'hidden'}`} id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
+            <RenderContent blogPosts={blogPosts} />
+          </div>
+          <div className={`pt-[20px] rounded-lg ${activeTab === 'tips' ? '' : 'hidden'}`} id="tips" role="tabpanel" aria-labelledby="tips-tab">
+            <RenderContent blogPosts={blogPosts} />
+          </div>
+          <div className={`pt-[20px] rounded-lg ${activeTab === 'insights' ? '' : 'hidden'}`} id="insights" role="tabpanel" aria-labelledby="insights-tab">
+            <RenderContent blogPosts={blogPosts} />
+          </div>
+          <div className={`pt-[20px] rounded-lg ${activeTab === 'financialTips' ? '' : 'hidden'}`} id="financialTips" role="tabpanel" aria-labelledby="financialTips-tab">
+            <RenderContent blogPosts={blogPosts} />
+          </div>
         </div>
       </div>
     </>
   );
-};
+}
 
 export default Blogstab;

@@ -86,7 +86,78 @@ const Blog = () => {
             setBlogs(data?.data?.blogs);
         };
 
-        init();
+        // init();
+        setBlogs([{
+            blocks: [],
+            category: "Company Updates",
+            createdAt: "2024-10-05T03:23:38.000Z",
+            description: "We are excited to announce the addition of the latest models from top brands to our leasing options! Discover the new Mercedes-Benz, BMW, Audi, and Tesla models now available for lease.",
+            id: 1,
+            photos: ['https://res.cloudinary.com/dbzjzgav7/image/upload/v1728097574/zyoxo0ql3injmmt6rchy.png'],
+            publishDate: "2024-10-07T19:00:00.000Z",
+            title: "New Models Available for Leasing!",
+            updatedAt: "2024-10-05T03:23:38.000Z"
+        },{
+            blocks: [],
+            category: "Company Updates",
+            createdAt: "2024-10-05T03:23:38.000Z",
+            description: "We are excited to announce the addition of the latest models from top brands to our leasing options! Discover the new Mercedes-Benz, BMW, Audi, and Tesla models now available for lease.",
+            id: 1,
+            photos: ['https://res.cloudinary.com/dbzjzgav7/image/upload/v1728097574/zyoxo0ql3injmmt6rchy.png'],
+            publishDate: "2024-10-07T19:00:00.000Z",
+            title: "New Models Available for Leasing!",
+            updatedAt: "2024-10-05T03:23:38.000Z"
+        },{
+            blocks: [],
+            category: "Company Updates",
+            createdAt: "2024-10-05T03:23:38.000Z",
+            description: "We are excited to announce the addition of the latest models from top brands to our leasing options! Discover the new Mercedes-Benz, BMW, Audi, and Tesla models now available for lease.",
+            id: 1,
+            photos: ['https://res.cloudinary.com/dbzjzgav7/image/upload/v1728097574/zyoxo0ql3injmmt6rchy.png'],
+            publishDate: "2024-10-07T19:00:00.000Z",
+            title: "New Models Available for Leasing!",
+            updatedAt: "2024-10-05T03:23:38.000Z"
+        },{
+            blocks: [],
+            category: "Company Updates",
+            createdAt: "2024-10-05T03:23:38.000Z",
+            description: "We are excited to announce the addition of the latest models from top brands to our leasing options! Discover the new Mercedes-Benz, BMW, Audi, and Tesla models now available for lease.",
+            id: 1,
+            photos: ['https://res.cloudinary.com/dbzjzgav7/image/upload/v1728097574/zyoxo0ql3injmmt6rchy.png'],
+            publishDate: "2024-10-07T19:00:00.000Z",
+            title: "New Models Available for Leasing!",
+            updatedAt: "2024-10-05T03:23:38.000Z"
+        },{
+            blocks: [],
+            category: "Company Updates",
+            createdAt: "2024-10-05T03:23:38.000Z",
+            description: "We are excited to announce the addition of the latest models from top brands to our leasing options! Discover the new Mercedes-Benz, BMW, Audi, and Tesla models now available for lease.",
+            id: 1,
+            photos: ['https://res.cloudinary.com/dbzjzgav7/image/upload/v1728097574/zyoxo0ql3injmmt6rchy.png'],
+            publishDate: "2024-10-07T19:00:00.000Z",
+            title: "New Models Available for Leasing!",
+            updatedAt: "2024-10-05T03:23:38.000Z"
+        },{
+            blocks: [],
+            category: "Company Updates",
+            createdAt: "2024-10-05T03:23:38.000Z",
+            description: "We are excited to announce the addition of the latest models from top brands to our leasing options! Discover the new Mercedes-Benz, BMW, Audi, and Tesla models now available for lease.",
+            id: 1,
+            photos: ['https://res.cloudinary.com/dbzjzgav7/image/upload/v1728097574/zyoxo0ql3injmmt6rchy.png'],
+            publishDate: "2024-10-07T19:00:00.000Z",
+            title: "New Models Available for Leasing!",
+            updatedAt: "2024-10-05T03:23:38.000Z"
+        },{
+            blocks: [],
+            category: "Company Updates",
+            createdAt: "2024-10-05T03:23:38.000Z",
+            description: "We are excited to announce the addition of the latest models from top brands to our leasing options! Discover the new Mercedes-Benz, BMW, Audi, and Tesla models now available for lease.",
+            id: 1,
+            photos: ['https://res.cloudinary.com/dbzjzgav7/image/upload/v1728097574/zyoxo0ql3injmmt6rchy.png'],
+            publishDate: "2024-10-07T19:00:00.000Z",
+            title: "New Models Available for Leasing!",
+            updatedAt: "2024-10-05T03:23:38.000Z"
+        },]);
     }, [activeSort1]); // Ensure it refetches when `activeSort1` changes
 
     const openModal = () => {

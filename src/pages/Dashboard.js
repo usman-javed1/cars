@@ -9,14 +9,14 @@ const Dashboard = () => {
 
     const [page, setPage] = useState("main");
 
-    useEffect(() => {
-        // Check for the token in localStorage
-        const token = localStorage.getItem('token');
-        if (!token) {
-            // If no token is found, redirect to the login page
-            navigate('/admin');
-        }
-    }, [navigate]); // Empty dependency array to run only on mount
+    // useEffect(() => {
+    //     // Check for the token in localStorage
+    //     const token = localStorage.getItem('token');
+    //     if (!token) {
+    //         // If no token is found, redirect to the login page
+    //         navigate('/admin');
+    //     }
+    // }, [navigate]); // Empty dependency array to run only on mount
 
     return (
         <div className='flex w-[100%] overflow-hidden'>

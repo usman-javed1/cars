@@ -16,27 +16,27 @@ const LeftSide = () => {
         setError('');
 
         try {
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/login`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    email,
-                    password,
-                }),
-            });
+            // const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/login`, {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //     },
+            //     body: JSON.stringify({
+            //         email,
+            //         password,
+            //     }),
+            // });
 
-            const data = await response.json();
+            // const data = await response.json();
 
-            if (!response.ok) {
-                throw new Error(data.message || 'Something went wrong');
-            }
+            // if (!response.ok) {
+            //     throw new Error(data.message || 'Something went wrong');
+            // }
 
-            // Handle successful response (data contains the response)
+            // // Handle successful response (data contains the response)
 
-            localStorage.setItem('token', data.token);
-            localStorage.setItem('user', JSON.stringify(data.user));
+            // localStorage.setItem('token', data.token);
+            // localStorage.setItem('user', JSON.stringify(data.user));
             navigate('/dashboard');
         } catch (error) {
             // Handle error during the API call

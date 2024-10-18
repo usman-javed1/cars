@@ -30,13 +30,91 @@ const Main = () => {
     useEffect(() => {
         const init = async () => {
             try {
-                const tempUser = JSON.parse(window.localStorage.getItem("user"));
-                if(tempUser) {
-                    setUser(tempUser);
-                }
-                const data = await fetchDataAdmin(activeSort1 === "All Categories" ? null : activeSort1, activeSort === "Body Type" || activeSort === "All Types"  ? null : activeSort)
-                console.log("Data is ", data)
-                setRows(data?.data?.cars);
+                // const tempUser = JSON.parse(window.localStorage.getItem("user"));
+                // if(tempUser) {
+                //     setUser(tempUser);
+                // }
+                // const data = await fetchDataAdmin(activeSort1 === "All Categories" ? null : activeSort1, activeSort === "Body Type" || activeSort === "All Types"  ? null : activeSort)
+                // console.log("Data is ", data)
+                // setRows(data?.data?.cars);
+                setRows([{
+                    brand: "Tesla",
+                    category: "Crossover",
+                    createdAt: "2024-10-04T09:36:37.000Z",
+                    cylinder: 5,
+                    id: 22,
+                    leaseTerm: "24 months",
+                    miles: "10000",
+                    model: "Optima",
+                    monthly_payment: 1090,
+                    name: "New Car",
+                    photos: [
+                        'https://res.cloudinary.com/dbzjzgav7/image/upload/v1728034572/cuoz0emkh4ukm0keurzj.png',
+                        'https://res.cloudinary.com/dbzjzgav7/image/upload/v1728034589/hd3lniy3yllgpqjxemx3.png'
+                    ],
+                    seats: 5,
+                    transType: "Manual transmission",
+                    updatedAt: "2024-10-04T09:36:37.000Z",
+                    vehicleType: "Hatchback"
+                },]);
+                setRows([{
+                    brand: "Tesla",
+                    category: "Crossover",
+                    createdAt: "2024-10-04T09:36:37.000Z",
+                    cylinder: 5,
+                    id: 22,
+                    leaseTerm: "24 months",
+                    miles: "10000",
+                    model: "Optima",
+                    monthly_payment: 1090,
+                    name: "New Car",
+                    photos: [
+                        'https://res.cloudinary.com/dbzjzgav7/image/upload/v1728034572/cuoz0emkh4ukm0keurzj.png',
+                        'https://res.cloudinary.com/dbzjzgav7/image/upload/v1728034589/hd3lniy3yllgpqjxemx3.png'
+                    ],
+                    seats: 5,
+                    transType: "Manual transmission",
+                    updatedAt: "2024-10-04T09:36:37.000Z",
+                    vehicleType: "Hatchback"
+                },{
+                    brand: "Tesla",
+                    category: "Crossover",
+                    createdAt: "2024-10-04T09:36:37.000Z",
+                    cylinder: 5,
+                    id: 22,
+                    leaseTerm: "24 months",
+                    miles: "10000",
+                    model: "Optima",
+                    monthly_payment: 1090,
+                    name: "New Car",
+                    photos: [
+                        'https://res.cloudinary.com/dbzjzgav7/image/upload/v1728034572/cuoz0emkh4ukm0keurzj.png',
+                        'https://res.cloudinary.com/dbzjzgav7/image/upload/v1728034589/hd3lniy3yllgpqjxemx3.png'
+                    ],
+                    seats: 5,
+                    transType: "Manual transmission",
+                    updatedAt: "2024-10-04T09:36:37.000Z",
+                    vehicleType: "Hatchback"
+                },{
+                    brand: "Tesla",
+                    category: "Crossover",
+                    createdAt: "2024-10-04T09:36:37.000Z",
+                    cylinder: 5,
+                    id: 22,
+                    leaseTerm: "24 months",
+                    miles: "10000",
+                    model: "Optima",
+                    monthly_payment: 1090,
+                    name: "New Car",
+                    photos: [
+                        'https://res.cloudinary.com/dbzjzgav7/image/upload/v1728034572/cuoz0emkh4ukm0keurzj.png',
+                        'https://res.cloudinary.com/dbzjzgav7/image/upload/v1728034589/hd3lniy3yllgpqjxemx3.png'
+                    ],
+                    seats: 5,
+                    transType: "Manual transmission",
+                    updatedAt: "2024-10-04T09:36:37.000Z",
+                    vehicleType: "Hatchback"
+                },]);
             } catch (error) {
                 console.log("error is here",error)
             }
