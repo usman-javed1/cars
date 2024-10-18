@@ -1,14 +1,13 @@
-import React, { useState, useRef, useEffect, useContext } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styles from './HeroSection.module.css';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import './RangeSlider.css'
-// import { img } from 'framer-motion/client';
-// import Jeep from './icons/Jeep';
-// import Merce from './icons/Merce';
+import { img } from 'framer-motion/client';
+import Jeep from './icons/Jeep';
+import Merce from './icons/Merce';
 import CircleIcon from './icons/Circle';
 import AIcon from './icons/AIcon';
 import Benz from './icons/Benz';
@@ -16,25 +15,30 @@ import Tesla from './icons/Tesla';
 
 import Oval from './icons/Oval'
 import OvalO from './icons/OvalO';
-// import Hunda from './icons/Hunda';
-// import VerticalBox from './icons/VerticalBox';
-// import Animal from './icons/Animal';
+import Hunda from './icons/Hunda';
+import VerticalBox from './icons/VerticalBox';
+import Animal from './icons/Animal';
 import KN from './icons/KN';
 import Bugati from './icons/Bugati';
-// import OvalArrow from './icons/OvalArrow';
-// import OvalTriangle from './icons/OvalTriangle';
-// import DoubleTriangle from './icons/DoubleTriangle';
-// import CircleImage from './icons/CircleImage';
-// import Suzuki from './icons/Suzuki'
-// import DoubleLine from './icons/DoubleLine'
-// import DotTriangle from './icons/DotTriangle'
-// import Hunda2 from './icons/Hunda2'
+import OvalArrow from './icons/OvalArrow';
+import OvalTriangle from './icons/OvalTriangle';
+import DoubleTriangle from './icons/DoubleTriangle';
+import CircleImage from './icons/CircleImage';
+import Suzuki from './icons/Suzuki'
+import DoubleLine from './icons/DoubleLine'
+import DotTriangle from './icons/DotTriangle'
+import Hunda2 from './icons/Hunda2'
 import All from './icons/All';
-// import { AiOutlineArrowUp, AiOutlineArrowDown } from 'react-icons/ai'; // Import new icons
-import { context } from '../../../context/context';
-import { div } from 'framer-motion/client';
+import { AiOutlineArrowUp, AiOutlineArrowDown } from 'react-icons/ai'; // Import new icons
+import { Link } from 'react-router-dom';
 
 
+// import React, { useState, useEffect } from 'react';
+
+
+
+// import React, { useState, useEffect, useRef } from 'react';
+// import React, { useState, useEffect, useRef } from 'react';
 export const RangeSlider = ({ min, max, value, step, onChange }) => {
     const [minValue, setMinValue] = useState(value ? value.min : min);
     const [maxValue, setMaxValue] = useState(value ? value.max : max);
@@ -93,11 +97,8 @@ export const RangeSlider = ({ min, max, value, step, onChange }) => {
     const maxPos = ((maxValue - min) / (max - min)) * 100;
 
     return (
-        <div className="slider-container relative  h-[170px]  text-white  bg-[#2C2C2C]">
-            <div className="mt-[14.35px] text-[14px] font-[500] text-white flex items-center justify-between">Price range
-                <div className="">
-                    <img src={require("../../../images/Frame (8).png")} alt="" />
-            </div></div>
+        <div className="slider-container relative w-full h-[170px]">
+            <div className="mt-[14.35px] text-[14px] font-[500] text-black">Price range</div>
 
             {/* Slider track with min/max labels */}
             <div className="relative flex items-center">
@@ -150,13 +151,6 @@ export const RangeSlider = ({ min, max, value, step, onChange }) => {
 
 export const CustomDropdown = ({ options, defaultText, selectedValues, onSelect, width, name, left, priceRange, handlePriceChange }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const { setFeatureIndex } = useContext(context);
-    useEffect(() => {
-        if (isOpen)
-            setFeatureIndex(-1)
-        else
-            setFeatureIndex(1)
-    },[isOpen])
     const [hoveredValue, setHoveredValue] = useState(null);
     const dropdownRef = useRef(null);
 
@@ -199,57 +193,44 @@ export const CustomDropdown = ({ options, defaultText, selectedValues, onSelect,
                         animate={{ opacity: 1, y: 0 }} // Animate to visible and positioned correctly
                         exit={{ opacity: 0, y: -10 }} // Animate exit
                         transition={{ duration: 0.3 }} // Control the speed of the animation
-                        className={`flex absolute justify-start items-center bg-white text-black flex-wrap top-[90px] rounded-2xl p-3 font-[500] gap-[5px] ${name === "Price"? 'bg-[#2C2C2C]': ''}`}
-                        style={{ width: width, left: left, backgroundColor: name === "Price"? "#2C2C2C": "white" }}
+                        className={`flex absolute justify-start items-center bg-white text-black flex-wrap top-[90px] rounded-2xl p-3 font-[500] gap-[5px]`}
+                        style={{ width: width, left: left }}
                     >
                         {name === "Make"
-
-                            ? <div className='grid grid-cols-2 py-2 z-20' style={{ zIndex: 9999999 }}> {options.map((option) => (
-
+                            ? options.map((option) => (
                                 <li
                                     key={option.value}
-                                    className={`${styles.option} ${selectedValues.includes(option.value) ? styles.selected : ''}`}
+                                    className="rounded-full"
                                     onClick={() => toggleOption(option.value, option.label)}
                                     onMouseEnter={() => setHoveredValue(option.value)}
                                     onMouseLeave={() => setHoveredValue(null)}
                                 >
-                                    {option.value}
-                                    <div className="">
-                                        <img src={require("../../../images/Vector (1).png")} alt="" />
-                                    </div>
+                                    {React.cloneElement(option.label, {
+                                        bg: selectedValues.includes(option.value) ? "black" : (hoveredValue === option.value ? "#F0F0F0" : "white"),
+                                        color: selectedValues.includes(option.value) ? "white" : (hoveredValue === option.value ? "#B9B9B9" : "#B9B9B9")
+                                    })}
                                 </li>
-
-                            ))}
-                            </div>
+                            ))
                             : name === "Price" ? (
-                                <li className="bg-[#2C2C2C] w-[401px]">
+                                <li className=" w-[401px]">
                                     <RangeSlider
-                                        min={0}
-                                        max={5000}
+                                        min={10}
+                                        max={1000}
                                         value={priceRange}
                                         step={1}
                                         onChange={handlePriceChange}
                                     />
                                 </li>
                             ) : (
-                                <div>
-                                    {options.map((option) => (
-
-                                        <li
-                                            key={option.value}
-                                            className={`${styles.option} ${selectedValues.includes(option.value) ? styles.selected : ''}`}
-                                            onClick={() => toggleOption(option.value, option.label)}
-                                            onMouseEnter={() => setHoveredValue(option.value)}
-                                            onMouseLeave={() => setHoveredValue(null)}
-                                        >
-                                            {option.value}
-                                            <div className="">
-                                                <img src={require("../../../images/Vector (1).png")} alt="" />
-                                            </div>
-                                        </li>
-
-                                    ))}
-                                </div>
+                                options.map((option) => (
+                                    <li
+                                        key={option.value}
+                                        className={`${styles.option} ${selectedValues.includes(option.value) ? styles.selected : ''}`}
+                                        onClick={() => toggleOption(option.value, option.label)}
+                                    >
+                                        {option.label}
+                                    </li>
+                                ))
                             )}
                     </motion.ul>
                 )}
@@ -259,87 +240,82 @@ export const CustomDropdown = ({ options, defaultText, selectedValues, onSelect,
 };
 
 export const selections = [
-    // {
-    //     name: "Categories",
-    //     options: [
-    //         { value: 'Sport', label: 'Sport' },
-    //         { value: 'SUVs', label: 'SUVs' },
-    //         { value: 'Hatchback', label: 'Hatchback' },
-    //         { value: 'Crossover', label: 'Crossover' },
-    //         { value: 'Sedan', label: 'Sedan' },
-    //         { value: 'Electric', label: 'Electric' },
-    //         { value: 'Hybrid', label: 'Hybrid' },
-    //         { value: 'Pickup', label: 'Pickup' },
-    //     ],
-    //     default: "All categories",
-    //     width: '500px',
-    //     left: "0px"
-    // },
+    {
+        name: "Categories",
+        options: [
+            { value: 'Sport', label: 'Sport' },
+            { value: 'Luxury', label: 'Luxury' },
+            { value: 'Electric', label: 'Electric' },
+            { value: 'hybrid', label: 'Hybrid' },
+            { value: 'Diesel', label: 'Diesel' },
+            { value: 'Vintage', label: 'Vintage' },
+            { value: 'Off-road', label: 'Off-road' },
+            { value: 'Performance', label: 'Performance' },
+        ],
+        default: "All categories",
+        width: '500px',
+        left: "0px"
+    },
     {
         name: "Make",
         options: [
-            { id: 1, value: 'Ford' },
-            { id: 2, value: 'Chevrolet' },
-            { id: 3, value: 'Toyota' },
-            { id: 4, value: 'Honda' },
-            { id: 5, value: 'Jeep' },
-            { id: 6, value: 'Tesla' },
-            { id: 7, value: 'Ram' },
-            { id: 8, value: 'Nissan' },
-            { id: 9, value: 'BMW' },
-            { id: 10, value: 'Mercedes-Benz' },
-            { id: 11, value: 'Subaru' },
-            { id: 12, value: 'GMC' },
-            { id: 13, value: 'Dodge' },
-            { id: 14, value: 'Volkswagen' },
-            { id: 15, value: 'Hyundai' },
-            { id: 16, value: 'Ferrari' },
-            { id: 17, value: 'Lamborghini' },
-            { id: 18, value: 'Porsche' },
-            { id: 19, value: 'Aston Martin' },
-            { id: 20, value: 'McLaren' },
-            { id: 21, value: 'Rolls-Royce' },
-            { id: 22, value: 'Bentley' },
-            { id: 23, value: 'Maserati' },
-            { id: 24, value: 'Bugatti' },
-            { id: 25, value: 'Lotus' },
+            { value: 'All', label: <All /> },
+            { value: 'toyota', label: <Jeep /> },
+            { value: 'honda', label: <Merce /> },
+            { value: '1', label: <CircleIcon /> },
+            { value: '2', label: <AIcon /> },
+            { value: '3', label: <Benz /> },
+            { value: '4', label: <Tesla /> },
+            { value: '5', label: <Oval /> },
+            { value: '6', label: <OvalO /> },
+            { value: '7', label: <Hunda /> },
+            { value: '8', label: <VerticalBox /> },
+            { value: '9', label: <Animal /> },
+            { value: '10', label: <KN /> },
+            { value: '11', label: <Bugati /> },
+            { value: '12 ', label: <OvalArrow /> },
+            { value: '13', label: <OvalTriangle /> },
+            { value: '14', label: <DoubleTriangle /> },
+            { value: '15', label: <CircleImage /> },
+            { value: '16', label: <Suzuki /> },
+            { value: '17', label: <DoubleLine /> },
+            { value: '18', label: <DotTriangle /> },
+            { value: '19', label: <Hunda2 /> },
         ],
         default: "All makes",
-        width: '362px',
+        width: '962px',
         left: "34px"
     },
     {
         name: "Model",
         options: [
             { value: 'All', label: 'All' },
-            { value: 'Model Y', label: 'Model Y' },
-            { value: 'Model S', label: 'Model S' },
-            { value: 'Cybertruck', label: 'Cybertruck' }
-            // { value: 'Sorento', label: 'Sorento' },
-            // { value: 'Seltos', label: 'Seltos' },
-            // { value: 'Telluride', label: 'Telluride' },
-            // { value: 'Soul', label: 'Soul' },
-            // { value: 'Niro', label: 'Niro' },
-            // { value: 'EV6', label: 'EV6' },
-            // { value: 'Stinger', label: 'Stinger' },
-            // { value: 'Forte', label: 'Forte' },
-            // { value: 'K5', label: 'K5' },
-            // { value: 'Rio', label: 'Rio' },
-            // { value: 'Optima', label: 'Optima' },
-            // { value: 'Cadenza', label: 'Cadenza' },
-            // { value: 'Picanto', label: 'Picanto' },
-            // { value: 'XCeed', label: 'XCeed' },
-            // { value: 'ProCeed', label: 'ProCeed' },
+            { value: 'Sorento', label: 'Sorento' },
+            { value: 'Seltos', label: 'Seltos' },
+            { value: 'Telluride', label: 'Telluride' },
+            { value: 'Soul', label: 'Soul' },
+            { value: 'Niro', label: 'Niro' },
+            { value: 'EV6', label: 'EV6' },
+            { value: 'Stinger', label: 'Stinger' },
+            { value: 'Forte', label: 'Forte' },
+            { value: 'K5', label: 'K5' },
+            { value: 'Rio', label: 'Rio' },
+            { value: 'Optima', label: 'Optima' },
+            { value: 'Cadenza', label: 'Cadenza' },
+            { value: 'Picanto', label: 'Picanto' },
+            { value: 'XCeed', label: 'XCeed' },
+            { value: 'ProCeed', label: 'ProCeed' },
         ],
         default: "All models",
-        width: '190px',
-        left: "176px"
+        width: '818px',
+        left: "106px"
     },
     {
-        name: "BodyType",
+        name: "Body type",
         options: [
             { value: 'All', label: 'All' },
             { value: 'Sedan', label: 'Sedan' },
+
             { value: 'Cargo Van', label: 'Cargo Van' },
             { value: 'Convertible', label: 'Convertible' },
             { value: 'Hatchback', label: 'Hatchback' },
@@ -350,8 +326,8 @@ export const selections = [
             { value: 'Wagon', label: 'Wagon' },
         ],
         default: "All types",
-        width: '190px',
-        left: "404px"
+        width: '980px',
+        left: "24px"
     },
     {
         name: "Price",
@@ -367,30 +343,32 @@ export const selections = [
 ];
 
 
+
+
+
+
 const HeroSection = () => {
-    const navigate = useNavigate();
     const [isOverlayVisible, setIsOverlayVisible] = useState(false); // State for overlay visibility
 
     const toggleOverlay = () => {
         setIsOverlayVisible(!isOverlayVisible); // Toggle overlay visibility
     };
 
-    // const [openDropdown, setOpenDropdown] = useState(null);
-    // const [selectedValues, setSelectedValues] = useState({
-    //     Make: ['All'],  // "All" is selected by default for "Make"
-    //     Categories: [],
-    //     Model: [],
-    //     Year: [],
-    //     Price: []
-    // });
+    const [openDropdown, setOpenDropdown] = useState(null);
+    const [selectedValues, setSelectedValues] = useState({
+        Make: ['All'],  // "All" is selected by default for "Make"
+        Categories: [],
+        Model: [],
+        Year: [],
+        Price: []
+    });
 
-    const { selectedValues, setSelectedValues, priceRange, setPriceRange, isFilter, setIsFilter } = useContext(context)
-
-    // const [priceRange, setPriceRange] = useState({ min: 0, max: 100 });
+    const [priceRange, setPriceRange] = useState({ min: 0, max: 100 });
 
     const handlePriceChange = (newRange) => {
         setPriceRange(newRange);
     };
+
 
 
     const handleSelect = (name, value, isSelected) => {
@@ -404,11 +382,6 @@ const HeroSection = () => {
         });
     };
 
-    const handleFilterBtn = () => {
-        setIsFilter(!isFilter);
-        navigate("/view");
-    }
-
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
 
@@ -420,9 +393,9 @@ const HeroSection = () => {
                     <img src={require("../../../images/insta2.png")} alt="" className='w-[18px] h-[18px]  ' />
                     <img src={require("../../../images/solidfb.png")} alt="" className='w-[18px] h-[18px]  ' />
                 </div>
-                <img src={require("../../../images/hero.png")} style={{ borderRadius: '22px' }} className='w-full h-[632px] lg:block md:block hidden' alt="" />
+                <img src={require("../../../images/hero.png")} className='w-full h-[632px] lg:block md:block hidden' alt="" />
 
-                <img src={require("../../../images/responsiveHeroImage.png")} className='w-full h-[652px] lg:hidden md:hidden block' alt="" style={{ filter: "brightness(0.5)", borderRadius: '22px' }} />
+                <img src={require("../../../images/responsiveHeroImage.png")} className='w-full h-[652px] lg:hidden md:hidden block' alt="" style={{ filter: "brightness(0.5)" }} />
                 <div className="samllText absolute  lg:w-[560px] md:w-[460px] w-[219px] lg:right-[5%] md:right-[5%] right-[32px] lg:top-[50px]md:top-[50px] top-[30px] text-[8.76px] text-white lg:text-right md:text-right text-center font-[300] leading-[1.5] lg:opacity-100 opacity-50">
                     Explore our exclusive collection of exotic cars, each meticulously chosen to represent the epitome of automotive <br /> engineering and design. From sleek sports cars to powerful luxury SUVs, our selection caters to every discerning taste.
                 </div>
@@ -435,7 +408,7 @@ const HeroSection = () => {
                         Discover the perfect vehicle for you with our seamless leasing experience.
                     </div>
 
-                    <div className=" relative w-[1030px] h-[78px] bg-white rounded-[15px] mt-10  justify-between items-center lg:flex hidden pl-5">
+                    <div className=" relative w-[1030px] h-[78px] bg-white rounded-[15px] mt-10  justify-between items-center lg:flex hidden">
                         {selections.map((sel) => (
                             <div key={sel.name} className="hoverBox w-[166px] hover:bg-lightgray transition-all duration-200 rounded">
                                 <div className="ml-[16px] text-start font-[500] text-[12px] text-[#797979] mt-[4px] ">
@@ -457,10 +430,12 @@ const HeroSection = () => {
                             </div>
                         ))}
                         <div className="">
-                            <button onClick={() => handleFilterBtn()} className='w-[162px] h-[56px] flex justify-center items-center bg-[#000] text-[16px] font-[500] rounded-[10px] mx-[15px]
-                            hover:bg-[#F6B000] transition-all duration-300'>
-                                Browse vehicles
-                            </button>
+                            <Link to="/view">
+                                <button className='w-[162px] h-[56px] flex justify-center items-center bg-[#000] text-[16px] font-[500] rounded-[10px] mx-[15px]
+                                hover:bg-[#F6B000] transition-all duration-300'>
+                                    Browse vehicles
+                                </button>
+                            </Link>
                         </div>
                     </div>
                     <div className="w-[285px] mt-[60px] h-[60px] ml-[20px] bg-white px-2 flex items-center rounded-[15px] lg:hidden md:hidden" onClick={toggleOverlay}>
@@ -503,8 +478,8 @@ const HeroSection = () => {
                             setStartDate={setStartDate}
                         />
                         <div className="button">
-                            <button onClick={() => handleFilterBtn()} className='w-full h-[56px] flex justify-center items-center font-[500] bg-black text-white rounded-[10px] mt-20 mx-auto'>
-                                Show results
+                            <button className='w-full h-[56px] flex justify-center items-center font-[500] bg-black text-white rounded-[10px] mt-20 mx-auto'>
+                                Show results (232)
                             </button>
                         </div>
                     </motion.div>
@@ -523,10 +498,10 @@ export const FAQ = ({ selectedValues, priceRange, handlePriceChange, selections,
 
 
     const selectionsWithDate = [
-        // {
-        //     name: "Date",
-        //     options: []
-        // },
+        {
+            name: "Date",
+            options: [] // Add options if needed
+        },
         ...selections
     ];
 
@@ -567,7 +542,7 @@ export const FAQ = ({ selectedValues, priceRange, handlePriceChange, selections,
                         >
                             <div>
                                 <p className={`lg:text-[18px] py-2 md:text-[18px] text-[16px]  font-[700] text-start text-[#636363]`} >
-                                    {selection.name === "BodyType" ? "Body Type" : selection.name}
+                                    {selection.name}
                                 </p>
                             </div>
                             <button
@@ -576,9 +551,9 @@ export const FAQ = ({ selectedValues, priceRange, handlePriceChange, selections,
                                 onClick={() => toggleQuestion(index)}
                             >
                                 {openQuestions.includes(index) ? (
-                                    <img src={require("../../../images/dateupicons.png")} alt='date' className='w-[24px] h-[24px]  rotate-180' />
+                                    <img src={require("../../../images/dateupicons.png")} className='w-[24px] h-[24px]  rotate-180' />
                                 ) : (
-                                    <img src={require("../../../images/dateupicons.png")} alt='date' className='w-[24px] h-[24px]' />
+                                    <img src={require("../../../images/dateupicons.png")} className='w-[24px] h-[24px]' />
                                 )}
                             </button>
                         </div>
@@ -608,15 +583,15 @@ export const FAQ = ({ selectedValues, priceRange, handlePriceChange, selections,
                                     : selection.name === "Price" ? (
                                         <li className="w-[100%] -ml-[4%]">
                                             <RangeSlider
-                                                min={0}
-                                                max={5000}
+                                                min={-10}
+                                                max={1000}
                                                 value={priceRange}
                                                 step={1}
                                                 onChange={handlePriceChange}
                                             />
                                         </li>
                                     ) : selection.name === "Date" ? (
-                                        <div className="w-full space-y-4 filter-datepickers">
+                                        <div className=" space-y-4">
                                             <div className="text-[#767676] w-[100%]">
                                                 <div className='text-[12px] text-[#767676] font-[500] flex gap-3 space-y-2 mb-2'>
                                                     <img src={require("../../../images/calender.png")} alt="" className='w-[16px] h-[16px]' />
@@ -627,7 +602,7 @@ export const FAQ = ({ selectedValues, priceRange, handlePriceChange, selections,
                                                     onChange={(date) => setStartDate(date)}
                                                     dateFormat="yyyy/MM/dd"
                                                     placeholderText="YYYY / MM / DD"
-                                                    className="bg-lightgray rounded-[10px] p-3 outline-none w-full"
+                                                    className="bg-lightgray rounded-[10px] p-3 outline-none w-[100%]"
                                                 />
                                             </div>
                                             <div className="text-[#767676] w-[100%]">
@@ -645,25 +620,15 @@ export const FAQ = ({ selectedValues, priceRange, handlePriceChange, selections,
                                             </div>
                                         </div>
                                     ) : (
-                                        <>
-                                            {/* {selection.name !== "Categories" && <li
-                                                className={`${styles.option} ${selectedValues[selection.name] && selectedValues[selection.name].length === 0 ? styles.selected : ''}`}
-                                                onClick={() => toggleOption(selection.name, "All", "All")}
+                                        selection.options.map((option) => (
+                                            <li
+                                                key={option.value}
+                                                className={`${styles.option} ${selectedValues[selection.name] && selectedValues[selection.name].includes(option.value) ? styles.selected : ''}`}
+                                                onClick={() => toggleOption(selection.name, option.value, option.label)}
                                             >
-                                                All
-                                            </li>} */}
-                                            {
-                                                selection.options.map((option) => (
-                                                    <li
-                                                        key={option.value}
-                                                        className={`${styles.option} ${selectedValues[selection.name] && selectedValues[selection.name].includes(option.value) ? styles.selected : ''}`}
-                                                        onClick={() => toggleOption(selection.name, option.value, option.label)}
-                                                    >
-                                                        {option.label}
-                                                    </li>
-                                                ))
-                                            }
-                                        </>
+                                                {option.label}
+                                            </li>
+                                        ))
                                     )}
                             </motion.ul>
 

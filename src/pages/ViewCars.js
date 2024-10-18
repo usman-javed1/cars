@@ -12,36 +12,161 @@ import { context } from "../context/context";
 const ViewCars = () => {
   const { carData, viewPage, setViewPage, isFilter, setIsFilter, priceRange, setPriceRange } = useContext(context);
 
-  const [blogPosts, setBlogPosts] = useState([]);
+  // const [blogPosts, setBlogPosts] = useState([]);
   // const [page, setPage] = useState(1);
 
 //   useEffect(() => {
 //     console.log("Car data in view page is ", carData);
 //   }, [carData]);
 
-  useEffect(() => {
-    if (carData && carData.cars) {
-      const posts = carData.cars.map((car) => ({
-        id: car.id,
-        name: car.name,
-        heading: `${car.category}`,
-        image: Array.isArray(car.photos) ? car.photos[0] : car.photos,
-        price: car.monthly_payment.toString(),
-        lease: `${car.leaseTerm}`,
-        mile: car.miles,
-        seat: car.seats.toString(), // Convert number to string
-        discount: "-40%", // Static discount of 40%
-        transType: car.transType
-      }));
+  // useEffect(() => {
+  //   if (carData && carData.cars) {
+  //     const posts = carData.cars.map((car) => ({
+  //       id: car.id,
+  //       name: car.name,
+  //       heading: `${car.category}`,
+  //       image: Array.isArray(car.photos) ? car.photos[0] : car.photos,
+  //       price: car.monthly_payment.toString(),
+  //       lease: `${car.leaseTerm}`,
+  //       mile: car.miles,
+  //       seat: car.seats.toString(), // Convert number to string
+  //       discount: "-40%", // Static discount of 40%
+  //       transType: car.transType
+  //     }));
 
-      setBlogPosts(posts);
-      setViewPage(carData.page || 1); // Ensure page is set correctly
-    }
-  }, [carData]);
+  //     setBlogPosts(posts);
+  //     setViewPage(carData.page || 1); // Ensure page is set correctly
+  //   }
+  // }, [carData]);
 
   const handlePageChange = (newPage) => {
     setViewPage(newPage);
   };
+
+  const blogPosts = [
+    {
+      name: "2024 Kia Forte LXS 4dr Sedan",
+      heading: "Sport cars",
+      image: require("../images/blackcar.png"),
+      price: "839",
+      lease: "39 months",
+      mile: "8000",
+      seat: "4",
+      discount: "-40%",
+    },
+    {
+      name: "Mercedes-AMG GT Coupé",
+      heading: "Sport cars",
+      image: require("../images/cardwhite.png"),
+      price: "1239",
+      lease: "39 months",
+      mile: "8000",
+      seat: "4",
+      discount: "-40%",
+    },
+    {
+      name: "BMW M8 Competition",
+      heading: "Sport cars",
+      image: require("../images/card3.png"),
+      price: "1239",
+      lease: "39 months",
+      mile: "8000",
+      seat: "4",
+      discount: "-40%",
+    },
+    {
+      name: "2024 Kia Forte LXS 4dr Sedan",
+      heading: "Sport cars",
+      image: require("../images/blackcar.png"),
+      price: "839",
+      lease: "39 months",
+      mile: "8000",
+      seat: "4",
+      discount: "-40%",
+    },
+    {
+      name: "2024 Kia Forte LXS 4dr Sedan",
+      heading: "Sport cars",
+      image: require("../images/blackcar.png"),
+      price: "839",
+      lease: "39 months",
+      mile: "8000",
+      seat: "4",
+      discount: "-40%",
+    },
+    {
+      name: "Mercedes-AMG GT Coupé",
+      heading: "Sport cars",
+      image: require("../images/cardwhite.png"),
+      price: "1239",
+      lease: "39 months",
+      mile: "8000",
+      seat: "4",
+      discount: "-40%",
+    },
+    {
+      name: "BMW M8 Competition",
+      heading: "Sport cars",
+      image: require("../images/card3.png"),
+      price: "1239",
+      lease: "39 months",
+      mile: "8000",
+      seat: "4",
+      discount: "-40%",
+    },
+    {
+      name: "2024 Kia Forte LXS 4dr Sedan",
+      heading: "Sport cars",
+      image: require("../images/blackcar.png"),
+      price: "839",
+      lease: "39 months",
+      mile: "8000",
+      seat: "4",
+      discount: "-40%",
+    },
+    {
+      name: "2024 Kia Forte LXS 4dr Sedan",
+      heading: "Sport cars",
+      image: require("../images/blackcar.png"),
+      price: "839",
+      lease: "39 months",
+      mile: "8000",
+      seat: "4",
+      discount: "-40%",
+    },
+    {
+      name: "Mercedes-AMG GT Coupé",
+      heading: "Sport cars",
+      image: require("../images/cardwhite.png"),
+      price: "1239",
+      lease: "39 months",
+      mile: "8000",
+      seat: "4",
+      discount: "-40%",
+    },
+    {
+      name: "BMW M8 Competition",
+      heading: "Sport cars",
+      image: require("../images/card3.png"),
+      price: "1239",
+      lease: "39 months",
+      mile: "8000",
+      seat: "4",
+      discount: "-40%",
+    },
+    {
+      name: "2024 Kia Forte LXS 4dr Sedan",
+      heading: "Sport cars",
+      image: require("../images/blackcar.png"),
+      price: "839",
+      lease: "39 months",
+      mile: "8000",
+      seat: "4",
+      discount: "-40%",
+    },
+  ];
+
+
 
   return (
     <>
@@ -59,7 +184,7 @@ const ViewCars = () => {
           </div> */}
           <Pagination
             setPage={handlePageChange}
-            totalPages={carData.lastPage}
+            totalPages={carData.lastPage||5}
             currentPage={viewPage}
           />
           <br />

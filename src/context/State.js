@@ -5,7 +5,7 @@ import { context as Context } from "./context";
 const StatesStore = ({ children }) => {
     const [carData, setCarData] = useState([]);
 
-    const [isFilter, setIsFilter] = useState(false);
+    const [isFilter, setIsFilter] = useState(true);
     const [featureIndex, setFeatureIndex] = useState(1);
 
     const [selectedValues, setSelectedValues] = useState({
@@ -22,9 +22,9 @@ const StatesStore = ({ children }) => {
     const [priceRange, setPriceRange] = useState({ min: 0, max: 5000 });
     const [viewPage, setViewPage] = useState(1);
 
-    useEffect(() => {
-        fetchData();
-    }, [isFilter, viewPage, activeSort])
+    // useEffect(() => {
+    //     fetchData();
+    // }, [isFilter, viewPage, activeSort])
 
     const fetchData = async () => {
         try {
